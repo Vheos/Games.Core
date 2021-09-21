@@ -5,7 +5,7 @@ namespace Vheos.Tools.UnityCore.Editor
     using UnityEditor;
     [CustomEditor(typeof(AEditable), true)]
     [CanEditMultipleObjects]
-    public class AEditable_Editor : Editor
+    public class AEditable_Editor : MonoBehaviour_Editor
     {
         // CONST
         static private readonly GUILayoutOption BUTTON_WIDTH = GUILayout.Width(75f);
@@ -53,8 +53,7 @@ namespace Vheos.Tools.UnityCore.Editor
             }
 
             // Draw base inspector
-            DrawPropertiesExcluding(serializedObject, "m_Script");
-            serializedObject.ApplyModifiedProperties();
+            base.OnInspectorGUI();
 
             // Inspect
             if (GUI.changed)
