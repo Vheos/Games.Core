@@ -6,9 +6,22 @@
       <Shortcut>inspectorfield</Shortcut>
     </Header>
     <Snippet>
+      
       <Code Language="CSharp">
-        <![CDATA[[SerializeField] protected $TYPE$ __$NAME$;]]>
-      </Code>    
+        <![CDATA[[SerializeField] protected $TYPE$ __$NAME$;$end$]]>
+      </Code>
+            
+      <Declarations>      
+        <Literal>
+          <ID>TYPE</ID>
+          <Default>TYPE</Default>
+        </Literal>
+        <Literal>
+          <ID>NAME</ID>
+          <Default>NAME</Default>
+        </Literal>    
+      </Declarations>
+      
     </Snippet>
   </CodeSnippet> 
 </CodeSnippets>
