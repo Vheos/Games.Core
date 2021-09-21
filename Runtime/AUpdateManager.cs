@@ -25,9 +25,10 @@ namespace Vheos.Tools.UnityCore
         static private AUpdateManager _instance;
         static private Dictionary<Type, HashSet<Method>> _methodListsByType;
         static private Dictionary<Method, HashSet<AUpdatable>> _callListsByMethod;
+        static private void InitializeMethodsDictionary()
+        => _methodListsByType = new Dictionary<Type, HashSet<Method>>();
         static private void CacheMethodsDictionary(Assembly assembly)
         {
-            _methodListsByType = new Dictionary<Type, HashSet<Method>>();
             foreach (var type in Utility.GetDerivedTypes<AUpdatable>(assembly))
                 if (!type.IsAbstract)
                 {
@@ -60,9 +61,11 @@ namespace Vheos.Tools.UnityCore
         && method.IsVirtual;
 
         // Mono
-        private void Awake()
+        private void OnEnable()
         {
             _instance = this;
+            InitializeMethodsDictionary();
+            CacheMethodsDictionary(Assembly.GetCallingAssembly());
             CacheMethodsDictionary(GetType().Assembly);
             InitializeCallsDictionary();
         }
@@ -81,6 +84,8 @@ namespace Vheos.Tools.UnityCore
             foreach (var component in _callListsByMethod[Method.PlayUpdateFixed])
                 component.PlayUpdateFixed();
         }
+        private void OnDisable()
+        => _instance = null;
 
         // Enum
         private enum Method
