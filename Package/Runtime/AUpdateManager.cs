@@ -7,6 +7,7 @@ namespace Vheos.Tools.UnityCore
     using Tools.UtilityN;
     using Tools.Extensions.General;
     [DefaultExecutionOrder(-1)]
+    [DisallowMultipleComponent]
     abstract public class AUpdateManager : MonoBehaviour
     {
         // Publics
