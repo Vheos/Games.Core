@@ -1,7 +1,6 @@
 namespace Vheos.Tools.UnityCore
 {
     using UnityEngine;
-    [DefaultExecutionOrder(+1)]
     abstract public class APlayable : MonoBehaviour
     {
         // Virtuals
