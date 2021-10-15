@@ -81,14 +81,14 @@ namespace Vheos.Tools.UnityCore
         && method.IsVirtual;
         private void EditAwakeAndRegisterUpdate()
         {
-            EditAwake();
             if (IsImplementingMethod(GetType(), nameof(EditUpdate)))
                 Camera.onPreCull += EditUpdateOnCameraPreCull;
+            EditAwake();            
         }
         private void EditDestroyAndUnregisterUpdate()
         {
-            EditDestroy();
             Camera.onPreCull -= EditUpdateOnCameraPreCull;
+            EditDestroy();            
         }
         private void EditUpdateOnCameraPreCull(Camera camera)
         {
