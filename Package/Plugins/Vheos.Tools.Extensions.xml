@@ -1,0 +1,1634 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Vheos.Tools.Extensions</name>
+    </assembly>
+    <members>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Add``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary> Adds elements a to this collection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Add``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary> Adds elements a to this collection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Remove``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary> Removes elements a from this collection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Remove``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <summary> Removes elements a from this collection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryAddUnique``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary> Adds element a if this collection doesn't contain it. Returns whether the collection was modified or not. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryRemove``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary> Removes element a if this collection doesn't contain it. Returns whether the collection was modified or not. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.IsEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary> Tests whether this collection contains any element. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.IsNotEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary> Tests whether this collection contains zero elements. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary> Tests whether this collection contains any element. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.IsNotNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary> Tests whether this collection contains zero elements. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.IsValid``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <summary> Tests whether index a is within this list's bounds. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.DefaultOnInvalid``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <summary> If this list contains index a, returns its value. Otherwise, return the default value for this list's type. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.First``1(System.Collections.Generic.IList{``0})">
+            <summary> Returns the first element from this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.FirstNonNull``1(System.Collections.Generic.IList{``0})">
+            <summary> Returns the first non-null element from this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.Last``1(System.Collections.Generic.IList{``0})">
+            <summary> Returns the last element from this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.LastNonNull``1(System.Collections.Generic.IList{``0})">
+            <summary> Returns the last non-null element from this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.SetFirst``1(System.Collections.Generic.IList{``0},``0)">
+            <summary> Sets the first element from this list to the object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.SetFirstNonNull``1(System.Collections.Generic.IList{``0},``0)">
+            <summary> Sets the first non-null element from this list to the object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.SetLast``1(System.Collections.Generic.IList{``0},``0)">
+            <summary> Sets the last element from this list to the value a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.SetLastNonNull``1(System.Collections.Generic.IList{``0},``0)">
+            <summary> Sets the last non-null element from this list to the value a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.RemoveFirst``1(System.Collections.Generic.IList{``0})">
+            <summary> Removes the first element from this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.RemoveFirstNonNull``1(System.Collections.Generic.IList{``0})">
+            <summary> Removes the first non-null element from this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.RemoveLast``1(System.Collections.Generic.IList{``0})">
+            <summary> Removes the last element from this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.RemoveLastNonNull``1(System.Collections.Generic.IList{``0})">
+            <summary> Removes the last non-null element from this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.Texture(UnityEngine.Sprite)">
+            <summary> Returns the texture used by this sprite. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.TextureSizePixels(UnityEngine.Sprite)">
+            <summary> Returns this sprite's texture's size in pixels. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.TextureSizeUnits(UnityEngine.Sprite)">
+            <summary> Returns this sprite's texture's size in units. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizePixels(UnityEngine.Sprite)">
+            <summary> Returns this sprite's size in pixels. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizeUnits(UnityEngine.Sprite)">
+            <summary> Returns this sprite's size in units. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.Size01(UnityEngine.Sprite)">
+            <summary> Returns this sprite's relative size on the texture. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.OffsetPixels(UnityEngine.Sprite)">
+            <summary> Returns this sprite's offset in pixels. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.OffsetUnits(UnityEngine.Sprite)">
+            <summary> Returns this sprite's offset in units. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.Offset01(UnityEngine.Sprite)">
+            <summary> Returns this sprite's relative offset on the texture. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizeOffsetPixels(UnityEngine.Sprite)">
+            <summary> Returns this sprite's size and offset in pixels. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizeOffsetUnits(UnityEngine.Sprite)">
+            <summary> Returns this sprite's size and offset in units. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizeOffset01(UnityEngine.Sprite)">
+            <summary> Returns this sprite's relative size and offset on the texture. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.RectPixels(UnityEngine.Sprite)">
+            <summary> Returns this sprite's rect in pixels. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.As``1(System.ValueType)">
+            <summary> Casts this value to type T. If it can't be cast, throws an InvalidCastException.  </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.As``1(System.Object)">
+            <summary> Casts this value to type T. If it can't be cast, returns null.  </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.IsAssignableTo``1(System.Type)">
+            <summary> Checks if this type can be assigned to type T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.IsNotAssignableTo``1(System.Type)">
+            <summary> Returns true if this type can't be assigned to type T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.TryAs``1(System.Object,``0@)">
+            <summary> If this object can be cast to type T, returns true and assigns the casted object to r. Otherwise, returns false and sets r to its default value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.TryNonNull``1(``0,``0@)">
+            <summary> If this object is non-null, returns true and assigns it to r. Otherwise, returns false and sets r to null. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.TryGet``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
+            <summary> If this dictionary contains the key a, returns true and assigns its value to r. Otherwise, returns false and sets r to its default value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.TryGetNonNull``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
+            <summary> If this dictionary contains the key a and its value is non-null, returns true and assigns it to r. Otherwise, returns false and sets r to null. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.TryGet``1(System.Collections.Generic.IList{``0},System.Int32,``0@)">
+            <summary> If this list contains the index a, returns true and assigns its value to r. Otherwise, returns false and sets r to its default value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.TryGetNonNull``1(System.Collections.Generic.IList{``0},System.Int32,``0@)">
+            <summary> If this list contains the index a and its value is non-null, returns true and assigns it to r. Otherwise, returns false and sets r to null. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.IsContainedIn``1(``0,System.Collections.Generic.ICollection{``0})">
+            <summary> Tests whether this object is contained within the collection a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.IsNotContainedIn``1(``0,System.Collections.Generic.ICollection{``0})">
+            <summary> Tests whether this object is not contained within the collection a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.HasFlagsAttribute(System.Enum)">
+            <summary> Checks if this enum uses the [Flags] attributes. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.IsNullOrEmpty(System.String)">
+            <summary> Checks if this string is null or empty (""). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Any(System.String)">
+            <summary> Checks if this string contains any characters. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.SplitCamelCase(System.String)">
+            <summary> Returns this string with spaces inserted between camel-case words. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Consume(System.Boolean@)">
+            <summary> Returns this bool, then sets it to false. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Pressed(UnityEngine.KeyCode)">
+            <summary> Checks if this key has just been pressed. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Released(UnityEngine.KeyCode)">
+            <summary> Checks if this key has just been released. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Down(UnityEngine.KeyCode)">
+            <summary> Checks if this key is held down. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Up(UnityEngine.KeyCode)">
+            <summary> Checks if this key is resting. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.DumpN.DumpC.Dump(System.Object,System.Type,System.String[],Vheos.Tools.Extensions.DumpN.MemberData,Vheos.Tools.Extensions.DumpN.ClassMembers,Vheos.Tools.Extensions.DumpN.ScopeModifiers,Vheos.Tools.Extensions.DumpN.AccessModifiers)">
+            <summary> Returns a string of tab-separated data of all members of this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.DumpN.DumpC.Dump(System.Type,System.String[],Vheos.Tools.Extensions.DumpN.MemberData,Vheos.Tools.Extensions.DumpN.ClassMembers,Vheos.Tools.Extensions.DumpN.ScopeModifiers,Vheos.Tools.Extensions.DumpN.AccessModifiers)">
+            <summary> Returns a string of tab-separated data of all members of this type. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Neg(UnityEngine.Vector4)">
+            <summary> Multiplies this vector's components by -1. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Inv(UnityEngine.Vector4)">
+            <summary> Divides 1 by this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Abs(UnityEngine.Vector4)">
+            <summary> Removes this vector's components' sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Sig(UnityEngine.Vector4)">
+            <summary> Returns this vector's components' sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Sqrt(UnityEngine.Vector4)">
+            <summary> Square-roots this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.IsZero(UnityEngine.Vector4)">
+            <summary> Checks whether all of this vector's components are equal to 0. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Add(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Adds (a.x, a.y, a.z, a.w) to this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Sub(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Subtracts (a.x, a.y, a.z, a.w) from this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Mul(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Multiplies this vector's components by (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Div(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Divides this vector's components by (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Pow(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Raises this vector's components to the power of (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Mod(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Returns the remainder of this vector's components divided by (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.PosMod(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Returns the positive remainder of this vector's components divided by (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.RoundToMultiple(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Rounds this vector's components to the nearest multiple of (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Min(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Returns the smaller between this vector's components and (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Max(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Returns the greater between this vector's components and (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Avg(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Returns the average of this vector's components and (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ClampMin(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Clamps this vector's components to a minimum of (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ClampMax(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Clamps this vector's components to a maximum of (a.x, a.y, a.z, a.w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Clamp(UnityEngine.Vector4,UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Clamps this vector's components between (a.x, a.y, a.z, a.w) and (b.x, b.y, b.z, b.w).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Lerp(UnityEngine.Vector4,UnityEngine.Vector4,System.Single)">
+            <summary> Lerps from this vector to a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.LerpClamped(UnityEngine.Vector4,UnityEngine.Vector4,System.Single)">
+            <summary> Lerps from this vector to a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Map(UnityEngine.Vector4,UnityEngine.Vector4,UnityEngine.Vector4,UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Maps this vector from the range [a, b] to [c, d]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.MapClamped(UnityEngine.Vector4,UnityEngine.Vector4,UnityEngine.Vector4,UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Maps this vector from the range [a, b] to [c, d] (with clamped output). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.MapTo01(UnityEngine.Vector4,UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Maps this vector from the range [a, b] to [0, 1]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.MapFrom01(UnityEngine.Vector4,UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary> Maps this vector from the range [0, 1] to [a, b]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Add(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Adds (x, y, z, w) to this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Sub(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Subtracts (x, y, z, w) from this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Mul(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Multiplies this vector's components by (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Div(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Divides this vector's components by (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Pow(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Raises this vector's components to the power of (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Mod(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the remainder of this vector's components divided by (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.PosMod(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the positive remainder of this vector's components divided by (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.RoundToMultiple(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Rounds this vector's components to the nearest multiple of (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Min(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the smaller between this vector's components and (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Max(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the greater between this vector's components and (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Avg(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the average of this vector's components and (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ClampMin(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Clamps this vector's components to a minimum of (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ClampMax(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Clamps this vector's components to a maximum of (x, y, z, w). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Lerp(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Lerps from this vector to (x, y, z, w)  at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.LerpClamped(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Lerps from this vector to (a, a, a, a) at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Add(UnityEngine.Vector4,System.Single)">
+            <summary> Adds (a, a, a, a) to this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Sub(UnityEngine.Vector4,System.Single)">
+            <summary> Subtracts (a, a, a, a) from this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Mul(UnityEngine.Vector4,System.Single)">
+            <summary> Multiplies this vector's components by (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Div(UnityEngine.Vector4,System.Single)">
+            <summary> Divides this vector's components by (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Pow(UnityEngine.Vector4,System.Single)">
+            <summary> Raises this vector's components to the power of (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Mod(UnityEngine.Vector4,System.Single)">
+            <summary> Returns the remainder of this vector's components divided by (a, yy). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.PosMod(UnityEngine.Vector4,System.Single)">
+            <summary> Returns the positive remainder of this vector's components divided by (a, yy). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.RoundToMultiple(UnityEngine.Vector4,System.Single)">
+            <summary> Rounds this vector's components to the nearest multiple of (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Min(UnityEngine.Vector4,System.Single)">
+            <summary> Returns the smaller between this vector's components and (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Max(UnityEngine.Vector4,System.Single)">
+            <summary> Returns the greater between this vector's components and (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Avg(UnityEngine.Vector4,System.Single)">
+            <summary> Returns the average of this vector's components and (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ClampMin(UnityEngine.Vector4,System.Single)">
+            <summary> Clamps this vector's components to a minimum of (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ClampMax(UnityEngine.Vector4,System.Single)">
+            <summary> Clamps this vector's components to a maximum of (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Clamp(UnityEngine.Vector4,System.Single,System.Single)">
+            <summary> Clamps this vector's components between (a, a, a, a) and (b, b, b, b).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Lerp(UnityEngine.Vector4,System.Single,System.Single)">
+            <summary> Lerps from this vector to (a, a, a, a) at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.LerpClamped(UnityEngine.Vector4,System.Single,System.Single)">
+            <summary> Lerps from this vector to (a, a, a, a) at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Round(UnityEngine.Vector4)">
+            <summary> Rounds this value to the nearest integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.RoundDown(UnityEngine.Vector4)">
+            <summary> Rounds this value to the smaller integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.RoundUp(UnityEngine.Vector4)">
+            <summary> Rounds this value to the greater integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.RoundTowardsZero(UnityEngine.Vector4)">
+            <summary> Rounds this value to the integer closer to zero. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Clamp01(UnityEngine.Vector4)">
+            <summary> Clamps this vector's components between (0, 0) and (1, 1).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.AnyNaN(UnityEngine.Vector4)">
+            <summary> Tests whether any of this vector's components is NaN. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.AnyInf(UnityEngine.Vector4)">
+            <summary> Tests whether any of this vector's components is infinity. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.AllNaN(UnityEngine.Vector4)">
+            <summary> Tests whether all of this vector's components are NaN. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.AllInf(UnityEngine.Vector4)">
+            <summary> Tests whether all of this vector's components are infinity. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.MinComp(UnityEngine.Vector4)">
+            <summary> Returns the smallest of this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.MaxComp(UnityEngine.Vector4)">
+            <summary> Returns the greatest of this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.AvgComp(UnityEngine.Vector4)">
+            <summary> Returns the average of this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.NormalizeComps(UnityEngine.Vector4)">
+            <summary> Divides this vector's components by a component with the greatest absolute value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.XY(UnityEngine.Vector4)">
+            <summary> Returns this vector's XY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.XZ(UnityEngine.Vector4)">
+            <summary> Returns this vector's XZ components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.YX(UnityEngine.Vector4)">
+            <summary> Returns this vector's YX components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.YZ(UnityEngine.Vector4)">
+            <summary> Returns this vector's YZ components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ZX(UnityEngine.Vector4)">
+            <summary> Returns this vector's ZX components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ZY(UnityEngine.Vector4)">
+            <summary> Returns this vector's ZY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.XYZ(UnityEngine.Vector4)">
+            <summary> Returns this vector's XYZ components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.XZY(UnityEngine.Vector4)">
+            <summary> Returns this vector's XZY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.YXZ(UnityEngine.Vector4)">
+            <summary> Returns this vector's YXZ components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.YZX(UnityEngine.Vector4)">
+            <summary> Returns this vector's YZX components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ZXY(UnityEngine.Vector4)">
+            <summary> Returns this vector's ZXY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ZYX(UnityEngine.Vector4)">
+            <summary> Returns this vector's ZYX components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Neg(UnityEngine.Quaternion)">
+            <summary> Returns the opposite of this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Add(UnityEngine.Quaternion,UnityEngine.Quaternion)">
+            <summary> Adds a to this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Sub(UnityEngine.Quaternion,UnityEngine.Quaternion)">
+            <summary> Subtracts a from this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Lerp(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single)">
+            <summary> Lerps from this rotation to a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.LerpClamped(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single)">
+            <summary> Lerps from this rotation to a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.SLerp(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single)">
+            <summary> Spherically lerps from this rotation to a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.SLerpClamped(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single)">
+            <summary> Spherically lerps from this rotation to a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Right(UnityEngine.Quaternion)">
+            <summary> Returns right direction relative to this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Left(UnityEngine.Quaternion)">
+            <summary> Returns left direction relative to this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Up(UnityEngine.Quaternion)">
+            <summary> Returns up direction relative to this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Down(UnityEngine.Quaternion)">
+            <summary> Returns down direction relative to this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Far(UnityEngine.Quaternion)">
+            <summary> Returns far direction relative to this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Near(UnityEngine.Quaternion)">
+            <summary> Returns near direction relative to this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Neg(UnityEngine.Vector3)">
+            <summary> Multiplies this vector's components by -1. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Inv(UnityEngine.Vector3)">
+            <summary> Divides 1 by this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Abs(UnityEngine.Vector3)">
+            <summary> Removes this vector's components' sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Sig(UnityEngine.Vector3)">
+            <summary> Returns this vector's components' sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Sqrt(UnityEngine.Vector3)">
+            <summary> Square-roots this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.IsZero(UnityEngine.Vector3)">
+            <summary> Checks whether all of this vector's components are equal to 0. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Add(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Adds (a.x, a.y, a.z) to this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Sub(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Subtracts (a.x, a.y, a.z) from this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Mul(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Multiplies this vector's components by (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Div(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Divides this vector's components by (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Pow(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Raises this vector's components to the power of (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Mod(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the remainder of this vector's components divided by (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.PosMod(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the positive remainder of this vector's components divided by (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RoundToMultiple(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Rounds this vector's components to the nearest multiple of (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Min(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the smaller between this vector's components and (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Max(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the greater between this vector's components and (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Avg(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the average of this vector's components and (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ClampMin(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Clamps this vector's components to a minimum of (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ClampMax(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Clamps this vector's components to a maximum of (a.x, a.y, a.z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Clamp(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Clamps this vector's components between (a.x, a.y, a.z) and (b.x, b.y).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Lerp(UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary> Lerps from this vector to a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.LerpClamped(UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary> Lerps from this vector to a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Map(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Maps this vector from the range [a, b] to [c, d]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.MapClamped(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Maps this vector from the range [a, b] to [c, d] (with clamped output). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.MapTo01(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Maps this vector from the range [a, b] to [0, 1]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.MapFrom01(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Maps this vector from the range [0, 1] to [a, b]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Add(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Adds (x, y, z) to this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Sub(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Subtracts (x, y, z) from this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Mul(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Multiplies this vector's components by (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Div(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Divides this vector's components by (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Pow(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Raises this vector's components to the power of (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Mod(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Returns the remainder of this vector's components divided by (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.PosMod(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Returns the positive remainder of this vector's components divided by (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RoundToMultiple(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Rounds this vector's components to the nearest multiple of (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Min(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Returns the smaller between this vector's components and (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Max(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Returns the greater between this vector's components and (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Avg(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Returns the average of this vector's components and (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ClampMin(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Clamps this vector's components to a minimum of (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ClampMax(UnityEngine.Vector3,System.Single,System.Single,System.Single)">
+            <summary> Clamps this vector's components to a maximum of (x, y, z). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Lerp(UnityEngine.Vector3,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Lerps from this vector to (x, y, z) at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.LerpClamped(UnityEngine.Vector3,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Lerps from this vector to (x, y, z) at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Add(UnityEngine.Vector3,System.Single)">
+            <summary> Adds (a, a, a) to this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Sub(UnityEngine.Vector3,System.Single)">
+            <summary> Subtracts (a, a, a) from this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Mul(UnityEngine.Vector3,System.Single)">
+            <summary> Multiplies this vector's components by (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Div(UnityEngine.Vector3,System.Single)">
+            <summary> Divides this vector's components by (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Pow(UnityEngine.Vector3,System.Single)">
+            <summary> Raises this vector's components to the power of (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Mod(UnityEngine.Vector3,System.Single)">
+            <summary> Returns the remainder of this vector's components divided by (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.PosMod(UnityEngine.Vector3,System.Single)">
+            <summary> Returns the positive remainder of this vector's components divided by (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RoundToMultiple(UnityEngine.Vector3,System.Single)">
+            <summary> Rounds this vector's components to the nearest multiple of (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Min(UnityEngine.Vector3,System.Single)">
+            <summary> Returns the smaller between this vector's components and (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Max(UnityEngine.Vector3,System.Single)">
+            <summary> Returns the greater between this vector's components and (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Avg(UnityEngine.Vector3,System.Single)">
+            <summary> Returns the average of this vector's components and (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ClampMin(UnityEngine.Vector3,System.Single)">
+            <summary> Clamps this vector's components to a minimum of (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ClampMax(UnityEngine.Vector3,System.Single)">
+            <summary> Clamps this vector's components to a maximum of (a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Clamp(UnityEngine.Vector3,System.Single,System.Single)">
+            <summary> Clamps this vector's components between (a, a, a) and (b, b, b).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Lerp(UnityEngine.Vector3,System.Single,System.Single)">
+            <summary> Lerps from this vector to (a, a, a) at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.LerpClamped(UnityEngine.Vector3,System.Single,System.Single)">
+            <summary> Lerps from this vector to (a, a, a) at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Round(UnityEngine.Vector3)">
+            <summary> Rounds this value to the nearest integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RoundDown(UnityEngine.Vector3)">
+            <summary> Rounds this value to the smaller integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RoundUp(UnityEngine.Vector3)">
+            <summary> Rounds this value to the greater integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RoundTowardsZero(UnityEngine.Vector3)">
+            <summary> Rounds this value to the integer closer to zero. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Clamp01(UnityEngine.Vector3)">
+            <summary> Clamps this vector's components between (0, 0) and (1, 1).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.AnyNaN(UnityEngine.Vector3)">
+            <summary> Tests whether any of this vector's components is NaN. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.AnyInf(UnityEngine.Vector3)">
+            <summary> Tests whether any of this vector's components is infinity. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.AllNaN(UnityEngine.Vector3)">
+            <summary> Tests whether all of this vector's components are NaN. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.AllInf(UnityEngine.Vector3)">
+            <summary> Tests whether all of this vector's components are infinity. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Dot(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the dot product of this vector and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Cross(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the cross product of this vector and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DistanceTo(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the distance between this vector and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.OffsetTo(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the offset from this vector to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.OffsetFrom(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the offset from a to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DirectionTowards(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the direction from this vector towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DirectionAwayFrom(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the direction from a towards this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RotationTo(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the rotation from this vector to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RotationFrom(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns the rotation from a to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Rotate(UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary> Applies the rotation a to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Unrotate(UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary> Reverts the rotation a from this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Transform(UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary> Applies chosen a transform to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Untransform(UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary> Reverts chosen a transform from this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.MinComp(UnityEngine.Vector3)">
+            <summary> Returns the smallest of this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.MaxComp(UnityEngine.Vector3)">
+            <summary> Returns the greatest of this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.AvgComp(UnityEngine.Vector3)">
+            <summary> Returns the average of this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.NormalizeComps(UnityEngine.Vector3)">
+            <summary> Divides this vector's components by a component with the greatest absolute value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Append(UnityEngine.Vector3,System.Single)">
+            <summary> Appends w component to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.XY(UnityEngine.Vector3)">
+            <summary> Returns this vector's XY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.XZ(UnityEngine.Vector3)">
+            <summary> Returns this vector's XZ components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.YX(UnityEngine.Vector3)">
+            <summary> Returns this vector's YX components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.YZ(UnityEngine.Vector3)">
+            <summary> Returns this vector's YZ components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ZX(UnityEngine.Vector3)">
+            <summary> Returns this vector's ZX components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ZY(UnityEngine.Vector3)">
+            <summary> Returns this vector's ZY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Neg(UnityEngine.Vector2)">
+            <summary> Multiplies this vector's components by -1. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Inv(UnityEngine.Vector2)">
+            <summary> Divides 1 by this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Abs(UnityEngine.Vector2)">
+            <summary> Removes this vector's components' sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Sig(UnityEngine.Vector2)">
+            <summary> Returns this vector's components' sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Sqrt(UnityEngine.Vector2)">
+            <summary> Square-roots this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.IsZero(UnityEngine.Vector2)">
+            <summary> Checks whether all of this vector's components are equal to 0. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Add(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Adds (a.x, a.y) to this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Sub(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Subtracts (a.x, a.y) from this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Mul(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Multiplies this vector's components by (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Div(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Divides this vector's components by (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Pow(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Raises this vector's components to the power of (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Mod(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the remainder of this vector's components divided by (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.PosMod(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the positive remainder of this vector's components divided by (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.RoundToMultiple(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Rounds this vector's components to the nearest multiple of (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Min(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the smaller between this vector's components and (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Max(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the greater between this vector's components and (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Avg(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the average of this vector's components and (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.ClampMin(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Clamps this vector's components to a minimum of (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.ClampMax(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Clamps this vector's components to a maximum of (a.x, a.y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Clamp(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Clamps this vector's components between (a.x, a.y) and (b.x, b.y).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Lerp(UnityEngine.Vector2,UnityEngine.Vector2,System.Single)">
+            <summary> Lerps from this vector to a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.LerpClamped(UnityEngine.Vector2,UnityEngine.Vector2,System.Single)">
+            <summary> Lerps from this vector to a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Map(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Maps this vector from the range [a, b] to [c, d]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.MapClamped(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Maps this vector from the range [a, b] to [c, d] (with clamped output). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.MapTo01(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Maps this vector from the range [a, b] to [0, 1]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.MapFrom01(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Maps this vector from the range [0, 1] to [a, b]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Add(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Adds (x, y) to this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Sub(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Subtracts (x, y) from this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Mul(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Multiplies this vector's components by (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Div(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Divides this vector's components by (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Pow(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Raises this vector's components to the power of (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Mod(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Returns the remainder of this vector's components divided by (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.PosMod(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Returns the positive remainder of this vector's components divided by (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.RoundToMultiple(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Rounds this vector's components to the nearest multiple of (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Min(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Returns the smaller between this vector's components and (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Max(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Returns the greater between this vector's components and (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Avg(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Returns the average of this vector's components and (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.ClampMin(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Clamps this vector's components to a minimum of (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.ClampMax(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Clamps this vector's components to a maximum of (x, y). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Lerp(UnityEngine.Vector2,System.Single,System.Single,System.Single)">
+            <summary> Lerps from this vector to (x, y) at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.LerpClamped(UnityEngine.Vector2,System.Single,System.Single,System.Single)">
+            <summary> Lerps from this vector to (x, y) at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Add(UnityEngine.Vector2,System.Single)">
+            <summary> Adds (a, a) to this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Sub(UnityEngine.Vector2,System.Single)">
+            <summary> Subtracts (a, a) from this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Mul(UnityEngine.Vector2,System.Single)">
+            <summary> Multiplies this vector's components by (a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Div(UnityEngine.Vector2,System.Single)">
+            <summary> Divides this vector's components by (a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Pow(UnityEngine.Vector2,System.Single)">
+            <summary> Raises this vector's components to the power of (a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Mod(UnityEngine.Vector2,System.Single)">
+            <summary> Returns the remainder of this vector's components divided by (a, yy). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.PosMod(UnityEngine.Vector2,System.Single)">
+            <summary> Returns the positive remainder of this vector's components divided by (a, yy). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.RoundToMultiple(UnityEngine.Vector2,System.Single)">
+            <summary> Rounds this vector's components to the nearest multiple of (a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Min(UnityEngine.Vector2,System.Single)">
+            <summary> Returns the smaller between this vector's components and (a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Max(UnityEngine.Vector2,System.Single)">
+            <summary> Returns the greater between this vector's components and (a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Avg(UnityEngine.Vector2,System.Single)">
+            <summary> Returns the average of this vector's components and (a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.ClampMin(UnityEngine.Vector2,System.Single)">
+            <summary> Clamps this vector's components to a minimum of (a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.ClampMax(UnityEngine.Vector2,System.Single)">
+            <summary> Clamps this vector's components to a maximum of (a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Clamp(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Clamps this vector's components between (a, a) and (b, b).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Lerp(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Lerps from this vector to (a, a) at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.LerpClamped(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Lerps from this vector to (a, a) at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Round(UnityEngine.Vector2)">
+            <summary> Rounds this value to the nearest integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.RoundDown(UnityEngine.Vector2)">
+            <summary> Rounds this value to the smaller integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.RoundUp(UnityEngine.Vector2)">
+            <summary> Rounds this value to the greater integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.RoundTowardsZero(UnityEngine.Vector2)">
+            <summary> Rounds this value to the integer closer to zero. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Clamp01(UnityEngine.Vector2)">
+            <summary> Clamps this vector's components between (0, 0) and (1, 1).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.AnyNaN(UnityEngine.Vector2)">
+            <summary> Tests whether any of this vector's components is NaN. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.AnyInf(UnityEngine.Vector2)">
+            <summary> Tests whether any of this vector's components is infinity. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.AllNaN(UnityEngine.Vector2)">
+            <summary> Tests whether all of this vector's components are NaN. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.AllInf(UnityEngine.Vector2)">
+            <summary> Tests whether all of this vector's components are infinity. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Dot(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the dot product of this vector and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Cross(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the cross product of this vector and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.DistanceTo(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the distance between this vector and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.OffsetTo(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the offset from this vector to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.OffsetFrom(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the offset from a to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.DirectionTowards(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the direction from this vector towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.DirectionAwayFrom(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the direction from a towards this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.RotationTo(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the rotation from this vector to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.RotationFrom(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Returns the rotation from a to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Rotate(UnityEngine.Vector2,UnityEngine.Quaternion)">
+            <summary> Applies the rotation a to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Unrotate(UnityEngine.Vector2,UnityEngine.Quaternion)">
+            <summary> Reverts the rotation a from this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Transform(UnityEngine.Vector2,UnityEngine.Transform)">
+            <summary> Applies chosen a transform to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Untransform(UnityEngine.Vector2,UnityEngine.Transform)">
+            <summary> Reverts chosen a transform from this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.MinComp(UnityEngine.Vector2)">
+            <summary> Returns the smallest of this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.MaxComp(UnityEngine.Vector2)">
+            <summary> Returns the greatest of this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.AvgComp(UnityEngine.Vector2)">
+            <summary> Returns the average of this vector's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.NormalizeComps(UnityEngine.Vector2)">
+            <summary> Divides this vector's components by a component with the greatest absolute value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Append(UnityEngine.Vector2,System.Single)">
+            <summary> Appends z component to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Append(UnityEngine.Vector2,System.Single,System.Single)">
+            <summary> Appends z and w components to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Append(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary> Appends a's components as z and w to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.YX(UnityEngine.Vector2)">
+            <summary> Swaps the x and y components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Neg(System.Single)">
+            <summary> Multiplies this value by -1. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Inv(System.Single)">
+            <summary> Divides 1 by this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Abs(System.Single)">
+            <summary> Removes this value's sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Sig(System.Single)">
+            <summary> Returns this value's sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Sqrt(System.Single)">
+            <summary> Returns the square root of this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.IsZero(System.Single)">
+            <summary> Checks whether this value is equal to 0. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Add(System.Single,System.Int32)">
+            <summary> Adds a to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Sub(System.Single,System.Int32)">
+            <summary> Subtracts a from this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Mul(System.Single,System.Int32)">
+            <summary> Multiplies this value by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Div(System.Single,System.Int32)">
+            <summary> Divides this value by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Pow(System.Single,System.Int32)">
+            <summary> Raises this value to the power of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Mod(System.Single,System.Int32)">
+            <summary> Returns the remainder of this value divded by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.PosMod(System.Single,System.Int32)">
+            <summary> Returns the positive remainder of this value divded by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.RoundToMultiple(System.Single,System.Int32)">
+            <summary> Rounds this value to the nearest multiple of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Min(System.Single,System.Int32)">
+            <summary> Returns the smaller between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Max(System.Single,System.Int32)">
+            <summary> Returns the greater between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Avg(System.Single,System.Int32)">
+            <summary> Returns the average of this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ClampMin(System.Single,System.Int32)">
+            <summary> Clamps this value to a minimum of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ClampMax(System.Single,System.Int32)">
+            <summary> Clamps this value to a maximum of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Clamp(System.Single,System.Int32,System.Int32)">
+            <summary> Clamps this value between a and b.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Lerp(System.Single,System.Int32,System.Single)">
+            <summary> Lerps from this value to a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.LerpClamped(System.Single,System.Int32,System.Single)">
+            <summary> Lerps from this value to a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Map(System.Single,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Maps this value from the range [a, b] to [c, d]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.MapClamped(System.Single,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Maps this value from the range [a, b] to [c, d] (with clamped output). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Add(System.Single,System.Single)">
+            <summary> Adds a to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Sub(System.Single,System.Single)">
+            <summary> Subtracts a from this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Mul(System.Single,System.Single)">
+            <summary> Multiplies this value by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Div(System.Single,System.Single)">
+            <summary> Divides this value by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Pow(System.Single,System.Single)">
+            <summary> Raises this value to the power of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Mod(System.Single,System.Single)">
+            <summary> Returns the remainder of this value divded by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.PosMod(System.Single,System.Single)">
+            <summary> Returns the positive remainder of this value divded by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.RoundToMultiple(System.Single,System.Single)">
+            <summary> Rounds this value to the nearest multiple of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Min(System.Single,System.Single)">
+            <summary> Returns the smaller between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Max(System.Single,System.Single)">
+            <summary> Returns the greater between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Avg(System.Single,System.Single)">
+            <summary> Returns the average of this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ClampMin(System.Single,System.Single)">
+            <summary> Clamps this value to a minimum of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ClampMax(System.Single,System.Single)">
+            <summary> Clamps this value to a maximum of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Clamp(System.Single,System.Single,System.Single)">
+            <summary> Clamps this value between a and b.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Lerp(System.Single,System.Single,System.Single)">
+            <summary> Lerps from this value to a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.LerpClamped(System.Single,System.Single,System.Single)">
+            <summary> Lerps from this value to a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Map(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Maps this value from the range [a, b] to [c, d]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.MapClamped(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Maps this value from the range [a, b] to [c, d] (with clamped output). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Round(System.Single)">
+            <summary> Rounds this value to the nearest integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Round(System.Single,System.Int32)">
+            <summary> Rounds this value to a number of fractional digits specficied by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.RoundDown(System.Single)">
+            <summary> Rounds this value to the smaller integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.RoundUp(System.Single)">
+            <summary> Rounds this value to the greater integer. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.RoundTowardsZero(System.Single)">
+            <summary> Rounds this value to the integer closer to zero. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Clamp01(System.Single)">
+            <summary> Clamps this value between 0 and 1.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.IsNaN(System.Single)">
+            <summary> Tests whether this value is NaN. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.IsInf(System.Single)">
+            <summary> Tests whether this value is infinity. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.AsInt(System.Single)">
+            <summary> Returns this value as float. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.MapTo01(System.Single,System.Int32,System.Int32)">
+            <summary> Maps this value from the range [a, b] to [0, 1]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.MapFrom01(System.Single,System.Int32,System.Int32)">
+            <summary> Maps this value from the range [0, 1] to [a, b]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.MapTo01(System.Single,System.Single,System.Single)">
+            <summary> Maps this value from the range [a, b] to [0, 1]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.MapFrom01(System.Single,System.Single,System.Single)">
+            <summary> Maps this value from the range [0, 1] to [a, b]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.DistanceTo(System.Single,System.Int32)">
+            <summary> Returns the absolute difference between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.DistanceTo(System.Single,System.Single)">
+            <summary> Returns the absolute difference between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ToVector2(System.Single)">
+            <summary> Returns Vector2 with all components set to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ToVector3(System.Single)">
+            <summary> Returns Vector3 with all components set to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ToVector4(System.Single)">
+            <summary> Returns Vector4 with all components set to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Neg(System.Int32)">
+            <summary> Multiplies this value by -1. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Inv(System.Int32)">
+            <summary> Divides 1 by this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Abs(System.Int32)">
+            <summary> Removes this value's sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Sig(System.Int32)">
+            <summary> Returns this value's sign. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Sqrt(System.Int32)">
+            <summary> Returns the square root of this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.IsZero(System.Int32)">
+            <summary> Checks whether this value is equal to 0. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Add(System.Int32,System.Int32)">
+            <summary> Adds a to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Sub(System.Int32,System.Int32)">
+            <summary> Subtracts a from this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Mul(System.Int32,System.Int32)">
+            <summary> Multiplies this value by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Div(System.Int32,System.Int32)">
+            <summary> Divides this value by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Pow(System.Int32,System.Int32)">
+            <summary> Raises this value to the power of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Mod(System.Int32,System.Int32)">
+            <summary> Returns the remainder of this value divded by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.PosMod(System.Int32,System.Int32)">
+            <summary> Returns the positive remainder of this value divded by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.RoundToMultiple(System.Int32,System.Int32)">
+            <summary> Rounds this value to the nearest multiple of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Min(System.Int32,System.Int32)">
+            <summary> Returns the smaller between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Max(System.Int32,System.Int32)">
+            <summary> Returns the greater between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Avg(System.Int32,System.Int32)">
+            <summary> Returns the average of this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.ClampMin(System.Int32,System.Int32)">
+            <summary> Clamps this value to a minimum of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.ClampMax(System.Int32,System.Int32)">
+            <summary> Clamps this value to a maximum of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Clamp(System.Int32,System.Int32,System.Int32)">
+            <summary> Clamps this value between a and b.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Lerp(System.Int32,System.Int32,System.Single)">
+            <summary> Lerps from this value to a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.LerpClamped(System.Int32,System.Int32,System.Single)">
+            <summary> Lerps from this value to a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Map(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Maps this value from the range [a, b] to [c, d]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.MapClamped(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Maps this value from the range [a, b] to [c, d] (with clamped output). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Add(System.Int32,System.Single)">
+            <summary> Adds a to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Sub(System.Int32,System.Single)">
+            <summary> Subtracts a from this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Mul(System.Int32,System.Single)">
+            <summary> Multiplies this value by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Div(System.Int32,System.Single)">
+            <summary> Divides this value by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Pow(System.Int32,System.Single)">
+            <summary> Raises this value to the power of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Mod(System.Int32,System.Single)">
+            <summary> Returns the remainder of this value divded by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.PosMod(System.Int32,System.Single)">
+            <summary> Returns the positive remainder of this value divded by a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.RoundToMultiple(System.Int32,System.Single)">
+            <summary> Rounds this value to the nearest multiple of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Min(System.Int32,System.Single)">
+            <summary> Returns the smaller between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Max(System.Int32,System.Single)">
+            <summary> Returns the greater between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Avg(System.Int32,System.Single)">
+            <summary> Returns the average of this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.ClampMin(System.Int32,System.Single)">
+            <summary> Clamps this value to a minimum of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.ClampMax(System.Int32,System.Single)">
+            <summary> Clamps this value to a maximum of a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Clamp(System.Int32,System.Single,System.Single)">
+            <summary> Clamps this value between a and b.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Lerp(System.Int32,System.Single,System.Single)">
+            <summary> Lerps from this value to a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.LerpClamped(System.Int32,System.Single,System.Single)">
+            <summary> Lerps from this value to a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.Map(System.Int32,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Maps this value from the range [a, b] to [c, d]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.MapClamped(System.Int32,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Maps this value from the range [a, b] to [c, d] (with clamped output). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.IsEven(System.Int32)">
+            <summary> Tests whether this value is even. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.IsOdd(System.Int32)">
+            <summary> Tests whether this value is odd. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.AsFloat(System.Int32)">
+            <summary> Returns this value as float. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.DistanceTo(System.Int32,System.Int32)">
+            <summary> Returns the absolute difference between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.DistanceTo(System.Int32,System.Single)">
+            <summary> Returns the absolute difference between this value and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.ToVector2(System.Int32)">
+            <summary> Returns Vector2 with all components set to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.ToVector3(System.Int32)">
+            <summary> Returns Vector3 with all components set to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.ToVector4(System.Int32)">
+            <summary> Returns Vector4 with all components set to this value. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Unparent(UnityEngine.Component,System.Boolean)">
+            <summary> Places this object at the root of the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeParentOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches a to this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeSiblingOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches this objects to a's parent.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeChildOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeParentOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches a to this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeSiblingOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches this objects to a's parent.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeChildOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsAtRoot(UnityEngine.Component)">
+            <summary> Checks whether this object is at the topmost level in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasParent(UnityEngine.Component)">
+            <summary> Checks whether this object has a parent.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasAnyChild(UnityEngine.Component)">
+            <summary> Checks whether this object has a child. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsParentOf(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Checks whether this object is right above a in the heirarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsSiblingOf(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Checks whether this object has the same parent as a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsChildOf(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Checks whether this object is right below a in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsParentOf(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Checks whether this object is right above a in the heirarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsSiblingOf(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Checks whether this object has the same parent as a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsChildOf(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Checks whether this object is right below a in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.FindChild(UnityEngine.Component,System.String)">
+            <summary> Returns this object's child with name a. If it doesn't exist, returns null.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.FindChild``1(UnityEngine.Component,System.String)">
+            <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildren(UnityEngine.Component)">
+            <summary> Returns an enumerable of this object's children. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetParent(UnityEngine.Component)">
+            <summary> Returns this object's parent.gameObject. If it doesn't exist, returns null. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetAncestors(UnityEngine.Component)">
+            <summary> Returns an enumerable of this object's ancestors. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DistanceTo(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetTo(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetFrom(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the offset from a to this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionTowards(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionAwayFrom(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the direction from a towards this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DistanceTo(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetTo(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetFrom(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the offset from a to this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionTowards(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionAwayFrom(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the direction from a towards this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasComponent``1(UnityEngine.Component)">
+            <summary> Checks whether this object has a component t.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ParentHasComponent``1(UnityEngine.Component)">
+            <summary> Checks whether this object's parent has a component t.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.AnyChildHasComponent``1(UnityEngine.Component)">
+            <summary> Checks whether any of this object's children has a component t.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetOrAddComponent``1(UnityEngine.Component)">
+            <summary> Returns component T attached to this object.gameObject. If there's none, adds one. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.TryGetComponent``1(UnityEngine.Component,``0@)">
+            <summary> Assigns component T to a. Returns whether any component was found. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy(UnityEngine.Component,System.Boolean)">
+            <summary> Destroys this component. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy``1(System.Collections.Generic.IEnumerable{``0},System.Boolean)">
+            <summary> Destroys these components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DestroyObject(UnityEngine.Component,System.Boolean)">
+            <summary> Destroys this component's object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DestroyObjects``1(System.Collections.Generic.IEnumerable{``0},System.Boolean)">
+            <summary> Destroys these components' objects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetPhysics(UnityEngine.Component,System.Boolean)">
+            <summary> Makes this object react to (or ignore) physics forces. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisions(UnityEngine.Component,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) other colliders. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ResetLocalTransform(UnityEngine.Component)">
+            <summary> Resets a's local position, rotation and scale. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,System.Collections.Generic.IEnumerable{UnityEngine.GameObject},System.Boolean)">
+            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyTransformFrom(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Copies a's transform. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyRigidbodyFrom(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Copies a's rigidbody. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,System.Collections.Generic.IEnumerable{UnityEngine.Component},System.Boolean)">
+            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyTransformFrom(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Copies a's transform. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyRigidbodyFrom(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Copies a's rigidbody. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Unparent(UnityEngine.GameObject,System.Boolean)">
+            <summary> Places this object at the root of the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeParentOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches a to this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeSiblingOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches this objects to a's parent. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeChildOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeParentOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches a to this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeSiblingOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches this objects to a's parent. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeChildOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsAtRoot(UnityEngine.GameObject)">
+            <summary> Checks whether this object is at the topmost level in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasParent(UnityEngine.GameObject)">
+            <summary> Checks whether this object has a parent. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasAnyChild(UnityEngine.GameObject)">
+            <summary> Checks whether this object has a child. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsParentOf(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Checks whether this object is right above a in the heirarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsSiblingOf(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Checks whether this object has the same parent as a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsChildOf(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Checks whether this object is right below a in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsParentOf(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Checks whether this object is right above a in the heirarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsSiblingOf(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Checks whether this object has the same parent as a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsChildOf(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Checks whether this object is right below a in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.FindChild(UnityEngine.GameObject,System.String)">
+            <summary> Returns this object's child with name a. If it doesn't exist, returns null.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.FindChild``1(UnityEngine.GameObject,System.String)">
+            <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildren(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's children. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetParent(UnityEngine.GameObject)">
+            <summary> Returns this object's parent. If it doesn't exist, returns null. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetAncestors(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's ancestors. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DistanceTo(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetTo(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the offset from a to this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionTowards(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionAwayFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the direction from a towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DistanceTo(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetTo(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetFrom(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the offset from a to this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionTowards(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionAwayFrom(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the direction from a towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasComponent``1(UnityEngine.GameObject)">
+            <summary> Checks whether this object has a component T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ParentHasComponent``1(UnityEngine.GameObject)">
+            <summary> Checks whether this object's parent has a component T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.AnyChildHasComponent``1(UnityEngine.GameObject)">
+            <summary> Checks whether any of this object's children has a component T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetOrAddComponent``1(UnityEngine.GameObject)">
+            <summary> Returns component T attached to this object. If there's none, adds one. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.TryGetComponent``1(UnityEngine.GameObject,``0@)">
+            <summary> Assigns component T to a. Returns whether any component was found. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(UnityEngine.GameObject,System.Boolean)">
+            <summary> Destroys this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(System.Collections.Generic.IEnumerable{UnityEngine.GameObject},System.Boolean)">
+            <summary> Destroys these objects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetPhysics(UnityEngine.GameObject,System.Boolean)">
+            <summary> Makes this object react to (or ignore) physics forces. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisions(UnityEngine.GameObject,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) other colliders. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ResetLocalTransform(UnityEngine.GameObject)">
+            <summary> Resets a's local position, rotation and scale. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,System.Collections.Generic.IEnumerable{UnityEngine.GameObject},System.Boolean)">
+            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyTransformFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Copies a's transform. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyRigidbodyFrom(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Copies a's rigidbody. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,System.Collections.Generic.IEnumerable{UnityEngine.Component},System.Boolean)">
+            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyTransformFrom(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Copies a's transform. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyRigidbodyFrom(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Copies a's rigidbody. </summary>
+        </member>
+    </members>
+</doc>
