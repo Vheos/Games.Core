@@ -76,44 +76,398 @@
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_IList.RemoveLastNonNull``1(System.Collections.Generic.IList{``0})">
             <summary> Removes the last non-null element from this list. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.Texture(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Camera.CursorRay(UnityEngine.Camera)">
+            <summary> Returns a ray going from this camera through the mouse cursor. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Camera.ScreenPlane(UnityEngine.Camera,UnityEngine.Vector3)">
+            <summary> Returns a plane facing this camera and containing world point a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Camera.ScreenPlane(UnityEngine.Camera,System.Single)">
+            <summary> Returns a plane facing this camera and containing world point a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Camera.CursorToWorldPoint(UnityEngine.Camera,System.Single)">
+            <summary> Returns a world point under the mouse cursor and at distnace a from this camera. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Camera.CursorToPlanePoint(UnityEngine.Camera,UnityEngine.Plane)">
+            <summary> Returns a world point under the mouse cursor and on plane a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.Texture(UnityEngine.Sprite)">
             <summary> Returns the texture used by this sprite. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.TextureSizePixels(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.TextureSizePixels(UnityEngine.Sprite)">
             <summary> Returns this sprite's texture's size in pixels. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.TextureSizeUnits(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.TextureSizeUnits(UnityEngine.Sprite)">
             <summary> Returns this sprite's texture's size in units. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizePixels(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.SizePixels(UnityEngine.Sprite)">
             <summary> Returns this sprite's size in pixels. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizeUnits(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.SizeUnits(UnityEngine.Sprite)">
             <summary> Returns this sprite's size in units. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.Size01(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.Size01(UnityEngine.Sprite)">
             <summary> Returns this sprite's relative size on the texture. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.OffsetPixels(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.OffsetPixels(UnityEngine.Sprite)">
             <summary> Returns this sprite's offset in pixels. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.OffsetUnits(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.OffsetUnits(UnityEngine.Sprite)">
             <summary> Returns this sprite's offset in units. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.Offset01(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.Offset01(UnityEngine.Sprite)">
             <summary> Returns this sprite's relative offset on the texture. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizeOffsetPixels(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.SizeOffsetPixels(UnityEngine.Sprite)">
             <summary> Returns this sprite's size and offset in pixels. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizeOffsetUnits(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.SizeOffsetUnits(UnityEngine.Sprite)">
             <summary> Returns this sprite's size and offset in units. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.SizeOffset01(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.SizeOffset01(UnityEngine.Sprite)">
             <summary> Returns this sprite's relative size and offset on the texture. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Sprite.SpriteC.RectPixels(UnityEngine.Sprite)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.RectPixels(UnityEngine.Sprite)">
             <summary> Returns this sprite's rect in pixels. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.PositionToPixelCoords(UnityEngine.Sprite,UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary> Returns coords of a pixel at position a, relative to transform b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.PositionToPixelColor(UnityEngine.Sprite,UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary> Returns color of a pixel at position a, relative to transform b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.PositionToPixelAlpha(UnityEngine.Sprite,UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary> Returns alpha of a pixel at position a, relative to transform b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.PixelCoordsToPosition(UnityEngine.Sprite,UnityEngine.Vector2Int,UnityEngine.Transform)">
+            <summary> Returns position of pixel a, transformed by b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.TryNonNull``1(UnityEngine.Object,``0@)">
+            <summary> If this Unity object is non-null, returns true and assigns it to r. Otherwise, returns false and sets r to null. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.Pressed(UnityEngine.KeyCode)">
+            <summary> Checks if this key has just been pressed. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.Released(UnityEngine.KeyCode)">
+            <summary> Checks if this key has just been released. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.Down(UnityEngine.KeyCode)">
+            <summary> Checks if this key is held down. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.Up(UnityEngine.KeyCode)">
+            <summary> Checks if this key is resting. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Unparent(UnityEngine.Component,System.Boolean)">
+            <summary> Places this object at the root of the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeParentOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches a to this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeSiblingOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches this objects to a's parent.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeChildOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeParentOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches a to this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeSiblingOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches this objects to a's parent.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeChildOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsAtRoot(UnityEngine.Component)">
+            <summary> Checks whether this object is at the topmost level in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasParent(UnityEngine.Component)">
+            <summary> Checks whether this object has a parent.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasAnyChild(UnityEngine.Component)">
+            <summary> Checks whether this object has a child. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsParentOf(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Checks whether this object is right above a in the heirarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsSiblingOf(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Checks whether this object has the same parent as a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsChildOf(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Checks whether this object is right below a in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsParentOf(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Checks whether this object is right above a in the heirarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsSiblingOf(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Checks whether this object has the same parent as a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsChildOf(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Checks whether this object is right below a in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.FindChild(UnityEngine.Component,System.String)">
+            <summary> Returns this object's child with name a. If it doesn't exist, returns null.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.FindChild``1(UnityEngine.Component,System.String)">
+            <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildren(UnityEngine.Component)">
+            <summary> Returns an enumerable of this object's children. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetParent(UnityEngine.Component)">
+            <summary> Returns this object's parent.gameObject. If it doesn't exist, returns null. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetAncestors(UnityEngine.Component)">
+            <summary> Returns an enumerable of this object's ancestors. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DistanceTo(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetTo(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetFrom(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the offset from a to this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionTowards(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionAwayFrom(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns the direction from a towards this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DistanceTo(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetTo(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetFrom(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the offset from a to this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionTowards(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionAwayFrom(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns the direction from a towards this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasComponent``1(UnityEngine.Component)">
+            <summary> Checks whether this object has a component t.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ParentHasComponent``1(UnityEngine.Component)">
+            <summary> Checks whether this object's parent has a component t.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.AnyChildHasComponent``1(UnityEngine.Component)">
+            <summary> Checks whether any of this object's children has a component t.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetOrAddComponent``1(UnityEngine.Component)">
+            <summary> Returns component T attached to this object.gameObject. If there's none, adds one. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.TryGetComponent``1(UnityEngine.Component,``0@)">
+            <summary> Assigns component T to a. Returns whether any component was found. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateChildComponent``1(UnityEngine.Component,UnityEngine.GameObject,System.String)">
+            <summary> Creates a new game object as a child of this object, from prefab a and with name b. Returns its component of type T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateChildComponent``1(UnityEngine.Component,System.String)">
+            <summary> Creates a new game object as a child of this object, with name b. Adds a default component of type T, then returns it. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy(UnityEngine.Component,System.Boolean)">
+            <summary> Destroys this component. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy``1(System.Collections.Generic.IEnumerable{``0},System.Boolean)">
+            <summary> Destroys these components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DestroyObject(UnityEngine.Component,System.Boolean)">
+            <summary> Destroys this component's object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DestroyObjects``1(System.Collections.Generic.IEnumerable{``0},System.Boolean)">
+            <summary> Destroys these components' objects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetPhysics(UnityEngine.Component,System.Boolean)">
+            <summary> Makes this object react to (or ignore) physics forces. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisions(UnityEngine.Component,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) other colliders. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ResetLocalTransform(UnityEngine.Component)">
+            <summary> Resets a's local position, rotation and scale. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,System.Collections.Generic.IEnumerable{UnityEngine.GameObject},System.Boolean)">
+            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyTransformFrom(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Copies a's transform. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyRigidbodyFrom(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
+            <summary> Copies a's rigidbody. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,System.Collections.Generic.IEnumerable{UnityEngine.Component},System.Boolean)">
+            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyTransformFrom(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Copies a's transform. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyRigidbodyFrom(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
+            <summary> Copies a's rigidbody. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Unparent(UnityEngine.GameObject,System.Boolean)">
+            <summary> Places this object at the root of the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeParentOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches a to this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeSiblingOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches this objects to a's parent. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeChildOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Attaches this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeParentOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches a to this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeSiblingOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches this objects to a's parent. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeChildOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Attaches this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsAtRoot(UnityEngine.GameObject)">
+            <summary> Checks whether this object is at the topmost level in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasParent(UnityEngine.GameObject)">
+            <summary> Checks whether this object has a parent. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasAnyChild(UnityEngine.GameObject)">
+            <summary> Checks whether this object has a child. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsParentOf(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Checks whether this object is right above a in the heirarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsSiblingOf(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Checks whether this object has the same parent as a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsChildOf(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Checks whether this object is right below a in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsParentOf(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Checks whether this object is right above a in the heirarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsSiblingOf(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Checks whether this object has the same parent as a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsChildOf(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Checks whether this object is right below a in the hierarchy. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.FindChild(UnityEngine.GameObject,System.String)">
+            <summary> Returns this object's child with name a. If it doesn't exist, returns null.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.FindChild``1(UnityEngine.GameObject,System.String)">
+            <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildren(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's children. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetParent(UnityEngine.GameObject)">
+            <summary> Returns this object's parent. If it doesn't exist, returns null. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetAncestors(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's ancestors. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DistanceTo(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetTo(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the offset from a to this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionTowards(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionAwayFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns the direction from a towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DistanceTo(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetTo(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetFrom(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the offset from a to this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionTowards(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionAwayFrom(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns the direction from a towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasComponent``1(UnityEngine.GameObject)">
+            <summary> Checks whether this object has a component T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ParentHasComponent``1(UnityEngine.GameObject)">
+            <summary> Checks whether this object's parent has a component T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.AnyChildHasComponent``1(UnityEngine.GameObject)">
+            <summary> Checks whether any of this object's children has a component T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetOrAddComponent``1(UnityEngine.GameObject)">
+            <summary> Returns component T attached to this object. If there's none, adds one. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.TryGetComponent``1(UnityEngine.GameObject,``0@)">
+            <summary> Assigns component T to a. Returns whether any component was found. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildComponent``1(UnityEngine.GameObject,UnityEngine.GameObject,System.String)">
+            <summary> Creates a new game object as a child of this object, from prefab a and with name b. Returns its component of type T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildComponent``1(UnityEngine.GameObject,System.String)">
+            <summary> Creates a new game object as a child of this object, with name b. Adds a default component of type T, then returns it. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(UnityEngine.GameObject,System.Boolean)">
+            <summary> Destroys this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(System.Collections.Generic.IEnumerable{UnityEngine.GameObject},System.Boolean)">
+            <summary> Destroys these objects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetPhysics(UnityEngine.GameObject,System.Boolean)">
+            <summary> Makes this object react to (or ignore) physics forces. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisions(UnityEngine.GameObject,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) other colliders. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ResetLocalTransform(UnityEngine.GameObject)">
+            <summary> Resets a's local position, rotation and scale. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,System.Collections.Generic.IEnumerable{UnityEngine.GameObject},System.Boolean)">
+            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyTransformFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Copies a's transform. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyRigidbodyFrom(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
+            <summary> Copies a's rigidbody. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Makes this object collide with (or ignore) object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,System.Collections.Generic.IEnumerable{UnityEngine.Component},System.Boolean)">
+            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyTransformFrom(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Copies a's transform. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyRigidbodyFrom(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
+            <summary> Copies a's rigidbody. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.As``1(System.ValueType)">
             <summary> Casts this value to type T. If it can't be cast, throws an InvalidCastException.  </summary>
@@ -165,18 +519,6 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.Consume(System.Boolean@)">
             <summary> Returns this bool, then sets it to false. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.General.General.Pressed(UnityEngine.KeyCode)">
-            <summary> Checks if this key has just been pressed. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.General.General.Released(UnityEngine.KeyCode)">
-            <summary> Checks if this key has just been released. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.General.General.Down(UnityEngine.KeyCode)">
-            <summary> Checks if this key is held down. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.General.General.Up(UnityEngine.KeyCode)">
-            <summary> Checks if this key is resting. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.DumpN.DumpC.Dump(System.Object,System.Type,System.String[],Vheos.Tools.Extensions.DumpN.MemberData,Vheos.Tools.Extensions.DumpN.ClassMembers,Vheos.Tools.Extensions.DumpN.ScopeModifiers,Vheos.Tools.Extensions.DumpN.AccessModifiers)">
             <summary> Returns a string of tab-separated data of all members of this object. </summary>
@@ -701,10 +1043,31 @@
             <summary> Reverts the rotation a from this vector. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Transform(UnityEngine.Vector3,UnityEngine.Transform)">
-            <summary> Applies chosen a transform to this vector. </summary>
+            <summary> Applies transform a to this vector. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Untransform(UnityEngine.Vector3,UnityEngine.Transform)">
-            <summary> Reverts chosen a transform from this vector. </summary>
+            <summary> Reverts transform a from this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.TransformDirection(UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary> Applies transform a to this direction. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.UntransformDirection(UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary> Reverts transform a from this direction. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDistanceTo(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this vector and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetTo(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this vector to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetFrom(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this vector from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionTowards(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this vector towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionAwayFrom(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this vector from camera b's perspective. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.MinComp(UnityEngine.Vector3)">
             <summary> Returns the smallest of this vector's components. </summary>
@@ -937,6 +1300,12 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.AllInf(UnityEngine.Vector2)">
             <summary> Tests whether all of this vector's components are infinity. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.PerpendicularCW(UnityEngine.Vector2)">
+            <summary> Returns this vector rotated by 90 degrees clockwise. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.PerpendicularCCW(UnityEngine.Vector2)">
+            <summary> Returns this vector rotated by 90 degrees counter-clockwise. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Dot(UnityEngine.Vector2,UnityEngine.Vector2)">
             <summary> Returns the dot product of this vector and a. </summary>
         </member>
@@ -971,10 +1340,16 @@
             <summary> Reverts the rotation a from this vector. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Transform(UnityEngine.Vector2,UnityEngine.Transform)">
-            <summary> Applies chosen a transform to this vector. </summary>
+            <summary> Applies transform a to this vector. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Untransform(UnityEngine.Vector2,UnityEngine.Transform)">
-            <summary> Reverts chosen a transform from this vector. </summary>
+            <summary> Reverts transform a from this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.TransformDirection(UnityEngine.Vector2,UnityEngine.Transform)">
+            <summary> Applies transform a to this direction. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.UntransformDirection(UnityEngine.Vector2,UnityEngine.Transform)">
+            <summary> Reverts transform a from this direction. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.MinComp(UnityEngine.Vector2)">
             <summary> Returns the smallest of this vector's components. </summary>
@@ -1159,11 +1534,17 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_float.MapFrom01(System.Single,System.Int32,System.Int32)">
             <summary> Maps this value from the range [0, 1] to [a, b]. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.IsBetween(System.Single,System.Int32,System.Int32)">
+            <summary> Tests whether this value is between a and b (inclusive). </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_float.MapTo01(System.Single,System.Single,System.Single)">
             <summary> Maps this value from the range [a, b] to [0, 1]. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_float.MapFrom01(System.Single,System.Single,System.Single)">
             <summary> Maps this value from the range [0, 1] to [a, b]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.IsBetween(System.Single,System.Single,System.Single)">
+            <summary> Tests whether this value is between a and b (inclusive). </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_float.DistanceTo(System.Single,System.Int32)">
             <summary> Returns the absolute difference between this value and a. </summary>
@@ -1315,6 +1696,12 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_int.AsFloat(System.Int32)">
             <summary> Returns this value as float. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.IsBetween(System.Int32,System.Int32,System.Int32)">
+            <summary> Tests whether this value is between a and b (inclusive). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_int.IsBetween(System.Int32,System.Single,System.Single)">
+            <summary> Tests whether this value is between a and b (inclusive). </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_int.DistanceTo(System.Int32,System.Int32)">
             <summary> Returns the absolute difference between this value and a. </summary>
         </member>
@@ -1329,306 +1716,6 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_int.ToVector4(System.Int32)">
             <summary> Returns Vector4 with all components set to this value. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Unparent(UnityEngine.Component,System.Boolean)">
-            <summary> Places this object at the root of the hierarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeParentOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
-            <summary> Attaches a to this object.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeSiblingOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
-            <summary> Attaches this objects to a's parent.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeChildOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
-            <summary> Attaches this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeParentOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
-            <summary> Attaches a to this object.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeSiblingOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
-            <summary> Attaches this objects to a's parent.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeChildOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
-            <summary> Attaches this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsAtRoot(UnityEngine.Component)">
-            <summary> Checks whether this object is at the topmost level in the hierarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasParent(UnityEngine.Component)">
-            <summary> Checks whether this object has a parent.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasAnyChild(UnityEngine.Component)">
-            <summary> Checks whether this object has a child. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsParentOf(UnityEngine.Component,UnityEngine.GameObject)">
-            <summary> Checks whether this object is right above a in the heirarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsSiblingOf(UnityEngine.Component,UnityEngine.GameObject)">
-            <summary> Checks whether this object has the same parent as a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsChildOf(UnityEngine.Component,UnityEngine.GameObject)">
-            <summary> Checks whether this object is right below a in the hierarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsParentOf(UnityEngine.Component,UnityEngine.Component)">
-            <summary> Checks whether this object is right above a in the heirarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsSiblingOf(UnityEngine.Component,UnityEngine.Component)">
-            <summary> Checks whether this object has the same parent as a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.IsChildOf(UnityEngine.Component,UnityEngine.Component)">
-            <summary> Checks whether this object is right below a in the hierarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.FindChild(UnityEngine.Component,System.String)">
-            <summary> Returns this object's child with name a. If it doesn't exist, returns null.</summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.FindChild``1(UnityEngine.Component,System.String)">
-            <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildren(UnityEngine.Component)">
-            <summary> Returns an enumerable of this object's children. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetParent(UnityEngine.Component)">
-            <summary> Returns this object's parent.gameObject. If it doesn't exist, returns null. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetAncestors(UnityEngine.Component)">
-            <summary> Returns an enumerable of this object's ancestors. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DistanceTo(UnityEngine.Component,UnityEngine.GameObject)">
-            <summary> Returns the distance between this object and a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetTo(UnityEngine.Component,UnityEngine.GameObject)">
-            <summary> Returns the offset from this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetFrom(UnityEngine.Component,UnityEngine.GameObject)">
-            <summary> Returns the offset from a to this object.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionTowards(UnityEngine.Component,UnityEngine.GameObject)">
-            <summary> Returns the direction from this object towards a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionAwayFrom(UnityEngine.Component,UnityEngine.GameObject)">
-            <summary> Returns the direction from a towards this object.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DistanceTo(UnityEngine.Component,UnityEngine.Component)">
-            <summary> Returns the distance between this object and a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetTo(UnityEngine.Component,UnityEngine.Component)">
-            <summary> Returns the offset from this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetFrom(UnityEngine.Component,UnityEngine.Component)">
-            <summary> Returns the offset from a to this object.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionTowards(UnityEngine.Component,UnityEngine.Component)">
-            <summary> Returns the direction from this object towards a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionAwayFrom(UnityEngine.Component,UnityEngine.Component)">
-            <summary> Returns the direction from a towards this object.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasComponent``1(UnityEngine.Component)">
-            <summary> Checks whether this object has a component t.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ParentHasComponent``1(UnityEngine.Component)">
-            <summary> Checks whether this object's parent has a component t.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.AnyChildHasComponent``1(UnityEngine.Component)">
-            <summary> Checks whether any of this object's children has a component t.gameObject. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetOrAddComponent``1(UnityEngine.Component)">
-            <summary> Returns component T attached to this object.gameObject. If there's none, adds one. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.TryGetComponent``1(UnityEngine.Component,``0@)">
-            <summary> Assigns component T to a. Returns whether any component was found. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy(UnityEngine.Component,System.Boolean)">
-            <summary> Destroys this component. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy``1(System.Collections.Generic.IEnumerable{``0},System.Boolean)">
-            <summary> Destroys these components. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DestroyObject(UnityEngine.Component,System.Boolean)">
-            <summary> Destroys this component's object. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DestroyObjects``1(System.Collections.Generic.IEnumerable{``0},System.Boolean)">
-            <summary> Destroys these components' objects. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetPhysics(UnityEngine.Component,System.Boolean)">
-            <summary> Makes this object react to (or ignore) physics forces. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisions(UnityEngine.Component,System.Boolean)">
-            <summary> Makes this object collide with (or ignore) other colliders. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ResetLocalTransform(UnityEngine.Component)">
-            <summary> Resets a's local position, rotation and scale. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
-            <summary> Makes this object collide with (or ignore) object a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,System.Collections.Generic.IEnumerable{UnityEngine.GameObject},System.Boolean)">
-            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyTransformFrom(UnityEngine.Component,UnityEngine.GameObject)">
-            <summary> Copies a's transform. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyRigidbodyFrom(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
-            <summary> Copies a's rigidbody. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
-            <summary> Makes this object collide with (or ignore) object a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.SetCollisionsWith(UnityEngine.Component,System.Collections.Generic.IEnumerable{UnityEngine.Component},System.Boolean)">
-            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyTransformFrom(UnityEngine.Component,UnityEngine.Component)">
-            <summary> Copies a's transform. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CopyRigidbodyFrom(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
-            <summary> Copies a's rigidbody. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Unparent(UnityEngine.GameObject,System.Boolean)">
-            <summary> Places this object at the root of the hierarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeParentOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
-            <summary> Attaches a to this object. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeSiblingOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
-            <summary> Attaches this objects to a's parent. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeChildOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
-            <summary> Attaches this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeParentOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
-            <summary> Attaches a to this object. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeSiblingOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
-            <summary> Attaches this objects to a's parent. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeChildOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
-            <summary> Attaches this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsAtRoot(UnityEngine.GameObject)">
-            <summary> Checks whether this object is at the topmost level in the hierarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasParent(UnityEngine.GameObject)">
-            <summary> Checks whether this object has a parent. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasAnyChild(UnityEngine.GameObject)">
-            <summary> Checks whether this object has a child. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsParentOf(UnityEngine.GameObject,UnityEngine.GameObject)">
-            <summary> Checks whether this object is right above a in the heirarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsSiblingOf(UnityEngine.GameObject,UnityEngine.GameObject)">
-            <summary> Checks whether this object has the same parent as a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsChildOf(UnityEngine.GameObject,UnityEngine.GameObject)">
-            <summary> Checks whether this object is right below a in the hierarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsParentOf(UnityEngine.GameObject,UnityEngine.Component)">
-            <summary> Checks whether this object is right above a in the heirarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsSiblingOf(UnityEngine.GameObject,UnityEngine.Component)">
-            <summary> Checks whether this object has the same parent as a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.IsChildOf(UnityEngine.GameObject,UnityEngine.Component)">
-            <summary> Checks whether this object is right below a in the hierarchy. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.FindChild(UnityEngine.GameObject,System.String)">
-            <summary> Returns this object's child with name a. If it doesn't exist, returns null.</summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.FindChild``1(UnityEngine.GameObject,System.String)">
-            <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildren(UnityEngine.GameObject)">
-            <summary> Returns an enumerable of this object's children. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetParent(UnityEngine.GameObject)">
-            <summary> Returns this object's parent. If it doesn't exist, returns null. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetAncestors(UnityEngine.GameObject)">
-            <summary> Returns an enumerable of this object's ancestors. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DistanceTo(UnityEngine.GameObject,UnityEngine.GameObject)">
-            <summary> Returns the distance between this object and a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetTo(UnityEngine.GameObject,UnityEngine.GameObject)">
-            <summary> Returns the offset from this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
-            <summary> Returns the offset from a to this object. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionTowards(UnityEngine.GameObject,UnityEngine.GameObject)">
-            <summary> Returns the direction from this object towards a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionAwayFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
-            <summary> Returns the direction from a towards this object. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DistanceTo(UnityEngine.GameObject,UnityEngine.Component)">
-            <summary> Returns the distance between this object and a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetTo(UnityEngine.GameObject,UnityEngine.Component)">
-            <summary> Returns the offset from this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetFrom(UnityEngine.GameObject,UnityEngine.Component)">
-            <summary> Returns the offset from a to this object. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionTowards(UnityEngine.GameObject,UnityEngine.Component)">
-            <summary> Returns the direction from this object towards a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionAwayFrom(UnityEngine.GameObject,UnityEngine.Component)">
-            <summary> Returns the direction from a towards this object. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasComponent``1(UnityEngine.GameObject)">
-            <summary> Checks whether this object has a component T. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ParentHasComponent``1(UnityEngine.GameObject)">
-            <summary> Checks whether this object's parent has a component T. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.AnyChildHasComponent``1(UnityEngine.GameObject)">
-            <summary> Checks whether any of this object's children has a component T. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetOrAddComponent``1(UnityEngine.GameObject)">
-            <summary> Returns component T attached to this object. If there's none, adds one. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.TryGetComponent``1(UnityEngine.GameObject,``0@)">
-            <summary> Assigns component T to a. Returns whether any component was found. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(UnityEngine.GameObject,System.Boolean)">
-            <summary> Destroys this object. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(System.Collections.Generic.IEnumerable{UnityEngine.GameObject},System.Boolean)">
-            <summary> Destroys these objects. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetPhysics(UnityEngine.GameObject,System.Boolean)">
-            <summary> Makes this object react to (or ignore) physics forces. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisions(UnityEngine.GameObject,System.Boolean)">
-            <summary> Makes this object collide with (or ignore) other colliders. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ResetLocalTransform(UnityEngine.GameObject)">
-            <summary> Resets a's local position, rotation and scale. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
-            <summary> Makes this object collide with (or ignore) object a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,System.Collections.Generic.IEnumerable{UnityEngine.GameObject},System.Boolean)">
-            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyTransformFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
-            <summary> Copies a's transform. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyRigidbodyFrom(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
-            <summary> Copies a's rigidbody. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
-            <summary> Makes this object collide with (or ignore) object a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SetCollisionsWith(UnityEngine.GameObject,System.Collections.Generic.IEnumerable{UnityEngine.Component},System.Boolean)">
-            <summary> Makes this object collide with (or ignore) objects from aCollection. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyTransformFrom(UnityEngine.GameObject,UnityEngine.Component)">
-            <summary> Copies a's transform. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyRigidbodyFrom(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
-            <summary> Copies a's rigidbody. </summary>
         </member>
     </members>
 </doc>
