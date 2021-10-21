@@ -83,15 +83,21 @@ namespace Vheos.Tools.UnityCore
         {
             if (IsImplementingMethod(GetType(), nameof(EditUpdate)))
                 Camera.onPreCull += EditUpdateOnCameraPreCull;
-            EditAwake();            
+            EditAwake();
         }
         private void EditDestroyAndUnregisterUpdate()
         {
             Camera.onPreCull -= EditUpdateOnCameraPreCull;
-            EditDestroy();            
+            EditDestroy();
         }
         private void EditUpdateOnCameraPreCull(Camera camera)
         {
+            if (this == null)
+            {
+                Camera.onPreCull -= EditUpdateOnCameraPreCull;
+                return;
+            }
+
             if (isActiveAndEnabled)
                 EditUpdate();
         }
