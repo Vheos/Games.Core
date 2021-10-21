@@ -96,6 +96,7 @@ namespace Vheos.Tools.UnityCore
             PlayUpdateFixed,
         }
 
+#if UNITY_EDITOR
         // Debug
         [ContextMenu("Display Debug Info")]
         public void DisplayDebugInfo()
@@ -117,5 +118,6 @@ namespace Vheos.Tools.UnityCore
             }
             Debug.Log("");
         }
+#endif
     }
 }
