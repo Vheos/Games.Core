@@ -6,7 +6,8 @@ namespace Vheos.Tools.UnityCore
     using UnityEngine;
     using Tools.UtilityN;
     using Tools.Extensions.General;
-    [DefaultExecutionOrder(-1)]
+
+    [DefaultExecutionOrder(int.MinValue)]
     [DisallowMultipleComponent]
     abstract public class AUpdateManager : MonoBehaviour
     {
@@ -87,6 +88,7 @@ namespace Vheos.Tools.UnityCore
         }
         private void OnDisable()
         => _instance = null;
+
 
         // Enum
         private enum Method
