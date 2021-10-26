@@ -142,9 +142,6 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.PixelCoordsToPosition(UnityEngine.Sprite,UnityEngine.Vector2Int,UnityEngine.Transform)">
             <summary> Returns position of pixel a, transformed by b. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.TryNonNull``1(UnityEngine.Object,``0@)">
-            <summary> If this Unity object is non-null, returns true and assigns it to r. Otherwise, returns false and sets r to null. </summary>
-        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.Pressed(UnityEngine.KeyCode)">
             <summary> Checks if this key has just been pressed. </summary>
         </member>
@@ -211,8 +208,11 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.FindChild``1(UnityEngine.Component,System.String)">
             <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildren(UnityEngine.Component)">
-            <summary> Returns an enumerable of this object's children. </summary>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildGameObjects(UnityEngine.Component)">
+            <summary> Returns an enumerable of this object's children as GameObjects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildTransforms(UnityEngine.Component)">
+            <summary> Returns an enumerable of this object's children as their transforms. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetParent(UnityEngine.Component)">
             <summary> Returns this object's parent.gameObject. If it doesn't exist, returns null. </summary>
@@ -370,8 +370,11 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.FindChild``1(UnityEngine.GameObject,System.String)">
             <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildren(UnityEngine.GameObject)">
-            <summary> Returns an enumerable of this object's children. </summary>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildGameObjects(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's children as GameObjects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildTransforms(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's children as their transforms. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetParent(UnityEngine.GameObject)">
             <summary> Returns this object's parent. If it doesn't exist, returns null. </summary>
