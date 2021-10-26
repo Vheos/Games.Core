@@ -1,11 +1,13 @@
-#if UNITY_EDITOR
+
 namespace Vheos.Tools.UnityCore
 {
+#if UNITY_EDITOR
     using System;
     using System.Reflection;
     using UnityEngine;
     using UnityEditor.Callbacks;
     using Tools.Extensions.General;
+
     [ExecuteInEditMode]
     abstract public class AEditable : APlayable
     {
@@ -108,5 +110,9 @@ namespace Vheos.Tools.UnityCore
         public void ToggleEditModeCallbacksDebug()
         => EditModeCallbacksDebug = !EditModeCallbacksDebug;
     }
-}
+
+#else
+    abstract public class AEditable : APlayable
+    { }
 #endif
+}
