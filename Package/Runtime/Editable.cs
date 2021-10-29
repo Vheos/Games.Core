@@ -106,7 +106,7 @@ namespace Vheos.Tools.UnityCore
 
         // Debug
         [NonSerialized] public bool EditModeCallbacksDebug;
-        [ContextMenu("Toggle EditMode Callbacks Debug")]
+        [ContextMenu(nameof(ToggleEditModeCallbacksDebug))]
         public void ToggleEditModeCallbacksDebug()
         => EditModeCallbacksDebug = !EditModeCallbacksDebug;
     }
