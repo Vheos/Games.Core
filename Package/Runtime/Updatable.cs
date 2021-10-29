@@ -3,7 +3,6 @@ namespace Vheos.Tools.UnityCore
     using System;
     using UnityEngine;
 
-    [DefaultExecutionOrder(int.MaxValue)]
     [DisallowMultipleComponent]
     sealed public class Updatable : APlayable
     {
@@ -11,45 +10,18 @@ namespace Vheos.Tools.UnityCore
         public event Action OnPlayUpdate;
         public event Action OnPlayUpdateLate;
         public event Action OnPlayUpdateFixed;
-        internal void PlayUpdate()
+
+        // Mono
+        private void Update()
         => OnPlayUpdate?.Invoke();
-        internal void PlayUpdateLate()
+        private void LateUpdate()
         => OnPlayUpdateLate?.Invoke();
-        internal void PlayUpdateFixed()
+        private void FixedUpdate()
         => OnPlayUpdateFixed?.Invoke();
-
-        // Privates
-        private void SubscribeToManager()
-        {
-            if (OnPlayUpdate != null)
-                UpdateManager.OnUpdate += PlayUpdate;
-            if (OnPlayUpdateLate != null)
-                UpdateManager.OnUpdateLate += PlayUpdateLate;
-            if (OnPlayUpdateFixed != null)
-                UpdateManager.OnUpdateFixed += PlayUpdateFixed;
-        }
-        private void UnsubscribeFromManager()
-        {
-            UpdateManager.OnUpdate -= PlayUpdate;
-            UpdateManager.OnUpdateLate -= PlayUpdateLate;
-            UpdateManager.OnUpdateFixed -= PlayUpdateFixed;
-        }
-
-        // Play
-        override public void PlayEnable()
-        {
-            base.PlayEnable();
-            SubscribeToManager();
-        }
-        override public void PlayDisable()
-        {
-            base.PlayDisable();
-            UnsubscribeFromManager();
-        }
 
 #if UNITY_EDITOR
         // Debug
-        [ContextMenu("Display Debug Info")]
+        [ContextMenu(nameof(DisplayDebugInfo))]
         public void DisplayDebugInfo()
         {
             (Action Event, string Name)[] eventsByName =
