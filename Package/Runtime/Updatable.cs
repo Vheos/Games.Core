@@ -1,3 +1,4 @@
+/*
 namespace Vheos.Tools.UnityCore
 {
     using System;
@@ -11,7 +12,7 @@ namespace Vheos.Tools.UnityCore
         public event Action OnPlayUpdateLate;
         public event Action OnPlayUpdateFixed;
 
-        // Mono
+        // Play
         private void Update()
         => OnPlayUpdate?.Invoke();
         private void LateUpdate()
@@ -43,3 +44,4 @@ namespace Vheos.Tools.UnityCore
 #endif
     }
 }
+*/
