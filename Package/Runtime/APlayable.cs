@@ -4,18 +4,18 @@ namespace Vheos.Tools.UnityCore
     abstract public class APlayable : MonoBehaviour
     {
         // Virtuals
-        virtual public void PlayAwake()
+        virtual protected void PlayAwake()
         { }
-        virtual public void PlayStart()
+        virtual protected void PlayStart()
         { }
-        virtual public void PlayEnable()
+        virtual protected void PlayEnable()
         { }
-        virtual public void PlayDisable()
+        virtual protected void PlayDisable()
         { }
-        virtual public void PlayDestroy()
+        virtual protected void PlayDestroy()
         { }
 
-        // Mono
+        // Play
         private void Awake()
         => PlayAwake();
         private void Start()
