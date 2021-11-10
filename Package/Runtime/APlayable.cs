@@ -6,9 +6,9 @@ namespace Vheos.Tools.UnityCore
         // Virtuals
         virtual protected void PlayAwake()
         { }
-        virtual protected void PlayStart()
-        { }
         virtual protected void PlayEnable()
+        { }
+        virtual protected void PlayStart()
         { }
         virtual protected void PlayDisable()
         { }
@@ -18,10 +18,10 @@ namespace Vheos.Tools.UnityCore
         // Play
         private void Awake()
         => PlayAwake();
-        private void Start()
-        => PlayStart();
         private void OnEnable()
         => PlayEnable();
+        private void Start()
+        => PlayStart();
         private void OnDisable()
         => PlayDisable();
         private void OnDestroy()
