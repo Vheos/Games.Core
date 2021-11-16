@@ -7,6 +7,8 @@ namespace Vheos.Tools.UnityCore
         // Public
         public int ActionsCount
         => InternalEvent == null ? 0 : InternalEvent.GetInvocationList().Length;
+        public bool IsEmpty
+        => InternalEvent == null;
 
         // Privates
         abstract internal void Unsubscribe(AEventSubscriber component);
