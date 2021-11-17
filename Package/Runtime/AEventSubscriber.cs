@@ -6,60 +6,103 @@ namespace Vheos.Tools.UnityCore
 
     abstract public class AEventSubscriber : ABaseComponent
     {
-        // Privates       
-        virtual protected void AutoSubscribeToEvents()
+        // Privates
+        virtual protected void DefineAutoSubscriptions()
         { }
+        private bool _isAutoSubscribe;
+        private readonly HashSet<AEvent> _autoSubscribedEvents = new HashSet<AEvent>();
+        private void SubscribeAuto()
+        {
+            foreach (var @event in _autoSubscribedEvents)
+                @event.SubscribeAuto(this);
+        }
+        private void UnsubscribeAuto()
+        {
+            foreach (var @event in _autoSubscribedEvents)
+                @event.UnsubscribeAuto(this);
+        }
+
+        // Privates (subscribe)
         protected void SubscribeTo(Event @event, Action action)
         {
-            @event.Subscribe(action);
             if (_isAutoSubscribe)
-                _subscribedEvents.Add(@event);
+            {
+                @event.AddToAutoSubscriptions(this, action);
+                _autoSubscribedEvents.Add(@event);
+            }
+            else
+                @event.Subscribe(action);
         }
         protected void SubscribeTo<T1>(Event<T1> @event, Action<T1> action)
         {
-            @event.Subscribe(action);
             if (_isAutoSubscribe)
-                _subscribedEvents.Add(@event);
+            {
+                @event.AddToAutoSubscriptions(this, action);
+                _autoSubscribedEvents.Add(@event);
+            }
+            else
+                @event.Subscribe(action);
         }
         protected void SubscribeTo<T1, T2>(Event<T1, T2> @event, Action<T1, T2> action)
         {
-            @event.Subscribe(action);
             if (_isAutoSubscribe)
-                _subscribedEvents.Add(@event);
+            {
+                @event.AddToAutoSubscriptions(this, action);
+                _autoSubscribedEvents.Add(@event);
+            }
+            else
+                @event.Subscribe(action);
         }
         protected void SubscribeTo(Event @event, params Action[] actions)
         => SubscribeTo(@event, Delegate.Combine(actions) as Action);
-        protected void SubscribeTo<T1>(Event @event, params Action<T1>[] actions)
+        protected void SubscribeTo<T1>(Event<T1> @event, params Action<T1>[] actions)
         => SubscribeTo(@event, Delegate.Combine(actions) as Action<T1>);
-        protected void SubscribeTo<T1, T2>(Event @event, params Action<T1, T2>[] actions)
+        protected void SubscribeTo<T1, T2>(Event<T1, T2> @event, params Action<T1, T2>[] actions)
         => SubscribeTo(@event, Delegate.Combine(actions) as Action<T1, T2>);
-        protected void UnsubscribeFrom(Event @event)
-        => @event.Unsubscribe(this);
-        protected void UnsubscribeFrom<T1>(Event<T1> @event)
-        => @event.Unsubscribe(this);
-        protected void UnsubscribeFrom<T1, T2>(Event<T1, T2> @event)
-        => @event.Unsubscribe(this);
-        private bool _isAutoSubscribe;
-        private readonly HashSet<AEvent> _subscribedEvents = new HashSet<AEvent>();
-        private void UnsubscribeFromAllEvents()
-        {
-            foreach (var @event in _subscribedEvents)
-                @event.Unsubscribe(this);
-            _subscribedEvents.Clear();
-        }
+
+        // Privates (unsubscribe)
+        protected void UnsubscribeFrom(Event @event, Action action)
+        => @event.Unsubscribe(action);
+        protected void UnsubscribeFrom<T1>(Event<T1> @event, Action<T1> action)
+        => @event.Unsubscribe(action);
+        protected void UnsubscribeFrom<T1, T2>(Event<T1, T2> @event, Action<T1, T2> action)
+        => @event.Unsubscribe(action);
+        protected void UnsubscribeFrom(Event @event, params Action[] actions)
+        => @event.Unsubscribe(Delegate.Combine(actions) as Action);
+        protected void UnsubscribeFrom<T1>(Event<T1> @event, params Action<T1>[] actions)
+        => @event.Unsubscribe(Delegate.Combine(actions) as Action<T1>);
+        protected void UnsubscribeFrom<T1, T2>(Event<T1, T2> @event, params Action<T1, T2>[] actions)
+        => @event.Unsubscribe(Delegate.Combine(actions) as Action<T1, T2>);
 
         // Play
+        internal protected override void PlayAwakeLate()
+        {
+            base.PlayAwakeLate();
+            _isAutoSubscribe = true;
+            DefineAutoSubscriptions();
+            _isAutoSubscribe = false;
+        }
         protected override void PlayEnable()
         {
             base.PlayEnable();
-            _isAutoSubscribe = true;
-            AutoSubscribeToEvents();
-            _isAutoSubscribe = false;
+            SubscribeAuto();
         }
         protected override void PlayDisable()
         {
             base.PlayDisable();
-            UnsubscribeFromAllEvents();
+            UnsubscribeAuto();
         }
+
+#if UNITY_EDITOR
+        // Debug
+        [ContextMenu(nameof(LogAutoSubscriptions))]
+        private void LogAutoSubscriptions()
+        {
+            Debug.Log($"{name}.{GetType().Name} ({_autoSubscribedEvents.Count})");
+            foreach (var @event in _autoSubscribedEvents)
+                Debug.Log($"\t- {@event.GetType().Name}");
+            Debug.Log($"");
+        }
+#endif
     }
 }

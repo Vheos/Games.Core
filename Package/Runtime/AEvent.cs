@@ -11,12 +11,9 @@ namespace Vheos.Tools.UnityCore
         => InternalEvent == null;
 
         // Privates
-        abstract internal void Unsubscribe(AEventSubscriber component);
+        abstract internal void SubscribeAuto(AEventSubscriber subscriber);
+        abstract internal void UnsubscribeAuto(AEventSubscriber subscriber);
         abstract protected Delegate InternalEvent
         { get; }
-
-        // Initializers
-        internal AEvent()
-        { }
     }
 }

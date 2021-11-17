@@ -1,6 +1,9 @@
 namespace Vheos.Tools.UnityCore
 {
     using System;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using Tools.Extensions.Collections;
 
     sealed public class Event : AEvent
     {
@@ -10,16 +13,23 @@ namespace Vheos.Tools.UnityCore
 
         // Privates
         private Action _internalEvent;
+        private readonly Dictionary<AEventSubscriber, Action> _autosBySubscriber
+            = new Dictionary<AEventSubscriber, Action>();
         protected override Delegate InternalEvent
         => _internalEvent;
         internal void Subscribe(Action action)
         => _internalEvent += action;
-        internal override void Unsubscribe(AEventSubscriber subscriber)
+        internal void Unsubscribe(Action action)
+        => _internalEvent -= action;
+        internal void AddToAutoSubscriptions(AEventSubscriber subscriber, Action action)
         {
-            foreach (var action in _internalEvent.GetInvocationList())
-                if ((object)action.Target == subscriber)
-                    _internalEvent -= action as Action;
+            _autosBySubscriber.TryAddDefault(subscriber);
+            _autosBySubscriber[subscriber] += action;
         }
+        internal override void SubscribeAuto(AEventSubscriber subscriber)
+        => _internalEvent += _autosBySubscriber[subscriber];
+        internal override void UnsubscribeAuto(AEventSubscriber subscriber)
+        => _internalEvent -= _autosBySubscriber[subscriber];
     }
 
     sealed public class Event<T1> : AEvent
@@ -30,16 +40,23 @@ namespace Vheos.Tools.UnityCore
 
         // Privates
         private Action<T1> _internalEvent;
+        private readonly Dictionary<AEventSubscriber, Action<T1>> _autosBySubscriber
+            = new Dictionary<AEventSubscriber, Action<T1>>();
         protected override Delegate InternalEvent
         => _internalEvent;
         internal void Subscribe(Action<T1> action)
         => _internalEvent += action;
-        internal override void Unsubscribe(AEventSubscriber subscriber)
+        internal void Unsubscribe(Action<T1> action)
+        => _internalEvent -= action;
+        internal void AddToAutoSubscriptions(AEventSubscriber subscriber, Action<T1> action)
         {
-            foreach (var action in _internalEvent.GetInvocationList())
-                if ((object)action.Target == subscriber)
-                    _internalEvent -= action as Action<T1>;
+            _autosBySubscriber.TryAddDefault(subscriber);
+            _autosBySubscriber[subscriber] += action;
         }
+        internal override void SubscribeAuto(AEventSubscriber subscriber)
+        => _internalEvent += _autosBySubscriber[subscriber];
+        internal override void UnsubscribeAuto(AEventSubscriber subscriber)
+        => _internalEvent -= _autosBySubscriber[subscriber];
     }
 
     sealed public class Event<T1, T2> : AEvent
@@ -50,15 +67,22 @@ namespace Vheos.Tools.UnityCore
 
         // Privates
         private Action<T1, T2> _internalEvent;
+        private readonly Dictionary<AEventSubscriber, Action<T1, T2>> _autosBySubscriber
+            = new Dictionary<AEventSubscriber, Action<T1, T2>>();
         protected override Delegate InternalEvent
         => _internalEvent;
         internal void Subscribe(Action<T1, T2> action)
         => _internalEvent += action;
-        internal override void Unsubscribe(AEventSubscriber subscriber)
+        internal void Unsubscribe(Action<T1, T2> action)
+        => _internalEvent -= action;
+        internal void AddToAutoSubscriptions(AEventSubscriber subscriber, Action<T1, T2> action)
         {
-            foreach (var action in _internalEvent.GetInvocationList())
-                if ((object)action.Target == subscriber)
-                    _internalEvent -= action as Action<T1, T2>;
+            _autosBySubscriber.TryAddDefault(subscriber);
+            _autosBySubscriber[subscriber] += action;
         }
+        internal override void SubscribeAuto(AEventSubscriber subscriber)
+        => _internalEvent += _autosBySubscriber[subscriber];
+        internal override void UnsubscribeAuto(AEventSubscriber subscriber)
+        => _internalEvent -= _autosBySubscriber[subscriber];
     }
 }
