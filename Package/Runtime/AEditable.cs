@@ -1,11 +1,13 @@
 #if UNITY_EDITOR
 namespace Vheos.Tools.UnityCore
 {
+
     using System;
     using System.Reflection;
     using UnityEngine;
     using UnityEditor.Callbacks;
     using Tools.Extensions.General;
+
     [ExecuteInEditMode]
     abstract public class AEditable : APlayable
     {
@@ -40,7 +42,10 @@ namespace Vheos.Tools.UnityCore
             if (!Application.isPlaying)
                 EditAwakeAndRegisterUpdate();
             else
+            {
                 PlayAwake();
+                PlayAwakeLate();
+            }
         }
         private void Start()
         {
@@ -104,7 +109,7 @@ namespace Vheos.Tools.UnityCore
 
         // Debug
         [NonSerialized] public bool EditModeCallbacksDebug;
-        [ContextMenu("Toggle EditMode Callbacks Debug")]
+        [ContextMenu(nameof(ToggleEditModeCallbacksDebug))]
         public void ToggleEditModeCallbacksDebug()
         => EditModeCallbacksDebug = !EditModeCallbacksDebug;
     }
