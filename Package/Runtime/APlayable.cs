@@ -6,6 +6,8 @@ namespace Vheos.Tools.UnityCore
         // Virtuals
         virtual protected void PlayAwake()
         { }
+        virtual internal protected void PlayAwakeLate()
+        { }
         virtual protected void PlayEnable()
         { }
         virtual protected void PlayStart()
@@ -17,7 +19,10 @@ namespace Vheos.Tools.UnityCore
 
         // Play
         private void Awake()
-        => PlayAwake();
+        {
+            PlayAwake();
+            PlayAwakeLate();
+        }
         private void OnEnable()
         => PlayEnable();
         private void Start()

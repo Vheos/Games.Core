@@ -42,7 +42,10 @@ namespace Vheos.Tools.UnityCore
             if (!Application.isPlaying)
                 EditAwakeAndRegisterUpdate();
             else
+            {
                 PlayAwake();
+                PlayAwakeLate();
+            }
         }
         private void Start()
         {
