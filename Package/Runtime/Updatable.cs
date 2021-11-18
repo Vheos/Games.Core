@@ -11,21 +11,12 @@ namespace Vheos.Tools.UnityCore
         public Event OnUpdatedFixed
         { get; } = new Event();
 
-        // Play
+        // Mono
         private void Update()
-        {
-            if (isActiveAndEnabled)
-                OnUpdated?.Invoke();
-        }
+        => OnUpdated?.Invoke();
         private void LateUpdate()
-        {
-            if (isActiveAndEnabled)
-                OnUpdatedLate?.Invoke();
-        }
+        => OnUpdatedLate?.Invoke();
         private void FixedUpdate()
-        {
-            if (isActiveAndEnabled)
-                OnUpdatedFixed?.Invoke();
-        }
+        => OnUpdatedFixed?.Invoke();
     }
 }
