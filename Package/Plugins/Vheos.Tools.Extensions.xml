@@ -1801,6 +1801,9 @@
         <member name="M:Vheos.Tools.Extensions.General.General.HasFlagsAttribute(System.Enum)">
             <summary> Checks if this enum uses the [Flags] attributes. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.ForEachSetFlag``1(``0,System.Action{``0})">
+            <summary> Calls action a for each flag set in this enum. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.General.General.IsNullOrEmpty(System.String)">
             <summary> Checks if this string is null or empty (""). </summary>
         </member>
@@ -1827,6 +1830,27 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.Map(System.Boolean,System.Single,System.Single)">
             <summary> Returns a for false and b for true. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.MakeCopy``1(``0[])">
+            <summary> Returns a shallow copy of this array. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.MakeCopy``1(System.Collections.Generic.List{``0})">
+            <summary> Returns a shallow copy of this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.MakeCopy``1(System.Collections.Generic.HashSet{``0})">
+            <summary> Returns a shallow copy of this list. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.SwapWith``1(``0,``0)">
+            <summary> Swaps the references of this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.SwapWith``1(``0@,``0@)">
+            <summary> Swaps the references of this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Roll(System.Single)">
+            <summary> Returns true with t probability. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.RollPercent(System.Single)">
+            <summary> Returns true with t% probability. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.DumpN.DumpC.Dump(System.Object,System.Type,System.String[],Vheos.Tools.Extensions.DumpN.MemberData,Vheos.Tools.Extensions.DumpN.ClassMembers,Vheos.Tools.Extensions.DumpN.ScopeModifiers,Vheos.Tools.Extensions.DumpN.AccessModifiers)">
             <summary> Returns a string of tab-separated data of all members of this object. </summary>
