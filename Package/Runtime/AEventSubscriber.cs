@@ -9,7 +9,7 @@ namespace Vheos.Tools.UnityCore
         // Privates
         virtual protected void DefineAutoSubscriptions()
         { }
-        private bool _isAutoSubscribe;
+        private bool _isWithinAutoSubscribeBlock;
         private readonly HashSet<AEvent> _autoSubscribedEvents = new HashSet<AEvent>();
         private void SubscribeAuto()
         {
@@ -25,7 +25,7 @@ namespace Vheos.Tools.UnityCore
         // Privates (subscribe)
         protected void SubscribeTo(Event @event, Action action)
         {
-            if (_isAutoSubscribe)
+            if (_isWithinAutoSubscribeBlock)
             {
                 @event.AddToAutoSubscriptions(this, action);
                 _autoSubscribedEvents.Add(@event);
@@ -35,7 +35,7 @@ namespace Vheos.Tools.UnityCore
         }
         protected void SubscribeTo<T1>(Event<T1> @event, Action<T1> action)
         {
-            if (_isAutoSubscribe)
+            if (_isWithinAutoSubscribeBlock)
             {
                 @event.AddToAutoSubscriptions(this, action);
                 _autoSubscribedEvents.Add(@event);
@@ -45,7 +45,7 @@ namespace Vheos.Tools.UnityCore
         }
         protected void SubscribeTo<T1, T2>(Event<T1, T2> @event, Action<T1, T2> action)
         {
-            if (_isAutoSubscribe)
+            if (_isWithinAutoSubscribeBlock)
             {
                 @event.AddToAutoSubscriptions(this, action);
                 _autoSubscribedEvents.Add(@event);
@@ -78,9 +78,9 @@ namespace Vheos.Tools.UnityCore
         internal protected override void PlayAwakeLate()
         {
             base.PlayAwakeLate();
-            _isAutoSubscribe = true;
+            _isWithinAutoSubscribeBlock = true;
             DefineAutoSubscriptions();
-            _isAutoSubscribe = false;
+            _isWithinAutoSubscribeBlock = false;
         }
         protected override void PlayEnable()
         {
