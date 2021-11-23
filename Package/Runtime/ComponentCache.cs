@@ -17,6 +17,8 @@ namespace Vheos.Tools.UnityCore
         => _cachedComponentsByType.ContainsKey(typeof(T));
         public bool TryGet<T>(out T component) where T : Component
         => _cachedComponentsByType.TryGetAs(typeof(T), out component);
+        public T GetOrNull<T>() where T : Component
+         => _cachedComponentsByType.TryGetAs(typeof(T), out T component) ? component : null;
         public T GetOrAdd<T>() where T : Component
         => _cachedComponentsByType.TryGetAs(typeof(T), out T component) ? component : Add<T>();
 
@@ -29,6 +31,8 @@ namespace Vheos.Tools.UnityCore
         => _cachedComponentsByType.ContainsKey(type);
         public bool TryGet(Type type, out Component component)
         => _cachedComponentsByType.TryGet(type, out component);
+        public Component GetOrNull(Type type)
+        => _cachedComponentsByType.TryGet(type, out var component) ? component : null;
         public Component GetOrAdd(Type type)
         => _cachedComponentsByType.TryGet(type, out var component) ? component : Add(type);
 
@@ -65,13 +69,13 @@ namespace Vheos.Tools.UnityCore
         private bool WarningComponentAlreadyAdded(Type type, GameObject gameObject)
         {
             Debug.LogWarning($"ComponentAlreadyAdded\ttrying to cache an already-cached component {type.Name} in gameobject {gameObject.name}\n" +
-            $"Fallback: return without re-caching");
+            $"Fallback:\treturn without re-caching");
             return true;
         }
         private bool WarningComponentNotFound(Type type, GameObject gameObject)
         {
             Debug.LogWarning($"ComponentNotFound\ttrying to cache component {type.Name}, but it can't be found in gameobject {gameObject.name}\n" +
-            $"Fallback: return without caching anything");
+            $"Fallback:\treturn without caching anything");
             return true;
         }
 

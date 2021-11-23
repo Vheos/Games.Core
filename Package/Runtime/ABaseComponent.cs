@@ -21,6 +21,8 @@ namespace Vheos.Tools.UnityCore
         => _componentCache.Has<T>();
         public bool TryGet<T>(out T component) where T : Component
         => _componentCache.TryGet(out component);
+        public T GetOrNull<T>() where T : Component
+        => _componentCache.GetOrNull<T>();
         public T GetOrAdd<T>() where T : Component
         => _componentCache.GetOrAdd<T>();
 
@@ -33,6 +35,8 @@ namespace Vheos.Tools.UnityCore
         => _componentCache.Has(type);
         public bool TryGet(Type type, out Component component)
         => _componentCache.TryGet(type, out component);
+        public Component GetOrNull(Type type)
+        => _componentCache.GetOrNull(type);
         public Component GetOrAdd(Type type)
         => _componentCache.GetOrAdd(type);
 
@@ -64,6 +68,8 @@ namespace Vheos.Tools.UnityCore
         => GetComponent<T>() != null;
         public bool TryGet<T>(out T component) where T : Component
         => TryGetComponent(out component);
+        public T GetOrNull<T>() where T : Component
+        => TryGetComponent<T>(out var component) ? component : null;
         public T GetOrAdd<T>() where T : Component
         => TryGetComponent<T>(out var component) ? component : Add<T>();
 
@@ -76,6 +82,8 @@ namespace Vheos.Tools.UnityCore
         => GetComponent(type) != null;
         public bool TryGet(Type type, out Component component)
         => TryGetComponent(type, out component);
+        public Component GetOrNull(Type type)
+        => TryGetComponent(type, out var component) ? component : null;
         public Component GetOrAdd(Type type)
         => TryGetComponent(type, out var component) ? component : Add(type);
 #endif
