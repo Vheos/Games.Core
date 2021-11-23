@@ -4,19 +4,19 @@ namespace Vheos.Tools.UnityCore
     sealed public class Updatable : ABaseComponent
     {
         // Events
-        public Event OnUpdated
+        public Event OnUpdate
         { get; } = new Event();
-        public Event OnUpdatedLate
+        public Event OnUpdateLate
         { get; } = new Event();
-        public Event OnUpdatedFixed
+        public Event OnUpdateFixed
         { get; } = new Event();
 
         // Mono
         private void Update()
-        => OnUpdated?.Invoke();
+        => OnUpdate?.Invoke();
         private void LateUpdate()
-        => OnUpdatedLate?.Invoke();
+        => OnUpdateLate?.Invoke();
         private void FixedUpdate()
-        => OnUpdatedFixed?.Invoke();
+        => OnUpdateFixed?.Invoke();
     }
 }
