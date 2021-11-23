@@ -35,10 +35,13 @@
             <summary> Tests whether this collection contains zero elements. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_IDictionary.TryGet``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
-            <summary> If this dictionary contains the key a, returns true and assigns its value to r. Otherwise, returns false and sets r to its default value. </summary>
+            <summary> If this dictionary contains the key a, assigns its value to r and returns true. Otherwise, sets r to its default value and returns false. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_IDictionary.TryGetNonNull``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
-            <summary> If this dictionary contains the key a and its value is non-null, returns true and assigns it to r. Otherwise, returns false and sets r to null. </summary>
+            <summary> If this dictionary contains the key a and its value is non-null, assigns it to r and returns true. Otherwise, sets r to null and returns false. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IDictionary.TryGetAs``3(System.Collections.Generic.IDictionary{``0,``1},``0,``2@)">
+            <summary> If this dictionary contains the key a and its value can be cast to r's type, does so and returns true. Otherwise, sets r to its default value and returns false. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_IDictionary.TryAddUnique``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
             <summary> If this dictionary doesn't contain key a, adds it and sets it value to b. Returns whether the collection was modified or not. </summary>
@@ -1787,10 +1790,10 @@
             <summary> Returns true if this type can't be assigned to type T. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.TryAs``1(System.Object,``0@)">
-            <summary> If this object can be cast to type T, returns true and assigns the casted object to r. Otherwise, returns false and sets r to its default value. </summary>
+            <summary> If this object can be cast to r's type, does so and returns true. Otherwise, sets r to its default value and returns false. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.TryNonNull``1(``0,``0@)">
-            <summary> If this object is non-null, returns true and assigns it to r. Otherwise, returns false and sets r to null. </summary>
+            <summary> If this object is non-null, assigns it to r and returns true. Otherwise, and sets r to null and returns false. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.IsContainedIn``1(``0,System.Collections.Generic.ICollection{``0})">
             <summary> Tests whether this object is contained within the collection a. </summary>
