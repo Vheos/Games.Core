@@ -12,73 +12,72 @@ namespace Vheos.Tools.UnityCore
 #endif
     {
 #if CACHED_COMPONENTS
-        // Publics
+        // Publics (generic)
         public T Add<T>() where T : Component
         => _componentCache.Add<T>();
         public T Get<T>() where T : Component
         => _componentCache.Get<T>();
         public bool Has<T>() where T : Component
         => _componentCache.Has<T>();
+        public bool TryGet<T>(out T component) where T : Component
+        => _componentCache.TryGet(out component);
         public T GetOrAdd<T>() where T : Component
-        {
-            if (!Has<T>())
-                return Add<T>();
-            return Get<T>();
-        }
+        => _componentCache.GetOrAdd<T>();
+
+        // Publics (Component)
         public Component Add(Type type)
         => _componentCache.Add(type);
         public Component Get(Type type)
         => _componentCache.Get(type);
         public bool Has(Type type)
         => _componentCache.Has(type);
+        public bool TryGet(Type type, out Component component)
+        => _componentCache.TryGet(type, out component);
         public Component GetOrAdd(Type type)
-        {
-            if (!Has(type))
-                return Add(type);
-            return Get(type);
-        }
+        => _componentCache.GetOrAdd(type);
 
-        public void AddToCache(Component component)
-        => _componentCache.AddToCache(component);
-        public void AddToCache<T>()
-        => _componentCache.AddToCache<T>();
-        public void AddToCache(Type type)
-        => _componentCache.AddToCache(type);
+        // Publics (cache)
+        public void TryAddToCache<T>()
+        => _componentCache.TryAddToCache<T>();
+        public void TryAddToCache(Type type)
+        => _componentCache.TryAddToCache(type);
 
         // Privates
         private ComponentCache _componentCache;
+        virtual protected void DefineCachedComponents()
+        { }
 
         // Play
         protected override void PlayAwake()
         {
             base.PlayAwake();
             _componentCache = this.GetOrAddComponent<ComponentCache>();
+            DefineCachedComponents();
         }
 #else
+        // Publics (generic)
         public T Add<T>() where T : Component
         => gameObject.AddComponent<T>();
         public T Get<T>() where T : Component
         => GetComponent<T>();
         public bool Has<T>() where T : Component
         => GetComponent<T>() != null;
+        public bool TryGet<T>(out T component) where T : Component
+        => TryGetComponent(out component);
         public T GetOrAdd<T>() where T : Component
-        {
-            if (!TryGetComponent<T>(out var component))
-                return Add<T>();
-            return component;
-        }
+        => TryGetComponent<T>(out var component) ? component : Add<T>();
+
+        // Publics (Component)
         public Component Add(Type type)
         => gameObject.AddComponent(type);
         public Component Get(Type type)
         => GetComponent(type);
         public bool Has(Type type)
         => GetComponent(type) != null;
+        public bool TryGet(Type type, out Component component)
+        => TryGetComponent(type, out component);
         public Component GetOrAdd(Type type)
-        {
-            if (!TryGetComponent(type, out var component))
-                return Add(type);
-            return component;
-        }
+        => TryGetComponent(type, out var component) ? component : Add(type);
 #endif
     }
 }

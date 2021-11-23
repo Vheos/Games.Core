@@ -4,76 +4,83 @@ namespace Vheos.Tools.UnityCore
     using System;
     using System.Collections.Generic;
     using UnityEngine;
+    using Tools.Extensions.Collections;
 
     sealed public class ComponentCache : APlayable
     {
-        // Publics
+        // Publics (generic)
         public T Add<T>() where T : Component
-        {
-            T newComponent = gameObject.AddComponent<T>();
-            _cachedComponentsByType[typeof(T)] = newComponent;
-            return newComponent;
-        }
+        => (T)(_cachedComponentsByType[typeof(T)] = gameObject.AddComponent<T>());
         public T Get<T>() where T : Component
         => (T)_cachedComponentsByType[typeof(T)];
-        public T GetSafe<T>() where T : Component
-        {
-            if (_cachedComponentsByType.TryGetValue(typeof(T), out var component))
-                return (T)component;
-            return GetComponent<T>();
-        }
         public bool Has<T>() where T : Component
         => _cachedComponentsByType.ContainsKey(typeof(T));
+        public bool TryGet<T>(out T component) where T : Component
+        => _cachedComponentsByType.TryGetAs(typeof(T), out component);
+        public T GetOrAdd<T>() where T : Component
+        => _cachedComponentsByType.TryGetAs(typeof(T), out T component) ? component : Add<T>();
+
+        // Publics (Component)
         public Component Add(Type type)
-        {
-            _cachedComponentsByType[type] = gameObject.AddComponent(type);
-            return _cachedComponentsByType[type];
-        }
+        => _cachedComponentsByType[type] = gameObject.AddComponent(type);
         public Component Get(Type type)
         => _cachedComponentsByType[type];
-        public Component GetSafe(Type type)
-        {
-            if (_cachedComponentsByType.TryGetValue(type, out var component))
-                return component;
-            return GetComponent(type);
-        }
         public bool Has(Type type)
         => _cachedComponentsByType.ContainsKey(type);
+        public bool TryGet(Type type, out Component component)
+        => _cachedComponentsByType.TryGet(type, out component);
+        public Component GetOrAdd(Type type)
+        => _cachedComponentsByType.TryGet(type, out var component) ? component : Add(type);
 
         // Privates
         private Dictionary<Type, Component> _cachedComponentsByType;
-        internal void AddToCache(Component component)
-        => _cachedComponentsByType[component.GetType()] = component;
-        internal void AddToCache<T>()
-        => AddToCache(typeof(T));
-        internal void AddToCache(Type type)
+        private void CacheExistingComponents()
         {
-            if (_cachedComponentsByType.ContainsKey(type))
+            foreach (var component in GetComponents<Component>())
+                if (!(component is Transform)
+                && !(component is ComponentCache))
+                    AddToCache(component);
+        }
+        private void AddToCache(Component component)
+        => _cachedComponentsByType[component.GetType()] = component;
+        internal void TryAddToCache<T>()
+        => TryAddToCache(typeof(T));
+        internal void TryAddToCache(Type type)
+        {
+            if (TestForWarnings(type, gameObject))
                 return;
-            if (!TryGetComponent(type, out var component))
-            {
-                WarningComponentNotFound(type);
-                return;
-            }
-            _cachedComponentsByType.Add(type, component);
+
+            _cachedComponentsByType.Add(type, GetComponent(type));
         }
 
         // Warnings
-        private void WarningComponentNotFound(Type type)
-        => Debug.LogWarning($"{nameof(ComponentCache)} / ComponentNotFound   -   gameobject {name}, component {GetType().Name}, type {type.Name}");
+        private bool TestForWarnings(Type type, GameObject gameObject)
+        {
+            if (_cachedComponentsByType.ContainsKey(type))
+                return WarningComponentAlreadyAdded(type, gameObject);
+            if (GetComponent(type) == null)
+                return WarningComponentNotFound(type, gameObject);
+            return false;
+        }
+        private bool WarningComponentAlreadyAdded(Type type, GameObject gameObject)
+        {
+            Debug.LogWarning($"ComponentAlreadyAdded\ttrying to cache an already-cached component {type.Name} in gameobject {gameObject.name}\n" +
+            $"Fallback: return without re-caching");
+            return true;
+        }
+        private bool WarningComponentNotFound(Type type, GameObject gameObject)
+        {
+            Debug.LogWarning($"ComponentNotFound\ttrying to cache component {type.Name}, but it can't be found in gameobject {gameObject.name}\n" +
+            $"Fallback: return without caching anything");
+            return true;
+        }
 
         // Play
         protected override void PlayAwake()
         {
             base.PlayAwake();
             _cachedComponentsByType = new Dictionary<Type, Component>();
-            foreach (var component in GetComponents<Component>())
-            {
-                if (component is Transform
-                || component is ComponentCache)
-                    continue;
-                AddToCache(component);
-            }
+            CacheExistingComponents();
         }
 
 #if UNITY_EDITOR
