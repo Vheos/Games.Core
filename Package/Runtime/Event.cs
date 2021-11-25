@@ -100,4 +100,31 @@ namespace Vheos.Tools.UnityCore
         internal override void UnsubscribeAuto(AEventSubscriber subscriber)
         => _internalEvent -= _autosBySubscriber[subscriber];
     }
+
+    sealed public class Event<T1, T2, T3> : AEvent
+    {
+        // Publics
+        public void Invoke(T1 arg1, T2 arg2, T3 arg3)
+        => _internalEvent?.Invoke(arg1, arg2, arg3);
+
+        // Privates
+        private Action<T1, T2, T3> _internalEvent;
+        private readonly Dictionary<AEventSubscriber, Action<T1, T2, T3>> _autosBySubscriber
+            = new Dictionary<AEventSubscriber, Action<T1, T2, T3>>();
+        protected override Delegate InternalEvent
+        => _internalEvent;
+        internal void Subscribe(Action<T1, T2, T3> action)
+        => _internalEvent += action;
+        internal void Unsubscribe(Action<T1, T2, T3> action)
+        => _internalEvent -= action;
+        internal void AddToAutoSubscriptions(AEventSubscriber subscriber, Action<T1, T2, T3> action)
+        {
+            _autosBySubscriber.TryAddDefault(subscriber);
+            _autosBySubscriber[subscriber] += action;
+        }
+        internal override void SubscribeAuto(AEventSubscriber subscriber)
+        => _internalEvent += _autosBySubscriber[subscriber];
+        internal override void UnsubscribeAuto(AEventSubscriber subscriber)
+        => _internalEvent -= _autosBySubscriber[subscriber];
+    }
 }
