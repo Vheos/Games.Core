@@ -1,5 +1,8 @@
 namespace Vheos.Tools.UnityCore
 {
+    using System;
+    using UnityEngine;
+
     [UnityEngine.DisallowMultipleComponent]
     sealed public class Updatable : ABaseComponent
     {
