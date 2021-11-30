@@ -130,6 +130,27 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_Color.MapFrom01(UnityEngine.Color,UnityEngine.Color,UnityEngine.Color)">
             <summary> Maps this color from the range [0, 1] to [a, b]. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Add(UnityEngine.Color,System.Single)">
+            <summary> Adds (a, a, a, a) to this color's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Sub(UnityEngine.Color,System.Single)">
+            <summary> Subtracts (a, a, a, a) from this color's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Mul(UnityEngine.Color,System.Single)">
+            <summary> Multiplies this color's components by (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Div(UnityEngine.Color,System.Single)">
+            <summary> Divides this color's components by (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Pow(UnityEngine.Color,System.Single)">
+            <summary> Raises this color's components to the power of (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Mod(UnityEngine.Color,System.Single)">
+            <summary> Returns the remainder of this color's components divided by (a, yy). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.PosMod(UnityEngine.Color,System.Single)">
+            <summary> Returns the positive remainder of this color's components divided by (a, yy). </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Color.NewR(UnityEngine.Color,System.Single)">
             <summary> Returns this color with replaced component r. </summary>
         </member>
@@ -421,6 +442,24 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.SLerpClamped(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single)">
             <summary> Spherically lerps from this rotation to a at alpha b (clamped between 0 and 1). </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Add(UnityEngine.Quaternion,UnityEngine.Vector3)">
+            <summary> Adds angles a to this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Sub(UnityEngine.Quaternion,UnityEngine.Vector3)">
+            <summary> Subtracts angles a from this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Lerp(UnityEngine.Quaternion,UnityEngine.Vector3,System.Single)">
+            <summary> Lerps from this rotation to angles a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.LerpClamped(UnityEngine.Quaternion,UnityEngine.Vector3,System.Single)">
+            <summary> Lerps from this rotation to angles a at alpha b (clamped between 0 and 1). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.SLerp(UnityEngine.Quaternion,UnityEngine.Vector3,System.Single)">
+            <summary> Spherically lerps from this rotation to angles a at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.SLerpClamped(UnityEngine.Quaternion,UnityEngine.Vector3,System.Single)">
+            <summary> Spherically lerps from this rotation to angles a at alpha b (clamped between 0 and 1). </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Right(UnityEngine.Quaternion)">
             <summary> Returns right direction relative to this rotation. </summary>
         </member>
@@ -438,6 +477,15 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.Near(UnityEngine.Quaternion)">
             <summary> Returns near direction relative to this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.AngleTo(UnityEngine.Quaternion,UnityEngine.Quaternion)">
+            <summary> Returns angle from this rotation to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.AngleToIdentity(UnityEngine.Quaternion)">
+            <summary> Returns angle created by this rotation. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Quaternion.ToAngles(UnityEngine.Quaternion)">
+            <summary> Returns this rotation's euler angles. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Neg(UnityEngine.Vector3)">
             <summary> Multiplies this vector's components by -1. </summary>
@@ -636,6 +684,9 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.AllInf(UnityEngine.Vector3)">
             <summary> Tests whether all of this vector's components are infinity. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ToRotation(UnityEngine.Vector3)">
+            <summary> Returns this set of euler angles as quaternion rotation. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Dot(UnityEngine.Vector3,UnityEngine.Vector3)">
             <summary> Returns the dot product of this vector and a. </summary>
@@ -1440,6 +1491,27 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.PixelCoordsToPosition(UnityEngine.Sprite,UnityEngine.Vector2Int,UnityEngine.Transform)">
             <summary> Returns position of pixel a, transformed by b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.StartValue(UnityEngine.AnimationCurve)">
+            <summary> Returns value of the first key in this curve. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.EndValue(UnityEngine.AnimationCurve)">
+            <summary> Returns value of the last key in this curve. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.StartTime(UnityEngine.AnimationCurve)">
+            <summary> Returns time of the first key in this curve. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.EndTime(UnityEngine.AnimationCurve)">
+            <summary> Returns time of the last key in this curve. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.Duration(UnityEngine.AnimationCurve)">
+            <summary> Returns the duration of this curve. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.IsValid(UnityEngine.AnimationCurve)">
+            <summary> Tests whether this curve has at least 2 keys. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.AddLinearKeys(UnityEngine.AnimationCurve,System.ValueTuple{System.Single,System.Single}[])">
+            <summary> Adds keys a to this curve with all tangents and weights set to 0. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.Pressed(UnityEngine.KeyCode)">
             <summary> Checks if this key has just been pressed. </summary>
