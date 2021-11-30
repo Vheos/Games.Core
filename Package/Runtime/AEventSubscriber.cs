@@ -53,26 +53,24 @@ namespace Vheos.Tools.UnityCore
             else
                 @event.Subscribe(action);
         }
-        protected void SubscribeTo(Event @event, params Action[] actions)
-        => SubscribeTo(@event, Delegate.Combine(actions) as Action);
-        protected void SubscribeTo<T1>(Event<T1> @event, params Action<T1>[] actions)
-        => SubscribeTo(@event, Delegate.Combine(actions) as Action<T1>);
-        protected void SubscribeTo<T1, T2>(Event<T1, T2> @event, params Action<T1, T2>[] actions)
-        => SubscribeTo(@event, Delegate.Combine(actions) as Action<T1, T2>);
-
-        // Privates (unsubscribe)
+        protected void SubscribeTo<T1, T2, T3>(Event<T1, T2, T3> @event, Action<T1, T2, T3> action)
+        {
+            if (_isWithinAutoSubscribeBlock)
+            {
+                @event.AddToAutoSubscriptions(this, action);
+                _autoSubscribedEvents.Add(@event);
+            }
+            else
+                @event.Subscribe(action);
+        }
         protected void UnsubscribeFrom(Event @event, Action action)
         => @event.Unsubscribe(action);
         protected void UnsubscribeFrom<T1>(Event<T1> @event, Action<T1> action)
         => @event.Unsubscribe(action);
         protected void UnsubscribeFrom<T1, T2>(Event<T1, T2> @event, Action<T1, T2> action)
         => @event.Unsubscribe(action);
-        protected void UnsubscribeFrom(Event @event, params Action[] actions)
-        => @event.Unsubscribe(Delegate.Combine(actions) as Action);
-        protected void UnsubscribeFrom<T1>(Event<T1> @event, params Action<T1>[] actions)
-        => @event.Unsubscribe(Delegate.Combine(actions) as Action<T1>);
-        protected void UnsubscribeFrom<T1, T2>(Event<T1, T2> @event, params Action<T1, T2>[] actions)
-        => @event.Unsubscribe(Delegate.Combine(actions) as Action<T1, T2>);
+        protected void UnsubscribeFrom<T1, T2, T3>(Event<T1, T2, T3> @event, Action<T1, T2, T3> action)
+        => @event.Unsubscribe(action);
 
         // Play
         internal protected override void PlayAwakeLate()
