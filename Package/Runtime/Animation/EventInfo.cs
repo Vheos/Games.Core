@@ -3,7 +3,7 @@ namespace Vheos.Tools.UnityCore
     using System;
     using UnityEngine;
 
-    public struct EventInfo
+    public class EventInfo
     {
         public readonly EventThresholdType ThresholdType;
         public readonly float Threshold;
