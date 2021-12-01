@@ -27,7 +27,7 @@ namespace Vheos.Tools.UnityCore
                 foreach (var @event in _events)
                     @event.TryInvoke();
         }
-        internal object GUID
+        internal GUID GUID
         { get; private set; }
         protected float CurveValueDelta
         => _curveValue.Current - _curveValue.Previous;
@@ -57,7 +57,7 @@ namespace Vheos.Tools.UnityCore
 
         // Initializers
         protected AQAnimation(AnimationCurve curve, float duration,
-            IEnumerable<EventInfo> eventInfos = default, TimeDeltaType timeDeltaType = default, object guid = default)
+            IEnumerable<EventInfo> eventInfos = default, TimeDeltaType timeDeltaType = default, GUID guid = default)
         {
             _curve = curve;
             _duration = duration;

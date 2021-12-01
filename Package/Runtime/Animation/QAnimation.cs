@@ -37,7 +37,7 @@ namespace Vheos.Tools.UnityCore
 
         // Initializers
         internal QAnimation(Action<T> assignFunc, T value, AnimationCurve curve, float duration,
-            IEnumerable<EventInfo> eventInfos = null, TimeDeltaType deltaType = default, AssignmentType assignType = default, object guid = default)
+            IEnumerable<EventInfo> eventInfos = null, TimeDeltaType deltaType = default, AssignmentType assignType = default, GUID guid = default)
             : base(curve, duration, eventInfos, deltaType, guid)
         => _assignInvoke = GetAssignInvoke(assignFunc, value, assignType);
 

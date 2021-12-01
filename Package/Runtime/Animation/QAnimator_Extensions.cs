@@ -21,15 +21,15 @@ namespace Vheos.Tools.UnityCore
         => QAnimator.Animate(t.AssignLocalScaleFunc, value, Qurve.ValuesByProgress, duration, default, default, AssignmentType.Multiplicative);
 
         // ConflictResolution
-        static public void AnimatePosition(this Component t, Vector3 value, float duration, ConflictResolution conflictResolution, object guid)
+        static public void AnimatePosition(this Component t, Vector3 value, float duration, ConflictResolution conflictResolution, GUID guid)
         => QAnimator.Animate(t.AssignPositionFunc, value, Qurve.ValuesByProgress, duration, default, default, default, conflictResolution, guid);
-        static public void AnimateLocalPosition(this Component t, Vector3 value, float duration, ConflictResolution conflictResolution, object guid)
+        static public void AnimateLocalPosition(this Component t, Vector3 value, float duration, ConflictResolution conflictResolution, GUID guid)
         => QAnimator.Animate(t.AssignLocalPositionFunc, value, Qurve.ValuesByProgress, duration, default, default, default, conflictResolution, guid);
-        static public void AnimateRotation(this Component t, Quaternion value, float duration, ConflictResolution conflictResolution, object guid)
+        static public void AnimateRotation(this Component t, Quaternion value, float duration, ConflictResolution conflictResolution, GUID guid)
         => QAnimator.Animate(t.AssignRotationFunc, value, Qurve.ValuesByProgress, duration, default, default, default, conflictResolution, guid);
-        static public void AnimateLocalRotation(this Component t, Quaternion value, float duration, ConflictResolution conflictResolution, object guid)
+        static public void AnimateLocalRotation(this Component t, Quaternion value, float duration, ConflictResolution conflictResolution, GUID guid)
         => QAnimator.Animate(t.AssignLocalRotationFunc, value, Qurve.ValuesByProgress, duration, default, default, default, conflictResolution, guid);
-        static public void AnimateLocalScale(this Component t, Vector3 value, float duration, ConflictResolution conflictResolution, object guid)
+        static public void AnimateLocalScale(this Component t, Vector3 value, float duration, ConflictResolution conflictResolution, GUID guid)
         => QAnimator.Animate(t.AssignLocalScaleFunc, value, Qurve.ValuesByProgress, duration, default, default, AssignmentType.Multiplicative, conflictResolution, guid);
 
         // Curve
