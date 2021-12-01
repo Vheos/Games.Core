@@ -3,6 +3,14 @@ namespace Vheos.Tools.UnityCore
     using System;
     using UnityEngine;
 
+    public enum ConflictResolution
+    {
+        Blend = 0,
+        Wait,
+        Interrupt,        
+        DoNothing,
+    }
+
     public enum EventThresholdType
     {
         Time = 0,
