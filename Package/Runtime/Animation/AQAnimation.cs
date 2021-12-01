@@ -8,6 +8,9 @@ namespace Vheos.Tools.UnityCore
     abstract internal class AQAnimation
     {
         // Privates
+        internal event Action OnHasFinished;
+        internal void InvokeOnHasFinished()
+        => OnHasFinished?.Invoke();
         internal bool HasFinished
         => _curveTime.Current >= _duration;
         internal void Process()
@@ -20,9 +23,12 @@ namespace Vheos.Tools.UnityCore
             _curveValue.Current = _curve.Evaluate(_curveProgress.Current);
 
             _assignInvoke();
-            foreach (var @event in _events)
-                @event.TryInvoke();
+            if (_events != null)
+                foreach (var @event in _events)
+                    @event.TryInvoke();
         }
+        internal object GUID
+        { get; private set; }
         protected float CurveValueDelta
         => _curveValue.Current - _curveValue.Previous;
         protected Action _assignInvoke;
@@ -51,11 +57,12 @@ namespace Vheos.Tools.UnityCore
 
         // Initializers
         protected AQAnimation(AnimationCurve curve, float duration,
-            IEnumerable<EventInfo> eventInfos = default, TimeDeltaType timeDeltaType = default)
+            IEnumerable<EventInfo> eventInfos = default, TimeDeltaType timeDeltaType = default, object guid = default)
         {
             _curve = curve;
             _duration = duration;
             _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
+            GUID = guid;
 
             if (eventInfos != null)
             {
@@ -63,6 +70,8 @@ namespace Vheos.Tools.UnityCore
                 foreach (var eventInfo in eventInfos)
                     AddEvent(eventInfo);
             }
+
+            Debug.Log($"animation created!");
         }
 
         // Defines
