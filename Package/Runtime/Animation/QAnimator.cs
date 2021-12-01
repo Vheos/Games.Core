@@ -4,55 +4,65 @@ namespace Vheos.Tools.UnityCore
     using System.Collections.Generic;
     using UnityEngine;
     using Tools.Extensions.Collections;
+    using System.Linq;
 
     public class QAnimator : AManager<QAnimator>
     {
         // Publics
         static public void Animate<T>(Action<T> assignFunc, T value, AnimationCurve curve, float duration,
-            IEnumerable<EventInfo> eventInfos, TimeDeltaType timeDeltaType, AssignmentType assignType, ConflictResolution conflictResolution, object guid) where T : struct
+            IEnumerable<EventInfo> eventInfos, TimeDeltaType timeDeltaType, AssignmentType assignType, ConflictResolution conflictResolution, GUID guid) where T : struct
         {
             QAnimation<T> createInvoke() => new QAnimation<T>(assignFunc, value, curve, duration, eventInfos, timeDeltaType, assignType, guid);
-            if (_conflictAnimationGroupsByGUID.TryGet(guid, out var conflictAnim))
+            if (_animationGroupsByGUID.TryGet(guid, out var conflictAnimGroup))
                 switch (conflictResolution)
                 {
                     case ConflictResolution.Blend:
-                        AddConflictSensitiveAnimation(createInvoke());
-                        break;
+                        conflictAnimGroup.Add(createInvoke());
+                        return;
                     case ConflictResolution.Interrupt:
-                        RemoveAnimation(conflictAnim);
-                        AddConflictSensitiveAnimation(createInvoke());
-                        break;
+                        conflictAnimGroup.Clear();
+                        conflictAnimGroup.Add(createInvoke());
+                        return;
                     case ConflictResolution.Wait:
-                        conflictAnim.OnHasFinished += () => Animate(assignFunc, value, curve, duration, eventInfos, timeDeltaType, assignType, conflictResolution, guid);
-                        break;
+                        if (conflictAnimGroup.IsEmpty())
+                            conflictAnimGroup.Add(createInvoke());
+                        else
+                            conflictAnimGroup.First().OnHasFinished += () => Animate(assignFunc, value, curve, duration, eventInfos, timeDeltaType, assignType, conflictResolution, guid);
+                        return;
+                    default:
+                        return;
                 }
-            else
-                AddConflictSensitiveAnimation(createInvoke());
+
+            _animationGroupsByGUID.Add(guid, new HashSet<AQAnimation>());
+            _animationGroupsByGUID[guid].Add(createInvoke());
         }
         static public void Animate<T>(Action<T> assignFunc, T value, AnimationCurve curve, float duration,
             IEnumerable<EventInfo> eventInfos, TimeDeltaType timeDeltaType, AssignmentType assignType) where T : struct
-        => _animations.Add(new QAnimation<T>(assignFunc, value, curve, duration, eventInfos, timeDeltaType, assignType));
+        => _animationGroupsByGUID[null].Add(new QAnimation<T>(assignFunc, value, curve, duration, eventInfos, timeDeltaType, assignType));
         static public void Animate<T>(Action<T> assignFunc, T value, AnimationCurve curve, float duration,
             IEnumerable<EventInfo> eventInfos, TimeDeltaType timeDeltaType) where T : struct
-        => _animations.Add(new QAnimation<T>(assignFunc, value, curve, duration, eventInfos, timeDeltaType));
+        => _animationGroupsByGUID[null].Add(new QAnimation<T>(assignFunc, value, curve, duration, eventInfos, timeDeltaType));
         static public void Animate<T>(Action<T> assignFunc, T value, AnimationCurve curve, float duration,
             IEnumerable<EventInfo> eventInfos) where T : struct
-        => _animations.Add(new QAnimation<T>(assignFunc, value, curve, duration, eventInfos));
+        => _animationGroupsByGUID[null].Add(new QAnimation<T>(assignFunc, value, curve, duration, eventInfos));
         static public void Animate<T>(Action<T> assignFunc, T value, AnimationCurve curve, float duration)
             where T : struct
-        => _animations.Add(new QAnimation<T>(assignFunc, value, curve, duration));
+        => _animationGroupsByGUID[null].Add(new QAnimation<T>(assignFunc, value, curve, duration));
 
         // Privates
-        static private HashSet<AQAnimation> _animations;
-        static private Dictionary<object, HashSet<AQAnimation>> _conflictAnimationGroupsByGUID;
+        static private GUID _nonConflictGUID;
+        static private Dictionary<GUID, HashSet<AQAnimation>> _animationGroupsByGUID;
         static private HashSet<AQAnimation> _finishedAnimations;
         static private void ProcessAnimations()
         {
-            foreach (var animation in _animations)
+            foreach (var animationGroupByGUID in _animationGroupsByGUID)
             {
-                animation.Process();
-                if (animation.HasFinished)
-                    _finishedAnimations.Add(animation);
+                foreach (var animation in animationGroupByGUID.Value)
+                {
+                    animation.Process();
+                    if (animation.HasFinished)
+                        _finishedAnimations.Add(animation);
+                }
             }
 
             if (_finishedAnimations.IsNotEmpty())
@@ -62,16 +72,9 @@ namespace Vheos.Tools.UnityCore
                 _finishedAnimations.Clear();
             }
         }
-        static private void AddConflictSensitiveAnimation(AQAnimation animation)
-        {
-            _animations.Add(animation);
-            if (animation.GUID != null)
-                _conflictAnimationGroupsByGUID.Add(animation.GUID, animation);
-        }
         static private void RemoveAnimation(AQAnimation animation)
         {
-            _animations.Remove(animation);
-            _conflictAnimationGroupsByGUID.Remove(animation.GUID);
+            _animationGroupsByGUID[animation.GUID].Remove(animation);
             animation.InvokeOnHasFinished();
         }
 
@@ -84,8 +87,11 @@ namespace Vheos.Tools.UnityCore
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            _animations = new HashSet<AQAnimation>();
-            _conflictAnimationGroupsByGUID = new Dictionary<object, HashSet<AQAnimation>>();
+            _nonConflictGUID = GUID.New;
+            _animationGroupsByGUID = new Dictionary<GUID, HashSet<AQAnimation>>
+            {
+                [_nonConflictGUID] = new HashSet<AQAnimation>()
+            };
             _finishedAnimations = new HashSet<AQAnimation>();
         }
     }
