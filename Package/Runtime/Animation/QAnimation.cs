@@ -36,45 +36,15 @@ namespace Vheos.Tools.UnityCore
         => new NotSupportedException($"{assignType} {typeof(TNested).Name} animation is not supported!");
 
         // Initializers
-        internal QAnimation(float duration, AnimationCurve curve, T value, Action<T> assignFunc, AssignmentType assignType)
-            : base(duration, curve)
+        internal QAnimation(Action<T> assignFunc, T value, float duration)
+            : base(duration)
         {
-            _assignInvoke = GetAssignInvoke(assignFunc, value, assignType);
+            _assignInvoke = GetAssignInvoke(assignFunc, value, AssignmentType.Additive);
         }
-        internal QAnimation(float duration, AnimationCurve curve, T value, Action<T> assignFunc, AssignmentType assignType, GUID guid)
-            : base(duration, curve, guid)
+        internal QAnimation(Action<T> assignFunc, T value, float duration, OptionalParameters optionals)
+            : base(duration, optionals)
         {
-            _assignInvoke = GetAssignInvoke(assignFunc, value, assignType);
-        }
-        internal QAnimation(float duration, AnimationCurve curve, T value, Action<T> assignFunc, AssignmentType assignType, TimeDeltaType timeDeltaType)
-            : base(duration, curve, timeDeltaType)
-        {
-            _assignInvoke = GetAssignInvoke(assignFunc, value, assignType);
-        }
-        internal QAnimation(float duration, AnimationCurve curve, T value, Action<T> assignFunc, AssignmentType assignType, IEnumerable<EventInfo> eventInfos)
-            : base(duration, curve, eventInfos)
-        {
-            _assignInvoke = GetAssignInvoke(assignFunc, value, assignType);
-        }
-        internal QAnimation(float duration, AnimationCurve curve, T value, Action<T> assignFunc, AssignmentType assignType, GUID guid, TimeDeltaType timeDeltaType)
-            : base(duration, curve, guid, timeDeltaType)
-        {
-            _assignInvoke = GetAssignInvoke(assignFunc, value, assignType);
-        }
-        internal QAnimation(float duration, AnimationCurve curve, T value, Action<T> assignFunc, AssignmentType assignType, GUID guid, IEnumerable<EventInfo> eventInfos)
-            : base(duration, curve, guid, eventInfos)
-        {
-            _assignInvoke = GetAssignInvoke(assignFunc, value, assignType);
-        }
-        internal QAnimation(float duration, AnimationCurve curve, T value, Action<T> assignFunc, AssignmentType assignType, TimeDeltaType timeDeltaType, IEnumerable<EventInfo> eventInfos)
-            : base(duration, curve, timeDeltaType, eventInfos)
-        {
-            _assignInvoke = GetAssignInvoke(assignFunc, value, assignType);
-        }
-        internal QAnimation(float duration, AnimationCurve curve, T value, Action<T> assignFunc, AssignmentType assignType, GUID guid, TimeDeltaType timeDeltaType, IEnumerable<EventInfo> eventInfos)
-            : base(duration, curve, guid, timeDeltaType, eventInfos)
-        {
-            _assignInvoke = GetAssignInvoke(assignFunc, value, assignType);
+            _assignInvoke = GetAssignInvoke(assignFunc, value, optionals.AssignmentType ?? AssignmentType.Additive);
         }
 
         // Defines

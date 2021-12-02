@@ -13,11 +13,11 @@ namespace Vheos.Tools.UnityCore
         static internal Func<float> DefaultTimeDeltaFunc
         { get; private set; }
 
-        // Constructor args
+        // Privates
         private readonly float _duration;
         private readonly AnimationCurve _curve;
         private readonly Func<float> _timeDeltaFunc;
-        private readonly HashSet<Event> _events;
+        private HashSet<Event> _events;
         private (float Current, float Previous) _elapsed, _curveProgress, _curveValue;
         private Func<(float, float)> GetEventValuePairFunc(EventThresholdType thresholdType)
         => thresholdType switch
@@ -36,6 +36,7 @@ namespace Vheos.Tools.UnityCore
         };
         private void InitializeEvents(IEnumerable<EventInfo> eventInfos)
         {
+            _events = new HashSet<Event>();
             foreach (var eventInfo in eventInfos)
                 if (eventInfo.IsOnHasFinished)
                     OnHasFinished += eventInfo.Action;
@@ -71,71 +72,22 @@ namespace Vheos.Tools.UnityCore
         internal GUID GUID { get; }
 
         // Initializers
-        protected AQAnimation(float duration, AnimationCurve curve)
+        protected AQAnimation(float duration)
         {
             _duration = duration;
-            _curve = curve;
+            _curve = Qurve.ValuesByProgress;
             GUID = DefaultGUID;
-            _timeDeltaFunc = DefaultTimeDeltaFunc;
+            _timeDeltaFunc = GetTimeDeltaFunc(TimeDeltaType.Scaled);
         }
-        protected AQAnimation(float duration, AnimationCurve curve, GUID guid)
+        protected AQAnimation(float duration, OptionalParameters optionals)
         {
             _duration = duration;
-            _curve = curve;
-            GUID = guid;
-            _timeDeltaFunc = DefaultTimeDeltaFunc;
+            _curve = optionals.Curve ?? Qurve.ValuesByProgress;
+            GUID = optionals.GUID ?? DefaultGUID;
+            _timeDeltaFunc = GetTimeDeltaFunc(optionals.TimeDeltaType ?? TimeDeltaType.Scaled);
+            if (optionals.EventInfo != null)
+                InitializeEvents(optionals.EventInfo);
         }
-        protected AQAnimation(float duration, AnimationCurve curve, TimeDeltaType timeDeltaType)
-        {
-            _duration = duration;
-            _curve = curve;
-            GUID = DefaultGUID;
-            _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
-        }
-        protected AQAnimation(float duration, AnimationCurve curve, IEnumerable<EventInfo> eventInfos)
-        {
-            _duration = duration;
-            _curve = curve;
-            GUID = DefaultGUID;
-            _timeDeltaFunc = DefaultTimeDeltaFunc;
-            _events = new HashSet<Event>();
-            InitializeEvents(eventInfos);
-        }
-        protected AQAnimation(float duration, AnimationCurve curve, GUID guid, TimeDeltaType timeDeltaType)
-        {
-            _duration = duration;
-            _curve = curve;
-            GUID = guid;
-            _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
-        }
-        protected AQAnimation(float duration, AnimationCurve curve, GUID guid, IEnumerable<EventInfo> eventInfos)
-        {
-            _duration = duration;
-            _curve = curve;
-            GUID = guid;
-            _timeDeltaFunc = DefaultTimeDeltaFunc;
-            _events = new HashSet<Event>();
-            InitializeEvents(eventInfos);
-        }
-        protected AQAnimation(float duration, AnimationCurve curve, TimeDeltaType timeDeltaType, IEnumerable<EventInfo> eventInfos)
-        {
-            _duration = duration;
-            _curve = curve;
-            GUID = DefaultGUID;
-            _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
-            _events = new HashSet<Event>();
-            InitializeEvents(eventInfos);
-        }
-        protected AQAnimation(float duration, AnimationCurve curve, GUID guid, TimeDeltaType timeDeltaType, IEnumerable<EventInfo> eventInfos)
-        {
-            _duration = duration;
-            _curve = curve;
-            GUID = guid;
-            _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
-            _events = new HashSet<Event>();
-            InitializeEvents(eventInfos);
-        }
-
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static private void StaticInitialize()
         {

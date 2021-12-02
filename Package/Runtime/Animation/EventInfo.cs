@@ -1,19 +1,23 @@
 namespace Vheos.Tools.UnityCore
 {
     using System;
+    using System.Collections.Generic;
     using UnityEngine;
 
-    public class EventInfo
+    public struct EventInfo
     {
-        public readonly EventThresholdType ThresholdType;
-        public readonly float Threshold;
-        public readonly Action Action;
-        public readonly bool IsOnHasFinished;
+        // Publics
+        public EventThresholdType ThresholdType;
+        public float Threshold;
+        public Action Action;
+        public bool IsOnHasFinished
+        => ThresholdType == EventThresholdType.Progress && Threshold >= 1f;
 
         // Initializers
         public EventInfo(Action action)
         {
-            IsOnHasFinished = true;
+            ThresholdType = EventThresholdType.Progress;
+            Threshold = 1f;
             Action = action;
         }
         public EventInfo(float threshold, Action action)
@@ -28,5 +32,11 @@ namespace Vheos.Tools.UnityCore
             Threshold = threshold;
             Action = action;
         }
+
+        // Operators
+        static public implicit operator EventInfo[](EventInfo t)
+        => new[] { t };
+        static public implicit operator OptionalParameters(EventInfo t)
+        => new OptionalParameters { EventInfo = new[] { t } };
     }
 }
