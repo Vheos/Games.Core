@@ -241,37 +241,37 @@ namespace Vheos.Tools.UnityCore
         => QAnimator.Animate(t.AssignColorFunc, t.ColorOffsetTo(to), duration, curve, eventInfos, guid, conflictResolution, AssignmentType.Additive, timeDeltaType);
         // SpriteRenderer.color (ratio)
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, AssignmentType.Multiplicative, default);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, AnimationCurve curve)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, AssignmentType.Multiplicative, default);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, IEnumerable<EventInfo> eventInfos)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, eventInfos);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, eventInfos, AssignmentType.Multiplicative, default);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, GUID guid, ConflictResolution conflictResolution)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, guid, conflictResolution);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, guid, conflictResolution, AssignmentType.Multiplicative, default);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, TimeDeltaType timeDeltaType)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, AssignmentType.Additive, timeDeltaType);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, AssignmentType.Multiplicative, timeDeltaType);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, AnimationCurve curve, IEnumerable<EventInfo> eventInfos)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, eventInfos);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, eventInfos, AssignmentType.Multiplicative, default);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, AnimationCurve curve, GUID guid, ConflictResolution conflictResolution)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, guid, conflictResolution);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, guid, conflictResolution, AssignmentType.Multiplicative, default);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, AnimationCurve curve, TimeDeltaType timeDeltaType)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, AssignmentType.Additive, timeDeltaType);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, AssignmentType.Multiplicative, timeDeltaType);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, IEnumerable<EventInfo> eventInfos, GUID guid, ConflictResolution conflictResolution)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, eventInfos, guid, conflictResolution);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, eventInfos, guid, conflictResolution, AssignmentType.Multiplicative, default);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, IEnumerable<EventInfo> eventInfos, TimeDeltaType timeDeltaType)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, eventInfos, AssignmentType.Additive, timeDeltaType);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, eventInfos, AssignmentType.Multiplicative, timeDeltaType);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, GUID guid, ConflictResolution conflictResolution, TimeDeltaType timeDeltaType)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, guid, conflictResolution, AssignmentType.Additive, timeDeltaType);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, guid, conflictResolution, AssignmentType.Multiplicative, timeDeltaType);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, AnimationCurve curve, IEnumerable<EventInfo> eventInfos, GUID guid, ConflictResolution conflictResolution)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, eventInfos, guid, conflictResolution);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, eventInfos, guid, conflictResolution, AssignmentType.Multiplicative, default);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, AnimationCurve curve, IEnumerable<EventInfo> eventInfos, TimeDeltaType timeDeltaType)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, eventInfos, AssignmentType.Additive, timeDeltaType);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, eventInfos, AssignmentType.Multiplicative, timeDeltaType);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, AnimationCurve curve, GUID guid, ConflictResolution conflictResolution, TimeDeltaType timeDeltaType)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, guid, conflictResolution, AssignmentType.Additive, timeDeltaType);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, guid, conflictResolution, AssignmentType.Multiplicative, timeDeltaType);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, IEnumerable<EventInfo> eventInfos, GUID guid, ConflictResolution conflictResolution, TimeDeltaType timeDeltaType)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, eventInfos, guid, conflictResolution, AssignmentType.Additive, timeDeltaType);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, eventInfos, guid, conflictResolution, AssignmentType.Multiplicative, timeDeltaType);
         static public void AnimateColorRatio(this SpriteRenderer t, Color ratio, float duration, AnimationCurve curve, IEnumerable<EventInfo> eventInfos, GUID guid, ConflictResolution conflictResolution, TimeDeltaType timeDeltaType)
-        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, eventInfos, guid, conflictResolution, AssignmentType.Additive, timeDeltaType);
+        => QAnimator.Animate(t.AssignColorRatioFunc, ratio, duration, curve, eventInfos, guid, conflictResolution, AssignmentType.Multiplicative, timeDeltaType);
 
         // Privates
         static private void AssignPositionFunc(this Component t, Vector3 a)
