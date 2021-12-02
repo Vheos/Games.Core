@@ -7,7 +7,45 @@ namespace Vheos.Tools.UnityCore
 
     abstract internal class AQAnimation
     {
-        // Privates
+        // Defaults
+        static internal GUID DefaultGUID
+        { get; private set; }
+        static internal Func<float> DefaultTimeDeltaFunc
+        { get; private set; }
+
+        // Constructor args
+        private readonly float _duration;
+        private readonly AnimationCurve _curve;
+        private readonly Func<float> _timeDeltaFunc;
+        private readonly HashSet<Event> _events;
+        private (float Current, float Previous) _curveTime, _curveProgress, _curveValue;
+        private Func<(float, float)> GetEventValuePairFunc(EventThresholdType thresholdType)
+        => thresholdType switch
+        {
+            EventThresholdType.Time => () => _curveTime,
+            EventThresholdType.Progress => () => _curveProgress,
+            EventThresholdType.Value => () => _curveValue,
+            _ => () => default,
+        };
+        private Func<float> GetTimeDeltaFunc(TimeDeltaType timeDeltaType)
+        => timeDeltaType switch
+        {
+            TimeDeltaType.Scaled => () => Time.deltaTime,
+            TimeDeltaType.Unscaled => () => Time.unscaledDeltaTime,
+            _ => () => default,
+        };
+        private void InitializeEvents(IEnumerable<EventInfo> eventInfos)
+        {
+            foreach (var eventInfo in eventInfos)
+                _events.Add(new Event(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdType)));
+        }
+
+        // for QAnimation<T>
+        protected float CurveValueDelta
+            => _curveValue.Current - _curveValue.Previous;
+        protected Action _assignInvoke;
+
+        // for QAnimator
         internal event Action OnHasFinished;
         internal void InvokeOnHasFinished()
         => OnHasFinished?.Invoke();
@@ -27,51 +65,70 @@ namespace Vheos.Tools.UnityCore
                 foreach (var @event in _events)
                     @event.TryInvoke();
         }
-        internal GUID GUID
-        { get; private set; }
-        protected float CurveValueDelta
-        => _curveValue.Current - _curveValue.Previous;
-        protected Action _assignInvoke;
-        private readonly AnimationCurve _curve;
-        private readonly float _duration;
-        private readonly Func<float> _timeDeltaFunc;
-        private readonly HashSet<Event> _events;
-        private (float Current, float Previous) _curveTime, _curveProgress, _curveValue;
-        private Func<float> GetTimeDeltaFunc(TimeDeltaType timeDeltaType)
-        => timeDeltaType switch
-        {
-            TimeDeltaType.Scaled => () => Time.deltaTime,
-            TimeDeltaType.Unscaled => () => Time.unscaledDeltaTime,
-            _ => () => default,
-        };
-        private Func<(float, float)> GetEventValuePairFunc(EventThresholdType thresholdType)
-        => thresholdType switch
-        {
-            EventThresholdType.Time => () => _curveTime,
-            EventThresholdType.Progress => () => _curveProgress,
-            EventThresholdType.Value => () => _curveValue,
-            _ => () => default,
-        };
-        private void AddEvent(EventInfo eventInfo)
-        => _events.Add(new Event(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdType)));
+        internal GUID GUID { get; }
 
         // Initializers
-        protected AQAnimation(AnimationCurve curve, float duration,
-            IEnumerable<EventInfo> eventInfos = default, TimeDeltaType timeDeltaType = default, GUID guid = default)
+        protected AQAnimation(float duration, AnimationCurve curve)
         {
-            _curve = curve;
             _duration = duration;
-            _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
+            _curve = curve;
+        }
+        protected AQAnimation(float duration, AnimationCurve curve, GUID guid)
+            : this(duration, curve)
+        {
             GUID = guid;
+            _timeDeltaFunc = DefaultTimeDeltaFunc;
+        }
+        protected AQAnimation(float duration, AnimationCurve curve, TimeDeltaType timeDeltaType)
+            : this(duration, curve)
+        {
+            GUID = DefaultGUID;
+            _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
+        }
+        protected AQAnimation(float duration, AnimationCurve curve, IEnumerable<EventInfo> eventInfos)
+            : this(duration, curve)
+        {
+            GUID = DefaultGUID;
+            _timeDeltaFunc = DefaultTimeDeltaFunc;
+            _events = new HashSet<Event>();
+            InitializeEvents(eventInfos);
+        }
+        protected AQAnimation(float duration, AnimationCurve curve, GUID guid, TimeDeltaType timeDeltaType)
+            : this(duration, curve)
+        {
+            GUID = guid;
+            _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
+        }
+        protected AQAnimation(float duration, AnimationCurve curve, GUID guid, IEnumerable<EventInfo> eventInfos)
+            : this(duration, curve)
+        {
+            GUID = guid;
+            _timeDeltaFunc = DefaultTimeDeltaFunc;
+            _events = new HashSet<Event>();
+            InitializeEvents(eventInfos);
+        }
+        protected AQAnimation(float duration, AnimationCurve curve, TimeDeltaType timeDeltaType, IEnumerable<EventInfo> eventInfos)
+            : this(duration, curve)
+        {
+            GUID = DefaultGUID;
+            _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
+            _events = new HashSet<Event>();
+            InitializeEvents(eventInfos);
+        }
+        protected AQAnimation(float duration, AnimationCurve curve, GUID guid, TimeDeltaType timeDeltaType, IEnumerable<EventInfo> eventInfos)
+            : this(duration, curve)
+        {
+            GUID = guid;
+            _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
+            _events = new HashSet<Event>();
+            InitializeEvents(eventInfos);
+        }
 
-            if (eventInfos != null)
-            {
-                _events = new HashSet<Event>();
-                foreach (var eventInfo in eventInfos)
-                    AddEvent(eventInfo);
-            }
-
-            Debug.Log($"animation created!");
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static private void StaticInitialize()
+        {
+            DefaultGUID = GUID.New;
+            DefaultTimeDeltaFunc = () => Time.deltaTime;
         }
 
         // Defines
