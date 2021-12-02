@@ -105,6 +105,8 @@ namespace Vheos.Tools.UnityCore
             void reinvokeAnimate() => Animate(assignFunc, value, duration, curve, eventInfos, guid, conflictResolution, assignType, timeDeltaType);
             HandleConflict(guid, conflictResolution, createFunc, reinvokeAnimate);
         }
+        static public void Stop(GUID guid)
+        => _animationGroupsByGUID[guid].Clear();
 
         // Privates
         static private Dictionary<GUID, HashSet<AQAnimation>> _animationGroupsByGUID;
