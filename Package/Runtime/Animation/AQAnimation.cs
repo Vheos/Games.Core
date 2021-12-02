@@ -18,11 +18,11 @@ namespace Vheos.Tools.UnityCore
         private readonly AnimationCurve _curve;
         private readonly Func<float> _timeDeltaFunc;
         private readonly HashSet<Event> _events;
-        private (float Current, float Previous) _curveTime, _curveProgress, _curveValue;
+        private (float Current, float Previous) _elapsed, _curveProgress, _curveValue;
         private Func<(float, float)> GetEventValuePairFunc(EventThresholdType thresholdType)
         => thresholdType switch
         {
-            EventThresholdType.Time => () => _curveTime,
+            EventThresholdType.Time => () => _elapsed,
             EventThresholdType.Progress => () => _curveProgress,
             EventThresholdType.Value => () => _curveValue,
             _ => () => default,
@@ -37,7 +37,10 @@ namespace Vheos.Tools.UnityCore
         private void InitializeEvents(IEnumerable<EventInfo> eventInfos)
         {
             foreach (var eventInfo in eventInfos)
-                _events.Add(new Event(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdType)));
+                if (eventInfo.IsOnHasFinished)
+                    OnHasFinished += eventInfo.Action;
+                else
+                    _events.Add(new Event(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdType)));
         }
 
         // for QAnimation<T>
@@ -50,13 +53,13 @@ namespace Vheos.Tools.UnityCore
         internal void InvokeOnHasFinished()
         => OnHasFinished?.Invoke();
         internal bool HasFinished
-        => _curveTime.Current >= _duration;
+        => _elapsed.Current >= _duration;
         internal void Process()
         {
-            _curveTime.Previous = _curveTime.Current;
-            _curveTime.Current += _timeDeltaFunc();
+            _elapsed.Previous = _elapsed.Current;
+            _elapsed.Current += _timeDeltaFunc();
             _curveProgress.Previous = _curveProgress.Current;
-            _curveProgress.Current = _curveTime.Current.Div(_duration).ClampMax(1f);
+            _curveProgress.Current = _elapsed.Current.Div(_duration).ClampMax(1f);
             _curveValue.Previous = _curveValue.Current;
             _curveValue.Current = _curve.Evaluate(_curveProgress.Current);
 
@@ -72,52 +75,61 @@ namespace Vheos.Tools.UnityCore
         {
             _duration = duration;
             _curve = curve;
+            GUID = DefaultGUID;
+            _timeDeltaFunc = DefaultTimeDeltaFunc;
         }
         protected AQAnimation(float duration, AnimationCurve curve, GUID guid)
-            : this(duration, curve)
         {
+            _duration = duration;
+            _curve = curve;
             GUID = guid;
             _timeDeltaFunc = DefaultTimeDeltaFunc;
         }
         protected AQAnimation(float duration, AnimationCurve curve, TimeDeltaType timeDeltaType)
-            : this(duration, curve)
         {
+            _duration = duration;
+            _curve = curve;
             GUID = DefaultGUID;
             _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
         }
         protected AQAnimation(float duration, AnimationCurve curve, IEnumerable<EventInfo> eventInfos)
-            : this(duration, curve)
         {
+            _duration = duration;
+            _curve = curve;
             GUID = DefaultGUID;
             _timeDeltaFunc = DefaultTimeDeltaFunc;
             _events = new HashSet<Event>();
             InitializeEvents(eventInfos);
         }
         protected AQAnimation(float duration, AnimationCurve curve, GUID guid, TimeDeltaType timeDeltaType)
-            : this(duration, curve)
         {
+            _duration = duration;
+            _curve = curve;
             GUID = guid;
             _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
         }
         protected AQAnimation(float duration, AnimationCurve curve, GUID guid, IEnumerable<EventInfo> eventInfos)
-            : this(duration, curve)
         {
+            _duration = duration;
+            _curve = curve;
             GUID = guid;
             _timeDeltaFunc = DefaultTimeDeltaFunc;
             _events = new HashSet<Event>();
             InitializeEvents(eventInfos);
         }
         protected AQAnimation(float duration, AnimationCurve curve, TimeDeltaType timeDeltaType, IEnumerable<EventInfo> eventInfos)
-            : this(duration, curve)
         {
+            _duration = duration;
+            _curve = curve;
             GUID = DefaultGUID;
             _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
             _events = new HashSet<Event>();
             InitializeEvents(eventInfos);
         }
         protected AQAnimation(float duration, AnimationCurve curve, GUID guid, TimeDeltaType timeDeltaType, IEnumerable<EventInfo> eventInfos)
-            : this(duration, curve)
         {
+            _duration = duration;
+            _curve = curve;
             GUID = guid;
             _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
             _events = new HashSet<Event>();
