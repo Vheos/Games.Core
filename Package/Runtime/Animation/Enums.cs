@@ -3,6 +3,16 @@ namespace Vheos.Tools.UnityCore
     using System;
     using UnityEngine;
 
+    public enum CurveFuncType
+    {
+        Normal = 0,
+        Inverted,
+        Mirror,
+        MirrorInverted,
+        Bounce,
+        BounceInverted,
+    }
+
     public enum ConflictResolution
     {
         Blend = 0,
