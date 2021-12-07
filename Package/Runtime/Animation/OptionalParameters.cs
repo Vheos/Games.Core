@@ -8,42 +8,58 @@ namespace Vheos.Tools.UnityCore
     {
         // Publics
         public AnimationCurve Curve;
-        public GUID GUID;
+        public CurveFuncType? CurveFuncType;
         public TimeDeltaType? TimeDeltaType;
-        public EventInfo[] EventInfo;
         public AssignmentType? AssignmentType;
+        public EventInfo[] EventInfo;
         public ConflictResolution? ConflictResolution;
+        public object GUID;
 
         // Publics (new)
-        public OptionalParameters Set(AnimationCurve curve)
+        public OptionalParameters New(AnimationCurve curve)
         {
             Curve = curve;
             return this;
         }
-        public OptionalParameters Set(GUID guid)
+        public OptionalParameters New(CurveFuncType funcType)
         {
-            GUID = guid;
+            CurveFuncType = funcType;
             return this;
         }
-        public OptionalParameters Set(TimeDeltaType? timeDeltaType)
+        public OptionalParameters New(TimeDeltaType? timeDeltaType)
         {
             TimeDeltaType = timeDeltaType;
             return this;
         }
-        public OptionalParameters Set(EventInfo[] eventInfo)
-        {
-            EventInfo = eventInfo;
-            return this;
-        }
-        public OptionalParameters Set(AssignmentType? assignmentType)
+        public OptionalParameters New(AssignmentType? assignmentType)
         {
             AssignmentType = assignmentType;
             return this;
         }
-        public OptionalParameters Set(ConflictResolution? conflictResolution)
+        public OptionalParameters New(EventInfo[] eventInfo)
         {
-            ConflictResolution = conflictResolution;
+            EventInfo = eventInfo;
             return this;
         }
+        public OptionalParameters New(ConflictResolution? conflictResolution, object guid)
+        {
+            ConflictResolution = conflictResolution;
+            GUID = guid;
+            return this;
+        }
+
+        // Operators
+        static public implicit operator OptionalParameters(AnimationCurve t)
+        => new OptionalParameters { Curve = t };
+        static public implicit operator OptionalParameters(CurveFuncType t)
+        => new OptionalParameters { CurveFuncType = t };
+        static public implicit operator OptionalParameters(TimeDeltaType t)
+        => new OptionalParameters { TimeDeltaType = t };
+        static public implicit operator OptionalParameters(AssignmentType t)
+        => new OptionalParameters { AssignmentType = t };
+        static public implicit operator OptionalParameters(EventInfo t)
+        => new OptionalParameters { EventInfo = new[] { t } };
+        static public implicit operator OptionalParameters((ConflictResolution conflictResolution, object guid) t)
+        => new OptionalParameters { ConflictResolution = t.conflictResolution, GUID = t.guid };
     }
 }
