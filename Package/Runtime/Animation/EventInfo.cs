@@ -36,7 +36,5 @@ namespace Vheos.Tools.UnityCore
         // Operators
         static public implicit operator EventInfo[](EventInfo t)
         => new[] { t };
-        static public implicit operator OptionalParameters(EventInfo t)
-        => new OptionalParameters { EventInfo = new[] { t } };
     }
 }
