@@ -4,7 +4,6 @@ namespace Vheos.Tools.UnityCore
     using System.Collections.Generic;
     using UnityEngine;
     using Tools.Extensions.Collections;
-    using System.Linq;
 
     public class QAnimator : AManager<QAnimator>
     {
@@ -13,77 +12,170 @@ namespace Vheos.Tools.UnityCore
             where T : struct
         {
             if (duration <= 0)
+            {
                 assignFunc(value);
-            else
-                AddAnimation(new QAnimation<T>(assignFunc, value, duration));
+                return;
+            }
+
+            QAnimation newAnimation = new QAnimation(duration);
+            _animations.Add(newAnimation);
+            newAnimation.AddAssignment(assignFunc, value, AssignmentType.Additive);
         }
         static public void Animate<T>(Action<T> assignFunc, T value, float duration, OptionalParameters optionals)
             where T : struct
         {
-            void addAnimInvoke()
+            void CreateAnimFunc()
             {
                 if (duration <= 0)
+                {
                     assignFunc(value);
-                else
-                    AddAnimation(new QAnimation<T>(assignFunc, value, duration, optionals));
+                    TryInvokeOnHasFinishedEvents(optionals.EventInfo);
+                    return;
+                }
+
+                QAnimation newAnimation = new QAnimation(duration, optionals);
+                newAnimation.AddAssignment(assignFunc, value, optionals.AssignmentType ?? AssignmentType.Additive);
+                _animations.Add(newAnimation);
             }
 
-            if (optionals.ConflictResolution == null || optionals.GUID == null)
-            {
-                addAnimInvoke();
-                return;
-            }
-            if (!_animationGroupsByGUID.TryGet(optionals.GUID, out var conflictAnimGroup))
-            {
-                _animationGroupsByGUID.Add(optionals.GUID, new HashSet<AQAnimation>());
-                addAnimInvoke();
-                return;
-            }
-            switch (optionals.ConflictResolution)
-            {
-                case ConflictResolution.Blend:
-                    addAnimInvoke();
-                    break;
-                case ConflictResolution.Interrupt:
-                    conflictAnimGroup.Clear();
-                    addAnimInvoke();
-                    break;
-            }
+            TryResolveConflict(CreateAnimFunc, optionals.ConflictResolution, optionals.GUID);
         }
-        static public void Stop(GUID guid)
-        => _animationGroupsByGUID[guid].Clear();
+        static public void Delay(float duration)
+        {
+            if (duration <= 0)
+                return;
+
+            _animations.Add(new QAnimation(duration));
+        }
+        static public void Delay(float duration, OptionalParameters optionals)
+        {
+            void CreateAnimFunc()
+            {
+                if (duration <= 0)
+                {
+                    TryInvokeOnHasFinishedEvents(optionals.EventInfo);
+                    return;
+                }
+
+                _animations.Add(new QAnimation(duration, optionals));
+            }
+
+            TryResolveConflict(CreateAnimFunc, optionals.ConflictResolution, optionals.GUID);
+        }
+        static public void Stop(object guid)
+        => _animations.RemoveWhere(t => t.GUID == guid);
+
+        // Publics (group)
+        static public IDisposable Group(float duration)
+        {
+            _isInGroupBlock = true;
+            _groupAnimation = new QAnimation(duration);
+            _groupAssignmentType = AssignmentType.Additive;
+            return _groupDisposable;
+        }
+        static public IDisposable Group(float duration, OptionalParameters optionals)
+        {
+            _isInGroupBlock = true;
+            void InitializeGroup()
+            {
+                _groupAnimation = new QAnimation(duration, optionals);
+                _groupAssignmentType = optionals.AssignmentType;
+            }
+
+            TryResolveConflict(InitializeGroup, optionals.ConflictResolution, optionals.GUID);
+            return _groupDisposable;
+        }
+        static public void GroupAnimate<T>(Action<T> assignFunc, T value) where T : struct
+        => GroupAnimate(assignFunc, value, _groupAssignmentType ?? AssignmentType.Additive);
+        static public void GroupAnimate<T>(Action<T> assignFunc, T value, AssignmentType assignType) where T : struct
+        {
+            if (!_isInGroupBlock && WarningOutsideGroupBlock()
+            || _groupAnimation == null)
+                return;
+
+            if(_groupAnimation.IsInstant)
+            {
+                assignFunc(value);
+                return;
+            }
+
+            _groupAnimation.AddAssignment(assignFunc, value, assignType);
+        }
 
         // Privates
-        static internal OptionalParameters OptionalsMultiplicative
-        { get; private set; }
-        static private Dictionary<GUID, HashSet<AQAnimation>> _animationGroupsByGUID;
-        static private HashSet<AQAnimation> _finishedAnimations;
+        static private HashSet<QAnimation> _animations;
+        static private HashSet<QAnimation> _pendingRemoves;
         static private void ProcessAnimations()
         {
-            foreach (var animationGroupByGUID in _animationGroupsByGUID)
+            foreach (var animation in _animations)
             {
-                foreach (var animation in animationGroupByGUID.Value)
-                {
-                    animation.Process();
-                    if (animation.HasFinished)
-                        _finishedAnimations.Add(animation);
-                }
+                animation.Process();
+                if (animation.HasFinished)
+                    _pendingRemoves.Add(animation);
             }
 
-            if (_finishedAnimations.IsNotEmpty())
+            if (_pendingRemoves.IsNotEmpty())
             {
-                foreach (var animation in _finishedAnimations)
-                    RemoveAnimation(animation);
-                _finishedAnimations.Clear();
+                foreach (var animation in _pendingRemoves)
+                {
+                    _animations.Remove(animation);
+                    animation.InvokeOnHasFinished();
+                }
+                _pendingRemoves.Clear();
             }
         }
-        static private void AddAnimation(AQAnimation animation)
-        => _animationGroupsByGUID[animation.GUID].Add(animation);
-        static private void RemoveAnimation(AQAnimation animation)
+        static private void TryResolveConflict(Action createAnim, ConflictResolution? conflictResolution, object guid)
         {
-            _animationGroupsByGUID[animation.GUID].Remove(animation);
-            animation.InvokeOnHasFinished();
+            if (conflictResolution == null || guid == null)
+                createAnim();
+            else
+                switch (conflictResolution)
+                {
+                    case ConflictResolution.Blend:
+                        createAnim();
+                        break;
+                    case ConflictResolution.Interrupt:
+                        Stop(guid);
+                        createAnim();
+                        break;
+                    case ConflictResolution.Wait:
+                        // TO DO
+                        break;
+                    case ConflictResolution.DoNothing:
+                        break;
+                }
         }
+        static private void TryInvokeOnHasFinishedEvents(EventInfo[] eventInfo)
+        {
+            if (eventInfo == null)
+                return;
+
+            foreach (var info in eventInfo)
+                if (info.IsOnHasFinished)
+                    info.Action();
+        }
+
+        // Privates (group)
+        static private CustomDisposable _groupDisposable;
+        static private bool _isInGroupBlock;
+        static private AssignmentType? _groupAssignmentType;
+        static private QAnimation _groupAnimation;
+        static private void FinalizeGroup()
+        {
+            if (_groupAnimation.HasAnyAssignments)
+                _animations.Add(_groupAnimation);
+
+            _isInGroupBlock = false;
+            _groupAssignmentType = null;
+            _groupAnimation = null;
+        }
+        static private bool WarningOutsideGroupBlock()
+        {
+            Debug.LogWarning($"AnimationOutsideGroupBlock:\ttrying to GroupAnimate outside the using(QAnimator.Group) block\n" +
+            $"Fallback:\treturn without creating the animation");
+            return true;
+        }
+
 
         // Play
         protected override void DefineAutoSubscriptions()
@@ -94,12 +186,9 @@ namespace Vheos.Tools.UnityCore
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            OptionalsMultiplicative = new OptionalParameters { AssignmentType = AssignmentType.Multiplicative };
-            _animationGroupsByGUID = new Dictionary<GUID, HashSet<AQAnimation>>
-            {
-                [AQAnimation.DefaultGUID] = new HashSet<AQAnimation>()
-            };
-            _finishedAnimations = new HashSet<AQAnimation>();
+            _animations = new HashSet<QAnimation>();
+            _pendingRemoves = new HashSet<QAnimation>();
+            _groupDisposable = new CustomDisposable(FinalizeGroup);
         }
 
 #if UNITY_EDITOR
@@ -107,13 +196,9 @@ namespace Vheos.Tools.UnityCore
         [ContextMenu(nameof(PrintDebugInfo))]
         private void PrintDebugInfo()
         {
-            Debug.Log($"{nameof(_animationGroupsByGUID)} ({_animationGroupsByGUID.Count})");
-            foreach (var animationGroupByGUID in _animationGroupsByGUID)
-            {
-                Debug.Log($"\t• {animationGroupByGUID.Key.GetHashCode():X} ({animationGroupByGUID.Value.Count})");
-                foreach (var animation in animationGroupByGUID.Value)
-                    Debug.Log($"\t\t- {animation.GetType().GetGenericArguments().First().Name}");
-            }
+            Debug.Log($"ANIMATIONS: ({_animations.Count})");
+            foreach (var animation in _animations)
+                Debug.Log($"\t• {animation.GetHashCode():X}{(animation.GUID != null ? " (conflict)" : "")}");
             Debug.Log($"");
         }
 #endif
