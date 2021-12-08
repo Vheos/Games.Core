@@ -7,14 +7,15 @@ namespace Vheos.Tools.UnityCore
     sealed public class Updatable : ABaseComponent
     {
         // Events
-        public Event OnUpdate
-        { get; } = new Event();
-        public Event OnUpdateLate
-        { get; } = new Event();
-        public Event OnUpdateFixed
-        { get; } = new Event();
+        public AutoEvent OnUpdate
+        { get; } = new AutoEvent();
+        public AutoEvent OnUpdateLate
+        { get; } = new AutoEvent();
+        public AutoEvent OnUpdateFixed
+        { get; } = new AutoEvent();
 
         // Mono
+#pragma warning disable IDE0051 // Remove unused private members
         private void Update()
         => OnUpdate?.Invoke();
         private void LateUpdate()
