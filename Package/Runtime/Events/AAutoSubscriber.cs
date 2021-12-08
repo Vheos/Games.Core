@@ -7,12 +7,12 @@ namespace Vheos.Tools.UnityCore
     /// <summary> Base class for components that automatically subscribe to events when enabled and unsubscribe when disabled. </summary>
     /// <remarks>
     /// Auto-subscriptions must be defined inside <see cref="DefineAutoSubscriptions"/>.<br/>
-    /// Subscriptions defined outside this method have to be managed manually.
+    /// Subscriptions defined outside this method must be managed manually.
     /// </remarks>
     abstract public class AAutoSubscriber : ABaseComponent
     {
         // Privates
-        /// <summary> Only subscriptions defined inside this method will be automated. </summary>
+        /// <summary> Only subscriptions defined inside this method will be automated on component enable/disable. </summary>
         virtual protected void DefineAutoSubscriptions()
         { }
         private bool _isWithinAutoSubscriptionsBlock;
@@ -29,7 +29,10 @@ namespace Vheos.Tools.UnityCore
         }
 
         // Privates (subscribe)
-        /// <summary> Subscribes to event without any parameters. </summary>
+        /// <summary> Subscribes <paramref name="action"/> to . </summary>
+        /// <remarks> If defined inside <see cref="DefineAutoSubscriptions"/>, this subscription will be automated on component enable/disable. </remarks>
+        /// <param name="autoEvent"> When should the <paramref name="action"/> be called? </param>
+        /// <param name="action"> What should happen when the <paramref name="autoEvent"/> is raised? </param>
         protected void SubscribeTo(AutoEvent autoEvent, Action action)
         {
             if (_isWithinAutoSubscriptionsBlock)
@@ -40,7 +43,7 @@ namespace Vheos.Tools.UnityCore
             else
                 autoEvent.Subscribe(action);
         }
-        /// <summary> Subscribes to event with 1 parameter. </summary>
+        /// <inheritdoc cref="SubscribeTo"/>
         protected void SubscribeTo<T1>(AutoEvent<T1> autoEvent, Action<T1> action)
         {
             if (_isWithinAutoSubscriptionsBlock)
@@ -51,7 +54,7 @@ namespace Vheos.Tools.UnityCore
             else
                 autoEvent.Subscribe(action);
         }
-        /// <summary> Subscribes to event with 2 parameters. </summary>
+        /// <inheritdoc cref="SubscribeTo"/>
         protected void SubscribeTo<T1, T2>(AutoEvent<T1, T2> autoEvent, Action<T1, T2> action)
         {
             if (_isWithinAutoSubscriptionsBlock)
@@ -62,7 +65,7 @@ namespace Vheos.Tools.UnityCore
             else
                 autoEvent.Subscribe(action);
         }
-        /// <summary> Subscribes to event with 3 parameters. </summary>
+        /// <inheritdoc cref="SubscribeTo"/>
         protected void SubscribeTo<T1, T2, T3>(AutoEvent<T1, T2, T3> autoEvent, Action<T1, T2, T3> action)
         {
             if (_isWithinAutoSubscriptionsBlock)
@@ -73,16 +76,16 @@ namespace Vheos.Tools.UnityCore
             else
                 autoEvent.Subscribe(action);
         }
-        /// <summary> Unsubscribe from event without any parameters. </summary>
+        /// <summary> Unsubscribes <paramref name="action"/> from <paramref name="autoEvent"/>. </summary>
         protected void UnsubscribeFrom(AutoEvent autoEvent, Action action)
         => autoEvent.Unsubscribe(action);
-        /// <summary> Unsubscribe from event with 1 parameter. </summary>
+        /// <inheritdoc cref="UnsubscribeFrom"/>
         protected void UnsubscribeFrom<T1>(AutoEvent<T1> autoEvent, Action<T1> action)
         => autoEvent.Unsubscribe(action);
-        /// <summary> Unsubscribe from event with 1 parameters. </summary>
+        /// <inheritdoc cref="UnsubscribeFrom"/>
         protected void UnsubscribeFrom<T1, T2>(AutoEvent<T1, T2> autoEvent, Action<T1, T2> action)
         => autoEvent.Unsubscribe(action);
-        /// <summary> Unsubscribe from event with 1 parameters. </summary>
+        /// <inheritdoc cref="UnsubscribeFrom"/>
         protected void UnsubscribeFrom<T1, T2, T3>(AutoEvent<T1, T2, T3> autoEvent, Action<T1, T2, T3> action)
         => autoEvent.Unsubscribe(action);
 
