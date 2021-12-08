@@ -6,35 +6,27 @@ namespace Vheos.Tools.UnityCore
     using UnityEngine;
     using Tools.Extensions.Collections;
 
-    sealed public class ComponentCache : APlayable
+    sealed internal class ComponentCache : APlayable
     {
-        // Publics (generic)
-        public T Add<T>() where T : Component
+        // Internals
+        internal T Add<T>() where T : Component
         => (T)(_cachedComponentsByType[typeof(T)] = gameObject.AddComponent<T>());
-        public T Get<T>() where T : Component
+        internal T Get<T>() where T : Component
         => (T)_cachedComponentsByType[typeof(T)];
-        public bool Has<T>() where T : Component
+        internal bool Has<T>() where T : Component
         => _cachedComponentsByType.ContainsKey(typeof(T));
-        public bool TryGet<T>(out T component) where T : Component
+        internal bool TryGet<T>(out T component) where T : Component
         => _cachedComponentsByType.TryGetAs(typeof(T), out component);
-        public T GetOrNull<T>() where T : Component
-         => _cachedComponentsByType.TryGetAs(typeof(T), out T component) ? component : null;
-        public T GetOrAdd<T>() where T : Component
-        => _cachedComponentsByType.TryGetAs(typeof(T), out T component) ? component : Add<T>();
+        internal T GetOrAdd<T>() where T : Component
+        => _cachedComponentsByType.TryGetAs(typeof(T), out T component) ? component : Add<T>();        
+        internal void TryAddToCache<T>()
+        {
+            Type type = typeof(T);
+            if (TestForWarnings(type, gameObject))
+                return;
 
-        // Publics (Component)
-        public Component Add(Type type)
-        => _cachedComponentsByType[type] = gameObject.AddComponent(type);
-        public Component Get(Type type)
-        => _cachedComponentsByType[type];
-        public bool Has(Type type)
-        => _cachedComponentsByType.ContainsKey(type);
-        public bool TryGet(Type type, out Component component)
-        => _cachedComponentsByType.TryGet(type, out component);
-        public Component GetOrNull(Type type)
-        => _cachedComponentsByType.TryGet(type, out var component) ? component : null;
-        public Component GetOrAdd(Type type)
-        => _cachedComponentsByType.TryGet(type, out var component) ? component : Add(type);
+            _cachedComponentsByType.Add(type, GetComponent(type));
+        }
 
         // Privates
         private Dictionary<Type, Component> _cachedComponentsByType;
@@ -47,15 +39,6 @@ namespace Vheos.Tools.UnityCore
         }
         private void AddToCache(Component component)
         => _cachedComponentsByType[component.GetType()] = component;
-        internal void TryAddToCache<T>()
-        => TryAddToCache(typeof(T));
-        internal void TryAddToCache(Type type)
-        {
-            if (TestForWarnings(type, gameObject))
-                return;
-
-            _cachedComponentsByType.Add(type, GetComponent(type));
-        }
 
         // Warnings
         private bool TestForWarnings(Type type, GameObject gameObject)
@@ -103,3 +86,29 @@ namespace Vheos.Tools.UnityCore
     }
 }
 #endif
+
+
+
+/*
+// Publics (Component)
+internal Component Add(Type type)
+=> _cachedComponentsByType[type] = gameObject.AddComponent(type);
+internal Component Get(Type type)
+=> _cachedComponentsByType[type];
+internal bool Has(Type type)
+=> _cachedComponentsByType.ContainsKey(type);
+internal bool TryGet(Type type, out Component component)
+=> _cachedComponentsByType.TryGet(type, out component);
+internal Component GetOrNull(Type type)
+=> _cachedComponentsByType.TryGet(type, out var component) ? component : null;
+internal Component GetOrAdd(Type type)
+=> _cachedComponentsByType.TryGet(type, out var component) ? component : Add(type);
+
+internal void TryAddToCache(Type type)
+{
+    if (TestForWarnings(type, gameObject))
+        return;
+
+    _cachedComponentsByType.Add(type, GetComponent(type));
+}
+*/
