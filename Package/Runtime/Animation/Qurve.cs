@@ -1,6 +1,7 @@
 namespace Vheos.Tools.UnityCore
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using UnityEngine;
     using Tools.Extensions.Math;
     using Tools.Extensions.UnityObjects;
@@ -33,7 +34,8 @@ namespace Vheos.Tools.UnityCore
         static private AnimationCurve _paramsByHalfTime;
 
         // Initializers
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        [SuppressMessage("CodeQuality", "IDE0051")]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]       
         static private void StaticInitialize()
         {
             _paramsByHalfTime = new AnimationCurve();
