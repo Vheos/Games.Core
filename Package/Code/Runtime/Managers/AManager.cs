@@ -4,7 +4,7 @@ namespace Vheos.Tools.UnityCore
     using UnityEngine;
 
     [DefaultExecutionOrder(-1)]
-    abstract public class AManager<T> : AEventSubscriber where T : AManager<T>
+    abstract public class AManager<T> : AAutoSubscriber where T : AManager<T>
     {
         // Privates
         static protected T _instance;
