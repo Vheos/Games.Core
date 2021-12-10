@@ -9,17 +9,17 @@ namespace Vheos.Tools.UnityCore
     public class QAnimation
     {
         // Publics
-        public QAnimation Add<T>(Action<T> assignFunc, T value) where T : struct
+        public QAnimation Custom<T>(Action<T> assignFunc, T value) where T : struct
         {
             _assignInvoke += GetAssignInvoke(assignFunc, value, AssignmentType.Additive);
             return this;
         }
-        public QAnimation Add<T>(Action<T> assignFunc, T value, AssignmentType assignType) where T : struct
+        public QAnimation Custom<T>(Action<T> assignFunc, T value, AssignmentType assignType) where T : struct
         {
             _assignInvoke += GetAssignInvoke(assignFunc, value, assignType);
             return this;
         }
-        public QAnimation Add(params EventInfo[] eventInfos)
+        public QAnimation Events(params EventInfo[] eventInfos)
         {
             Func<(float, float)> GetEventValuePairFunc(EventThresholdType thresholdType)
             => thresholdType switch
@@ -31,13 +31,17 @@ namespace Vheos.Tools.UnityCore
             };
 
             foreach (var eventInfo in eventInfos)
-                if (eventInfo.IsOnHasFinished)
-                    OnFinish += eventInfo.Action;
-                else
-                {
-                    _events ??= new HashSet<Event>();
-                    _events.Add(new Event(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdType)));
-                }
+            {
+                _events ??= new HashSet<Event>();
+                _events.Add(new Event(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdType)));
+            }
+
+            return this;
+        }
+        public QAnimation Events(params Action[] onFinishEvents)
+        {
+            foreach (var @event in onFinishEvents)
+                OnFinish += @event;
 
             return this;
         }
@@ -73,7 +77,7 @@ namespace Vheos.Tools.UnityCore
         internal bool HasFinished
         => _elapsed.Current >= _duration;
         internal bool HasGUID()
-        => GUID == null;
+        => GUID != null;
         internal bool HasGUID(object guid)
         => GUID == guid;
         internal void InitializeLate()
