@@ -31,7 +31,7 @@ namespace Vheos.Tools.UnityCore
 
         // Wrappers
         [DidReloadScripts]
-        static private void DidScriptsReload()
+        static private void OnScriptsReload()
         {
             if (!Application.isPlaying)
                 foreach (var editable in FindObjectsOfType<AEditable>())

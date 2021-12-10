@@ -1,8 +1,12 @@
 {
-  "name": "vheos.tools.unitycore",
-  "version": "1.0.0",
-  "displayName": "Vheos Unity Core",
-  "description": "Common tools I use when tinkering with Unity projects :)",
-  "unity": "2021.1",
-  "type": "library"
+	"name": "vheos.tools.unitycore",
+	"version": "1.0.0",
+	"displayName": "Vheos Unity Core",
+	"description": "Common tools I use when tinkering with Unity projects :)",
+	"unity": "2021.1",
+	"type": "library",
+	"dependencies":
+	{
+		"com.unity.textmeshpro": "3.0.6"
+	}
 }
