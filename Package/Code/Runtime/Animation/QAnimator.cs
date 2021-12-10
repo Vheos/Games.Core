@@ -8,10 +8,10 @@ namespace Vheos.Tools.UnityCore
     public class QAnimator : AManager<QAnimator>
     {
         // Publics
-        static public QAnimation New(float duration)
+        static public QAnimation Animate(float duration)
         {
             QAnimation newAnimation = new QAnimation(duration);
-            _playingAnims.Add(newAnimation);
+            _pendingAnims.Add(newAnimation);
             return newAnimation;
         }
         static public void Stop(object guid)
