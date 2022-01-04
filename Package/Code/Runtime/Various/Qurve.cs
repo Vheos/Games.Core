@@ -35,7 +35,7 @@ namespace Vheos.Tools.UnityCore
 
         // Initializers
         [SuppressMessage("CodeQuality", "IDE0051")]
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]       
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static private void StaticInitialize()
         {
             _paramsByHalfTime = new AnimationCurve();
