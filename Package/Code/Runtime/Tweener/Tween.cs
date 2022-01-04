@@ -4,68 +4,84 @@ namespace Vheos.Tools.UnityCore
     using System.Collections.Generic;
     using UnityEngine;
     using Tools.Extensions.Math;
-    using Vheos.Tools.Extensions.Collections;
 
-    public class QAnimation
+    public class Tween
     {
         // Publics
-        public QAnimation Custom<T>(Action<T> assignFunc, T value) where T : struct
+        /// <summary> Adds a modifier function for <c><see langword="YourProperty"/></c></summary>
+        /// <param name="function">
+        ///     This is the function that will modify <c><see langword="YourProperty"/></c> on each tween update.<br/>
+        ///     Its input is the partial delta (from last tween update) and is affected by <c><paramref name="type"/></c>:<br/>
+        ///     • <c><see cref="AssignmentType.Additive"/></c> - the partial delta is an offset, so additive assignment (<c>+=</c>) should be used<br/>
+        ///     • <c><see cref="AssignmentType.Multiplicative"/></c> - the partial delta is a ratio, so multiplicative assignment (<c>+=</c>) should be used<br/>
+        ///     <br/>
+        ///     Recommended lamba expression format: <c>dV => <c><see langword="YourProperty"/></c> ?= dV</c><br/>
+        /// </param>
+        /// <param name="totalDelta">
+        ///     This is the total change that you want applied to <c><see langword="YourProperty"/></c> over the course of the tween:<br/>
+        ///     • <c><see cref="AssignmentType.Additive"/></c> - the <c><paramref name="totalDelta"/></c> is an offset, so it will be added to <c><see langword="YourProperty"/></c><br/>
+        ///     • <c><see cref="AssignmentType.Multiplicative"/></c> - the <c><paramref name="totalDelta"/></c> is a ratio, so <c><see langword="YourProperty"/></c> will be multiplied by it<br/>
+        /// </param>
+        /// <param name="type">
+        ///     This parameter controls how the other parameters (<c><paramref name="function"/></c> and <c><paramref name="totalDelta"/></c>) are interpreted and used<br/>
+        ///     Check their respective documentations for more info on how <c><paramref name="type"/></c> affects them
+        /// </param>
+        public Tween AddModifier<T>(Action<T> function, T totalDelta, AssignmentType type = AssignmentType.Additive) where T : struct
         {
-            _assignInvoke += GetAssignInvoke(assignFunc, value, AssignmentType.Additive);
+            _assignInvoke += GetAssignInvoke(function, totalDelta, type);
             return this;
         }
-        public QAnimation Custom<T>(Action<T> assignFunc, T value, AssignmentType assignType) where T : struct
+        /// <summary> Adds timed events to this tween</summary>
+        /// <param name="eventInfos">
+        ///     This is the collection of <c><see cref="EventInfo"/></c>s that will be converted to internal events
+        /// </param>
+        public Tween AddEvents(params EventInfo[] eventInfos)
         {
-            _assignInvoke += GetAssignInvoke(assignFunc, value, assignType);
-            return this;
-        }
-        public QAnimation Events(params EventInfo[] eventInfos)
-        {
-            Func<(float, float)> GetEventValuePairFunc(EventThresholdType thresholdType)
+            Func<(float, float)> GetEventValuePairFunc(EventThresholdVariable thresholdType)
             => thresholdType switch
             {
-                EventThresholdType.Time => () => _elapsed,
-                EventThresholdType.Progress => () => _progress,
-                EventThresholdType.Value => () => _curveValue,
+                EventThresholdVariable.Progress => () => _progress,
+                EventThresholdVariable.ElapsedTime => () => _elapsed,
+                EventThresholdVariable.CurveValue => () => _curveValue,
                 _ => () => default,
             };
 
             foreach (var eventInfo in eventInfos)
             {
                 _events ??= new HashSet<Event>();
-                _events.Add(new Event(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdType)));
+                _events.Add(new Event(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdVariable)));
             }
 
             return this;
         }
-        public QAnimation Events(params Action[] onFinishEvents)
+        public Tween AddOnFinishEvents(params Action[] onFinishEvents)
         {
             foreach (var @event in onFinishEvents)
                 OnFinish += @event;
 
             return this;
         }
-        public QAnimation Set(AnimationCurve curve)
+        public Tween SetCurve(AnimationCurve curve)
         {
             _curve = curve;
             return this;
         }
-        public QAnimation Set(CurveFuncType curveFuncType)
+        public Tween SetFunctionType(CurveFuncType curveFuncType)
         {
             _curveValueFunc = GetCurveValueFunc(curveFuncType);
             return this;
         }
-        public QAnimation Set(TimeDeltaType timeDeltaType)
+        public Tween SetTimeDelta(TimeDeltaType timeDeltaType)
         {
             _timeDeltaFunc = GetTimeDeltaFunc(timeDeltaType);
             return this;
         }
-        public QAnimation Set(object guid)
+        public Tween SetGUID(object guid)
         {
             GUID = guid;
             return this;
         }
-        public QAnimation Set(ConflictResolution conflictResolution)
+        public Tween SetConflictResolution(ConflictResolution conflictResolution)
         {
             ConflictResolution = conflictResolution;
             return this;
@@ -86,7 +102,7 @@ namespace Vheos.Tools.UnityCore
             _curveValueFunc ??= GetCurveValueFunc(CurveFuncType.Normal);
             _timeDeltaFunc ??= GetTimeDeltaFunc(TimeDeltaType.Scaled);
         }
-        internal void InstantFinish()
+        internal void FinishInstantly()
         {
             _curveValue.Current = _curveValueFunc(1f);
             _assignInvoke?.Invoke();
@@ -177,12 +193,12 @@ namespace Vheos.Tools.UnityCore
         => new NotSupportedException($"{assignType} {typeof(T).Name} animation is not supported!");
 
         // Initializers
-        private QAnimation()
-        { }
-        internal QAnimation(float duration)
+        private Tween()
         {
-            _duration = duration;
+
         }
+        internal Tween(float duration) : this()
+        => _duration = duration;
 
         // Defines
         private class GenericArgs<T> where T : struct

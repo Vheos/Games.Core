@@ -5,31 +5,38 @@ namespace Vheos.Tools.UnityCore
     using UnityEngine;
     using Tools.Extensions.Collections;
 
-    public class QAnimator : AManager<QAnimator>
+    public class Tweener : AManager<Tweener>
     {
         // Publics
-        static public QAnimation Animate(float duration)
+        static public Tween Animate(float duration)
         {
-            QAnimation newAnimation = new QAnimation(duration);
+            Tween newAnimation = new Tween(duration);
             _pendingAnims.Add(newAnimation);
             return newAnimation;
         }
         static public void Stop(object guid)
         => _playingAnims.RemoveWhere(t => t.HasGUID(guid));
 
+        // Defaults
+        static public AnimationCurve DefaultCurve;
+        static public CurveFuncType? DefaultCurveFuncType;
+        static public TimeDeltaType? DefaultTimeDeltaType;
+        static public object DefaultGUID;
+        static public ConflictResolution? DefaultConflictResolution;
+
         // Privates
-        static private HashSet<QAnimation> _pendingAnims;
-        static private HashSet<QAnimation> _playingAnims;
-        static private HashSet<QAnimation> _finishedAnims;
+        static private HashSet<Tween> _pendingAnims;
+        static private HashSet<Tween> _playingAnims;
+        static private HashSet<Tween> _finishedAnims;
         static private void ProcessPendingAnimations()
         {
             if (_pendingAnims.IsNotEmpty())
             {
-                static void Process(QAnimation animation)
+                static void Process(Tween animation)
                 {
                     animation.InitializeLate();
                     if (animation.HasFinished)
-                        animation.InstantFinish();
+                        animation.FinishInstantly();
                     else
                         _playingAnims.Add(animation);
                 }
@@ -64,7 +71,7 @@ namespace Vheos.Tools.UnityCore
                 _finishedAnims.Clear();
             }
         }
-        static private void ResolveConflict(QAnimation animation, Action<QAnimation> processFunc)
+        static private void ResolveConflict(Tween animation, Action<Tween> processFunc)
         {
             switch (animation.ConflictResolution)
             {
@@ -94,9 +101,9 @@ namespace Vheos.Tools.UnityCore
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            _playingAnims = new HashSet<QAnimation>();
-            _pendingAnims = new HashSet<QAnimation>();
-            _finishedAnims = new HashSet<QAnimation>();
+            _playingAnims = new HashSet<Tween>();
+            _pendingAnims = new HashSet<Tween>();
+            _finishedAnims = new HashSet<Tween>();
         }
 
 #if UNITY_EDITOR
