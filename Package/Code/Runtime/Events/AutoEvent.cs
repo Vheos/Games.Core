@@ -5,7 +5,7 @@ namespace Vheos.Tools.UnityCore
     using UnityEngine;
     using Tools.Extensions.Collections;
 
-    /// <summary> Base class for events whose subscriptions are automated by <see cref="AAutoSubscriber"/> components.  </summary>
+    /// <summary> Base class for events whose subscriptions are automated by <c><see cref="AAutoSubscriber"/></c> components.  </summary>
     abstract public class AAutoEvent
     {
         // Internals
@@ -94,7 +94,7 @@ namespace Vheos.Tools.UnityCore
 
         // Privates
         private Action<T1, T2> _internalEvent;
-        private readonly Dictionary<AAutoSubscriber, Action<T1, T2>> _autoActionsBySubscriber            = new Dictionary<AAutoSubscriber, Action<T1, T2>>();
+        private readonly Dictionary<AAutoSubscriber, Action<T1, T2>> _autoActionsBySubscriber = new Dictionary<AAutoSubscriber, Action<T1, T2>>();
     }
 
     /// <summary> Auto-subscription event with 3 parameters. </summary>
@@ -122,6 +122,6 @@ namespace Vheos.Tools.UnityCore
 
         // Privates
         private Action<T1, T2, T3> _internalEvent;
-        private readonly Dictionary<AAutoSubscriber, Action<T1, T2, T3>> _autoActionsBySubscriber            = new Dictionary<AAutoSubscriber, Action<T1, T2, T3>>();
+        private readonly Dictionary<AAutoSubscriber, Action<T1, T2, T3>> _autoActionsBySubscriber = new Dictionary<AAutoSubscriber, Action<T1, T2, T3>>();
     }
 }

@@ -1,23 +1,23 @@
 namespace Vheos.Tools.UnityCore
 {
     using UnityEngine;
-    /// <summary> Wraps and virtualizes common MonoBehaviour events. </summary>
+    /// <summary> Wraps and virtualizes common <c><see cref="MonoBehaviour"/></c> events </summary>
     abstract public class APlayable : MonoBehaviour
     {
         // Protected
-        /// <summary> Wraps Unity's <see langword="Awake"/>(). </summary>
+        /// <summary> Wraps <c><see langword="Awake"/></c>() </summary>
         virtual protected void PlayAwake()
         { }
-        /// <summary> Wraps Unity's <see langword="OnEnable"/>(). </summary>
+        /// <summary> Wraps <c><see langword="OnEnable"/></c>() </summary>
         virtual protected void PlayEnable()
         { }
-        /// <summary> Wraps Unity's <see langword="Start"/>(). </summary>
+        /// <summary> Wraps <c><see langword="Start"/></c>() </summary>
         virtual protected void PlayStart()
         { }
-        /// <summary> Wraps Unity's <see langword="OnDisable"/>(). </summary>
+        /// <summary> Wraps <c><see langword="OnDisable"/></c>() </summary>
         virtual protected void PlayDisable()
         { }
-        /// <summary> Wraps Unity's <see langword="OnDestroy"/>(). </summary>
+        /// <summary> Wraps <c><see langword="OnDestroy"/></c>() </summary>
         virtual protected void PlayDestroy()
         { }
 

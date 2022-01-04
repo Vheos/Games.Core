@@ -7,7 +7,7 @@ namespace Vheos.Tools.UnityCore
 
     /// <summary> Base class for all user-made components. Wraps component-related methods. </summary>
     /// <remarks>
-    /// Can be extended by defining compilation symbols:<br/>
+    /// Can be extended by defining the following compilation symbols:<br/>
     /// • <b><c>UNITY_EDITOR</c></b> - will derive from <c><see cref="AEditable"/></c> and provide callbacks for edit mode events<br/>
     /// • <b><c>CACHED_COMPONENTS</c></b> - will wrap <c><see cref="ComponentCache"/></c>'s component-related methods<br/>
     /// </remarks>
@@ -21,57 +21,57 @@ namespace Vheos.Tools.UnityCore
 
 #if CACHED_COMPONENTS
         // Publics
-        /// <summary> Adds component of type <typeparamref name="T"/> to current <see cref="GameObject"/>. </summary>
+        /// <summary> Adds component of type <typeparamref name="T"/> to current <c><see cref="GameObject"/></c>. </summary>
         /// <remarks>
-        /// Also adds it to <see cref="ComponentCache"/>.<br/>
+        /// Also adds it to <c><see cref="ComponentCache"/></c>.<br/>
         /// If type <typeparamref name="T"/> (exact) has been cached before, overwrites the cached component with the newly-added one.
         /// </remarks>
         /// <returns> The component that has just been added.</returns>
         public T Add<T>() where T : Component
         => _componentCache.Add<T>();
-        /// <summary> Gets component of type <typeparamref name="T"/> (exact) attached to current <see cref="GameObject"/>. </summary>
+        /// <summary> Gets component of type <typeparamref name="T"/> (exact) attached to current <c><see cref="GameObject"/></c>. </summary>
         /// <remarks> 
         /// Only the most-recently-cached component of type <typeparamref name="T"/> (exact) can be retrieved.<br/>
-        /// If <see cref="ComponentCache"/> doesn't contain cached component of type <typeparamref name="T"/> (exact), throws <see cref="KeyNotFoundException"/>.
+        /// If <c><see cref="ComponentCache"/></c> doesn't contain cached component of type <typeparamref name="T"/> (exact), throws <c><see cref="KeyNotFoundException"/></c>.
         /// </remarks>
         /// <returns>
         /// The component, if it was found.<br/>
-        /// Throws <see cref="KeyNotFoundException"/> otherwise.
+        /// Throws <c><see cref="KeyNotFoundException"/></c> otherwise.
         /// </returns>
         public T Get<T>() where T : Component
         => _componentCache.Get<T>();
-        /// <summary> Checks whether current <see cref="GameObject"/> contains component of type <typeparamref name="T"/> (exact).</summary>
+        /// <summary> Checks whether current <c><see cref="GameObject"/></c> contains component of type <typeparamref name="T"/> (exact).</summary>
         /// <returns>
-        /// <see langword="true"/> if the component was found.<br/>
-        /// <see langword="false"/> otherwise.
+        /// <c><see langword="true"/></c> if the component was found.<br/>
+        /// <c><see langword="false"/></c> otherwise.
         /// </returns>
         public bool Has<T>() where T : Component
         => _componentCache.Has<T>();
-        /// <summary> Gets component of type <typeparamref name="T"/> (exact) attached to current <see cref="GameObject"/> and assigns it to <see langword="out"/> <paramref name="component"/>. </summary>
+        /// <summary> Gets component of type <typeparamref name="T"/> (exact) attached to current <c><see cref="GameObject"/></c> and assigns it to <c><see langword="out"/></c> <c><paramref name="component"/></c>. </summary>
         /// <remarks>  Only the most-recently-cached component of type <typeparamref name="T"/> (exact) can be retrieved. </remarks>
         /// <returns>
-        /// <see langword="true"/> if the component was found and assigned to <see langword="out"/> <paramref name="component"/>. <br/>
-        /// <see langword="false"/> otherwise. In such case, <see langword="out"/> <paramref name="component"/> will be set to <see langword="null"/>.
+        /// <c><see langword="true"/></c> if the component was found and assigned to <c><see langword="out"/></c> <c><paramref name="component"/></c>. <br/>
+        /// <c><see langword="false"/></c> otherwise. In such case, <c><see langword="out"/></c> <c><paramref name="component"/></c> will be set to <c><see langword="null"/></c>.
         /// </returns>
         public bool TryGet<T>(out T component) where T : Component
         => _componentCache.TryGet(out component);
-        /// <summary> Gets component of type <typeparamref name="T"/> (exact) attached to current <see cref="GameObject"/> or adds one, if none was found. </summary>
+        /// <summary> Gets component of type <typeparamref name="T"/> (exact) attached to current <c><see cref="GameObject"/></c> or adds one, if none was found. </summary>
         /// <returns>
         /// The component, whether it has already been attached or just added.
         /// </returns>
         public T GetOrAdd<T>() where T : Component
         => _componentCache.GetOrAdd<T>();
-        /// <summary> Adds component of type <typeparamref name="T"/> (or derived) attached to current <see cref="GameObject"/> to <see cref="ComponentCache"/>.</summary>
+        /// <summary> Adds component of type <typeparamref name="T"/> (or derived) attached to current <c><see cref="GameObject"/></c> to <c><see cref="ComponentCache"/></c>.</summary>
         /// <remarks> 
-        /// Used to manually define <see cref="ComponentCache"/> entries for base classes of existing components.<br/>
-        /// Only use within <see cref="DefineCachedComponents"/>.
+        /// Used to manually define <c><see cref="ComponentCache"/></c> entries for base classes of existing components.<br/>
+        /// Only use within <c><see cref="DefineCachedComponents"/></c>.
         /// </remarks>
         public void TryAddToCache<T>()
         => _componentCache.TryAddToCache<T>();
 
         // Privates
         private ComponentCache _componentCache;
-        /// <summary> Provides a safe timing point for using <see cref="TryAddToCache{T}"/> .</summary>
+        /// <summary> Provides a safe timing point for using <c><see cref="TryAddToCache{T}"/></c> .</summary>
         virtual protected void DefineCachedComponents()
         { }
 
@@ -85,32 +85,32 @@ namespace Vheos.Tools.UnityCore
         }
 #else
         // Publics (generic)
-        /// <summary> Adds component of type <typeparamref name="T"/> to current <see cref="GameObject"/>. </summary>
+        /// <summary> Adds component of type <typeparamref name="T"/> to current <c><see cref="GameObject"/></c>. </summary>
         /// <returns> The component that has just been added.</returns>
         public T Add<T>() where T : Component
         => gameObject.AddComponent<T>();
-        /// <summary> Gets component of type <typeparamref name="T"/> (or derived) attached to current <see cref="GameObject"/>. </summary>
+        /// <summary> Gets component of type <typeparamref name="T"/> (or derived) attached to current <c><see cref="GameObject"/></c>. </summary>
         /// <returns>
         /// The component, if it was found.<br/>
-        /// <see langword="null"/> otherwise.
+        /// <c><see langword="null"/></c> otherwise.
         /// </returns>
         public T Get<T>() where T : Component
         => GetComponent<T>();
-        /// <summary> Checks whether current <see cref="GameObject"/> contains component of type <typeparamref name="T"/> (or derived).</summary>
+        /// <summary> Checks whether current <c><see cref="GameObject"/></c> contains component of type <typeparamref name="T"/> (or derived).</summary>
         /// <returns>
-        /// <see langword="true"/> if the component was found.<br/>
-        /// <see langword="false"/> otherwise.
+        /// <c><see langword="true"/></c> if the component was found.<br/>
+        /// <c><see langword="false"/></c> otherwise.
         /// </returns>
         public bool Has<T>() where T : Component
         => GetComponent<T>() != null;
-        /// <summary> Gets component of type <typeparamref name="T"/> (or derived) attached to current <see cref="GameObject"/> and assigns it to <see langword="out"/> <paramref name="component"/>. </summary>
+        /// <summary> Gets component of type <typeparamref name="T"/> (or derived) attached to current <c><see cref="GameObject"/></c> and assigns it to <c><see langword="out"/></c> <c><paramref name="component"/></c>. </summary>
         /// <returns>
-        /// <see langword="true"/> if the component was found and assigned to <see langword="out"/> <paramref name="component"/>. <br/>
-        /// <see langword="false"/> otherwise. In such case, <see langword="out"/> <paramref name="component"/> will be set to <see langword="null"/>.
+        /// <c><see langword="true"/></c> if the component was found and assigned to <c><see langword="out"/></c> <c><paramref name="component"/></c>. <br/>
+        /// <c><see langword="false"/></c> otherwise. In such case, <c><see langword="out"/></c> <c><paramref name="component"/></c> will be set to <c><see langword="null"/></c>.
         /// </returns>
         public bool TryGet<T>(out T component) where T : Component
         => TryGetComponent(out component);
-        /// <summary> Gets component of type <typeparamref name="T"/> (or derived) attached to current <see cref="GameObject"/> or adds one, if none was found. </summary>
+        /// <summary> Gets component of type <typeparamref name="T"/> (or derived) attached to current <c><see cref="GameObject"/></c> or adds one, if none was found. </summary>
         /// <returns>
         /// The component, whether it has already been attached or just added.
         /// </returns>

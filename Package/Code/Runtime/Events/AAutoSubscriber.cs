@@ -6,8 +6,8 @@ namespace Vheos.Tools.UnityCore
 
     /// <summary> Base class for components that automatically subscribe to events when enabled and unsubscribe when disabled. </summary>
     /// <remarks>
-    /// Auto-subscriptions must be defined inside <see cref="DefineAutoSubscriptions"/>.<br/>
-    /// Subscriptions defined outside this method must be managed manually.
+    /// Auto-subscriptions must be defined inside <c><see cref="DefineAutoSubscriptions"/></c><br/>
+    /// Subscriptions defined outside of this method must be managed manually
     /// </remarks>
     abstract public class AAutoSubscriber : ABaseComponent
     {
@@ -29,10 +29,10 @@ namespace Vheos.Tools.UnityCore
         }
 
         // Privates (subscribe)
-        /// <summary> Subscribes <paramref name="action"/> to . </summary>
-        /// <remarks> If defined inside <see cref="DefineAutoSubscriptions"/>, this subscription will be automated on component enable/disable. </remarks>
-        /// <param name="autoEvent"> When should the <paramref name="action"/> be called? </param>
-        /// <param name="action"> What should happen when the <paramref name="autoEvent"/> is raised? </param>
+        /// <summary> Subscribes <c><paramref name="action"/></c> to <c><paramref name="autoEvent"/></c> </summary>
+        /// <remarks> If defined inside <c><see cref="DefineAutoSubscriptions"/></c>, this subscription will be automated on component enable/disable </remarks>
+        /// <param name="autoEvent"> When should the <c><paramref name="action"/></c> be called? </param>
+        /// <param name="action"> What should happen when the <c><paramref name="autoEvent"/></c> is raised? </param>
         protected void SubscribeTo(AutoEvent autoEvent, Action action)
         {
             if (_isWithinAutoSubscriptionsBlock)
@@ -76,7 +76,7 @@ namespace Vheos.Tools.UnityCore
             else
                 autoEvent.Subscribe(action);
         }
-        /// <summary> Unsubscribes <paramref name="action"/> from <paramref name="autoEvent"/>. </summary>
+        /// <summary> Unsubscribes <c><paramref name="action"/></c> from <c><paramref name="autoEvent"/></c>. </summary>
         protected void UnsubscribeFrom(AutoEvent autoEvent, Action action)
         => autoEvent.Unsubscribe(action);
         /// <inheritdoc cref="UnsubscribeFrom"/>
