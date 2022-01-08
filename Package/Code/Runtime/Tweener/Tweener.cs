@@ -4,83 +4,81 @@ namespace Vheos.Tools.UnityCore
     using System.Collections.Generic;
     using UnityEngine;
     using Tools.Extensions.Collections;
+    using System.Linq;
 
-    public class Tweener : AManager<Tweener>
+    [DefaultExecutionOrder(-1)]
+    internal class Tweener : AAutoSubscriber
     {
-        // Publics
-        static public Tween Animate(float duration)
+        // Internals
+        static internal Tween NewTween
         {
-            Tween newAnimation = new Tween(duration);
-            _pendingAnims.Add(newAnimation);
-            return newAnimation;
+            get
+            {
+                Tween newTween = new Tween();
+                _pendingTweens.Add(newTween);
+                return newTween;
+            }
         }
-        static public void Stop(object guid)
-        => _playingAnims.RemoveWhere(t => t.HasGUID(guid));
-
-        // Defaults
-        static public AnimationCurve DefaultCurve;
-        static public CurveFuncType? DefaultCurveFuncType;
-        static public TimeDeltaType? DefaultTimeDeltaType;
-        static public object DefaultGUID;
-        static public ConflictResolution? DefaultConflictResolution;
+        static internal void StopTween(Tween tween)
+        {
+            _pendingTweens.Remove(tween);
+            _playingTweens.Remove(tween);
+        }
+        static internal void StopLayer(object conflictLayer)
+        {
+            _pendingTweens.RemoveWhere(t => t.IsOnConflictLayer(conflictLayer));
+            _playingTweens.RemoveWhere(t => t.IsOnConflictLayer(conflictLayer));
+        }
 
         // Privates
-        static private HashSet<Tween> _pendingAnims;
-        static private HashSet<Tween> _playingAnims;
-        static private HashSet<Tween> _finishedAnims;
-        static private void ProcessPendingAnimations()
+        static private HashSet<Tween> _pendingTweens;
+        static private HashSet<Tween> _playingTweens;
+        static private HashSet<Tween> _finishedTweens;
+        static private void ProcessPendingTweens()
         {
-            if (_pendingAnims.IsNotEmpty())
+            foreach (var tween in _pendingTweens)
             {
-                static void Process(Tween animation)
-                {
-                    animation.InitializeLate();
-                    if (animation.HasFinished)
-                        animation.FinishInstantly();
-                    else
-                        _playingAnims.Add(animation);
-                }
+                tween.TrySetDefaults();
+                if (tween.IsOnAnyConflictLayer())
+                    ResolveConflict(tween);
+                else
+                    _playingTweens.Add(tween);
+            }
 
-                foreach (var animation in _pendingAnims)
-                    if (animation.HasGUID())
-                        ResolveConflict(animation, Process);
-                    else
-                        Process(animation);
+            if (_pendingTweens.IsNotEmpty())
+                _pendingTweens.Clear();
+        }
+        static private void ProcessPlayingTweens()
+        {
+            foreach (var tween in _playingTweens)
+            {
+                tween.Process();
+                if (tween.HasFinished)
+                    _finishedTweens.Add(tween);
+            }
+        }
+        static private void ProcessFinishedTweens()
+        {
+            foreach (var tween in _finishedTweens)
+            {
+                tween.InvokeOnFinish();
+                _playingTweens.Remove(tween);
+            }
 
-                _pendingAnims.Clear();
-            }
+            if (_finishedTweens.IsNotEmpty())
+                _finishedTweens.Clear();
+
         }
-        static private void ProcessPlayingAnimations()
+        static private void ResolveConflict(Tween tween)
         {
-            foreach (var animation in _playingAnims)
-            {
-                animation.Process();
-                if (animation.HasFinished)
-                    _finishedAnims.Add(animation);
-            }
-        }
-        static private void ProcessFinishedAnimations()
-        {
-            if (_finishedAnims.IsNotEmpty())
-            {
-                foreach (var animation in _finishedAnims)
-                {
-                    _playingAnims.Remove(animation);
-                    animation.InvokeOnFinish();
-                }
-                _finishedAnims.Clear();
-            }
-        }
-        static private void ResolveConflict(Tween animation, Action<Tween> processFunc)
-        {
-            switch (animation.ConflictResolution)
+            switch (tween.ConflictResolution)
             {
                 case ConflictResolution.Blend:
-                    processFunc(animation);
+                    _playingTweens.Add(tween);
                     break;
                 case ConflictResolution.Interrupt:
-                    Stop(animation.GUID);
-                    processFunc(animation);
+                    _playingTweens.RemoveWhere(t => t.IsOnConflictLayer(tween.ConflictLayer));
+                    _playingTweens.Add(tween);
                     break;
                 case ConflictResolution.Wait:
                     // TO DO
@@ -94,16 +92,16 @@ namespace Vheos.Tools.UnityCore
         protected override void DefineAutoSubscriptions()
         {
             base.DefineAutoSubscriptions();
-            SubscribeTo(Get<Updatable>().OnUpdateLate, ProcessPendingAnimations);
-            SubscribeTo(Get<Updatable>().OnUpdateLate, ProcessPlayingAnimations);
-            SubscribeTo(Get<Updatable>().OnUpdateLate, ProcessFinishedAnimations);
+            SubscribeTo(Get<Updatable>().OnUpdateLate, ProcessPendingTweens);
+            SubscribeTo(Get<Updatable>().OnUpdateLate, ProcessPlayingTweens);
+            SubscribeTo(Get<Updatable>().OnUpdateLate, ProcessFinishedTweens);
         }
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            _playingAnims = new HashSet<Tween>();
-            _pendingAnims = new HashSet<Tween>();
-            _finishedAnims = new HashSet<Tween>();
+            _playingTweens = new HashSet<Tween>();
+            _pendingTweens = new HashSet<Tween>();
+            _finishedTweens = new HashSet<Tween>();
         }
 
 #if UNITY_EDITOR
@@ -111,9 +109,9 @@ namespace Vheos.Tools.UnityCore
         [ContextMenu(nameof(PrintDebugInfo))]
         private void PrintDebugInfo()
         {
-            Debug.Log($"ANIMATIONS: ({_playingAnims.Count})");
-            foreach (var animation in _playingAnims)
-                Debug.Log($"\t• {animation.GetHashCode():X}{(animation.HasGUID() ? " [GUID]" : "")}");
+            Debug.Log($"ANIMATIONS: ({_playingTweens.Count})");
+            foreach (var tween in _playingTweens)
+                Debug.Log($"\t• {tween.GetHashCode():X}{(tween.IsOnAnyConflictLayer() ? " [GUID]" : "")}");
             Debug.Log($"");
         }
 #endif
