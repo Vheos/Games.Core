@@ -1,9 +1,9 @@
 namespace Vheos.Tools.UnityCore
 {
     using System;
+    using System.Collections.Generic;
     using UnityEngine;
     using Tools.Extensions.UnityObjects;
-    using System.Collections.Generic;
 
     /// <summary> Base class for all user-made components. Wraps component-related methods. </summary>
     /// <remarks>
