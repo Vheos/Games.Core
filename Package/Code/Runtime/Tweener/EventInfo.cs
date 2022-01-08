@@ -3,7 +3,7 @@ namespace Vheos.Tools.UnityCore
     using System;
     using UnityEngine;
 
-    /// <summary> Holds data required for adding timed events to <c><see cref="Tween"/></c>s </summary> 
+    /// <summary> Holds data required for adding conditional events to <c><see cref="Tween"/></c>s </summary> 
     /// <remarks> Used in <c><see cref="Tween.AddEvents(EventInfo[])"/></c> </remarks>
     public struct EventInfo
     {
