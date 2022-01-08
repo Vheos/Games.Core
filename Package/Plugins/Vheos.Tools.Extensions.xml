@@ -16,6 +16,12 @@
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Remove``1(System.Collections.Generic.ICollection{``0},``0[])">
             <summary> Removes elements a from this collection. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryGet``1(System.Collections.Generic.ICollection{``0},``0,``0@)">
+            <summary> If this collection contains the element a, assigns it to r and returns true. Otherwise, sets r to its default value and returns false. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryGetAny``1(System.Collections.Generic.ICollection{``0},``0@)">
+            <summary> If this collection contains any element, assigns it to r and returns true. Otherwise, sets r to its default value and returns false. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryAddUnique``1(System.Collections.Generic.ICollection{``0},``0)">
             <summary> Adds element a if this collection doesn't contain it. Returns whether the collection was modified or not. </summary>
         </member>
@@ -23,16 +29,16 @@
             <summary> Removes element a if this collection contains it. Returns whether the collection was modified or not. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.IsEmpty``1(System.Collections.Generic.ICollection{``0})">
-            <summary> Tests whether this collection contains any element. </summary>
+            <summary> Tests whether this collection contains zero element. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.IsNotEmpty``1(System.Collections.Generic.ICollection{``0})">
-            <summary> Tests whether this collection contains zero elements. </summary>
+            <summary> Tests whether this collection contains any elements. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
-            <summary> Tests whether this collection contains any element. </summary>
+            <summary> Tests whether this collection contains zero element. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.IsNotNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
-            <summary> Tests whether this collection contains zero elements. </summary>
+            <summary> Tests whether this collection contains any elements. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_IDictionary.TryGet``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1@)">
             <summary> If this dictionary contains the key a, assigns its value to r and returns true. Otherwise, sets r to its default value and returns false. </summary>
@@ -162,6 +168,24 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Color.NewA(UnityEngine.Color,System.Single)">
             <summary> Returns this color with replaced component a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.RGB(UnityEngine.Color)">
+            <summarg> Returns this color's RGB components. </summarg>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.RBG(UnityEngine.Color)">
+            <summarg> Returns this color's RBG components. </summarg>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.GRB(UnityEngine.Color)">
+            <summarg> Returns this color's GRB components. </summarg>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.GBR(UnityEngine.Color)">
+            <summarg> Returns this color's GBR components. </summarg>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.BRG(UnityEngine.Color)">
+            <summarg> Returns this color's BRG components. </summarg>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.BGR(UnityEngine.Color)">
+            <summarg> Returns this color's BGR components. </summarg>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Neg(UnityEngine.Vector4)">
             <summary> Multiplies this vector's components by -1. </summary>
@@ -790,6 +814,24 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ZY(UnityEngine.Vector3)">
             <summary> Returns this vector's ZY components. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.XYZ(UnityEngine.Vector3)">
+            <summary> Returns this vector's XYZ components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.XZY(UnityEngine.Vector3)">
+            <summary> Returns this vector's XZY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.YXZ(UnityEngine.Vector3)">
+            <summary> Returns this vector's YXZ components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.YZX(UnityEngine.Vector3)">
+            <summary> Returns this vector's YZX components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ZXY(UnityEngine.Vector3)">
+            <summary> Returns this vector's ZXY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ZYX(UnityEngine.Vector3)">
+            <summary> Returns this vector's ZYX components. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Neg(UnityEngine.Vector2)">
             <summary> Multiplies this vector's components by -1. </summary>
         </member>
@@ -1066,8 +1108,11 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.NewY(UnityEngine.Vector2,System.Single)">
             <summary> Returns this vector with replaced component y. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.XY(UnityEngine.Vector2)">
+            <summary> Returns this vector's XY components. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.YX(UnityEngine.Vector2)">
-            <summary> Swaps the x and y components. </summary>
+            <summary> Returns this vector's YX components. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_float.Neg(System.Single)">
             <summary> Multiplies this value by -1. </summary>
@@ -1579,17 +1624,14 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.FindChild``1(UnityEngine.Component,System.String)">
             <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildGameObjects(UnityEngine.Component)">
-            <summary> Returns an enumerable of this object's children as GameObjects. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildTransforms(UnityEngine.Component)">
-            <summary> Returns an enumerable of this object's children as their transforms. </summary>
-        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetParent(UnityEngine.Component)">
             <summary> Returns this object's parent.gameObject. If it doesn't exist, returns null. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetAncestors(UnityEngine.Component)">
             <summary> Returns an enumerable of this object's ancestors. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetRootAncestor(UnityEngine.Component)">
+            <summary> Returns the topmost ancestor. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DistanceTo(UnityEngine.Component,UnityEngine.GameObject)">
             <summary> Returns the distance between this object and a. </summary>
@@ -1630,12 +1672,6 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.AnyChildHasComponent``1(UnityEngine.Component)">
             <summary> Checks whether any of this object's children has a component t.gameObject. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetOrAddComponent``1(UnityEngine.Component)">
-            <summary> Returns component T attached to this object. If there's none, adds one. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.TryGetComponent``1(UnityEngine.Component,``0@)">
-            <summary> Assigns component T to a. Returns whether any component was found. </summary>
-        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateChildComponent``1(UnityEngine.Component,UnityEngine.GameObject,System.String)">
             <summary> Creates a new game object as a child of this object, from prefab a and with name b. Returns its component of type T. </summary>
         </member>
@@ -1644,6 +1680,33 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateChildGameObject(UnityEngine.Component,System.String)">
             <summary> Creates and returns a new game object as a child of this object, with name b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetOrAddComponent``1(UnityEngine.Component)">
+            <summary> Returns component T attached to this object. If there's none, adds one. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildGameObjects(UnityEngine.Component,System.Boolean)">
+            <summary> Returns an enumerable of this object's children's GameObjects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingGameObjects(UnityEngine.Component,System.Boolean)">
+            <summary> Returns an enumerable of this object's siblings' GameObjects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildComponents``1(UnityEngine.Component,System.Boolean)">
+            <summary> Returns an enumerable of this object's children's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingComponents``1(UnityEngine.Component,System.Boolean)">
+            <summary> Returns an enumerable of this object's siblings' components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetGameObjects``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary> Returns enumerable of GameObjects of all of these components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildComponent``1(UnityEngine.Component,System.Boolean)">
+            <summary> Returns the first component of type T in this object's children. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingComponent``1(UnityEngine.Component,System.Boolean)">
+            <summary> Returns the first component of type T in this object's siblings. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.TryGetComponent``1(UnityEngine.Component,``0@)">
+            <summary> Assigns component T to a. Returns whether any component was found. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy(UnityEngine.Component)">
             <summary> Destroys this component. </summary>
@@ -1756,17 +1819,14 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.FindChild``1(UnityEngine.GameObject,System.String)">
             <summary> Returns component T attached to this object's child with name a. If it doesn't exist, returns null.</summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildGameObjects(UnityEngine.GameObject)">
-            <summary> Returns an enumerable of this object's children as GameObjects. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildTransforms(UnityEngine.GameObject)">
-            <summary> Returns an enumerable of this object's children as their transforms. </summary>
-        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetParent(UnityEngine.GameObject)">
             <summary> Returns this object's parent. If it doesn't exist, returns null. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetAncestors(UnityEngine.GameObject)">
             <summary> Returns an enumerable of this object's ancestors. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetRootAncestor(UnityEngine.GameObject)">
+            <summary> Returns the topmost ancestor. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DistanceTo(UnityEngine.GameObject,UnityEngine.GameObject)">
             <summary> Returns the distance between this object and a. </summary>
@@ -1807,11 +1867,8 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.AnyChildHasComponent``1(UnityEngine.GameObject)">
             <summary> Checks whether any of this object's children has a component T. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetOrAddComponent``1(UnityEngine.GameObject)">
-            <summary> Returns component T attached to this object. If there's none, adds one. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.TryGetComponent``1(UnityEngine.GameObject,``0@)">
-            <summary> Assigns component T to a. Returns whether any component was found. </summary>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildGameObject(UnityEngine.GameObject,System.String)">
+            <summary> Creates and returns a new game object as a child of this object, with name b. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildComponent``1(UnityEngine.GameObject,UnityEngine.GameObject,System.String)">
             <summary> Creates a new game object as a child of this object, from prefab a and with name b. Returns its component of type T. </summary>
@@ -1819,8 +1876,32 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildComponent``1(UnityEngine.GameObject,System.String)">
             <summary> Creates a new game object as a child of this object, with name b. Adds a default component of type T, then returns it. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildGameObject(UnityEngine.GameObject,System.String)">
-            <summary> Creates and returns a new game object as a child of this object, with name b. </summary>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetOrAddComponent``1(UnityEngine.GameObject)">
+            <summary> Returns component T attached to this object. If there's none, adds one. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildGameObjects(UnityEngine.GameObject,System.Boolean)">
+            <summary> Returns an enumerable of this object's children's GameObjects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingGameObjects(UnityEngine.GameObject,System.Boolean)">
+            <summary> Returns an enumerable of this object's siblings' GameObjects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildComponents``1(UnityEngine.GameObject,System.Boolean)">
+            <summary> Returns an enumerable of this object's children's components of type T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingComponents``1(UnityEngine.GameObject,System.Boolean)">
+            <summary> Returns an enumerable of this object's siblings' components of type T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetComponents``1(System.Collections.Generic.IEnumerable{UnityEngine.GameObject})">
+            <summary> Returns enumerable of all components of type T in all of these GameObjects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildComponent``1(UnityEngine.GameObject,System.Boolean)">
+            <summary> Returns the first component of type T in this object's children. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingComponent``1(UnityEngine.GameObject,System.Boolean)">
+            <summary> Returns the first component of type T in this object's siblings. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.TryGetComponent``1(UnityEngine.GameObject,``0@)">
+            <summary> Assigns component T to a. Returns whether any component was found. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(UnityEngine.GameObject)">
             <summary> Destroys this object. </summary>
@@ -1867,11 +1948,14 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CopyRigidbodyFrom(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
             <summary> Copies a's rigidbody. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.General.General.As``1(System.ValueType)">
-            <summary> Casts this value to type T. If it can't be cast, throws an InvalidCastException.  </summary>
-        </member>
         <member name="M:Vheos.Tools.Extensions.General.General.As``1(System.Object)">
             <summary> Casts this value to type T. If it can't be cast, returns null.  </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Cast``1(System.ValueType)">
+            <summary> Casts this value to type T. If it can't be cast, throws an InvalidCastException.  </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Cast``1(System.Object)">
+            <summary> Casts this value to type T. If it can't be cast, throws an InvalidCastException.  </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.IsAssignableTo``1(System.Type)">
             <summary> Checks if this type can be assigned to type T. </summary>
@@ -1880,6 +1964,12 @@
             <summary> Returns true if this type can't be assigned to type T. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.TryAs``1(System.Object,``0@)">
+            <summary> If this object can be cast to r's type, does so and returns true. Otherwise, sets r to null and returns false. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.TryCast``1(System.ValueType,``0@)">
+            <summary> If this object can be cast to r's type, does so and returns true. Otherwise, sets r to its default value and returns false. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.TryCast``1(System.Object,``0@)">
             <summary> If this object can be cast to r's type, does so and returns true. Otherwise, sets r to its default value and returns false. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.TryNonNull``1(``0,``0@)">
