@@ -12,9 +12,11 @@ namespace Vheos.Tools.UnityCore
         // Publics
         static public TComponent FirstActive
         => _components.FirstOrDefault(c => c != null && c.isActiveAndEnabled);
-        static public TComponent AddComponentTo(ABaseComponent t)
+        static public TComponent AddComponentTo(GameObject t)
         {
-            TComponent newComponent = t.Add<TComponent>();
+            TComponent newComponent = t.TryGetComponent(out ABaseComponent baseComponent)
+                                    ? baseComponent.Add<TComponent>()
+                                    : t.AddComponent<TComponent>();
             _components.Add(newComponent);
             return newComponent;
         }
