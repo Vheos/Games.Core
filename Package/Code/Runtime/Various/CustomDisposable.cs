@@ -5,10 +5,10 @@ namespace Vheos.Tools.UnityCore
     public class CustomDisposable : IDisposable
     {
         // Privates
-        private readonly System.Action _onDispose;
+        private readonly Action _onDispose;
 
         // Initializers
-        public CustomDisposable(System.Action onDispose)
+        public CustomDisposable(Action onDispose)
         => _onDispose = onDispose;
 
         // Finalizers

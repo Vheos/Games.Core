@@ -18,7 +18,7 @@ namespace Vheos.Tools.UnityCore
         internal bool TryGet<T>(out T component) where T : Component
         => _cachedComponentsByType.TryGetAs(typeof(T), out component);
         internal T GetOrAdd<T>() where T : Component
-        => _cachedComponentsByType.TryGetAs(typeof(T), out T component) ? component : Add<T>();        
+        => _cachedComponentsByType.TryGetAs(typeof(T), out T component) ? component : Add<T>();
         internal void TryAddToCache<T>()
         {
             Type type = typeof(T);
