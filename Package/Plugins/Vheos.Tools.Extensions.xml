@@ -1570,6 +1570,15 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.Up(UnityEngine.KeyCode)">
             <summary> Checks if this key is resting. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.SortedByDistanceFrom(UnityEngine.RaycastHit[],UnityEngine.Vector3)">
+            <summary> Returns this array of hits sorted by distance from point a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.SortedByDistanceFrom(UnityEngine.RaycastHit[],UnityEngine.GameObject)">
+            <summary> Returns this array of hits sorted by distance from object a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.SortedByDistanceFrom(UnityEngine.RaycastHit[],UnityEngine.Component)">
+            <summary> Returns this array of hits sorted by distance from object a. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Unparent(UnityEngine.Component,System.Boolean)">
             <summary> Places this object at the root of the hierarchy. </summary>
         </member>
@@ -1704,9 +1713,6 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingComponent``1(UnityEngine.Component,System.Boolean)">
             <summary> Returns the first component of type T in this object's siblings. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.TryGetComponent``1(UnityEngine.Component,``0@)">
-            <summary> Assigns component T to a. Returns whether any component was found. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy(UnityEngine.Component)">
             <summary> Destroys this component. </summary>
@@ -1900,9 +1906,6 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingComponent``1(UnityEngine.GameObject,System.Boolean)">
             <summary> Returns the first component of type T in this object's siblings. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.TryGetComponent``1(UnityEngine.GameObject,``0@)">
-            <summary> Assigns component T to a. Returns whether any component was found. </summary>
-        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(UnityEngine.GameObject)">
             <summary> Destroys this object. </summary>
         </member>
@@ -2033,6 +2036,9 @@
             <summary> Returns true with t probability. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.RollPercent(System.Single)">
+            <summary> Returns true with t% probability. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.RollPercent(System.Int32)">
             <summary> Returns true with t% probability. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.DumpN.DumpC.Dump(System.Object,System.Type,System.String[],Vheos.Tools.Extensions.DumpN.MemberData,Vheos.Tools.Extensions.DumpN.ClassMembers,Vheos.Tools.Extensions.DumpN.ScopeModifiers,Vheos.Tools.Extensions.DumpN.AccessModifiers)">
