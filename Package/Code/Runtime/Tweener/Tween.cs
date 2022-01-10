@@ -2,9 +2,11 @@ namespace Vheos.Tools.UnityCore
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using UnityEngine;
     using Tools.Extensions.Math;
     using Vheos.Tools.Extensions.UnityObjects;
+
 
     /// <summary> Represents a single animation, relative to a property's current state</summary>
     /// <remarks>
@@ -298,6 +300,7 @@ namespace Vheos.Tools.UnityCore
         // Initializers
         internal Tween()
         { }
+        [SuppressMessage("CodeQuality", "IDE0051")]
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static private void StaticInitialize()
         {
