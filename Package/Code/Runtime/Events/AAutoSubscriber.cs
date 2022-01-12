@@ -15,99 +15,65 @@ namespace Vheos.Tools.UnityCore
         /// <summary> Only subscriptions defined inside this method will be automated on component enable/disable. </summary>
         virtual protected void DefineAutoSubscriptions()
         { }
-        private bool _isWithinAutoSubscriptionsBlock;
         private readonly HashSet<AAutoEvent> _autoEvents = new HashSet<AAutoEvent>();
-        private void SubscribeAuto()
-        {
-            foreach (var autoEvent in _autoEvents)
-                autoEvent.SubscribeAuto(this);
-        }
-        private void UnsubscribeAuto()
-        {
-            foreach (var autoEvent in _autoEvents)
-                autoEvent.UnsubscribeAuto(this);
-        }
 
         // Privates (subscribe)
         /// <summary> Subscribes <c><paramref name="action"/></c> to <c><paramref name="autoEvent"/></c> </summary>
         /// <remarks> If defined inside <c><see cref="DefineAutoSubscriptions"/></c>, this subscription will be automated on component enable/disable </remarks>
         /// <param name="autoEvent"> When should the <c><paramref name="action"/></c> be called? </param>
         /// <param name="action"> What should happen when the <c><paramref name="autoEvent"/></c> is raised? </param>
-        protected void SubscribeTo(AutoEvent autoEvent, Action action)
+        protected void SubscribeAuto(AutoEvent autoEvent, Action action)
         {
-            if (_isWithinAutoSubscriptionsBlock)
-            {
-                autoEvent.AddToAutoSubscriptions(this, action);
-                _autoEvents.Add(autoEvent);
-            }
-            else
-                autoEvent.Subscribe(action);
+            autoEvent.SubscribeAuto(this, action);
+            _autoEvents.Add(autoEvent);
         }
-        /// <inheritdoc cref="SubscribeTo"/>
-        protected void SubscribeTo<T1>(AutoEvent<T1> autoEvent, Action<T1> action)
+        /// <inheritdoc cref="SubscribeAuto"/>
+        protected void SubscribeAuto<T1>(AutoEvent<T1> autoEvent, Action<T1> action)
         {
-            if (_isWithinAutoSubscriptionsBlock)
-            {
-                autoEvent.AddToAutoSubscriptions(this, action);
-                _autoEvents.Add(autoEvent);
-            }
-            else
-                autoEvent.Subscribe(action);
+            autoEvent.SubscribeAuto(this, action);
+            _autoEvents.Add(autoEvent);
         }
-        /// <inheritdoc cref="SubscribeTo"/>
-        protected void SubscribeTo<T1, T2>(AutoEvent<T1, T2> autoEvent, Action<T1, T2> action)
+        /// <inheritdoc cref="SubscribeAuto"/>
+        protected void SubscribeAuto<T1, T2>(AutoEvent<T1, T2> autoEvent, Action<T1, T2> action)
         {
-            if (_isWithinAutoSubscriptionsBlock)
-            {
-                autoEvent.AddToAutoSubscriptions(this, action);
-                _autoEvents.Add(autoEvent);
-            }
-            else
-                autoEvent.Subscribe(action);
+            autoEvent.SubscribeAuto(this, action);
+            _autoEvents.Add(autoEvent);
         }
-        /// <inheritdoc cref="SubscribeTo"/>
-        protected void SubscribeTo<T1, T2, T3>(AutoEvent<T1, T2, T3> autoEvent, Action<T1, T2, T3> action)
+        /// <inheritdoc cref="SubscribeAuto"/>
+        protected void SubscribeAuto<T1, T2, T3>(AutoEvent<T1, T2, T3> autoEvent, Action<T1, T2, T3> action)
         {
-            if (_isWithinAutoSubscriptionsBlock)
-            {
-                autoEvent.AddToAutoSubscriptions(this, action);
-                _autoEvents.Add(autoEvent);
-            }
-            else
-                autoEvent.Subscribe(action);
+            autoEvent.SubscribeAuto(this, action);
+            _autoEvents.Add(autoEvent);
         }
-        /// <summary> Unsubscribes <c><paramref name="action"/></c> from <c><paramref name="autoEvent"/></c>. </summary>
-        protected void UnsubscribeFrom(AutoEvent autoEvent, Action action)
-        => autoEvent.Unsubscribe(action);
-        /// <inheritdoc cref="UnsubscribeFrom"/>
-        protected void UnsubscribeFrom<T1>(AutoEvent<T1> autoEvent, Action<T1> action)
-        => autoEvent.Unsubscribe(action);
-        /// <inheritdoc cref="UnsubscribeFrom"/>
-        protected void UnsubscribeFrom<T1, T2>(AutoEvent<T1, T2> autoEvent, Action<T1, T2> action)
-        => autoEvent.Unsubscribe(action);
-        /// <inheritdoc cref="UnsubscribeFrom"/>
-        protected void UnsubscribeFrom<T1, T2, T3>(AutoEvent<T1, T2, T3> autoEvent, Action<T1, T2, T3> action)
-        => autoEvent.Unsubscribe(action);
+
+        protected void SubscribeUntilInvoke(AutoEvent autoEvent, Action action)
+        => autoEvent.SubscribeUntilInvoke(action);
+        protected void SubscribeUntilInvoke<T1>(AutoEvent<T1> autoEvent, Action<T1> action)
+        => autoEvent.SubscribeUntilInvoke(action);
+        protected void SubscribeUntilInvoke<T1, T2>(AutoEvent<T1, T2> autoEvent, Action<T1, T2> action)
+        => autoEvent.SubscribeUntilInvoke(action);
+        protected void SubscribeUntilInvoke<T1, T2, T3>(AutoEvent<T1, T2, T3> autoEvent, Action<T1, T2, T3> action)
+        => autoEvent.SubscribeUntilInvoke(action);
 
         // Play
-        protected private override void PlayAwakeLate()
+        protected override void PlayAwake()
         {
-            base.PlayAwakeLate();
-            _isWithinAutoSubscriptionsBlock = true;
             DefineAutoSubscriptions();
-            _isWithinAutoSubscriptionsBlock = false;
+            base.PlayAwake();         
         }
         /// <inheritdoc cref="APlayable.PlayEnable"/>
         protected override void PlayEnable()
         {
             base.PlayEnable();
-            SubscribeAuto();
+            foreach (var autoEvent in _autoEvents)
+                autoEvent.EnableAutoSubscriptions(this);
         }
         /// <inheritdoc cref="APlayable.PlayDisable"/>
         protected override void PlayDisable()
         {
             base.PlayDisable();
-            UnsubscribeAuto();
+            foreach (var autoEvent in _autoEvents)
+                autoEvent.DisableAutoSubscriptions(this);
         }
 
 #if UNITY_EDITOR
