@@ -49,6 +49,12 @@ namespace Vheos.Tools.UnityCore
             OnFinish?.Invoke();
             Stop();
         }
+        /// <summary> Finishes this tween if the chosen condition is met </summary>
+        public void FinishIf(bool condition)
+        {
+            if (condition)
+                Finish();
+        }
         /// <summary> Instantly stops all tweens on chosen layer </summary>
         static public void StopLayer(object conflictLayer)
         => Tweener.StopLayer(conflictLayer);
