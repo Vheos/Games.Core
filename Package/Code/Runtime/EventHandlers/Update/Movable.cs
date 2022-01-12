@@ -2,16 +2,17 @@ namespace Vheos.Tools.UnityCore
 {
     using UnityEngine;
     
+    [RequireComponent(typeof(Updatable))]
     [DisallowMultipleComponent]
     sealed public class Movable : AAutoSubscriber
     {
         // Events
-        public AutoEvent OnStartMoving
-        { get; } = new AutoEvent();
+        public AutoEvent<Vector3> OnStartMoving
+        { get; } = new AutoEvent<Vector3>();
         public AutoEvent<Vector3, Vector3> OnMove
         { get; } = new AutoEvent<Vector3, Vector3>();
-        public AutoEvent OnStop
-        { get; } = new AutoEvent();
+        public AutoEvent<Vector3> OnStop
+        { get; } = new AutoEvent<Vector3>();
 
         // Privates
         private Vector3 _previousPosition;
@@ -24,11 +25,11 @@ namespace Vheos.Tools.UnityCore
             if (currentHasMoved)
             {
                 if (!_previousHasMoved)
-                    OnStartMoving?.Invoke();
+                    OnStartMoving?.Invoke(_previousPosition);
                 OnMove?.Invoke(_previousPosition, currentPosition);
             }
             else if (_previousHasMoved)
-                OnStop?.Invoke();
+                OnStop?.Invoke(currentPosition);
 
             _previousPosition = currentPosition;
             _previousHasMoved = currentHasMoved;
@@ -38,7 +39,7 @@ namespace Vheos.Tools.UnityCore
         protected override void DefineAutoSubscriptions()
         {
             base.DefineAutoSubscriptions();
-            SubscribeTo(Get<Updatable>().OnUpdate, TryInvokeEvents);
+            SubscribeAuto(Get<Updatable>().OnUpdate, TryInvokeEvents);
         }
         protected override void PlayEnable()
         {

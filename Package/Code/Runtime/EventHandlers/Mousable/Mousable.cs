@@ -66,11 +66,11 @@ namespace Vheos.Tools.UnityCore
             base.DefineAutoSubscriptions();
             if (TryGet(out Selectable selectable))
             {
-                SubscribeTo(OnGainHighlight, selectable.OnGainHighlight.Invoke);
-                SubscribeTo(OnLoseHighlight, selectable.OnLoseHighlight.Invoke);
-                SubscribeTo(OnPress, (button, position) => TryInvokeSelectableOnPress(selectable, button));
-                SubscribeTo(OnHold, (button, position) => TryInvokeSelectableOnHold(selectable, button));
-                SubscribeTo(OnRelease, (button, isClick) => TryInvokeSelectableOnRelease(selectable, button, isClick));
+                SubscribeAuto(OnGainHighlight, selectable.OnGainHighlight.Invoke);
+                SubscribeAuto(OnLoseHighlight, selectable.OnLoseHighlight.Invoke);
+                SubscribeAuto(OnPress, (button, position) => TryInvokeSelectableOnPress(selectable, button));
+                SubscribeAuto(OnHold, (button, position) => TryInvokeSelectableOnHold(selectable, button));
+                SubscribeAuto(OnRelease, (button, isClick) => TryInvokeSelectableOnRelease(selectable, button, isClick));
             }
         }
         protected override void PlayAwake()

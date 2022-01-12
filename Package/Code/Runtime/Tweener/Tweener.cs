@@ -6,7 +6,6 @@ namespace Vheos.Tools.UnityCore
     using Tools.Extensions.Collections;
     using System.Linq;
 
-    [DefaultExecutionOrder(-1)]
     internal class Tweener : AAutoSubscriber
     {
         // Internals
@@ -92,9 +91,9 @@ namespace Vheos.Tools.UnityCore
         protected override void DefineAutoSubscriptions()
         {
             base.DefineAutoSubscriptions();
-            SubscribeTo(Get<Updatable>().OnUpdateLate, ProcessPendingTweens);
-            SubscribeTo(Get<Updatable>().OnUpdateLate, ProcessPlayingTweens);
-            SubscribeTo(Get<Updatable>().OnUpdateLate, ProcessFinishedTweens);
+            SubscribeAuto(Get<Updatable>().OnUpdateLate, ProcessPendingTweens);
+            SubscribeAuto(Get<Updatable>().OnUpdateLate, ProcessPlayingTweens);
+            SubscribeAuto(Get<Updatable>().OnUpdateLate, ProcessFinishedTweens);
         }
         protected override void PlayAwake()
         {

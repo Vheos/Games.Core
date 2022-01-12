@@ -3,7 +3,6 @@ namespace Vheos.Tools.UnityCore
     using System;
     using UnityEngine;
 
-    [DefaultExecutionOrder(-1)]
     abstract public class AManager<T> : AAutoSubscriber where T : AManager<T>
     {
         // Privates

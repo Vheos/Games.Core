@@ -1,7 +1,8 @@
 namespace Vheos.Tools.UnityCore
 {
     using UnityEngine;
-    
+
+    [RequireComponent(typeof(Updatable))]
     [DisallowMultipleComponent]
     sealed public class SpriteChangable : AAutoSubscriber
     {
@@ -23,7 +24,7 @@ namespace Vheos.Tools.UnityCore
         protected override void DefineAutoSubscriptions()
         {
             base.DefineAutoSubscriptions();
-            SubscribeTo(Get<Updatable>().OnUpdate, TryInvokeEvents);
+            SubscribeAuto(Get<Updatable>().OnUpdate, TryInvokeEvents);
         }
     }
 }
