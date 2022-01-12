@@ -3,7 +3,7 @@ namespace Vheos.Tools.UnityCore
     using System;
     using UnityEngine;
 
-    [UnityEngine.DisallowMultipleComponent]
+    [DisallowMultipleComponent]
     sealed public class Updatable : ABaseComponent
     {
         // Events
@@ -14,13 +14,13 @@ namespace Vheos.Tools.UnityCore
         public AutoEvent OnUpdateFixed
         { get; } = new AutoEvent();
 
-        // Mono
+        // Play
 #pragma warning disable IDE0051 // Remove unused private members
         private void Update()
-        => OnUpdate?.Invoke();
+        => OnUpdate.Invoke();
         private void LateUpdate()
-        => OnUpdateLate?.Invoke();
+        => OnUpdateLate.Invoke();
         private void FixedUpdate()
-        => OnUpdateFixed?.Invoke();
+        => OnUpdateFixed.Invoke();
     }
 }
