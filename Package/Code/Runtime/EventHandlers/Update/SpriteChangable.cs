@@ -21,9 +21,9 @@ namespace Vheos.Tools.UnityCore
         }
 
         // Play
-        protected override void DefineAutoSubscriptions()
+        protected override void PlayAwake()
         {
-            base.DefineAutoSubscriptions();
+            base.PlayAwake();
             SubscribeAuto(Get<Updatable>().OnUpdate, TryInvokeEvents);
         }
     }
