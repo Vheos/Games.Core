@@ -24,16 +24,16 @@ namespace Vheos.Tools.UnityCore
         { get; private set; }
 
         // Privates
-        internal void GainHighlight()
+        internal void InvokeOnGainHighlight()
         => OnGainHighlight?.Invoke();
-        internal void LoseHighlight()
+        internal void InvokeOnLoseHighlight()
         => OnLoseHighlight?.Invoke();
-        internal void Press(ButtonFunction function)
+        internal void InvokeOnPress(ButtonFunction function)
         => OnPress?.Invoke(function);
-        internal void Hold(ButtonFunction function)
+        internal void InvokeOnHold(ButtonFunction function)
         => OnHold?.Invoke(function);
-        internal void Release(ButtonFunction function, bool isClick)
-        => OnRelease?.Invoke(function, isClick);
+        internal void InvokeOnRelease(ButtonFunction function, bool isFullClick)
+        => OnRelease?.Invoke(function, isFullClick);
 
         // Initializers
         [SuppressMessage("CodeQuality", "IDE0051")]
