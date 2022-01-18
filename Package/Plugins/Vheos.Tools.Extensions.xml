@@ -4,6 +4,21 @@
         <name>Vheos.Tools.Extensions</name>
     </assembly>
     <members>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.TryGetAny``1(System.Collections.Generic.IEnumerable{``0},``0@)">
+            <summary> If this collection contains any element, assigns it to r and returns true. Otherwise, sets r to its default value and returns false. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary> Tests whether this enumerable contains zero element. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.IsNotEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary> Tests whether this enumerable contains any elements. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary> Tests whether this collection contains zero element. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.IsNotNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary> Tests whether this collection contains any elements. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Add``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
             <summary> Adds elements a to this collection. </summary>
         </member>
@@ -1582,17 +1597,14 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Unparent(UnityEngine.Component,System.Boolean)">
             <summary> Places this object at the root of the hierarchy. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeParentOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
-            <summary> Attaches a to this object.gameObject. </summary>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.MoveToScene(UnityEngine.Component,UnityEngine.SceneManagement.Scene)">
+            <summary> Moves this object to the root of the chosen scene </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeSiblingOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
             <summary> Attaches this objects to a's parent.gameObject. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeChildOf(UnityEngine.Component,UnityEngine.GameObject,System.Boolean)">
             <summary> Attaches this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeParentOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
-            <summary> Attaches a to this object.gameObject. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.BecomeSiblingOf(UnityEngine.Component,UnityEngine.Component,System.Boolean)">
             <summary> Attaches this objects to a's parent.gameObject. </summary>
@@ -1673,45 +1685,54 @@
             <summary> Returns the direction from a towards this object.gameObject. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasComponent``1(UnityEngine.Component)">
-            <summary> Checks whether this object has a component t.gameObject. </summary>
+            <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasComponent``1(UnityEngine.GameObject)"/>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ParentHasComponent``1(UnityEngine.Component)">
-            <summary> Checks whether this object's parent has a component t.gameObject. </summary>
+            <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ParentHasComponent``1(UnityEngine.GameObject)"/>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.AnyChildHasComponent``1(UnityEngine.Component)">
-            <summary> Checks whether any of this object's children has a component t.gameObject. </summary>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ChildHasComponent``1(UnityEngine.Component)">
+            <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ChildHasComponent``1(UnityEngine.GameObject)"/>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateChildComponent``1(UnityEngine.Component,UnityEngine.GameObject,System.String)">
-            <summary> Creates a new game object as a child of this object, from prefab a and with name b. Returns its component of type T. </summary>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateSiblingGameObject(UnityEngine.Component,System.String)">
+            <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateSiblingGameObject(UnityEngine.GameObject,System.String)"/>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateChildComponent``1(UnityEngine.Component,System.String)">
-            <summary> Creates a new game object as a child of this object, with name b. Adds a default component of type T, then returns it. </summary>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateSiblingComponent``1(UnityEngine.Component,``0,System.String)">
+            <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateSiblingComponent``1(UnityEngine.GameObject,``0,System.String)"/>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateSiblingComponent``1(UnityEngine.Component,System.String)">
+            <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateSiblingComponent``1(UnityEngine.GameObject,System.String)"/>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateChildGameObject(UnityEngine.Component,System.String)">
-            <summary> Creates and returns a new game object as a child of this object, with name b. </summary>
+            <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildGameObject(UnityEngine.GameObject,System.String)"/>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateChildComponent``1(UnityEngine.Component,``0,System.String)">
+            <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildComponent``1(UnityEngine.GameObject,``0,System.String)"/>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.CreateChildComponent``1(UnityEngine.Component,System.String)">
+            <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildComponent``1(UnityEngine.GameObject,System.String)"/>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetOrAddComponent``1(UnityEngine.Component)">
             <summary> Returns component T attached to this object. If there's none, adds one. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildGameObjects(UnityEngine.Component,System.Boolean)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildGameObjects(UnityEngine.Component)">
             <summary> Returns an enumerable of this object's children's GameObjects. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingGameObjects(UnityEngine.Component,System.Boolean)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingGameObjects(UnityEngine.Component)">
             <summary> Returns an enumerable of this object's siblings' GameObjects. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildComponents``1(UnityEngine.Component,System.Boolean)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildComponents``1(UnityEngine.Component)">
             <summary> Returns an enumerable of this object's children's components. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingComponents``1(UnityEngine.Component,System.Boolean)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingComponents``1(UnityEngine.Component)">
             <summary> Returns an enumerable of this object's siblings' components. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetGameObjects``1(System.Collections.Generic.IEnumerable{``0})">
             <summary> Returns enumerable of GameObjects of all of these components. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildComponent``1(UnityEngine.Component,System.Boolean)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetChildComponent``1(UnityEngine.Component)">
             <summary> Returns the first component of type T in this object's children. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingComponent``1(UnityEngine.Component,System.Boolean)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingComponent``1(UnityEngine.Component)">
             <summary> Returns the first component of type T in this object's siblings. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy(UnityEngine.Component)">
@@ -1772,19 +1793,17 @@
             <summary> Copies a's rigidbody. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Unparent(UnityEngine.GameObject,System.Boolean)">
-            <summary> Places this object at the root of the hierarchy. </summary>
+            <summary> Places this object at the root of the hierarchy </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeParentOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
-            <summary> Attaches a to this object. </summary>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.MoveToScene(UnityEngine.GameObject,UnityEngine.SceneManagement.Scene)">
+            <summary> Moves this object to the root of the chosen scene </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeSiblingOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
             <summary> Attaches this objects to a's parent. </summary>
+            <remarks> If a is a root object, moves this object to the root of a's scene </remarks>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeChildOf(UnityEngine.GameObject,UnityEngine.GameObject,System.Boolean)">
             <summary> Attaches this object to a. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeParentOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
-            <summary> Attaches a to this object. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.BecomeSiblingOf(UnityEngine.GameObject,UnityEngine.Component,System.Boolean)">
             <summary> Attaches this objects to a's parent. </summary>
@@ -1870,41 +1889,65 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ParentHasComponent``1(UnityEngine.GameObject)">
             <summary> Checks whether this object's parent has a component T. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.AnyChildHasComponent``1(UnityEngine.GameObject)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ChildHasComponent``1(UnityEngine.GameObject)">
             <summary> Checks whether any of this object's children has a component T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SiblingHasComponent``1(UnityEngine.GameObject)">
+            <summary> Checks whether any of this object's siblings has a component T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetParentComponent``1(UnityEngine.GameObject,System.Boolean)">
+            <summary> Returns the first component of type T in this object's parent. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildComponent``1(UnityEngine.GameObject)">
+            <summary> Returns the first component of type T in any of this object's children. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingComponent``1(UnityEngine.GameObject)">
+            <summary> Returns the first component of type T in any of this object's siblings. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetParentComponents``1(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's parent's components of type T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildComponents``1(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's children's components of type T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingComponents``1(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's siblings' components of type T. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildGameObjects(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's children's GameObjects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingGameObjects(UnityEngine.GameObject)">
+            <summary> Returns an enumerable of this object's siblings' GameObjects. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildGameObject(UnityEngine.GameObject,System.String)">
             <summary> Creates and returns a new game object as a child of this object, with name b. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildComponent``1(UnityEngine.GameObject,UnityEngine.GameObject,System.String)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildComponent``1(UnityEngine.GameObject,``0,System.String)">
             <summary> Creates a new game object as a child of this object, from prefab a and with name b. Returns its component of type T. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateChildComponent``1(UnityEngine.GameObject,System.String)">
             <summary> Creates a new game object as a child of this object, with name b. Adds a default component of type T, then returns it. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateSiblingGameObject(UnityEngine.GameObject,System.String)">
+            <summary> Creates and returns a new game object as a sibling of this object, with name b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateSiblingComponent``1(UnityEngine.GameObject,``0,System.String)">
+            <summary> Creates a new game object as a sibling of this object, from prefab a and with name b. Returns its component of type T. </summary>
+            <remarks> If called: <br/>
+            • on a root object <br/>
+            • during additive scene load <br/>
+            • from <c><see langword="Awake"/>()</c> or <c><see langword="OnEnable"/>()</c> <br/>
+            the component will get instantiated at the root of the recently active scene <br/>
+            it will be moved to this object's scene only after its own <c><see langword="Awake"/>()</c> and <c><see langword="OnEnable"/>()</c> finish executing</remarks>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.CreateSiblingComponent``1(UnityEngine.GameObject,System.String)">
+            <summary> Creates a new game object as a sibling of this object, with name b. Adds a default component of type T, then returns it. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetOrAddComponent``1(UnityEngine.GameObject)">
             <summary> Returns component T attached to this object. If there's none, adds one. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildGameObjects(UnityEngine.GameObject,System.Boolean)">
-            <summary> Returns an enumerable of this object's children's GameObjects. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingGameObjects(UnityEngine.GameObject,System.Boolean)">
-            <summary> Returns an enumerable of this object's siblings' GameObjects. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildComponents``1(UnityEngine.GameObject,System.Boolean)">
-            <summary> Returns an enumerable of this object's children's components of type T. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingComponents``1(UnityEngine.GameObject,System.Boolean)">
-            <summary> Returns an enumerable of this object's siblings' components of type T. </summary>
-        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetComponents``1(System.Collections.Generic.IEnumerable{UnityEngine.GameObject})">
             <summary> Returns enumerable of all components of type T in all of these GameObjects. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildComponent``1(UnityEngine.GameObject,System.Boolean)">
-            <summary> Returns the first component of type T in this object's children. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetSiblingComponent``1(UnityEngine.GameObject,System.Boolean)">
-            <summary> Returns the first component of type T in this object's siblings. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(UnityEngine.GameObject)">
             <summary> Destroys this object. </summary>
@@ -1992,6 +2035,9 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.IsNullOrEmpty(System.String)">
             <summary> Checks if this string is null or empty (""). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.IsNotNullOrEmpty(System.String)">
+            <summary> Checks if this string is not null or empty (""). </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.Any(System.String)">
             <summary> Checks if this string contains any characters. </summary>
