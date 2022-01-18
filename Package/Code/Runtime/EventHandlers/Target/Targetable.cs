@@ -3,7 +3,8 @@ namespace Vheos.Tools.UnityCore
     using System;
     using System.Collections.Generic;
     using UnityEngine;
-        using Tools.Extensions.Collections;
+    using Tools.Extensions.Collections;
+    using Tools.Extensions.General;
 
     [DisallowMultipleComponent]
     sealed public class Targetable : AAutoSubscriber
@@ -19,21 +20,21 @@ namespace Vheos.Tools.UnityCore
         => _targeters;
         public void ClearAllTargeting()
         {
-            for (int i = 0; i < _targeters.Count; i++)
-                LoseTargetingFrom(_targeters[i]);
+            foreach(var targeter in _targeters.MakeCopy())
+                TryLoseTargetingFrom(targeter);
         }
 
         // Privates
         private readonly List<Targeter> _targeters = new List<Targeter>();
-        internal void GainTargetingFrom(Targeter targeter)
+        internal void TryGainTargetingFrom(Targeter targeter)
         {
             if (_targeters.TryAddUnique(targeter))
-                OnGainTargeting?.Invoke(targeter, _targeters.Count == 1);
+                OnGainTargeting?.Invoke(targeter, _targeters.Count == 1);   // is first
         }
-        internal void LoseTargetingFrom(Targeter targeter)
+        internal void TryLoseTargetingFrom(Targeter targeter)
         {
             if (_targeters.TryRemove(targeter))
-                OnLoseTargeting?.Invoke(targeter, _targeters.Count == 0);
+                OnLoseTargeting?.Invoke(targeter, _targeters.Count == 0);   // was last
         }
     }
 }

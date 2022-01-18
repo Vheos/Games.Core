@@ -2,8 +2,6 @@ namespace Vheos.Tools.UnityCore
 {
     using System;
     using UnityEngine;
-        using Tools.Extensions.Math;
-    using Tools.Extensions.UnityObjects;
 
     [DisallowMultipleComponent]
     sealed public class Targeter : AAutoSubscriber
@@ -26,9 +24,9 @@ namespace Vheos.Tools.UnityCore
                 {
                     OnChangeTarget?.Invoke(previousTarget, _target);
                     if (previousTarget != null)
-                        previousTarget.LoseTargetingFrom(this);
+                        previousTarget.TryLoseTargetingFrom(this);
                     if (_target != null)
-                        _target.GainTargetingFrom(this);
+                        _target.TryGainTargetingFrom(this);
                 }
             }
         }
