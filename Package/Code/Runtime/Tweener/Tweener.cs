@@ -2,10 +2,11 @@ namespace Vheos.Tools.UnityCore
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using UnityEngine;
     using Tools.Extensions.Collections;
-    using System.Linq;
 
+    [RequireComponent(typeof(Updatable))]
     internal class Tweener : AAutoSubscriber
     {
         // Internals
@@ -88,16 +89,17 @@ namespace Vheos.Tools.UnityCore
         }
 
         // Play
-        protected override void DefineAutoSubscriptions()
+        protected override void PlayAwake()
         {
-            base.DefineAutoSubscriptions();
+            base.PlayAwake();
             SubscribeAuto(Get<Updatable>().OnUpdateLate, ProcessPendingTweens);
             SubscribeAuto(Get<Updatable>().OnUpdateLate, ProcessPlayingTweens);
             SubscribeAuto(Get<Updatable>().OnUpdateLate, ProcessFinishedTweens);
         }
-        protected override void PlayAwake()
+        [SuppressMessage("CodeQuality", "IDE0051")]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static private void StaticInitialize()
         {
-            base.PlayAwake();
             _playingTweens = new HashSet<Tween>();
             _pendingTweens = new HashSet<Tween>();
             _finishedTweens = new HashSet<Tween>();
