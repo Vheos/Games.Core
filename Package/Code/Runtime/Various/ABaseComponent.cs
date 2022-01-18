@@ -18,6 +18,35 @@ namespace Vheos.Tools.UnityCore
         APlayable
 #endif
     {
+        // Publics
+        public bool IsActive
+        {
+            get => gameObject.activeSelf;
+            set => gameObject.SetActive(value);
+        }
+
+        // Privates
+        private AComponentManager _componentManager;
+
+        // Play
+        /// <inheritdoc cref="APlayable.PlayAwake"/>
+        protected override void PlayAwake()
+        {
+            base.PlayAwake();
+            if (AComponentManager.TryGetComponentManager(this, out _componentManager))
+                _componentManager.RegisterComponent(this);
+
+#if CACHED_COMPONENTS
+            _componentCache = this.GetOrAddComponent<ComponentCache>();
+            DefineCachedComponents();
+#endif
+        }
+        protected override void PlayDestroy()
+        {
+            base.PlayDestroy();
+            if (_componentManager != null)
+                _componentManager.UnregisterComponent(this);
+        }
 
 #if CACHED_COMPONENTS
         // Publics
@@ -74,15 +103,6 @@ namespace Vheos.Tools.UnityCore
         /// <summary> Provides a safe timing point for using <c><see cref="TryAddToCache{T}"/></c> .</summary>
         virtual protected void DefineCachedComponents()
         { }
-
-        // Play
-        /// <inheritdoc cref="APlayable.PlayAwake"/>
-        protected override void PlayAwake()
-        {
-            base.PlayAwake();
-            _componentCache = this.GetOrAddComponent<ComponentCache>();
-            DefineCachedComponents();
-        }
 #else
         // Publics (generic)
         /// <summary> Adds component of type <typeparamref name="T"/> to current <c><see cref="GameObject"/></c>. </summary>

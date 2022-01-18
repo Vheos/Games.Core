@@ -3,13 +3,35 @@ namespace Vheos.Tools.UnityCore
     using System;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using UnityEngine.SceneManagement;
     using UnityEngine;
-    using Tools.Extensions.Collections;
     using Tools.Extensions.UnityObjects;
-    using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
+    using Tools.Extensions.General;
+    using Tools.Extensions.Collections;
 
-    abstract public class AComponentManager<TManager, TComponent> : AManager<TManager>
+    [DefaultExecutionOrder(-1)]
+    abstract public class AComponentManager : AAutoSubscriber
+    {
+        // Publics
+        static internal bool TryGetComponentManager(Behaviour component, out AComponentManager componentManager)
+        => _managersByComponentType.TryGetValue(component.GetType(), out componentManager);
+        abstract internal void RegisterComponent(Behaviour component);
+        abstract internal void UnregisterComponent(Behaviour component);
+
+        // Privates
+        static private Dictionary<Type, AComponentManager> _managersByComponentType;
+        private protected void AddManagedComponentType(Type type)
+        => _managersByComponentType.Add(type, this);
+
+        // Initializers
+        [SuppressMessage("CodeQuality", "IDE0051")]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static private void StaticInitialize()
+        => _managersByComponentType = new Dictionary<Type, AComponentManager>();
+    }
+
+    abstract public class AComponentManager<TManager, TComponent> : AComponentManager
         where TManager : AComponentManager<TManager, TComponent>
         where TComponent : Behaviour
     {
@@ -18,26 +40,40 @@ namespace Vheos.Tools.UnityCore
         [SerializeField] protected bool _PersistentComponents;
         [SerializeField] protected bool _EnsureNonZeroComponents;
 
-        // Publics
-        static public TComponent FirstActive
-        => _components.FirstOrDefault(c => c != null && c.isActiveAndEnabled);
+        // Publics (getters)
+        static public TComponent Any
+        => _components.FirstOrDefault();
+        static public TComponent AnyActive
+        => _components.FirstOrDefault(t => t.isActiveAndEnabled);
+        static public IEnumerable<TComponent> ActiveComponents
+        => _components.Where(t => t.isActiveAndEnabled);
+        static public bool TryGetAny(out TComponent r)
+        => Any.TryNonNull(out r);
+        static public bool TryGetAnyActive(out TComponent r)
+        => AnyActive.TryNonNull(out r);
+
+        // Publics (adders)
         static public TComponent AddComponentTo(GameObject t)
         {
             TComponent newComponent = t.TryGetComponent(out ABaseComponent baseComponent)
                                     ? baseComponent.Add<TComponent>()
                                     : t.AddComponent<TComponent>();
-            _components.Add(newComponent);
+            if (!_isABaseComponent)
+                RegisterNonABaseComponent(newComponent);
+
             return newComponent;
         }
+        static public TComponent AddComponentTo(Component t)
+        => AddComponentTo(t.gameObject);
         static public TComponent InstantiateComponent()
         {
             TComponent newComponent;
-            TComponent prefab = _instance._Prefab;
-            if (prefab != null)
+            if (_instance._Prefab.TryNonNull(out var prefab))
             {
                 newComponent = GameObject.Instantiate<TComponent>(prefab);
-                _components.Add(newComponent);
                 newComponent.name = prefab.name;
+                if (!_isABaseComponent)
+                    RegisterNonABaseComponent(newComponent);
             }
             else
             {
@@ -47,15 +83,30 @@ namespace Vheos.Tools.UnityCore
 
             // Set scene           
             if (_instance._PersistentComponents)
-                newComponent.MoveToScene(_instance.gameObject.scene);
+                newComponent.MoveToScene(SceneManager.PersistentScene);
 
             return newComponent;
         }
 
-        // Privates
+        // Privates  
+        static protected TManager _instance;
         static protected HashSet<TComponent> _components;
-        static private void RecollectExistingComponents()
-        => _components = new HashSet<TComponent>(FindObjectsOfType<TComponent>(true));
+        static protected bool _isABaseComponent;
+        static private void RegisterNonABaseComponent(TComponent component)
+        {
+            _components.Add(component);
+            _instance.SubscribeUntilInvoke(component.GetOrAddComponent<Playable>().OnDestroy, () => _components.Remove(component));
+        }
+        static private void InitializeComponentsCollection()
+        {
+            _components = new HashSet<TComponent>();
+            if (!_isABaseComponent)
+            {
+                _components.Add(FindObjectsOfType<TComponent>(true));
+                foreach (var component in _components)
+                    RegisterNonABaseComponent(component);
+            }
+        }
         static private void TryCreateFirstComponent(Scene scene)
         {
             if (_components.Any(t => t.gameObject.scene == scene)
@@ -66,28 +117,35 @@ namespace Vheos.Tools.UnityCore
         }
         static private void OnStartLoadingScene(Scene scene)
         {
-            if (_instance._PersistentComponents
-            || scene == SceneManager.PersistentScene)
+            if (scene == SceneManager.PersistentScene)
                 return;
 
-            RecollectExistingComponents();
+            InitializeComponentsCollection();
             TryCreateFirstComponent(scene);
         }
+        internal override void RegisterComponent(Behaviour component)
+        => Debug.Log($"Registering {typeof(TComponent).Name}: {_components.Add(component as TComponent)}");
+        internal override void UnregisterComponent(Behaviour component)
+        => Debug.Log($"Unregistering {typeof(TComponent).Name}: {_components.Remove(component as TComponent)}");
 
         // Play
-        protected override void DefineAutoSubscriptions()
-        {
-            base.DefineAutoSubscriptions();
-            SubscribeAuto(SceneManager.OnStartLoadingScene, OnStartLoadingScene);
-        }
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            if (!_PersistentComponents)
-                return;
+            _instance = this as TManager;
+            _isABaseComponent = typeof(TComponent).IsAssignableTo<ABaseComponent>();
+            AddManagedComponentType(typeof(TComponent));
 
-            RecollectExistingComponents();
-            TryCreateFirstComponent(SceneManager.PersistentScene);
+            if (_PersistentComponents)
+            {
+                InitializeComponentsCollection();
+                TryCreateFirstComponent(SceneManager.PersistentScene);
+            }
+            else
+            {
+                _components = new HashSet<TComponent>();
+                SubscribeAuto(SceneManager.OnStartLoadingScene, OnStartLoadingScene);
+            }
         }
 
 #if UNITY_EDITOR
