@@ -12,10 +12,6 @@ namespace Vheos.Tools.UnityCore
         public AutoEvent<Team, Team> OnChangeTeam
         { get; } = new AutoEvent<Team, Team>();
 
-        // Getters
-        public Getter<Team> StartingTeam
-        { get; } = new Getter<Team>();
-
         // Publics
         public Team Team
         { get; private set; }
@@ -57,13 +53,6 @@ namespace Vheos.Tools.UnityCore
         }
         public void TryLeaveTeam()
         => TryChangeTeam(null);
-
-        // Play
-        protected override void PlayStart()
-        {
-            base.PlayStart();
-            TryChangeTeam(StartingTeam);
-        }
     }
 
     static public class Teamable_Extensions
