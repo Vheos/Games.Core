@@ -2,6 +2,7 @@ namespace Vheos.Tools.UnityCore
 {
     using System;
     using UnityEngine;
+    using UnityEngine.UI;
     using TMPro;
     using Tools.Extensions.Math;
 
@@ -89,6 +90,34 @@ namespace Vheos.Tools.UnityCore
         static private Tween AddModifier_SpriteRenderer_Alpha(this Tween t, SpriteRenderer c, float to)
         => t.AddPropertyModifier(v => c.color += new Color(0f, 0f, 0f, v), to - c.color.a);
         static private Tween AddModifier_SpriteRenderer_AlphaRatio(this Tween t, SpriteRenderer c, float ratio)
+        => t.AddPropertyModifier(v => c.color *= new Color(1f, 1f, 1f, v), ratio);
+
+        // UI Image
+        /// <summary> Offsets this tween's <c><see cref="GameObject"/></c>'s <c><see cref="Image.color"/></c> to the chosen color </summary>
+        static public Tween ImageColor(this Tween t, Color to)
+        => t.AddModifier_Image_Color(t.GameObject.GetComponent<Image>(), to);
+        /// <summary> Scales this tween's <c><see cref="GameObject"/></c>'s <c><see cref="Image.color"/></c> by the chosen ratio </summary>
+        static public Tween ImageColorRatio(this Tween t, Color ratio)
+        => t.AddModifier_Image_ColorRatio(t.GameObject.GetComponent<Image>(), ratio);
+        /// <inheritdoc cref="ImageColorRatio(Tween, Color)"/>
+        static public Tween ImageColorRatio(this Tween t, float ratio)
+        => t.AddModifier_Image_ColorRatio(t.GameObject.GetComponent<Image>(), ratio);
+        /// <summary> Offsets this tween's <c><see cref="GameObject"/></c>'s <c><see cref="Image.color"/></c>'s alpha to the chosen alpha </summary>
+        static public Tween ImageAlpha(this Tween t, float to)
+        => t.AddModifier_Image_Alpha(t.GameObject.GetComponent<Image>(), to);
+        /// <summary> Scales this tween's <c><see cref="GameObject"/></c>'s <c><see cref="Image.color"/></c>'s alpha by the chosen ratio </summary>
+        static public Tween ImageAlphaRatio(this Tween t, float ratio)
+        => t.AddModifier_Image_AlphaRatio(t.GameObject.GetComponent<Image>(), ratio);
+
+        static private Tween AddModifier_Image_Color(this Tween t, Image c, Color to)
+        => t.AddPropertyModifier(v => c.color += v, to - c.color);
+        static private Tween AddModifier_Image_ColorRatio(this Tween t, Image c, Color ratio)
+        => t.AddPropertyModifier(v => c.color *= v, ratio, DeltaValueType.Ratio);
+        static private Tween AddModifier_Image_ColorRatio(this Tween t, Image c, float ratio)
+        => t.AddPropertyModifier(v => c.color *= v, ratio, DeltaValueType.Ratio);
+        static private Tween AddModifier_Image_Alpha(this Tween t, Image c, float to)
+        => t.AddPropertyModifier(v => c.color += new Color(0f, 0f, 0f, v), to - c.color.a);
+        static private Tween AddModifier_Image_AlphaRatio(this Tween t, Image c, float ratio)
         => t.AddPropertyModifier(v => c.color *= new Color(1f, 1f, 1f, v), ratio);
 
         // TextMeshPro
