@@ -12,9 +12,7 @@ namespace Vheos.Tools.UnityCore
     abstract public class AAutoSubscriber : ABaseComponent
     {
         // Privates
-        /// <summary> Only subscriptions defined inside this method will be automated on component enable/disable. </summary>
-        virtual protected void DefineAutoSubscriptions()
-        { }
+        private bool _isAlreadyEnabled;
         private readonly HashSet<AAutoEvent> _autoEvents = new HashSet<AAutoEvent>();
 
         // Privates (subscribe)
@@ -24,25 +22,25 @@ namespace Vheos.Tools.UnityCore
         /// <param name="action"> What should happen when the <c><paramref name="autoEvent"/></c> is raised? </param>
         protected void SubscribeAuto(AutoEvent autoEvent, Action action)
         {
-            autoEvent.SubscribeAuto(this, action);
+            autoEvent.SubscribeAuto(this, action, _isAlreadyEnabled);
             _autoEvents.Add(autoEvent);
         }
         /// <inheritdoc cref="SubscribeAuto"/>
         protected void SubscribeAuto<T1>(AutoEvent<T1> autoEvent, Action<T1> action)
         {
-            autoEvent.SubscribeAuto(this, action);
+            autoEvent.SubscribeAuto(this, action, _isAlreadyEnabled);
             _autoEvents.Add(autoEvent);
         }
         /// <inheritdoc cref="SubscribeAuto"/>
         protected void SubscribeAuto<T1, T2>(AutoEvent<T1, T2> autoEvent, Action<T1, T2> action)
         {
-            autoEvent.SubscribeAuto(this, action);
+            autoEvent.SubscribeAuto(this, action, _isAlreadyEnabled);
             _autoEvents.Add(autoEvent);
         }
         /// <inheritdoc cref="SubscribeAuto"/>
         protected void SubscribeAuto<T1, T2, T3>(AutoEvent<T1, T2, T3> autoEvent, Action<T1, T2, T3> action)
         {
-            autoEvent.SubscribeAuto(this, action);
+            autoEvent.SubscribeAuto(this, action, _isAlreadyEnabled);
             _autoEvents.Add(autoEvent);
         }
 
@@ -56,17 +54,13 @@ namespace Vheos.Tools.UnityCore
         => autoEvent.SubscribeUntilInvoke(action);
 
         // Play
-        protected override void PlayAwake()
-        {
-            DefineAutoSubscriptions();
-            base.PlayAwake();         
-        }
         /// <inheritdoc cref="APlayable.PlayEnable"/>
         protected override void PlayEnable()
         {
             base.PlayEnable();
             foreach (var autoEvent in _autoEvents)
                 autoEvent.EnableAutoSubscriptions(this);
+            _isAlreadyEnabled = true;
         }
         /// <inheritdoc cref="APlayable.PlayDisable"/>
         protected override void PlayDisable()
@@ -74,6 +68,7 @@ namespace Vheos.Tools.UnityCore
             base.PlayDisable();
             foreach (var autoEvent in _autoEvents)
                 autoEvent.DisableAutoSubscriptions(this);
+            _isAlreadyEnabled = false;
         }
 
 #if UNITY_EDITOR

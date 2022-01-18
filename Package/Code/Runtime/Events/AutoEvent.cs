@@ -32,8 +32,10 @@ namespace Vheos.Tools.UnityCore
             _internalEvent += action;
             _untilInvokeActions += action;
         }
-        internal void SubscribeAuto(AAutoSubscriber subscriber, Action action)
+        internal void SubscribeAuto(AAutoSubscriber subscriber, Action action, bool isSubscriberAlreadyEnabled)
         {
+            if (isSubscriberAlreadyEnabled)
+                _internalEvent += action;
             _autoActionsBySubscriber.TryAddDefault(subscriber);
             _autoActionsBySubscriber[subscriber] += action;
         }
@@ -75,8 +77,10 @@ namespace Vheos.Tools.UnityCore
             _internalEvent += action;
             _untilInvokeActions += action;
         }
-        internal void SubscribeAuto(AAutoSubscriber subscriber, Action<T1> action)
+        internal void SubscribeAuto(AAutoSubscriber subscriber, Action<T1> action, bool isSubscriberAlreadyEnabled)
         {
+            if (isSubscriberAlreadyEnabled)
+                _internalEvent += action;
             _autoActionsBySubscriber.TryAddDefault(subscriber);
             _autoActionsBySubscriber[subscriber] += action;
         }
@@ -118,8 +122,10 @@ namespace Vheos.Tools.UnityCore
             _internalEvent += action;
             _untilInvokeActions += action;
         }
-        internal void SubscribeAuto(AAutoSubscriber subscriber, Action<T1, T2> action)
+        internal void SubscribeAuto(AAutoSubscriber subscriber, Action<T1, T2> action, bool isSubscriberAlreadyEnabled)
         {
+            if (isSubscriberAlreadyEnabled)
+                _internalEvent += action;
             _autoActionsBySubscriber.TryAddDefault(subscriber);
             _autoActionsBySubscriber[subscriber] += action;
         }
@@ -142,7 +148,7 @@ namespace Vheos.Tools.UnityCore
         }
     }
 
-    /// <summary> Auto-subscription event with 3 parameters. </summary>
+    /// <summary> Auto-subscription event with 2 parameters. </summary>
     sealed public class AutoEvent<T1, T2, T3> : AAutoEvent
     {
         // Publics
@@ -161,26 +167,21 @@ namespace Vheos.Tools.UnityCore
             _internalEvent += action;
             _untilInvokeActions += action;
         }
-        internal void SubscribeUntilDisable(AAutoSubscriber subscriber, Action<T1, T2, T3> action)
+        internal void SubscribeAuto(AAutoSubscriber subscriber, Action<T1, T2, T3> action, bool isSubscriberAlreadyEnabled)
         {
-            _internalEvent += action;
-            _untilDisableActionsBySubscriber.TryAddDefault(subscriber);
-            _untilDisableActionsBySubscriber[subscriber] += action;
-        }
-        internal void SubscribeAuto(AAutoSubscriber subscriber, Action<T1, T2, T3> action)
-        {
+            if (isSubscriberAlreadyEnabled)
+                _internalEvent += action;
             _autoActionsBySubscriber.TryAddDefault(subscriber);
             _autoActionsBySubscriber[subscriber] += action;
         }
         internal override void EnableAutoSubscriptions(AAutoSubscriber subscriber)
         => _internalEvent += _autoActionsBySubscriber[subscriber];
         internal override void DisableAutoSubscriptions(AAutoSubscriber subscriber)
-        => TryRemoveUntilDisableActions(subscriber);
+        => _internalEvent -= _autoActionsBySubscriber[subscriber];
 
         // Privates
         private Action<T1, T2, T3> _internalEvent;
         private Action<T1, T2, T3> _untilInvokeActions = null;
-        private readonly Dictionary<AAutoSubscriber, Action<T1, T2, T3>> _untilDisableActionsBySubscriber = new Dictionary<AAutoSubscriber, Action<T1, T2, T3>>();
         private readonly Dictionary<AAutoSubscriber, Action<T1, T2, T3>> _autoActionsBySubscriber = new Dictionary<AAutoSubscriber, Action<T1, T2, T3>>();
         private void TryRemoveUntilInvokeActions()
         {
@@ -189,14 +190,6 @@ namespace Vheos.Tools.UnityCore
 
             _internalEvent -= _untilInvokeActions;
             _untilInvokeActions = null;
-        }
-        private void TryRemoveUntilDisableActions(AAutoSubscriber subscriber)
-        {
-            if (!_untilDisableActionsBySubscriber.ContainsKey(subscriber))
-                return;
-
-            _internalEvent -= _untilDisableActionsBySubscriber[subscriber];
-            _untilDisableActionsBySubscriber.Remove(subscriber);
         }
     }
 }
