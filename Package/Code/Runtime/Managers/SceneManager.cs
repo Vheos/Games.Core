@@ -69,22 +69,6 @@ namespace Vheos.Tools.UnityCore
 
             return true;
         }
-        static public IEnumerable<Scene> OpenScenes
-        {
-            get
-            {
-                for (int i = 0; i < UnitySceneManager.sceneCount; i++)
-                    yield return UnitySceneManager.GetSceneAt(i);
-            }
-        }
-        static public IEnumerable<string> BuildScenePaths
-        {
-            get
-            {
-                for (int i = 0; i < UnitySceneManager.sceneCountInBuildSettings; i++)
-                    yield return SceneUtility.GetScenePathByBuildIndex(i);
-            }
-        }
         static public Scene ActiveScene
         {
             get => UnitySceneManager.GetActiveScene();
@@ -108,10 +92,6 @@ namespace Vheos.Tools.UnityCore
         => OnFinishUnloadingScene.Invoke(scene);
         static private void InvokeOnChangeActiveScene(Scene from, Scene to)
         => OnChangeActiveScene.Invoke(from, to);
-        static private bool IsOpen(string scenePath)
-        => OpenScenes.Any(t => t.path == scenePath);
-        static private bool IsInBuild(string scenePath)
-        => BuildScenePaths.Any(t => t == scenePath);
         static private void TryUnload(Scene scene, SceneOperationTiming timing)
         {
             if (scene == PersistentScene)
@@ -151,16 +131,14 @@ namespace Vheos.Tools.UnityCore
         }
 
         // Play
-        protected override void DefineAutoSubscriptions()
+        protected override void PlayAwake()
         {
-            base.DefineAutoSubscriptions();
+            base.PlayAwake();
             SubscribeAuto(OnFinishLoadingScene, SceneManager_OnFinishLoadingScene);
-        }
-        protected override void PlayStart()
-        {
-            base.PlayStart();
-            if (!_StartingScene.IsNullOrEmpty())
-                TransitionTo(_StartingScene);
+
+            if (!_StartingScene.IsNullOrEmpty()
+            && UnitySceneManager.sceneCount < 2)
+                TransitionTo(_StartingScene);            
         }
         protected override void PlayEnable()
         {
@@ -171,7 +149,7 @@ namespace Vheos.Tools.UnityCore
         }
         protected override void PlayDisable()
         {
-            base.PlayEnable();
+            base.PlayDisable();
             UnitySceneManager.sceneLoaded -= InvokeOnFinishLoadingScene;
             UnitySceneManager.activeSceneChanged -= InvokeOnChangeActiveScene;
             UnitySceneManager.sceneUnloaded -= InvokeOnFinishUnloadingScene;
