@@ -13,10 +13,10 @@
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.IsNotEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary> Tests whether this enumerable contains any elements. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary> Tests whether this collection contains zero element. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.IsNotNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_IEnumerable.IsNotNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary> Tests whether this collection contains any elements. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Add``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
@@ -1549,7 +1549,7 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.PositionToPixelAlpha(UnityEngine.Sprite,UnityEngine.Vector3,UnityEngine.Transform)">
             <summary> Returns alpha of a pixel at position a, relative to transform b. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.PixelCoordsToPosition(UnityEngine.Sprite,UnityEngine.Vector2Int,UnityEngine.Transform)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Sprite.PixelCoordsToPosition(UnityEngine.Sprite,UnityEngine.Vector2,UnityEngine.Transform)">
             <summary> Returns position of pixel a, transformed by b. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_General.StartValue(UnityEngine.AnimationCurve)">
@@ -1735,6 +1735,9 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.GetSiblingComponent``1(UnityEngine.Component)">
             <summary> Returns the first component of type T in this object's siblings. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.TryGetComponent``1(UnityEngine.Component,``0@)">
+            <summary> Assigns component T to a. Returns whether any component was found. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.Destroy(UnityEngine.Component)">
             <summary> Destroys this component. </summary>
         </member>
@@ -1895,7 +1898,7 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.SiblingHasComponent``1(UnityEngine.GameObject)">
             <summary> Checks whether any of this object's siblings has a component T. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetParentComponent``1(UnityEngine.GameObject,System.Boolean)">
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetParentComponent``1(UnityEngine.GameObject)">
             <summary> Returns the first component of type T in this object's parent. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetChildComponent``1(UnityEngine.GameObject)">
@@ -1948,6 +1951,9 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.GetComponents``1(System.Collections.Generic.IEnumerable{UnityEngine.GameObject})">
             <summary> Returns enumerable of all components of type T in all of these GameObjects. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.TryGetComponent``1(UnityEngine.GameObject,``0@)">
+            <summary> Assigns component T to a. Returns whether any component was found. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.Destroy(UnityEngine.GameObject)">
             <summary> Destroys this object. </summary>
