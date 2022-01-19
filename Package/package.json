@@ -1,7 +1,7 @@
 {
-	"name": "vheos.tools.unitycore",
+	"name": "vheos.games.core",
 	"version": "1.0.0",
-	"displayName": "Vheos Unity Core",
+	"displayName": "Vheos GameDev Core",
 	"description": "Common tools I use when tinkering with Unity projects :)",
 	"unity": "2021.1",
 	"type": "library",
