@@ -2,8 +2,20 @@ namespace Vheos.Tools.UnityCore
 {
     using UnityEngine;
     /// <summary> Wraps and virtualizes common <c><see cref="MonoBehaviour"/></c> events </summary>
-    abstract public class APlayable : MonoBehaviour
+    public class Playable : MonoBehaviour
     {
+        // Events
+        public AutoEvent OnPlayAwake
+        { get; } = new AutoEvent();
+        public AutoEvent OnPlayEnable
+        { get; } = new AutoEvent();
+        public AutoEvent OnPlayStart
+        { get; } = new AutoEvent();
+        public AutoEvent OnPlayDisable
+        { get; } = new AutoEvent();
+        public AutoEvent OnPlayDestroy
+        { get; } = new AutoEvent();
+
         // Protected
         /// <summary> Wraps <c><see langword="Awake"/></c>() </summary>
         virtual protected void PlayAwake()
@@ -21,24 +33,32 @@ namespace Vheos.Tools.UnityCore
         virtual protected void PlayDestroy()
         { }
 
-        // Internals
-        virtual protected private void PlayAwakeLate()
-        { }
-
         // Play
 #pragma warning disable IDE0051 // Remove unused private members
         private void Awake()
         {
             PlayAwake();
-            PlayAwakeLate();
+            OnPlayAwake.Invoke();
         }
         private void OnEnable()
-        => PlayEnable();
+        {
+            PlayEnable();
+            OnPlayEnable.Invoke();
+        }
         private void Start()
-        => PlayStart();
+        {
+            PlayStart();
+            OnPlayStart.Invoke();
+        }
         private void OnDisable()
-        => PlayDisable();
+        {
+            PlayDisable();
+            OnPlayDisable.Invoke();
+        }
         private void OnDestroy()
-        => PlayDestroy();
+        {
+            PlayDestroy();
+            OnPlayDestroy.Invoke();
+        }
     }
 }
