@@ -5,16 +5,11 @@ namespace Vheos.Games.Core
     public class Playable : MonoBehaviour
     {
         // Events
-        public AutoEvent OnPlayAwake
-        { get; } = new AutoEvent();
-        public AutoEvent OnPlayEnable
-        { get; } = new AutoEvent();
-        public AutoEvent OnPlayStart
-        { get; } = new AutoEvent();
-        public AutoEvent OnPlayDisable
-        { get; } = new AutoEvent();
-        public AutoEvent OnPlayDestroy
-        { get; } = new AutoEvent();
+        public readonly AutoEvent OnPlayAwake = new();
+        public readonly AutoEvent OnPlayEnable = new();
+        public readonly AutoEvent OnPlayStart = new();
+        public readonly AutoEvent OnPlayDisable = new();
+        public readonly AutoEvent OnPlayDestroy = new();
 
         // Protected
         /// <summary> Wraps <c><see langword="Awake"/></c>() </summary>

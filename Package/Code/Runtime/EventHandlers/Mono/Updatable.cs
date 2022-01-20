@@ -7,12 +7,9 @@ namespace Vheos.Games.Core
     sealed public class Updatable : ABaseComponent
     {
         // Events
-        public AutoEvent OnUpdate
-        { get; } = new AutoEvent();
-        public AutoEvent OnUpdateLate
-        { get; } = new AutoEvent();
-        public AutoEvent OnUpdateFixed
-        { get; } = new AutoEvent();
+        public readonly AutoEvent OnUpdate = new();
+        public readonly AutoEvent OnUpdateLate = new();
+        public readonly AutoEvent OnUpdateFixed = new();
 
         // Play
 #pragma warning disable IDE0051 // Remove unused private members

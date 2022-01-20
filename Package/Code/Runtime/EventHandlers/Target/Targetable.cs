@@ -10,10 +10,8 @@ namespace Vheos.Games.Core
     sealed public class Targetable : ABaseComponent
     {
         // Events
-        public AutoEvent<Targeter, bool> OnGainTargeting
-        { get; } = new AutoEvent<Targeter, bool>();
-        public AutoEvent<Targeter, bool> OnLoseTargeting
-        { get; } = new AutoEvent<Targeter, bool>();
+        public readonly AutoEvent<Targeter, bool> OnGainTargeting = new();
+        public readonly AutoEvent<Targeter, bool> OnLoseTargeting = new();
 
         // Publics
         public IReadOnlyList<Targeter> Targeters
@@ -25,7 +23,7 @@ namespace Vheos.Games.Core
         }
 
         // Privates
-        private readonly List<Targeter> _targeters = new List<Targeter>();
+        private readonly List<Targeter> _targeters = new();
         internal void TryGainTargetingFrom(Targeter targeter)
         {
             if (_targeters.TryAddUnique(targeter))

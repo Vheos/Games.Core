@@ -9,8 +9,7 @@ namespace Vheos.Games.Core
     sealed public class Teamable : ABaseComponent
     {
         // Events
-        public AutoEvent<Team, Team> OnChangeTeam
-        { get; } = new AutoEvent<Team, Team>();
+        public readonly AutoEvent<Team, Team> OnChangeTeam = new();
 
         // Publics
         public Team Team

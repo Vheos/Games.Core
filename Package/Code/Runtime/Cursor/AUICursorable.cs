@@ -12,16 +12,11 @@ namespace Vheos.Games.Core
     abstract public class AUICursorable : ABaseComponent
     {
         // Eventsd
-        public AutoEvent<AUICursor, bool> OnGainHighlight
-        { get; } = new AutoEvent<AUICursor, bool>();
-        public AutoEvent<AUICursor, bool> OnLoseHighlight
-        { get; } = new AutoEvent<AUICursor, bool>();
-        public AutoEvent<AUICursor> OnPress
-        { get; } = new AutoEvent<AUICursor>();
-        public AutoEvent<AUICursor> OnHold
-        { get; } = new AutoEvent<AUICursor>();
-        public AutoEvent<AUICursor, bool> OnRelease
-        { get; } = new AutoEvent<AUICursor, bool>();
+        public readonly AutoEvent<AUICursor, bool> OnGainHighlight = new();
+        public readonly AutoEvent<AUICursor, bool> OnLoseHighlight = new();
+        public readonly AutoEvent<AUICursor> OnPress = new();
+        public readonly AutoEvent<AUICursor> OnHold = new();
+        public readonly AutoEvent<AUICursor, bool> OnRelease = new();
         internal void TryInvokeOnGainHighlight(AUICursor cursor)
         {
             _highlighters.Add(cursor);

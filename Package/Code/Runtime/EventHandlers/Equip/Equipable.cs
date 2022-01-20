@@ -7,8 +7,7 @@ namespace Vheos.Games.Core
     sealed public class Equipable : ABaseComponent
     {
         // Events
-        public AutoEvent<Equiper, Equiper> OnChangeEquiper
-        { get; } = new AutoEvent<Equiper, Equiper>();
+        public readonly AutoEvent<Equiper, Equiper> OnChangeEquiper = new();
 
         // Getters
         public Getter<int> EquipSlot

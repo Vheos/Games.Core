@@ -11,8 +11,7 @@ namespace Vheos.Games.Core
     sealed public class Combatable : ABaseComponent
     {
         // Events
-        public AutoEvent<Combat> OnChangeCombat
-        { get; } = new AutoEvent<Combat>();
+        public readonly AutoEvent<Combat> OnChangeCombat = new();
 
         // Publics
         public Combat Combat

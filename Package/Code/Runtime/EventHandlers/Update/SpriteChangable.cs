@@ -7,8 +7,7 @@ namespace Vheos.Games.Core
     sealed public class SpriteChangable : ABaseComponent
     {
         // Events
-        public AutoEvent<Sprite, Sprite> OnChangeSprite
-        { get; } = new AutoEvent<Sprite, Sprite>();
+        public readonly AutoEvent<Sprite, Sprite> OnChangeSprite = new();
 
         // Privates
         private Sprite _previousSprite;

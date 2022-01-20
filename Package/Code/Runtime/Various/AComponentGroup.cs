@@ -9,8 +9,7 @@ namespace Vheos.Games.Core
     abstract public class AComponentGroup<T> where T : Component
     {
         // Events
-        public AutoEvent OnMembersChanged
-        { get; } = new AutoEvent();
+        public readonly AutoEvent OnMembersChanged = new();
 
         // Publics
         public IReadOnlyCollection<T> Members

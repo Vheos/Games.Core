@@ -8,8 +8,7 @@ namespace Vheos.Games.Core
     sealed public class Equiper : ABaseComponent
     {
         // Events
-        public AutoEvent<int, Equipable, Equipable> OnChangeEquipable
-        { get; } = new AutoEvent<int, Equipable, Equipable>();
+        public readonly AutoEvent<int, Equipable, Equipable> OnChangeEquipable = new();
 
         // Getters
         public Getter<int, Transform> AttachTransformsBySlot
@@ -58,7 +57,7 @@ namespace Vheos.Games.Core
         => _equipablesBySlot.TryGetValue(slot, out equipable);
 
         // Privates
-        private readonly Dictionary<int, Equipable> _equipablesBySlot = new Dictionary<int, Equipable>();
+        private readonly Dictionary<int, Equipable> _equipablesBySlot = new();
         private void AddEquipable(Equipable equipable)
         {
             _equipablesBySlot.Add(equipable.EquipSlot, equipable);

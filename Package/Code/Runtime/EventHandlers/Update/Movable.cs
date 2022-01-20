@@ -7,12 +7,9 @@ namespace Vheos.Games.Core
     sealed public class Movable : ABaseComponent
     {
         // Events
-        public AutoEvent<Vector3> OnStartMoving
-        { get; } = new AutoEvent<Vector3>();
-        public AutoEvent<Vector3, Vector3> OnMove
-        { get; } = new AutoEvent<Vector3, Vector3>();
-        public AutoEvent<Vector3> OnStop
-        { get; } = new AutoEvent<Vector3>();
+        public readonly AutoEvent<Vector3> OnStartMoving = new();
+        public readonly AutoEvent<Vector3, Vector3> OnMove = new();
+        public readonly AutoEvent<Vector3> OnStop = new();
 
         // Privates
         private Vector3 _previousPosition;

@@ -7,8 +7,7 @@ namespace Vheos.Games.Core
     sealed public class Targeter : ABaseComponent
     {
         // Events
-        public AutoEvent<Targetable, Targetable> OnChangeTarget
-        { get; } = new AutoEvent<Targetable, Targetable>();
+        public readonly AutoEvent<Targetable, Targetable> OnChangeTarget = new();
 
         // Publics
         private Targetable _target;
