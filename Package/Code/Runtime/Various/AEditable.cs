@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+#if EDIT_MODE_CALLBACKS
 namespace Vheos.Tools.UnityCore
 {
 
@@ -9,7 +9,7 @@ namespace Vheos.Tools.UnityCore
     using Tools.Extensions.General;
 
     [ExecuteInEditMode]
-    abstract public class AEditable : APlayable
+    abstract public class AEditable : Playable
     {
         // Virtuals
         virtual public void EditAwake()
@@ -42,10 +42,7 @@ namespace Vheos.Tools.UnityCore
             if (!Application.isPlaying)
                 EditAwakeAndRegisterUpdate();
             else
-            {
                 PlayAwake();
-                PlayAwakeLate();
-            }
         }
         private void Start()
         {

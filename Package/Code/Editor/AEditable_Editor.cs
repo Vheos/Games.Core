@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+﻿#if EDIT_MODE_CALLBACKS
 namespace Vheos.Tools.UnityCore.Editor
 {
     using UnityEngine;
