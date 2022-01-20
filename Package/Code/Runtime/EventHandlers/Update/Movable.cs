@@ -4,7 +4,7 @@ namespace Vheos.Tools.UnityCore
     
     [RequireComponent(typeof(Updatable))]
     [DisallowMultipleComponent]
-    sealed public class Movable : AAutoSubscriber
+    sealed public class Movable : ABaseComponent
     {
         // Events
         public AutoEvent<Vector3> OnStartMoving
@@ -39,7 +39,7 @@ namespace Vheos.Tools.UnityCore
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            SubscribeAuto(Get<Updatable>().OnUpdate, TryInvokeEvents);
+            Get<Updatable>().OnUpdate.SubscribeAuto(this, TryInvokeEvents);
         }
         protected override void PlayEnable()
         {

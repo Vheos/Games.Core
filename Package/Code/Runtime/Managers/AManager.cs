@@ -3,7 +3,7 @@ namespace Vheos.Tools.UnityCore
     using System;
     using UnityEngine;
 
-    abstract public class AManager<T> : AAutoSubscriber where T : AManager<T>
+    abstract public class AManager<T> : ABaseComponent where T : AManager<T>
     {
         // Privates
         static protected T _instance;

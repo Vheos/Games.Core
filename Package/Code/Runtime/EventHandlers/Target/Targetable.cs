@@ -7,7 +7,7 @@ namespace Vheos.Tools.UnityCore
     using Tools.Extensions.General;
 
     [DisallowMultipleComponent]
-    sealed public class Targetable : AAutoSubscriber
+    sealed public class Targetable : ABaseComponent
     {
         // Events
         public AutoEvent<Targeter, bool> OnGainTargeting

@@ -5,7 +5,7 @@ namespace Vheos.Tools.UnityCore
     using UnityEngine;
     
     [DisallowMultipleComponent]
-    sealed public class Equiper : AAutoSubscriber
+    sealed public class Equiper : ABaseComponent
     {
         // Events
         public AutoEvent<int, Equipable, Equipable> OnChangeEquipable

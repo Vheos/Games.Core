@@ -11,7 +11,7 @@ namespace Vheos.Tools.UnityCore
     using Tools.Extensions.Collections;
 
     [DefaultExecutionOrder(-1)]
-    abstract public class AComponentManager : AAutoSubscriber
+    abstract public class AComponentManager : ABaseComponent
     {
         // Publics
         static internal bool TryGetComponentManager(Behaviour component, out AComponentManager componentManager)
@@ -58,8 +58,8 @@ namespace Vheos.Tools.UnityCore
             TComponent newComponent = t.TryGetComponent(out ABaseComponent baseComponent)
                                     ? baseComponent.Add<TComponent>()
                                     : t.AddComponent<TComponent>();
-            if (!_isABaseComponent)
-                RegisterNonABaseComponent(newComponent);
+            if (!_isComponentPlayable)
+                RegisterNonPlayableComponent(newComponent);
 
             return newComponent;
         }
@@ -72,8 +72,8 @@ namespace Vheos.Tools.UnityCore
             {
                 newComponent = GameObject.Instantiate<TComponent>(prefab);
                 newComponent.name = prefab.name;
-                if (!_isABaseComponent)
-                    RegisterNonABaseComponent(newComponent);
+                if (!_isComponentPlayable)
+                    RegisterNonPlayableComponent(newComponent);
             }
             else
             {
@@ -91,20 +91,20 @@ namespace Vheos.Tools.UnityCore
         // Privates  
         static protected TManager _instance;
         static protected HashSet<TComponent> _components;
-        static protected bool _isABaseComponent;
-        static private void RegisterNonABaseComponent(TComponent component)
+        static protected bool _isComponentPlayable;
+        static private void RegisterNonPlayableComponent(TComponent component)
         {
             _components.Add(component);
-            _instance.SubscribeUntilInvoke(component.GetOrAddComponent<Playable>().OnDestroy, () => _components.Remove(component));
+            component.GetOrAddComponent<Playable>().OnPlayDestroy.SubscribeOneShot(() => _components.Remove(component));
         }
         static private void InitializeComponentsCollection()
         {
             _components = new HashSet<TComponent>();
-            if (!_isABaseComponent)
+            if (!_isComponentPlayable)
             {
                 _components.Add(FindObjectsOfType<TComponent>(true));
                 foreach (var component in _components)
-                    RegisterNonABaseComponent(component);
+                    RegisterNonPlayableComponent(component);
             }
         }
         static private void TryCreateFirstComponent(Scene scene)
@@ -133,7 +133,7 @@ namespace Vheos.Tools.UnityCore
         {
             base.PlayAwake();
             _instance = this as TManager;
-            _isABaseComponent = typeof(TComponent).IsAssignableTo<ABaseComponent>();
+            _isComponentPlayable = typeof(TComponent).IsAssignableTo<Playable>();
             AddManagedComponentType(typeof(TComponent));
 
             if (_PersistentComponents)
@@ -144,7 +144,7 @@ namespace Vheos.Tools.UnityCore
             else
             {
                 _components = new HashSet<TComponent>();
-                SubscribeAuto(SceneManager.OnStartLoadingScene, OnStartLoadingScene);
+                SceneManager.OnStartLoadingScene.SubscribeAuto(this, OnStartLoadingScene);
             }
         }
 

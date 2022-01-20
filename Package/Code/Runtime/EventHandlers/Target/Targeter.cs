@@ -4,7 +4,7 @@ namespace Vheos.Tools.UnityCore
     using UnityEngine;
 
     [DisallowMultipleComponent]
-    sealed public class Targeter : AAutoSubscriber
+    sealed public class Targeter : ABaseComponent
     {
         // Events
         public AutoEvent<Targetable, Targetable> OnChangeTarget

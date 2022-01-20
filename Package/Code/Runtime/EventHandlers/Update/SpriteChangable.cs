@@ -4,7 +4,7 @@ namespace Vheos.Tools.UnityCore
 
     [RequireComponent(typeof(Updatable))]
     [DisallowMultipleComponent]
-    sealed public class SpriteChangable : AAutoSubscriber
+    sealed public class SpriteChangable : ABaseComponent
     {
         // Events
         public AutoEvent<Sprite, Sprite> OnChangeSprite
@@ -24,7 +24,7 @@ namespace Vheos.Tools.UnityCore
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            SubscribeAuto(Get<Updatable>().OnUpdate, TryInvokeEvents);
+            Get<Updatable>().OnUpdate.SubscribeAuto(this, TryInvokeEvents);
         }
     }
 }

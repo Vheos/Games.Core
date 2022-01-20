@@ -4,192 +4,157 @@ namespace Vheos.Tools.UnityCore
     using System.Collections.Generic;
     using UnityEngine;
     using Tools.Extensions.Collections;
+    using Vheos.Tools.Extensions.General;
 
-    /// <summary> Base class for events whose subscriptions are automated by <c><see cref="AAutoSubscriber"/></c> components.  </summary>
-    abstract public class AAutoEvent
-    {
-        // Internals
-        abstract internal void EnableAutoSubscriptions(AAutoSubscriber subscriber);
-        abstract internal void DisableAutoSubscriptions(AAutoSubscriber subscriber);
-    }
-
-    /// <summary> Auto-subscription event without any parameters. </summary>
-    sealed public class AutoEvent : AAutoEvent
+    public class AutoEvent
     {
         // Publics
-        /// <summary> Invokes all current subscriptions. </summary>
         public void Invoke()
+        => _internalEvent?.Invoke();
+        public void Subscribe(params Action[] actions)
         {
-            _internalEvent?.Invoke();
-            TryRemoveUntilInvokeActions();
-        }
-
-        // Internals
-        internal void Subscribe(Action action)
-        => _internalEvent += action;
-        internal void SubscribeUntilInvoke(Action action)
-        {
-            _internalEvent += action;
-            _untilInvokeActions += action;
-        }
-        internal void SubscribeAuto(AAutoSubscriber subscriber, Action action, bool isSubscriberAlreadyEnabled)
-        {
-            if (isSubscriberAlreadyEnabled)
+            foreach (var action in actions)
                 _internalEvent += action;
-            _autoActionsBySubscriber.TryAddDefault(subscriber);
-            _autoActionsBySubscriber[subscriber] += action;
         }
-        internal override void EnableAutoSubscriptions(AAutoSubscriber subscriber)
-        => _internalEvent += _autoActionsBySubscriber[subscriber];
-        internal override void DisableAutoSubscriptions(AAutoSubscriber subscriber)
-        => _internalEvent -= _autoActionsBySubscriber[subscriber];
+        public void SubscribeOneShot(params Action[] actions)
+        {
+            _internalEvent += InvokeThenUnsubscribe;
+            void InvokeThenUnsubscribe()
+            {
+                _internalEvent -= InvokeThenUnsubscribe;
+                foreach (var action in actions)
+                    action();
+            }
+        }
+        public void SubscribeAuto(ABaseComponent subscriber, params Action[] actions)
+        {
+            var combinedAction = Delegate.Combine(actions).As<Action>();
+            subscriber.OnPlayEnable.Subscribe(() => _internalEvent += combinedAction);
+            subscriber.OnPlayDisable.Subscribe(() => _internalEvent -= combinedAction);
+            if (subscriber.IsEnabled)
+                _internalEvent += combinedAction;
+        }
+        public void Unsubscribe(params Action[] actions)
+        {
+            foreach (var action in actions)
+                _internalEvent -= action;
+        }
 
         // Privates
         private Action _internalEvent;
-        private Action _untilInvokeActions = null;
-        private readonly Dictionary<AAutoSubscriber, Action> _autoActionsBySubscriber = new Dictionary<AAutoSubscriber, Action>();
-        private void TryRemoveUntilInvokeActions()
-        {
-            if (_untilInvokeActions == null)
-                return;
-
-            _internalEvent -= _untilInvokeActions;
-            _untilInvokeActions = null;
-        }
     }
 
-    /// <summary> Auto-subscription event with 1 parameter. </summary>
-    sealed public class AutoEvent<T1> : AAutoEvent
+    public class AutoEvent<T1>
     {
         // Publics
-        /// <summary> Invokes all current subscriptions with given parameter. </summary>
         public void Invoke(T1 arg1)
+        => _internalEvent?.Invoke(arg1);
+        public void Subscribe(params Action<T1>[] actions)
         {
-            _internalEvent?.Invoke(arg1);
-            TryRemoveUntilInvokeActions();
-        }
-
-        // Internals
-        internal void Subscribe(Action<T1> action)
-        => _internalEvent += action;
-        internal void SubscribeUntilInvoke(Action<T1> action)
-        {
-            _internalEvent += action;
-            _untilInvokeActions += action;
-        }
-        internal void SubscribeAuto(AAutoSubscriber subscriber, Action<T1> action, bool isSubscriberAlreadyEnabled)
-        {
-            if (isSubscriberAlreadyEnabled)
+            foreach (var action in actions)
                 _internalEvent += action;
-            _autoActionsBySubscriber.TryAddDefault(subscriber);
-            _autoActionsBySubscriber[subscriber] += action;
         }
-        internal override void EnableAutoSubscriptions(AAutoSubscriber subscriber)
-        => _internalEvent += _autoActionsBySubscriber[subscriber];
-        internal override void DisableAutoSubscriptions(AAutoSubscriber subscriber)
-        => _internalEvent -= _autoActionsBySubscriber[subscriber];
+        public void SubscribeOneShot(params Action<T1>[] actions)
+        {
+            _internalEvent += InvokeThenUnsubscribe;
+            void InvokeThenUnsubscribe(T1 arg1)
+            {
+                _internalEvent -= InvokeThenUnsubscribe;
+                foreach (var action in actions)
+                    action(arg1);
+            }
+        }
+        public void SubscribeAuto(ABaseComponent subscriber, params Action<T1>[] actions)
+        {
+            var combinedAction = Delegate.Combine(actions).As<Action<T1>>();
+            subscriber.OnPlayEnable.Subscribe(() => _internalEvent += combinedAction);
+            subscriber.OnPlayDisable.Subscribe(() => _internalEvent -= combinedAction);
+            if (subscriber.IsEnabled)
+                _internalEvent += combinedAction;
+        }
+        public void Unsubscribe(params Action<T1>[] actions)
+        {
+            foreach (var action in actions)
+                _internalEvent -= action;
+        }
 
         // Privates
         private Action<T1> _internalEvent;
-        private Action<T1> _untilInvokeActions = null;
-        private readonly Dictionary<AAutoSubscriber, Action<T1>> _autoActionsBySubscriber = new Dictionary<AAutoSubscriber, Action<T1>>();
-        private void TryRemoveUntilInvokeActions()
-        {
-            if (_untilInvokeActions == null)
-                return;
-
-            _internalEvent -= _untilInvokeActions;
-            _untilInvokeActions = null;
-        }
     }
 
-    /// <summary> Auto-subscription event with 2 parameters. </summary>
-    sealed public class AutoEvent<T1, T2> : AAutoEvent
+    public class AutoEvent<T1, T2>
     {
         // Publics
-        /// <summary> Invokes all current subscriptions with given parameters. </summary>
         public void Invoke(T1 arg1, T2 arg2)
+        => _internalEvent?.Invoke(arg1, arg2);
+        public void Subscribe(params Action<T1, T2>[] actions)
         {
-            _internalEvent?.Invoke(arg1, arg2);
-            TryRemoveUntilInvokeActions();
-        }
-
-        // Internals
-        internal void Subscribe(Action<T1, T2> action)
-        => _internalEvent += action;
-        internal void SubscribeUntilInvoke(Action<T1, T2> action)
-        {
-            _internalEvent += action;
-            _untilInvokeActions += action;
-        }
-        internal void SubscribeAuto(AAutoSubscriber subscriber, Action<T1, T2> action, bool isSubscriberAlreadyEnabled)
-        {
-            if (isSubscriberAlreadyEnabled)
+            foreach (var action in actions)
                 _internalEvent += action;
-            _autoActionsBySubscriber.TryAddDefault(subscriber);
-            _autoActionsBySubscriber[subscriber] += action;
         }
-        internal override void EnableAutoSubscriptions(AAutoSubscriber subscriber)
-        => _internalEvent += _autoActionsBySubscriber[subscriber];
-        internal override void DisableAutoSubscriptions(AAutoSubscriber subscriber)
-        => _internalEvent -= _autoActionsBySubscriber[subscriber];
+        public void SubscribeOneShot(params Action<T1, T2>[] actions)
+        {
+            _internalEvent += InvokeThenUnsubscribe;
+            void InvokeThenUnsubscribe(T1 arg1, T2 arg2)
+            {
+                _internalEvent -= InvokeThenUnsubscribe;
+                foreach (var action in actions)
+                    action(arg1, arg2);
+            }
+        }
+        public void SubscribeAuto(ABaseComponent subscriber, params Action<T1, T2>[] actions)
+        {
+            var combinedAction = Delegate.Combine(actions).As<Action<T1, T2>>();
+            subscriber.OnPlayEnable.Subscribe(() => _internalEvent += combinedAction);
+            subscriber.OnPlayDisable.Subscribe(() => _internalEvent -= combinedAction);
+            if (subscriber.IsEnabled)
+                _internalEvent += combinedAction;
+        }
+        public void Unsubscribe(params Action<T1, T2>[] actions)
+        {
+            foreach (var action in actions)
+                _internalEvent -= action;
+        }
 
         // Privates
         private Action<T1, T2> _internalEvent;
-        private Action<T1, T2> _untilInvokeActions = null;
-        private readonly Dictionary<AAutoSubscriber, Action<T1, T2>> _autoActionsBySubscriber = new Dictionary<AAutoSubscriber, Action<T1, T2>>();
-        private void TryRemoveUntilInvokeActions()
-        {
-            if (_untilInvokeActions == null)
-                return;
-
-            _internalEvent -= _untilInvokeActions;
-            _untilInvokeActions = null;
-        }
     }
 
-    /// <summary> Auto-subscription event with 2 parameters. </summary>
-    sealed public class AutoEvent<T1, T2, T3> : AAutoEvent
+    public class AutoEvent<T1, T2, T3>
     {
         // Publics
-        /// <summary> Invokes all current subscriptions with given parameters. </summary>
         public void Invoke(T1 arg1, T2 arg2, T3 arg3)
+        => _internalEvent?.Invoke(arg1, arg2, arg3);
+        public void Subscribe(params Action<T1, T2, T3>[] actions)
         {
-            _internalEvent?.Invoke(arg1, arg2, arg3);
-            TryRemoveUntilInvokeActions();
-        }
-
-        // Internals
-        internal void Subscribe(Action<T1, T2, T3> action)
-        => _internalEvent += action;
-        internal void SubscribeUntilInvoke(Action<T1, T2, T3> action)
-        {
-            _internalEvent += action;
-            _untilInvokeActions += action;
-        }
-        internal void SubscribeAuto(AAutoSubscriber subscriber, Action<T1, T2, T3> action, bool isSubscriberAlreadyEnabled)
-        {
-            if (isSubscriberAlreadyEnabled)
+            foreach (var action in actions)
                 _internalEvent += action;
-            _autoActionsBySubscriber.TryAddDefault(subscriber);
-            _autoActionsBySubscriber[subscriber] += action;
         }
-        internal override void EnableAutoSubscriptions(AAutoSubscriber subscriber)
-        => _internalEvent += _autoActionsBySubscriber[subscriber];
-        internal override void DisableAutoSubscriptions(AAutoSubscriber subscriber)
-        => _internalEvent -= _autoActionsBySubscriber[subscriber];
+        public void SubscribeOneShot(params Action<T1, T2, T3>[] actions)
+        {
+            _internalEvent += InvokeThenUnsubscribe;
+            void InvokeThenUnsubscribe(T1 arg1, T2 arg2, T3 arg3)
+            {
+                _internalEvent -= InvokeThenUnsubscribe;
+                foreach (var action in actions)
+                    action(arg1, arg2, arg3);
+            }
+        }
+        public void SubscribeAuto(ABaseComponent subscriber, params Action<T1, T2, T3>[] actions)
+        {
+            var combinedAction = Delegate.Combine(actions).As<Action<T1, T2, T3>>();
+            subscriber.OnPlayEnable.Subscribe(() => _internalEvent += combinedAction);
+            subscriber.OnPlayDisable.Subscribe(() => _internalEvent -= combinedAction);
+            if (subscriber.IsEnabled)
+                _internalEvent += combinedAction;
+        }
+        public void Unsubscribe(params Action<T1, T2, T3>[] actions)
+        {
+            foreach (var action in actions)
+                _internalEvent -= action;
+        }
 
         // Privates
         private Action<T1, T2, T3> _internalEvent;
-        private Action<T1, T2, T3> _untilInvokeActions = null;
-        private readonly Dictionary<AAutoSubscriber, Action<T1, T2, T3>> _autoActionsBySubscriber = new Dictionary<AAutoSubscriber, Action<T1, T2, T3>>();
-        private void TryRemoveUntilInvokeActions()
-        {
-            if (_untilInvokeActions == null)
-                return;
-
-            _internalEvent -= _untilInvokeActions;
-            _untilInvokeActions = null;
-        }
     }
 }

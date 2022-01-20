@@ -7,7 +7,7 @@ namespace Vheos.Tools.UnityCore
     using Tools.Extensions.Collections;
 
     [RequireComponent(typeof(Updatable))]
-    internal class Tweener : AAutoSubscriber
+    internal class Tweener : ABaseComponent
     {
         // Internals
         static internal Tween NewTween
@@ -92,9 +92,7 @@ namespace Vheos.Tools.UnityCore
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            SubscribeAuto(Get<Updatable>().OnUpdateLate, ProcessPendingTweens);
-            SubscribeAuto(Get<Updatable>().OnUpdateLate, ProcessPlayingTweens);
-            SubscribeAuto(Get<Updatable>().OnUpdateLate, ProcessFinishedTweens);
+            Get<Updatable>().OnUpdateLate.SubscribeAuto(this, ProcessPendingTweens, ProcessPlayingTweens, ProcessFinishedTweens);
         }
         [SuppressMessage("CodeQuality", "IDE0051")]
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

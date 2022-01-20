@@ -9,7 +9,7 @@ namespace Vheos.Tools.UnityCore
 
     [RequireComponent(typeof(Collider))]
     [DisallowMultipleComponent]
-    public class UICursorable : AAutoSubscriber
+    public class UICursorable : ABaseComponent
     {
         // Eventsd
         public AutoEvent OnGainHighlight

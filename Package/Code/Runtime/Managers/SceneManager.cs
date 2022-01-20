@@ -60,7 +60,7 @@ namespace Vheos.Tools.UnityCore
                     SceneOperation.Unload => OnFinishUnloadingScene,
                     _ => default,
                 };
-                _instance.SubscribeUntilInvoke(firstOperationFinishEvent, scene => secondOperationInvoke());
+                firstOperationFinishEvent.SubscribeAuto(_instance, scene => secondOperationInvoke());
             }
 
             firstOperationInvoke();
@@ -134,7 +134,7 @@ namespace Vheos.Tools.UnityCore
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            SubscribeAuto(OnFinishLoadingScene, SceneManager_OnFinishLoadingScene);
+            OnFinishLoadingScene.SubscribeAuto(this, SceneManager_OnFinishLoadingScene);
 
             if (!_StartingScene.IsNullOrEmpty()
             && UnitySceneManager.sceneCount < 2)
