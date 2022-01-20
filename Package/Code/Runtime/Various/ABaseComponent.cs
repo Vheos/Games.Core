@@ -1,4 +1,4 @@
-namespace Vheos.Tools.UnityCore
+namespace Vheos.Games.Core
 {
     using System;
     using UnityEngine;
@@ -53,15 +53,8 @@ namespace Vheos.Tools.UnityCore
         // Privates
         internal bool IsEnabled
         { get; private set; }
-        private AComponentManager _componentManager;
 
         // Play
-        protected override void PlayAwake()
-        {
-            base.PlayAwake();
-            if (AComponentManager.TryGetComponentManager(this, out _componentManager))
-                _componentManager.RegisterComponent(this);
-        }
         protected override void PlayEnable()
         {
             IsEnabled = true;
@@ -71,12 +64,6 @@ namespace Vheos.Tools.UnityCore
         {
             IsEnabled = false;
             base.PlayDisable();
-        }
-        protected override void PlayDestroy()
-        {
-            base.PlayDestroy();
-            if (_componentManager != null)
-                _componentManager.UnregisterComponent(this);
         }
     }
 }
