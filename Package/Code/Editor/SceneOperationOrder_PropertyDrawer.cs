@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-namespace Vheos.Tools.UnityCore.Editor
+namespace Vheos.Games.Core.Editor
 {
     using UnityEditor;
     using UnityEngine;

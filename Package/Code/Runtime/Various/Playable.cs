@@ -1,4 +1,4 @@
-namespace Vheos.Tools.UnityCore
+namespace Vheos.Games.Core
 {
     using UnityEngine;
     /// <summary> Wraps and virtualizes common <c><see cref="MonoBehaviour"/></c> events </summary>

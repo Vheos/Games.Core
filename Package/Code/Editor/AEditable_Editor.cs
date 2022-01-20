@@ -1,5 +1,5 @@
 ﻿#if EDIT_MODE_CALLBACKS
-namespace Vheos.Tools.UnityCore.Editor
+namespace Vheos.Games.Core.Editor
 {
     using UnityEngine;
     using UnityEditor;

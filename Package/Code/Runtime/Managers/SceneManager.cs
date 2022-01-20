@@ -1,4 +1,4 @@
-namespace Vheos.Tools.UnityCore
+namespace Vheos.Games.Core
 {
     using System;
     using System.Linq;
@@ -10,7 +10,7 @@ namespace Vheos.Tools.UnityCore
     using Vheos.Tools.Extensions.General;
 
     [DisallowMultipleComponent]
-    public class SceneManager : AManager<SceneManager>
+    public class SceneManager : AGlobalComponent<SceneManager>
     {
         // Constants
         private const string PERSISTENT_SCENE_NAME = "Persistent";
@@ -115,8 +115,6 @@ namespace Vheos.Tools.UnityCore
             }
             OnStartLoadingScene.Invoke(UnitySceneManager.GetSceneByPath(scenePath));
         }
-        static private void SceneManager_OnFinishLoadingScene(Scene scene)
-        => ActiveScene = scene;
 
         // Initializers
         [SuppressMessage("CodeQuality", "IDE0051")]
@@ -134,11 +132,11 @@ namespace Vheos.Tools.UnityCore
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            OnFinishLoadingScene.SubscribeAuto(this, SceneManager_OnFinishLoadingScene);
+            OnFinishLoadingScene.SubscribeAuto(this, scene => ActiveScene = scene);
 
             if (!_StartingScene.IsNullOrEmpty()
             && UnitySceneManager.sceneCount < 2)
-                TransitionTo(_StartingScene);            
+                TransitionTo(_StartingScene);
         }
         protected override void PlayEnable()
         {

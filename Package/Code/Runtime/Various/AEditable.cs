@@ -1,5 +1,5 @@
 #if EDIT_MODE_CALLBACKS
-namespace Vheos.Tools.UnityCore
+namespace Vheos.Games.Core
 {
 
     using System;

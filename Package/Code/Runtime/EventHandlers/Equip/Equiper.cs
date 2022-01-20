@@ -1,4 +1,4 @@
-namespace Vheos.Tools.UnityCore
+namespace Vheos.Games.Core
 {
     using System;
     using System.Collections.Generic;

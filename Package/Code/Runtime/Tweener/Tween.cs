@@ -1,4 +1,4 @@
-namespace Vheos.Tools.UnityCore
+namespace Vheos.Games.Core
 {
     using System;
     using System.Collections.Generic;
@@ -315,7 +315,7 @@ namespace Vheos.Tools.UnityCore
             DefaultCurve.AddLinearKeys((0, 0), (1, 1));
             DefaultCurveShape = CurveShape.Normal;
             DefaultDeltaTimeType = DeltaTimeType.Scaled;
-            DefaultConflictResolution = UnityCore.ConflictResolution.Blend;
+            DefaultConflictResolution = Core.ConflictResolution.Blend;
         }
 
         // Defines

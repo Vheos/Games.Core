@@ -1,5 +1,5 @@
 {
-    "name": "Vheos.Tools.UnityCore.Editor",
+    "name": "Vheos.Games.Core.Editor",
     "rootNamespace": "",
     "references": [
         "GUID:c5156182bd413ac41bc3f003394ab1f2"
