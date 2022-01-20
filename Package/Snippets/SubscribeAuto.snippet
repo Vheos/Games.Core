@@ -1,0 +1,30 @@
+<CodeSnippets>
+
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>SubscribeAuto</Title>
+      <Shortcut>subauto</Shortcut>
+    </Header>
+    <Snippet>
+
+      <Code Language="CSharp">
+        <![CDATA[Get<$TYPE$>().$EVENT$.SubscribeAuto(this, $TYPE$_$EVENT$);
+private void $TYPE$_$EVENT$()
+{ }]]>
+      </Code>
+
+      <Declarations>
+        <Literal>
+          <ID>TYPE</ID>
+          <Default>TYPE</Default>
+        </Literal>
+        <Literal>
+          <ID>EVENT</ID>
+          <Default>EVENT</Default>
+        </Literal>
+      </Declarations>
+
+    </Snippet>
+  </CodeSnippet>
+
+</CodeSnippets>
