@@ -1,9 +1,9 @@
-namespace Vheos.Tools.UnityCore
+namespace Vheos.Games.Core
 {
     using System;
     using System.Collections.Generic;
     using UnityEngine;
-        using Tools.Extensions.General;
+    using Tools.Extensions.General;
 
     [DisallowMultipleComponent]
     sealed public class Teamable : ABaseComponent
@@ -53,28 +53,5 @@ namespace Vheos.Tools.UnityCore
         }
         public void TryLeaveTeam()
         => TryChangeTeam(null);
-    }
-
-    static public class Teamable_Extensions
-    {
-        static public bool TryGetTeam(this ABaseComponent t, out Team team)
-        {
-            if (t.TryGet(out Teamable teamable)
-            && teamable.Team.TryNonNull(out team))
-                return true;
-
-            team = null;
-            return false;
-        }
-        static public bool IsAllyOf(this ABaseComponent t, ABaseComponent a)
-        => t != a
-        && t.TryGetTeam(out var tTeam)
-        && a.TryGetTeam(out var aTeam)
-        && tTeam == aTeam;
-        static public bool IsEnemyOf(this ABaseComponent t, ABaseComponent a)
-        => t != a
-        && (!t.TryGetTeam(out var tTeam)
-            || !a.TryGetTeam(out var aTeam)
-            || tTeam != aTeam);
     }
 }
