@@ -1,4 +1,4 @@
-namespace Vheos.Tools.UnityCore
+namespace Vheos.Games.Core
 {
     using System;
     using System.Linq;
@@ -11,27 +11,7 @@ namespace Vheos.Tools.UnityCore
     using Tools.Extensions.Collections;
 
     [DefaultExecutionOrder(-1)]
-    abstract public class AComponentManager : ABaseComponent
-    {
-        // Publics
-        static internal bool TryGetComponentManager(Behaviour component, out AComponentManager componentManager)
-        => _managersByComponentType.TryGetValue(component.GetType(), out componentManager);
-        abstract internal void RegisterComponent(Behaviour component);
-        abstract internal void UnregisterComponent(Behaviour component);
-
-        // Privates
-        static private Dictionary<Type, AComponentManager> _managersByComponentType;
-        private protected void AddManagedComponentType(Type type)
-        => _managersByComponentType.Add(type, this);
-
-        // Initializers
-        [SuppressMessage("CodeQuality", "IDE0051")]
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        static private void StaticInitialize()
-        => _managersByComponentType = new Dictionary<Type, AComponentManager>();
-    }
-
-    abstract public class AComponentManager<TManager, TComponent> : AComponentManager
+    abstract public class AComponentManager<TManager, TComponent> : AGlobalComponent<TManager>
         where TManager : AComponentManager<TManager, TComponent>
         where TComponent : Behaviour
     {
@@ -55,12 +35,8 @@ namespace Vheos.Tools.UnityCore
         // Publics (adders)
         static public TComponent AddComponentTo(GameObject t)
         {
-            TComponent newComponent = t.TryGetComponent(out ABaseComponent baseComponent)
-                                    ? baseComponent.Add<TComponent>()
-                                    : t.AddComponent<TComponent>();
-            if (!_isComponentPlayable)
-                RegisterNonPlayableComponent(newComponent);
-
+            TComponent newComponent = t.AddComponent<TComponent>();
+            RegisterComponent(newComponent);
             return newComponent;
         }
         static public TComponent AddComponentTo(Component t)
@@ -71,9 +47,8 @@ namespace Vheos.Tools.UnityCore
             if (_instance._Prefab.TryNonNull(out var prefab))
             {
                 newComponent = GameObject.Instantiate<TComponent>(prefab);
+                RegisterComponent(newComponent);
                 newComponent.name = prefab.name;
-                if (!_isComponentPlayable)
-                    RegisterNonPlayableComponent(newComponent);
             }
             else
             {
@@ -88,29 +63,27 @@ namespace Vheos.Tools.UnityCore
             return newComponent;
         }
 
-        // Privates  
-        static protected TManager _instance;
+        // Privates
         static protected HashSet<TComponent> _components;
         static protected bool _isComponentPlayable;
-        static private void RegisterNonPlayableComponent(TComponent component)
+        static private void RegisterComponent(TComponent component)
         {
-            _components.Add(component);
-            component.GetOrAddComponent<Playable>().OnPlayDestroy.SubscribeOneShot(() => _components.Remove(component));
+            Debug.Log($"Registering {typeof(TComponent).Name}: {_components.Add(component)}");
+            var onDestroyEvent = _isComponentPlayable
+                ? component.As<Playable>().OnPlayDestroy
+                : component.GetOrAddComponent<Playable>().OnPlayDestroy;
+            onDestroyEvent.SubscribeOneShot(() => Debug.Log($"Unregistering {typeof(TComponent).Name}: {_components.Remove(component)}"));
         }
         static private void InitializeComponentsCollection()
         {
-            _components = new HashSet<TComponent>();
-            if (!_isComponentPlayable)
-            {
-                _components.Add(FindObjectsOfType<TComponent>(true));
-                foreach (var component in _components)
-                    RegisterNonPlayableComponent(component);
-            }
+            _components.Clear();
+            foreach (var component in FindObjectsOfType<TComponent>(true))
+                RegisterComponent(component);
         }
         static private void TryCreateFirstComponent(Scene scene)
         {
-            if (_components.Any(t => t.gameObject.scene == scene)
-            || !_instance._EnsureNonZeroComponents)
+            if (!_instance._EnsureNonZeroComponents
+            || _components.Any(t => t.gameObject.scene == scene))
                 return;
 
             InstantiateComponent().MoveToScene(scene);
@@ -123,18 +96,13 @@ namespace Vheos.Tools.UnityCore
             InitializeComponentsCollection();
             TryCreateFirstComponent(scene);
         }
-        internal override void RegisterComponent(Behaviour component)
-        => Debug.Log($"Registering {typeof(TComponent).Name}: {_components.Add(component as TComponent)}");
-        internal override void UnregisterComponent(Behaviour component)
-        => Debug.Log($"Unregistering {typeof(TComponent).Name}: {_components.Remove(component as TComponent)}");
 
         // Play
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            _instance = this as TManager;
+            _components = new HashSet<TComponent>();
             _isComponentPlayable = typeof(TComponent).IsAssignableTo<Playable>();
-            AddManagedComponentType(typeof(TComponent));
 
             if (_PersistentComponents)
             {
@@ -142,10 +110,7 @@ namespace Vheos.Tools.UnityCore
                 TryCreateFirstComponent(SceneManager.PersistentScene);
             }
             else
-            {
-                _components = new HashSet<TComponent>();
-                SceneManager.OnStartLoadingScene.SubscribeAuto(this, OnStartLoadingScene);
-            }
+                SceneManager.OnFinishLoadingScene.SubscribeAuto(this, OnStartLoadingScene);
         }
 
 #if UNITY_EDITOR
