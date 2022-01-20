@@ -133,6 +133,48 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_General.ToRect(UnityEngine.Bounds)">
             <summary> Returns this cuboid as a rectangle (with z depth removed). </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Add(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Adds (a.r, a.g, a.b, a.a) to this color's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Sub(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Subtracts (a.r, a.g, a.b, a.a) from this color's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Mul(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Multiplies this color's components by (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Div(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Divides this color's components by (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Pow(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Raises this color's components to the power of (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Mod(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Returns the remainder of this color's components divided by (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.PosMod(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Returns the positive remainder of this color's components divided by (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.RoundToMultiple(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Rounds this color's components to the nearest multiple of (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Min(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Returns the smaller between this color's components and (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Max(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Returns the greater between this color's components and (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Avg(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Returns the average of this color's components and (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.ClampMin(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Clamps this color's components to a minimum of (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.ClampMax(UnityEngine.Color,UnityEngine.Color)">
+            <summary> Clamps this color's components to a maximum of (a.r, a.g, a.b, a.a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Clamp(UnityEngine.Color,UnityEngine.Color,UnityEngine.Color)">
+            <summary> Clamps this color's components between (a.r, a.g, a.b, a.a) and (b.r, b.g, b.b, b.a).</summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Lerp(UnityEngine.Color,UnityEngine.Color,System.Single)">
             <summary> Lerps from this color to a at alpha b. </summary>
         </member>
@@ -150,6 +192,51 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Color.MapFrom01(UnityEngine.Color,UnityEngine.Color,UnityEngine.Color)">
             <summary> Maps this color from the range [0, 1] to [a, b]. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Add(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Adds (r, g, b, a) to this color's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Sub(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Subtracts (r, g, b, a) from this color's components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Mul(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Multiplies this color's components by (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Div(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Divides this color's components by (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Pow(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Raises this color's components to the power of (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Mod(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the remainder of this color's components divided by (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.PosMod(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the positive remainder of this color's components divided by (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.RoundToMultiple(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Rounds this color's components to the nearest multiple of (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Min(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the smaller between this color's components and (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Max(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the greater between this color's components and (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Avg(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Returns the average of this color's components and (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.ClampMin(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Clamps this color's components to a minimum of (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.ClampMax(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Clamps this color's components to a maximum of (r, g, b, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Lerp(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Lerps from this color to (r, g, b, a) at alpha lerpAlpha. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.LerpClamped(UnityEngine.Color,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary> Lerps from this color to (r, g, b, a) at alpha lerpAlpha (clamped between 0 and 1). </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Add(UnityEngine.Color,System.Single)">
             <summary> Adds (a, a, a, a) to this color's components. </summary>
@@ -171,6 +258,33 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Color.PosMod(UnityEngine.Color,System.Single)">
             <summary> Returns the positive remainder of this color's components divided by (a, yy). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.RoundToMultiple(UnityEngine.Color,System.Single)">
+            <summary> Rounds this color's components to the nearest multiple of (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Min(UnityEngine.Color,System.Single)">
+            <summary> Returns the smaller between this color's components and (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Max(UnityEngine.Color,System.Single)">
+            <summary> Returns the greater between this color's components and (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Avg(UnityEngine.Color,System.Single)">
+            <summary> Returns the average of this color's components and (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.ClampMin(UnityEngine.Color,System.Single)">
+            <summary> Clamps this color's components to a minimum of (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.ClampMax(UnityEngine.Color,System.Single)">
+            <summary> Clamps this color's components to a maximum of (a, a, a, a). </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Clamp(UnityEngine.Color,System.Single,System.Single)">
+            <summary> Clamps this color's components between (a, a, a, a) and (b, b, b, b).</summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.Lerp(UnityEngine.Color,System.Single,System.Single)">
+            <summary> Lerps from this color to (a, a, a, a) at alpha b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Color.LerpClamped(UnityEngine.Color,System.Single,System.Single)">
+            <summary> Lerps from this color to (a, a, a, a) at alpha b (clamped between 0 and 1). </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Color.NewR(UnityEngine.Color,System.Single)">
             <summary> Returns this color with replaced component r. </summary>
@@ -323,7 +437,7 @@
             <summary> Lerps from this vector to (x, y, z, w)  at alpha b. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.LerpClamped(UnityEngine.Vector4,System.Single,System.Single,System.Single,System.Single,System.Single)">
-            <summary> Lerps from this vector to (a, a, a, a) at alpha b (clamped between 0 and 1). </summary>
+            <summary> Lerps from this vector to (x, y, z, w) at alpha b (clamped between 0 and 1). </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.Add(UnityEngine.Vector4,System.Single)">
             <summary> Adds (a, a, a, a) to this vector's components. </summary>
@@ -2027,6 +2141,9 @@
         <member name="M:Vheos.Tools.Extensions.General.General.TryNonNull``1(``0,``0@)">
             <summary> If this object is non-null, assigns it to r and returns true. Otherwise, and sets r to null and returns false. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.TryNonNull``1(System.Nullable{``0},``0@)">
+            <summary> If this nullable is non-null, assigns it to r and returns true. Otherwise, and sets r to its default value and returns false. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.General.General.IsContainedIn``1(``0,System.Collections.Generic.ICollection{``0})">
             <summary> Tests whether this object is contained within the collection a. </summary>
         </member>
@@ -2053,6 +2170,9 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.ToInvariant(System.IFormattable,System.String)">
             <summary> Formats this value using culture-independen format a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.ChooseIf``1(``0,System.Func{``0,System.Boolean},``0)">
+            <summary> If test a evaluates to true, returns a. Otherwise, returns b. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.Consume(System.Boolean@)">
             <summary> Returns this bool, then sets it to false. </summary>
