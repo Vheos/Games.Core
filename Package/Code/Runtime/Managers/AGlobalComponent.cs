@@ -1,9 +1,9 @@
-namespace Vheos.Tools.UnityCore
+namespace Vheos.Games.Core
 {
     using System;
     using UnityEngine;
 
-    abstract public class AManager<T> : ABaseComponent where T : AManager<T>
+    abstract public class AGlobalComponent<T> : ABaseComponent where T : AGlobalComponent<T>
     {
         // Privates
         static protected T _instance;
