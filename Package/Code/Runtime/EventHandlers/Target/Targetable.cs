@@ -12,18 +12,6 @@ namespace Vheos.Games.Core
         // Events
         public readonly AutoEvent<Targeter, bool> OnGainTargeting = new();
         public readonly AutoEvent<Targeter, bool> OnLoseTargeting = new();
-
-        // Publics
-        public IReadOnlyList<Targeter> Targeters
-        => _targeters;
-        public void ClearAllTargeting()
-        {
-            foreach(var targeter in _targeters.MakeCopy())
-                TryLoseTargetingFrom(targeter);
-        }
-
-        // Privates
-        private readonly List<Targeter> _targeters = new();
         internal void TryGainTargetingFrom(Targeter targeter)
         {
             if (_targeters.TryAddUnique(targeter))
@@ -34,5 +22,17 @@ namespace Vheos.Games.Core
             if (_targeters.TryRemove(targeter))
                 OnLoseTargeting?.Invoke(targeter, _targeters.Count == 0);   // was last
         }
+
+        // Publics
+        public IReadOnlyCollection<Targeter> Targeters
+        => _targeters;
+        public void ClearAllTargeting()
+        {
+            foreach (var targeter in _targeters.MakeCopy())
+                TryLoseTargetingFrom(targeter);
+        }
+
+        // Privates
+        private readonly HashSet<Targeter> _targeters = new();
     }
 }
