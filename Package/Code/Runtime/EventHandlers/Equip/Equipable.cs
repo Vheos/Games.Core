@@ -2,7 +2,7 @@ namespace Vheos.Games.Core
 {
     using System;
     using UnityEngine;
-    
+
     [DisallowMultipleComponent]
     sealed public class Equipable : ABaseComponent
     {
@@ -10,8 +10,7 @@ namespace Vheos.Games.Core
         public readonly AutoEvent<Equiper, Equiper> OnChangeEquiper = new();
 
         // Getters
-        public Getter<int> EquipSlot
-        { get; } = new Getter<int>();
+        public Getter<int> EquipSlot { get; } = new();
 
         // Publics
         public Equiper Equiper

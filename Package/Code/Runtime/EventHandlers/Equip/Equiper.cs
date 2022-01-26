@@ -3,7 +3,7 @@ namespace Vheos.Games.Core
     using System;
     using System.Collections.Generic;
     using UnityEngine;
-    
+
     [DisallowMultipleComponent]
     sealed public class Equiper : ABaseComponent
     {

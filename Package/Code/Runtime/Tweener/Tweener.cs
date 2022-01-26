@@ -14,7 +14,7 @@ namespace Vheos.Games.Core
         {
             get
             {
-                Tween newTween = new Tween();
+                Tween newTween = new();
                 _pendingTweens.Add(newTween);
                 return newTween;
             }

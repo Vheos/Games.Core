@@ -301,7 +301,7 @@ namespace Vheos.Games.Core
             _ => () => default,
         };
         private NotSupportedException AnimationNotSupportedException<T>(DeltaValueType assignType) where T : struct
-        => new NotSupportedException($"{assignType} {typeof(T).Name} animation is not supported!");
+        => new($"{assignType} {typeof(T).Name} animation is not supported!");
 
         // Initializers
         internal Tween()
