@@ -7,7 +7,7 @@ namespace Vheos.Games.Core
     sealed public class Targeter : ABaseComponent
     {
         // Publics
-        private Targetable _targetable;
+
         public Targetable Targetable
         {
             get => _targetable;
@@ -25,5 +25,12 @@ namespace Vheos.Games.Core
                 }
             }
         }
+        public bool IsTargetingAny
+        => _targetable != null;
+        public bool IsTargeting(Targetable targetable)
+        => _targetable == targetable;
+
+        // Privates
+        private Targetable _targetable;
     }
 }
