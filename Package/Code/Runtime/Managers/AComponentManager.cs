@@ -41,10 +41,11 @@ namespace Vheos.Games.Core
         }
         static public TComponent AddComponentTo(Component t)
         => AddComponentTo(t.gameObject);
-        static public TComponent InstantiateComponent()
+        static public TComponent InstantiateComponent(TComponent prefab = null)
         {
             TComponent newComponent;
-            if (_instance._Prefab.TryNonNull(out var prefab))
+            if (prefab != null 
+            || _instance._Prefab.TryNonNull(out prefab))
             {
                 newComponent = GameObject.Instantiate<TComponent>(prefab);
                 RegisterComponent(newComponent);
@@ -68,11 +69,11 @@ namespace Vheos.Games.Core
         static protected bool _isComponentPlayable;
         static private void RegisterComponent(TComponent component)
         {
-            Debug.Log($"Registering {typeof(TComponent).Name}: {_components.Add(component)}");
+            _components.Add(component);
             var onDestroyEvent = _isComponentPlayable
                 ? component.As<Playable>().OnPlayDestroy
                 : component.GetOrAddComponent<Playable>().OnPlayDestroy;
-            onDestroyEvent.SubscribeOneShot(() => Debug.Log($"Unregistering {typeof(TComponent).Name}: {_components.Remove(component)}"));
+            onDestroyEvent.SubscribeOneShot(() => _components.Remove(component));
         }
         static private void InitializeComponentsCollection()
         {
