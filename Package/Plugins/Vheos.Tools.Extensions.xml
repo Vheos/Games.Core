@@ -862,6 +862,99 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DirectionAwayFrom(UnityEngine.Vector3,UnityEngine.Vector3)">
             <summary> Returns the direction from a towards this vector. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RayTowards(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns a ray starting at this vector and going towards towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RayAwayFrom(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary> Returns a ray starting at a and going towards this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDistanceTo(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this vector and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetTo(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this vector to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetFrom(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this vector from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionTowards(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this vector towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionAwayFrom(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this vector from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DistanceTo(UnityEngine.Vector3,UnityEngine.GameObject)">
+            <summary> Returns the distance between this vector and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.OffsetTo(UnityEngine.Vector3,UnityEngine.GameObject)">
+            <summary> Returns the offset from this vector to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.OffsetFrom(UnityEngine.Vector3,UnityEngine.GameObject)">
+            <summary> Returns the offset from a to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DirectionTowards(UnityEngine.Vector3,UnityEngine.GameObject)">
+            <summary> Returns the direction from this vector towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DirectionAwayFrom(UnityEngine.Vector3,UnityEngine.GameObject)">
+            <summary> Returns the direction from a towards this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RayTowards(UnityEngine.Vector3,UnityEngine.GameObject)">
+            <summary> Returns a ray starting at this vector and going towards towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RayAwayFrom(UnityEngine.Vector3,UnityEngine.GameObject)">
+            <summary> Returns a ray starting at a and going towards this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDistanceTo(UnityEngine.Vector3,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this vector and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetTo(UnityEngine.Vector3,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this vector to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetFrom(UnityEngine.Vector3,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this vector from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionTowards(UnityEngine.Vector3,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this vector towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionAwayFrom(UnityEngine.Vector3,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this vector from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DistanceTo(UnityEngine.Vector3,UnityEngine.Component)">
+            <summary> Returns the distance between this vector and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.OffsetTo(UnityEngine.Vector3,UnityEngine.Component)">
+            <summary> Returns the offset from this vector to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.OffsetFrom(UnityEngine.Vector3,UnityEngine.Component)">
+            <summary> Returns the offset from a to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DirectionTowards(UnityEngine.Vector3,UnityEngine.Component)">
+            <summary> Returns the direction from this vector towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.DirectionAwayFrom(UnityEngine.Vector3,UnityEngine.Component)">
+            <summary> Returns the direction from a towards this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RayTowards(UnityEngine.Vector3,UnityEngine.Component)">
+            <summary> Returns a ray starting at this vector and going towards towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RayAwayFrom(UnityEngine.Vector3,UnityEngine.Component)">
+            <summary> Returns a ray starting at a and going towards this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDistanceTo(UnityEngine.Vector3,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this vector and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetTo(UnityEngine.Vector3,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this vector to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetFrom(UnityEngine.Vector3,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this vector from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionTowards(UnityEngine.Vector3,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this vector towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionAwayFrom(UnityEngine.Vector3,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this vector from camera b's perspective. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.RotationTo(UnityEngine.Vector3,UnityEngine.Vector3)">
             <summary> Returns the rotation from this vector to a. </summary>
         </member>
@@ -885,21 +978,6 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.UntransformDirection(UnityEngine.Vector3,UnityEngine.Transform)">
             <summary> Reverts transform a from this direction. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDistanceTo(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
-            <summary> Returns the on-screen distance between this vector and a from camera b's perspective. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetTo(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
-            <summary> Returns the on-screen offset from this vector to a from camera b's perspective. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenOffsetFrom(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
-            <summary> Returns the on-screen offset from a to this vector from camera b's perspective. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionTowards(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
-            <summary> Returns the on-screen direction from this vector towards a from camera b's perspective. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.ScreenDirectionAwayFrom(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Camera)">
-            <summary> Returns the on-screen direction from a towards this vector from camera b's perspective. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.MinComp(UnityEngine.Vector3)">
             <summary> Returns the smallest of this vector's components. </summary>
@@ -1783,6 +1861,27 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionAwayFrom(UnityEngine.Component,UnityEngine.GameObject)">
             <summary> Returns the direction from a towards this object.gameObject. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.RayTowards(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns a ray starting at this object and going towards towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.RayAwayFrom(UnityEngine.Component,UnityEngine.GameObject)">
+            <summary> Returns a ray starting at a and going towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenDistanceTo(UnityEngine.Component,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this object and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenOffsetTo(UnityEngine.Component,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this object to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenOffsetFrom(UnityEngine.Component,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this object from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenDirectionTowards(UnityEngine.Component,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this object towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenDirectionAwayFrom(UnityEngine.Component,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this object from camera b's perspective. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DistanceTo(UnityEngine.Component,UnityEngine.Component)">
             <summary> Returns the distance between this object and a. </summary>
         </member>
@@ -1797,6 +1896,63 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionAwayFrom(UnityEngine.Component,UnityEngine.Component)">
             <summary> Returns the direction from a towards this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.RayTowards(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns a ray starting at this object and going towards towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.RayAwayFrom(UnityEngine.Component,UnityEngine.Component)">
+            <summary> Returns a ray starting at a and going towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenDistanceTo(UnityEngine.Component,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this object and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenOffsetTo(UnityEngine.Component,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this object to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenOffsetFrom(UnityEngine.Component,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this object from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenDirectionTowards(UnityEngine.Component,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this object towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenDirectionAwayFrom(UnityEngine.Component,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this object from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DistanceTo(UnityEngine.Component,UnityEngine.Vector3)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetTo(UnityEngine.Component,UnityEngine.Vector3)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.OffsetFrom(UnityEngine.Component,UnityEngine.Vector3)">
+            <summary> Returns the offset from a to this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionTowards(UnityEngine.Component,UnityEngine.Vector3)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.DirectionAwayFrom(UnityEngine.Component,UnityEngine.Vector3)">
+            <summary> Returns the direction from a towards this object.gameObject. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.RayTowards(UnityEngine.Component,UnityEngine.Vector3)">
+            <summary> Returns a ray starting at this object and going towards towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.RayAwayFrom(UnityEngine.Component,UnityEngine.Vector3)">
+            <summary> Returns a ray starting at a and going towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenDistanceTo(UnityEngine.Component,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this object and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenOffsetTo(UnityEngine.Component,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this object to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenOffsetFrom(UnityEngine.Component,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this object from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenDirectionTowards(UnityEngine.Component,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this object towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.ScreenDirectionAwayFrom(UnityEngine.Component,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this object from camera b's perspective. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_Component.HasComponent``1(UnityEngine.Component)">
             <inheritdoc cref="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasComponent``1(UnityEngine.GameObject)"/>
@@ -1985,6 +2141,27 @@
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionAwayFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
             <summary> Returns the direction from a towards this object. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.RayTowards(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns a ray starting at this object and going towards towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.RayAwayFrom(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary> Returns a ray starting at a and going towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenDistanceTo(UnityEngine.GameObject,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this object and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenOffsetTo(UnityEngine.GameObject,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this object to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenOffsetFrom(UnityEngine.GameObject,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this object from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenDirectionTowards(UnityEngine.GameObject,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this object towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenDirectionAwayFrom(UnityEngine.GameObject,UnityEngine.GameObject,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this object from camera b's perspective. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DistanceTo(UnityEngine.GameObject,UnityEngine.Component)">
             <summary> Returns the distance between this object and a. </summary>
         </member>
@@ -1999,6 +2176,63 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionAwayFrom(UnityEngine.GameObject,UnityEngine.Component)">
             <summary> Returns the direction from a towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.RayTowards(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns a ray starting at this object and going towards towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.RayAwayFrom(UnityEngine.GameObject,UnityEngine.Component)">
+            <summary> Returns a ray starting at a and going towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenDistanceTo(UnityEngine.GameObject,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this object and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenOffsetTo(UnityEngine.GameObject,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this object to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenOffsetFrom(UnityEngine.GameObject,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this object from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenDirectionTowards(UnityEngine.GameObject,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this object towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenDirectionAwayFrom(UnityEngine.GameObject,UnityEngine.Component,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this object from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DistanceTo(UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary> Returns the distance between this object and a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetTo(UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary> Returns the offset from this object to a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.OffsetFrom(UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary> Returns the offset from a to this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionTowards(UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary> Returns the direction from this object towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.DirectionAwayFrom(UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary> Returns the direction from a towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.RayTowards(UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary> Returns a ray starting at this object and going towards towards a. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.RayAwayFrom(UnityEngine.GameObject,UnityEngine.Vector3)">
+            <summary> Returns a ray starting at a and going towards this object. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenDistanceTo(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen distance between this object and a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenOffsetTo(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from this object to a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenOffsetFrom(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen offset from a to this object from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenDirectionTowards(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from this object towards a from camera b's perspective. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.ScreenDirectionAwayFrom(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary> Returns the on-screen direction from a towards this object from camera b's perspective. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.UnityObjects.UnityObjects_GameObject.HasComponent``1(UnityEngine.GameObject)">
             <summary> Checks whether this object has a component T. </summary>
@@ -2183,10 +2417,7 @@
         <member name="M:Vheos.Tools.Extensions.General.General.ToSign(System.Boolean)">
             <summary> Returns -1 for false and +1 for true. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.General.General.Map(System.Boolean,System.Int32,System.Int32)">
-            <summary> Returns a for false and b for true. </summary>
-        </member>
-        <member name="M:Vheos.Tools.Extensions.General.General.Map(System.Boolean,System.Single,System.Single)">
+        <member name="M:Vheos.Tools.Extensions.General.General.Map``1(System.Boolean,``0,``0)">
             <summary> Returns a for false and b for true. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.MakeCopy``1(``0[])">
