@@ -4,11 +4,11 @@ namespace Vheos.Games.Core
     using UnityEngine;
     using Vheos.Tools.Extensions.General;
 
+    [RequireComponent(typeof(Updatable))]
     [DisallowMultipleComponent]
     sealed public class Selecter : ABaseComponent
     {
         // Publics
-        private Selectable _selectable;
         public Selectable Selectable
         {
             get => _selectable;
@@ -26,23 +26,44 @@ namespace Vheos.Games.Core
                 }
             }
         }
-        public void Press()
+        public bool IsSelectingAny
+        => _selectable != null;
+        public bool IsSelecting(Selectable selectable)
+        => _selectable == selectable;
+        public bool IsHolding
+        => _selectable != null && _selectable.IsHeldBy(this);
+        public void TryPress()
         {
             if (Selectable != null)
-                Selectable.TryGetPressed(this);
+                Selectable.TryGetPressedBy(this);
         }
-        public void Release(bool fullClick)
+        public void TryRelease(bool fullClick)
         {
             if (Selectable != null)
-                Selectable.TryGetReleased(this, fullClick);
+                Selectable.TryGetReleasedBy(this, fullClick);
         }
-        public void FullClick()
+        public void TryFullClick()
         {
             if (Selectable != null)
             {
-                Selectable.TryGetPressed(this);
-                Selectable.TryGetReleased(this, true);
+                Selectable.TryGetPressedBy(this);
+                Selectable.TryGetReleasedBy(this, true);
             }
+        }
+
+        // Privates
+        private Selectable _selectable;
+        private void Updatable_OnUpdate()
+        {
+            if (Selectable != null)
+                Selectable.TryGetHeldBy(this);
+        }
+
+        // Play
+        protected override void PlayAwake()
+        {
+            base.PlayAwake();
+            Get<Updatable>().OnUpdate.SubscribeAuto(this, Updatable_OnUpdate);
         }
     }
 }
