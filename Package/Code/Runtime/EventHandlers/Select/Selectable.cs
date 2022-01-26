@@ -25,7 +25,7 @@ namespace Vheos.Games.Core
             if (_selecters.Remove(selecter))
                 OnLoseSelection.Invoke(selecter, _selecters.Count == 0);   // was last
         }
-        internal void TryGetPressed(Selecter selecter)
+        internal void TryGetPressedBy(Selecter selecter)
         {
             if (IsHeld)
                 return;
@@ -33,7 +33,7 @@ namespace Vheos.Games.Core
             Holder = selecter;
             OnPress.Invoke(selecter);
         }
-        internal void TryGetReleased(Selecter selecter, bool withinTrigger)
+        internal void TryGetReleasedBy(Selecter selecter, bool withinTrigger)
         {
             if (!IsHeldBy(selecter))
                 return;
@@ -41,7 +41,7 @@ namespace Vheos.Games.Core
             Holder = null;
             OnRelease.Invoke(selecter, withinTrigger);
         }
-        internal bool TryGetHeld(Selecter selecter)
+        internal bool TryGetHeldBy(Selecter selecter)
         {
             if (!IsHeldBy(selecter))
                 return false;
