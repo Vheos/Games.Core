@@ -10,18 +10,26 @@ namespace Vheos.Games.Core
     /// <remarks>
     /// Before calling any component-specific extension, the tween's <c><see cref="GameObject"/></c> must be initialized with either of the following: <br/>
     /// • <c><see cref="Tween.SetGameObject(GameObject)"/></c> <br/>
-    /// • <c><see cref="NewTween(Component)"/></c> 
+    /// • <c><see cref="NewTween(Component)"/></c> <br/>
+    /// • <c><see cref="NewTweenConflict(Component)"/></c> 
     /// </remarks>
     static public class Tween_Extensions
     {
         // General
-        /// <summary> Creates a new tween with pre-initialized <c><see cref="GameObject"/></c> and <c>ConflictLayer</c> </summary>
+        /// <summary> Creates a new tween with pre-initialized <c><see cref="GameObject"/></c> </summary>
         /// <param name="t"> 
-        ///     The new tween's <c><see cref="GameObject"/></c> is set to this component's <c>gameObject</c>, <br/>
-        ///     and <c>ConflictLayer</c> is set to this component's instance
+        ///     The new tween's <c><see cref="GameObject"/></c> is set to this component's <c>gameObject</c>
         /// </param>
         static public Tween NewTween(this Component t)
-        => Tweener.NewTween.SetGameObject(t.gameObject).SetConflictLayer(t);
+        => Tweener.NewTween.SetGameObject(t.gameObject);
+        /// <summary> Creates a new tween with pre-initialized <c><see cref="GameObject"/></c>, <c>ConflictLayer</c> and chosen <c><see cref="ConflictResolution"/></c> </summary>
+        /// <param name="t"> 
+        ///     This component's <c>gameObject</c> is assigned to the new tween's <c><see cref="GameObject"/></c>, <br/>
+        ///     and this component's instance is assigned to its <c>ConflictLayer</c>
+        /// </param>
+        /// <param name="conflictResolution"> The new tween's <c><see cref="ConflictResolution"/></c> </param>
+        static public Tween NewTween(this Component t, ConflictResolution conflictResolution)
+        => Tweener.NewTween.SetGameObject(t.gameObject).SetConflictLayer(t).SetConflictResolution(conflictResolution);
         /// <summary> Stops all tweens on a conflict layer defined by this component's instance </summary>
         static public void StopTweens(this Component t)
         => Tweener.StopLayer(t);
