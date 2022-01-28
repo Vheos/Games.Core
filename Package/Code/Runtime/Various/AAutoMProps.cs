@@ -57,5 +57,7 @@ namespace Vheos.Games.Core
             UpdateDirtyMProps();
             Get<Updatable>().OnUpdateLate.SubscribeAuto(this, UpdateDirtyMProps);
         }
+        public void Initialize()
+        => Initialize(Get<Renderer>());
     }
 }
