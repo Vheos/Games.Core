@@ -5,8 +5,7 @@ namespace Vheos.Games.Core
     using System.Diagnostics.CodeAnalysis;
     using UnityEngine;
     using Tools.Extensions.Math;
-    using Vheos.Tools.Extensions.UnityObjects;
-
+    using Tools.Extensions.UnityObjects;
 
     /// <summary> Represents a single animation, relative to a property's current state</summary>
     /// <remarks>
@@ -46,7 +45,7 @@ namespace Vheos.Games.Core
                 foreach (var @event in _events)
                     @event.TryInvoke();
 
-            OnFinish?.Invoke();
+            InvokeOnFinish();
             Stop();
         }
         /// <summary> Finishes this tween if the chosen condition is met </summary>
@@ -159,11 +158,9 @@ namespace Vheos.Games.Core
                 _ => () => default,
             };
 
+            _events ??= new();
             foreach (var eventInfo in eventInfos)
-            {
-                _events ??= new HashSet<ConditionalEvent>();
-                _events.Add(new ConditionalEvent(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdVariable)));
-            }
+                _events.Add(new(eventInfo.Threshold, eventInfo.Action, GetEventValuePairFunc(eventInfo.ThresholdVariable)));
 
             return this;
         }
@@ -172,7 +169,19 @@ namespace Vheos.Games.Core
         public Tween AddOnFinishEvents(params Action[] onFinishEvents)
         {
             foreach (var @event in onFinishEvents)
-                OnFinish += @event;
+                _onFinish += @event;
+
+            return this;
+        }
+        /// <summary> Adds events that will be invoked each time the curve value changes direction </summary>
+        /// <param name="onChangeCurveValueDirectionEvents"> 
+        ///     Collection of <c><see cref="Action{int}"/></c>s to be invoked <br/>
+        ///     The action's <c><see cref="int"/></c> parameter is <c>-1</c> if the curve value starts decreasing, and <c>+1</c> if it starts increasing
+        /// </param>
+        public Tween AddOnChangeCurveValueDirectionEvents(params Action<int>[] onChangeCurveValueDirectionEvents)
+        {
+            foreach (var @event in onChangeCurveValueDirectionEvents)
+                _onChangeCurveValueDirection += @event;
 
             return this;
         }
@@ -196,7 +205,7 @@ namespace Vheos.Games.Core
 
         // Internals        
         internal void InvokeOnFinish()
-        => OnFinish?.Invoke();
+        => _onFinish?.Invoke();
         internal bool HasFinished
         => _elapsed.Current >= _duration;
         internal bool IsOnAnyConflictLayer()
@@ -222,6 +231,9 @@ namespace Vheos.Games.Core
             if (_events != null)
                 foreach (var @event in _events)
                     @event.TryInvoke();
+
+            if (_onChangeCurveValueDirection != null)
+                TryInvokeOnChangeCurveValueDirection();
         }
 
         // Settings
@@ -237,10 +249,12 @@ namespace Vheos.Games.Core
         { get; private set; }
         private Action<float> _modifierFunctionInvoke;
         private HashSet<ConditionalEvent> _events;
-        private Action OnFinish;
+        private Action _onFinish;
+        private Action<int> _onChangeCurveValueDirection;
 
         // Privates (helpers)
         private (float Current, float Previous) _elapsed, _progress, _curveValue;
+        private int _curveValueDirection;
         private void UpdateElapsed(float deltaTime)
         {
             _elapsed.Previous = _elapsed.Current;
@@ -302,6 +316,16 @@ namespace Vheos.Games.Core
         };
         private NotSupportedException AnimationNotSupportedException<T>(DeltaValueType assignType) where T : struct
         => new($"{assignType} {typeof(T).Name} animation is not supported!");
+        private void TryInvokeOnChangeCurveValueDirection()
+        {
+            int previousCurveValueDirection = _curveValueDirection;
+            _curveValueDirection = _curveValue.Current.CompareTo(_curveValue.Previous);
+
+            if (_curveValueDirection != 0
+            && previousCurveValueDirection != 0
+            && _curveValueDirection != previousCurveValueDirection)
+                _onChangeCurveValueDirection.Invoke(_curveValueDirection);
+        }
 
         // Initializers
         internal Tween()
