@@ -8,21 +8,25 @@ namespace Vheos.Games.Core
     [DisallowMultipleComponent]
     sealed public class Selecter : ABaseComponent
     {
+        // Events
+        public readonly AutoEvent<Selectable, Selectable> OnChangeSelectable = new();
+
         // Publics
         public Selectable Selectable
         {
             get => _selectable;
             set
             {
-                Selectable previousTarget = _selectable;
+                Selectable previousSelectable = _selectable;
                 _selectable = value;
 
-                if (previousTarget != _selectable)
+                if (previousSelectable != _selectable)
                 {
-                    if (previousTarget != null)
-                        previousTarget.TryLoseSelectionFrom(this);
+                    if (previousSelectable != null)
+                        previousSelectable.TryLoseSelectionFrom(this);
                     if (_selectable != null)
                         _selectable.TryGainSelectionFrom(this);
+                    OnChangeSelectable.Invoke(previousSelectable, _selectable);
                 }
             }
         }

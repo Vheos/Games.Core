@@ -6,22 +6,25 @@ namespace Vheos.Games.Core
     [DisallowMultipleComponent]
     sealed public class Targeter : ABaseComponent
     {
-        // Publics
+        // Events
+        public readonly AutoEvent<Targetable, Targetable> OnChangeTargetable = new();
 
+        // Publics
         public Targetable Targetable
         {
             get => _targetable;
             set
             {
-                Targetable previousTarget = _targetable;
+                Targetable previousTargetable = _targetable;
                 _targetable = value;
 
-                if (previousTarget != _targetable)
+                if (previousTargetable != _targetable)
                 {
-                    if (previousTarget != null)
-                        previousTarget.TryLoseTargetingFrom(this);
+                    if (previousTargetable != null)
+                        previousTargetable.TryLoseTargetingFrom(this);
                     if (_targetable != null)
                         _targetable.TryGainTargetingFrom(this);
+                    OnChangeTargetable.Invoke(previousTargetable, _targetable);
                 }
             }
         }
