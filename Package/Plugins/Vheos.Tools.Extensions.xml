@@ -973,6 +973,12 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.Untransform(UnityEngine.Vector3,UnityEngine.Transform)">
             <summary> Reverts transform a from this vector. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.TransformNoScale(UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary> Applies transform a (except for scale) to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.UntransformNoScale(UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary> Reverts transform a (except for scale) from this vector. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector3.TransformDirection(UnityEngine.Vector3,UnityEngine.Transform)">
             <summary> Applies transform a to this direction. </summary>
         </member>
@@ -1282,6 +1288,12 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.Untransform(UnityEngine.Vector2,UnityEngine.Transform)">
             <summary> Reverts transform a from this vector. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.TransformNoScale(UnityEngine.Vector2,UnityEngine.Transform)">
+            <summary> Applies transform a (except for scale) to this vector. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.UntransformNoScale(UnityEngine.Vector2,UnityEngine.Transform)">
+            <summary> Reverts transform a (except for scale) from this vector. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector2.TransformDirection(UnityEngine.Vector2,UnityEngine.Transform)">
             <summary> Applies transform a to this direction. </summary>
         </member>
@@ -1338,6 +1350,33 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_float.IsZero(System.Single)">
             <summary> Checks whether this value is equal to 0. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Sin(System.Single,System.Boolean)">
+            <summary> Returns the sine of this angle </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Cos(System.Single,System.Boolean)">
+            <summary> Returns the cosine of this angle </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Tan(System.Single,System.Boolean)">
+            <summary> Returns the tangent of this angle </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Cot(System.Single,System.Boolean)">
+            <summary> Returns the cotangent of this angle </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Sec(System.Single,System.Boolean)">
+            <summary> Returns the secant of this angle </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.Csc(System.Single,System.Boolean)">
+            <summary> Returns the cosecant of this angle </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ArcSin(System.Single,System.Boolean)">
+            <summary> Returns the inverse sine of this angle </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ArcCos(System.Single,System.Boolean)">
+            <summary> Returns the inverse cosine of this angle </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_float.ArcTan(System.Single,System.Boolean)">
+            <summary> Returns the inverse tangent of this angle </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_float.Add(System.Single,System.Int32)">
             <summary> Adds a to this value. </summary>
