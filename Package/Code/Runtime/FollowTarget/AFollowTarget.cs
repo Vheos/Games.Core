@@ -15,25 +15,30 @@ namespace Vheos.Games.Core
         [SerializeField] protected Vector3 _Offset = Vector3.zero;
         [SerializeField] protected Axes _LockedAxes = 0;
         [SerializeField] [Range(0f, 1f)] protected float _HalfTime = 0.25f;
-        // Publics
-        public Transform Target
-        => _Transform;
-        public void SetTarget(GameObject target)
-        {
-            if (target.transform == this.transform)
-                return;
 
-            _Transform = target.transform;
-            _targetType = TargetType.Transform;
-            enabled = _Transform != null;
+        // Publics
+        public void SetTarget(GameObject target, bool followInstantly = false)
+        {
+            if (target.transform != this.transform)
+            {
+                _Transform = target.transform;
+                _targetType = TargetType.Transform;
+                enabled = _Transform != null;
+            }
+
+            if (followInstantly)
+                FollowOnUpdate(1f);
         }
-        public void SetTarget(Component target)
-        => SetTarget(target.gameObject);
-        public void SetTarget(Vector3 position)
+        public void SetTarget(Component target, bool followInstantly = false)
+        => SetTarget(target.gameObject, followInstantly);
+        public void SetTarget(Vector3 position, bool followInstantly = false)
         {
             _Vector = position;
             _targetType = TargetType.Vector;
             enabled = true;
+
+            if (followInstantly)
+                FollowOnUpdate(1f);
         }
 
         // Private
