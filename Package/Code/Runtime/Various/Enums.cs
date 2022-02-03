@@ -18,4 +18,12 @@ namespace Vheos.Games.Core
         Y = 1 << 1,
         Z = 1 << 2,
     }
+
+    public enum ExpandableState
+    {
+        Expanding,
+        Expanded,
+        Collapsing,
+        Collapsed,
+    }
 }
