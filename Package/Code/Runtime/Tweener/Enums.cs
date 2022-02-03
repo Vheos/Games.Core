@@ -71,4 +71,13 @@ namespace Vheos.Games.Core
         /// <remarks> Use with multiplicative functions, such as: <c>UserProperty *= deltaValue</c></remarks>    
         Ratio,
     }
+
+    public enum ColorComponentType
+    {
+        None,
+        Any,
+        SpriteRenderer,
+        TextMeshPro,
+        Image
+    }
 }
