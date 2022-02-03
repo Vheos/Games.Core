@@ -17,7 +17,7 @@ namespace Vheos.Games.Core
     /// </remarks>
     public class Tween
     {
-        // Execution
+        // Publics - Execution
         /// <summary> Creates a new, empty tween </summary>
         /// <remarks> 
         ///     The tween must be set up before it starts, which can be done in-line by chaining <c>Set_</c> and <c>Add_</c> methods <br/>
@@ -58,7 +58,7 @@ namespace Vheos.Games.Core
         static public void StopLayer(object conflictLayer)
         => Tweener.StopLayer(conflictLayer);
 
-        // Settings
+        // Publics - Settings
         /// <summary> Overrides <c>duration</c> </summary>
         /// <param name="duration"> </param>
         public Tween SetDuration(float duration)
@@ -186,7 +186,7 @@ namespace Vheos.Games.Core
             return this;
         }
 
-        // Defaults
+        // Publics - Defaults
         /// <summary> Default <c>duration</c> for all new tweens </summary>
         /// <remarks> Can be overriden per-tween with <c><see cref="SetDuration(float)"/></c> </remarks> 
         static public float DefaultDuration;
@@ -203,15 +203,17 @@ namespace Vheos.Games.Core
         /// <remarks> Can be overriden per-tween with <c><see cref="SetConflictResolution(UnityCore.ConflictResolution)"/></c> </remarks> 
         static public ConflictResolution DefaultConflictResolution;
 
+        // Publics
+        public bool HasFinished
+        => _elapsed.Current >= _duration;
+        public bool IsOnAnyConflictLayer()
+        => ConflictLayer != null;
+        public bool IsOnConflictLayer(object guid)
+        => ConflictLayer == guid;
+
         // Internals        
         internal void InvokeOnFinish()
         => _onFinish?.Invoke();
-        internal bool HasFinished
-        => _elapsed.Current >= _duration;
-        internal bool IsOnAnyConflictLayer()
-        => ConflictLayer != null;
-        internal bool IsOnConflictLayer(object guid)
-        => ConflictLayer == guid;
         internal void TrySetDefaults()
         {
             _duration ??= DefaultDuration;
@@ -236,7 +238,7 @@ namespace Vheos.Games.Core
                 TryInvokeOnChangeCurveValueDirection();
         }
 
-        // Settings
+        // Privates - Settings
         private float? _duration;
         private AnimationCurve _curve;
         private Func<float, float> _curveValueFunc;
@@ -252,7 +254,7 @@ namespace Vheos.Games.Core
         private Action _onFinish;
         private Action<int> _onChangeCurveValueDirection;
 
-        // Privates (helpers)
+        // Privates - Helpers
         private (float Current, float Previous) _elapsed, _progress, _curveValue;
         private int _curveValueDirection;
         private void UpdateElapsed(float deltaTime)
