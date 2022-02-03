@@ -7,26 +7,35 @@ namespace Vheos.Games.Core
     sealed public class Equipable : ABaseComponent
     {
         // Events
-        public readonly AutoEvent<Equiper, Equiper> OnChangeEquiper = new();
+        public readonly AutoEvent<Equiper> OnGetEquiped = new();
+        public readonly AutoEvent<Equiper> OnGetUnequiped = new();
 
         // Getters
-        public Getter<int> EquipSlot { get; } = new();
+        public readonly Getter<int> EquipSlot = new();
 
         // Publics
         public Equiper Equiper
+        { get; private set; }
+        public bool IsEquipped
+        => Equiper != null;
+        public bool IsEquippedBy(Equiper equiper)
+        => Equiper != null && Equiper == equiper;
+
+        // Internals
+        internal bool CanGetEquipped
+        => enabled && !IsEquipped;
+        internal bool CanGetUnequippedBy(Equiper equiper)
+        => enabled && IsEquippedBy(equiper);
+        internal void GetEquippedBy(Equiper equiper)
         {
-            get => _equiper;
-            internal set
-            {
-                Equiper previousEquiper = _equiper;
-                _equiper = value;
-
-                if (previousEquiper != _equiper)
-                    OnChangeEquiper?.Invoke(previousEquiper, _equiper);
-            }
+            Equiper = equiper;
+            OnGetEquiped.Invoke(Equiper);
         }
-
-        // Privates
-        private Equiper _equiper;
+        internal void GetUnequipped()
+        {
+            var previousEquiper = Equiper;
+            Equiper = null;
+            OnGetUnequiped.Invoke(previousEquiper);
+        }
     }
 }

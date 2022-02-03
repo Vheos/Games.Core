@@ -2,71 +2,94 @@ namespace Vheos.Games.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEngine;
 
     [DisallowMultipleComponent]
     sealed public class Equiper : ABaseComponent
     {
         // Events
-        public readonly AutoEvent<int, Equipable, Equipable> OnChangeEquipable = new();
-
-        // Getters
-        public Getter<int, Transform> AttachTransformsBySlot
-        { get; } = new Getter<int, Transform>();
+        public readonly AutoEvent<Equipable, Equipable> OnChangeEquipable = new();
 
         // Publics
         public IReadOnlyDictionary<int, Equipable> EquipablesBySlot
         => _equipablesBySlot;
-        public void TryEquip(Equipable equipable)
-        {
-            if (equipable == null || HasEquiped(equipable))
-                return;
-
-            int slot = equipable.EquipSlot;
-            TryGetEquiped(slot, out var previousEquipable);
-            if (previousEquipable != null)
-                RemoveEquipable(previousEquipable);
-
-            AddEquipable(equipable);
-            OnChangeEquipable?.Invoke(slot, previousEquipable, equipable);
-        }
-        public void TryUnequip(int slot)
-        {
-            if (!HasEquiped(slot))
-                return;
-
-            Equipable equipable = _equipablesBySlot[slot];
-            RemoveEquipable(equipable);
-            OnChangeEquipable?.Invoke(slot, equipable, null);
-        }
-        public void TryUnequip(Equipable equipable)
-        {
-            if (!HasEquiped(equipable))
-                return;
-
-            RemoveEquipable(equipable);
-            OnChangeEquipable?.Invoke(equipable.EquipSlot, equipable, null);
-        }
-        public bool HasEquiped(int slot)
-        => _equipablesBySlot.ContainsKey(slot);
-        public bool HasEquiped(Equipable equipable)
-        => TryGetEquiped(equipable.EquipSlot, out var equiped) && equipable == equiped;
-        public Equipable GetEquiped(int slot)
+        public Equipable GetEquipable(int slot)
         => _equipablesBySlot[slot];
-        public bool TryGetEquiped(int slot, out Equipable equipable)
+        public T GetEquipable<T>() where T : Component
+        {
+            foreach (var equipableBySlot in _equipablesBySlot)
+                if (equipableBySlot.Value.TryGet(out T component))
+                    return component;
+
+            return null;
+        }
+        public bool TryGetEquipable(int slot, out Equipable equipable)
         => _equipablesBySlot.TryGetValue(slot, out equipable);
+        public bool TryGetEquipable<T>(out T component) where T : Component
+        {
+            foreach (var equipableBySlot in _equipablesBySlot)
+                if (equipableBySlot.Value.TryGet(out component))
+                    return true;
+
+            component = null;
+            return false;
+        }
+        public bool HasEquipped(int slot)
+        => _equipablesBySlot.ContainsKey(slot);
+        public bool HasEquipped<T>() where T : Component
+        => _equipablesBySlot.Any(t => t.Value.Has<T>());
+        public bool HasEquipped(Equipable equipable)
+        => _equipablesBySlot.Any(t => t.Value == equipable);
+        public bool TryUnequip(int slot)
+        {
+            if (!TryGetEquipable(slot, out var equipable))
+                return false;
+
+            Unequip(equipable, true);
+            return true;
+        }
+        public bool TryUnequip<T>() where T : Component
+        {
+            if (!TryGetEquipable<T>(out var component))
+                return false;
+
+            Unequip(component.GetComponent<Equipable>(), true);
+            return true;
+        }
+        public bool TryUnequip(Equipable equipable)
+        {
+            if (!HasEquipped(equipable))
+                return false;
+
+            Unequip(equipable, true);
+            return true;
+        }
+        public bool TryEquip(Equipable equipable)
+        {
+            if (equipable == null
+            || !equipable.CanGetEquipped)
+                return false;
+
+            if (TryGetEquipable(equipable.EquipSlot, out var previousEquipable)
+            && previousEquipable.CanGetUnequippedBy(this))
+                Unequip(previousEquipable);
+
+            _equipablesBySlot.Add(equipable.EquipSlot, equipable);
+            equipable.GetEquippedBy(this);
+
+            OnChangeEquipable?.Invoke(previousEquipable, equipable);
+            return true;
+        }
 
         // Privates
         private readonly Dictionary<int, Equipable> _equipablesBySlot = new();
-        private void AddEquipable(Equipable equipable)
-        {
-            _equipablesBySlot.Add(equipable.EquipSlot, equipable);
-            equipable.Equiper = this;
-        }
-        private void RemoveEquipable(Equipable equipable)
+        private void Unequip(Equipable equipable, bool callOnChangeEquipable = false)
         {
             _equipablesBySlot.Remove(equipable.EquipSlot);
-            equipable.Equiper = null;
+            equipable.GetUnequipped();
+            if (callOnChangeEquipable)
+                OnChangeEquipable?.Invoke(equipable, null);
         }
     }
 }

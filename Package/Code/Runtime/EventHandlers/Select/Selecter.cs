@@ -2,7 +2,6 @@ namespace Vheos.Games.Core
 {
     using System;
     using UnityEngine;
-    using Vheos.Tools.Extensions.General;
 
     [RequireComponent(typeof(Updatable))]
     [DisallowMultipleComponent]
@@ -17,41 +16,58 @@ namespace Vheos.Games.Core
             get => _selectable;
             set
             {
-                Selectable previousSelectable = _selectable;
-                _selectable = value;
+                if (value != null && !value.CanGetSelectedBy(this)
+                || value == null && _selectable == null)
+                    return;
 
-                if (previousSelectable != _selectable)
-                {
-                    if (previousSelectable != null)
-                        previousSelectable.TryLoseSelectionFrom(this);
-                    if (_selectable != null)
-                        _selectable.TryGainSelectionFrom(this);
-                    OnChangeSelectable.Invoke(previousSelectable, _selectable);
-                }
+                Selectable previousSelectable = _selectable;
+                if (previousSelectable != null
+                && previousSelectable.CanGetUnselectedBy(this))
+                    previousSelectable.GetUnselectedBy(this);
+
+                _selectable = value;
+                if (_selectable != null)
+                    _selectable.GetSelectedBy(this);
+
+                OnChangeSelectable.Invoke(previousSelectable, _selectable);
             }
+        }
+        public bool TryGetSelectable<T>(out T component) where T : Component
+        {
+            if (_selectable != null
+            && _selectable.TryGet(out component))
+                return true;
+
+            component = default;
+            return false;
         }
         public bool IsSelectingAny
         => _selectable != null;
         public bool IsSelecting(Selectable selectable)
         => _selectable == selectable;
+        public bool IsSelecting<T>() where T : Component
+        => _selectable != null && _selectable.Has<T>();
         public bool IsHolding
         => _selectable != null && _selectable.IsHeldBy(this);
         public void TryPress()
         {
-            if (Selectable != null)
-                Selectable.TryGetPressedBy(this);
+            if (Selectable != null
+            && Selectable.CanGetPressed)
+                Selectable.GetPressedBy(this);
         }
         public void TryRelease(bool fullClick)
         {
-            if (Selectable != null)
-                Selectable.TryGetReleasedBy(this, fullClick);
+            if (Selectable != null
+            && Selectable.CanGetReleasedBy(this))
+                Selectable.GetReleasedBy(this, fullClick);
         }
         public void TryFullClick()
         {
-            if (Selectable != null)
+            if (Selectable != null
+            && Selectable.CanGetPressed)
             {
-                Selectable.TryGetPressedBy(this);
-                Selectable.TryGetReleasedBy(this, true);
+                Selectable.GetPressedBy(this);
+                Selectable.GetReleasedBy(this, true);
             }
         }
 
@@ -59,8 +75,9 @@ namespace Vheos.Games.Core
         private Selectable _selectable;
         private void Updatable_OnUpdate()
         {
-            if (Selectable != null)
-                Selectable.TryGetHeldBy(this);
+            if (Selectable != null
+            && Selectable.CanGetHeldBy(this))
+                Selectable.GetHeldBy(this);
         }
 
         // Play

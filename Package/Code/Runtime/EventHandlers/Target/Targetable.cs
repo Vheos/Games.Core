@@ -12,27 +12,48 @@ namespace Vheos.Games.Core
         // Events
         public readonly AutoEvent<Targeter, bool> OnGainTargeting = new();
         public readonly AutoEvent<Targeter, bool> OnLoseTargeting = new();
-        internal void TryGainTargetingFrom(Targeter targeter)
-        {
-            if (_targeters.TryAddUnique(targeter))
-                OnGainTargeting?.Invoke(targeter, _targeters.Count == 1);   // is first
-        }
-        internal void TryLoseTargetingFrom(Targeter targeter)
-        {
-            if (_targeters.TryRemove(targeter))
-                OnLoseTargeting?.Invoke(targeter, _targeters.Count == 0);   // was last
-        }
 
         // Publics
         public IReadOnlyCollection<Targeter> Targeters
         => _targeters;
-        public void ClearAllTargeting()
+        public bool IsTargeted
+        => _targeters.Count != 0;
+        public bool IsTargetedBy(Targeter targeter)
+        => _targeters.Contains(targeter);
+        public void ClearTargeting()
         {
-            foreach (var targeter in _targeters.MakeCopy())
-                TryLoseTargetingFrom(targeter);
+            if (IsTargeted)
+                foreach (var targeter in _targeters.MakeCopy())
+                {
+                    _targeters.Remove(targeter);
+                    OnLoseTargeting?.Invoke(targeter, _targeters.Count == 0);
+                }
+        }
+
+        // Internals
+        internal bool CanGetTargetedBy(Targeter targeter)
+        => enabled && !IsTargetedBy(targeter);
+        internal bool CanGetUntargetedBy(Targeter targeter)
+        => enabled && IsTargetedBy(targeter);
+        internal void GetTargetedBy(Targeter targeter)
+        {
+            _targeters.Add(targeter);
+            OnGainTargeting?.Invoke(targeter, _targeters.Count == 1);   // is first
+        }
+        internal void GetUntargetedBy(Targeter targeter)
+        {
+            _targeters.Remove(targeter);
+            OnLoseTargeting?.Invoke(targeter, _targeters.Count == 0);   // is last
         }
 
         // Privates
         private readonly HashSet<Targeter> _targeters = new();
+
+        // Play
+        protected override void PlayDisable()
+        {
+            base.PlayDisable();
+            ClearTargeting();
+        }
     }
 }

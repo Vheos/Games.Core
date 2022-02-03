@@ -15,50 +15,6 @@ namespace Vheos.Games.Core
         public readonly AutoEvent<Selecter> OnPress = new();
         public readonly AutoEvent<Selecter> OnHold = new();
         public readonly AutoEvent<Selecter, bool> OnRelease = new();
-        internal bool TryGainSelectionFrom(Selecter selecter)
-        {
-            if (!enabled || _selecters.Contains(selecter))
-                return false;
-
-            _selecters.Add(selecter);
-            OnGainSelection.Invoke(selecter, _selecters.Count == 1);   // is first
-            return true;
-        }
-        internal bool TryLoseSelectionFrom(Selecter selecter)
-        {
-            if (!enabled || !_selecters.Contains(selecter))
-                return false;
-
-            _selecters.Remove(selecter);
-            OnLoseSelection.Invoke(selecter, _selecters.Count == 0);   // was last
-            return true;
-        }
-        internal bool TryGetPressedBy(Selecter selecter)
-        {
-            if (!enabled || IsHeld)
-                return false;
-
-            Holder = selecter;
-            OnPress.Invoke(selecter);
-            return true;
-        }
-        internal bool TryGetReleasedBy(Selecter selecter, bool withinTrigger)
-        {
-            if (!enabled || !IsHeldBy(selecter))
-                return false;
-
-            Holder = null;
-            OnRelease.Invoke(selecter, withinTrigger);
-            return true;
-        }
-        internal bool TryGetHeldBy(Selecter selecter)
-        {
-            if (!enabled || !IsHeldBy(selecter))
-                return false;
-
-            OnHold.Invoke(selecter);
-            return true;
-        }
 
         // Publics
         public IReadOnlyCollection<Selecter> Selecters
@@ -67,6 +23,8 @@ namespace Vheos.Games.Core
         { get; private set; }
         public bool IsSelected
         => _selecters.Count > 0;
+        public bool IsSelectedBy(Selecter selecter)
+        => _selecters.Contains(selecter);
         public bool IsHeld
         => Holder != null;
         public bool IsHeldBy(Selecter selecter)
@@ -88,15 +46,44 @@ namespace Vheos.Games.Core
             }
         }
 
+        // Internals
+        internal bool CanGetSelectedBy(Selecter selecter)
+        => enabled && !IsSelectedBy(selecter);
+        internal bool CanGetUnselectedBy(Selecter selecter)
+        => enabled && IsSelectedBy(selecter);
+        internal bool CanGetPressed
+        => enabled && !IsHeld;
+        internal bool CanGetReleasedBy(Selecter selecter)
+        => enabled && IsHeldBy(selecter);
+        internal bool CanGetHeldBy(Selecter selecter)
+        => enabled && IsHeldBy(selecter);
+        internal void GetSelectedBy(Selecter selecter)
+        {
+            _selecters.Add(selecter);
+            OnGainSelection.Invoke(selecter, _selecters.Count == 1);   // is first
+        }
+        internal void GetUnselectedBy(Selecter selecter)
+        {
+            _selecters.Remove(selecter);
+            OnLoseSelection.Invoke(selecter, _selecters.Count == 0);   // was last
+        }
+        internal void GetPressedBy(Selecter selecter)
+        {
+            Holder = selecter;
+            OnPress.Invoke(selecter);
+        }
+        internal void GetReleasedBy(Selecter selecter, bool withinTrigger)
+        {
+            Holder = null;
+            OnRelease.Invoke(selecter, withinTrigger);
+        }
+        internal void GetHeldBy(Selecter selecter)
+        => OnHold.Invoke(selecter);
+
         // Privates
-        private HashSet<Selecter> _selecters;
+        private readonly HashSet<Selecter> _selecters = new();
 
         // Play
-        protected override void PlayAwake()
-        {
-            base.PlayAwake();
-            _selecters = new HashSet<Selecter>();
-        }
         protected override void PlayDisable()
         {
             base.PlayDisable();
