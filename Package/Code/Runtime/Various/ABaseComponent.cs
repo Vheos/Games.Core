@@ -2,6 +2,7 @@ namespace Vheos.Games.Core
 {
     using System;
     using UnityEngine;
+    using Tools.Extensions.UnityObjects;
 
     /// <summary> Base class for all user-made components. Wraps component-related methods </summary>
     /// <remarks> If <b><c>EDIT_MODE_CALLBACKS</c></b> is defined, will derive from <c><see cref="AEditable"/></c> and provide callbacks for edit mode events </remarks>
@@ -13,11 +14,37 @@ namespace Vheos.Games.Core
 #endif
     {
         // Publics
+        protected void BindEnableDisable(ABaseComponent a)
+        {
+            a.OnPlayEnable.Subscribe(Enable);
+            a.OnPlayDisable.Subscribe(Disable);
+        }
+        protected void BindDestroyObject(ABaseComponent a)
+        => a.OnPlayDestroy.SubscribeOneShot(this.DestroyObject);
+
+        // Publics - Active
         public bool IsActive
         {
             get => gameObject.activeSelf;
             set => gameObject.SetActive(value);
         }
+        public void Activate()
+        => gameObject.SetActive(true);
+        public void Deactivate()
+        => gameObject.SetActive(false);
+
+        // Publics - Enable
+        public bool IsEnabled
+        {
+            get => enabled;
+            set => enabled = value;
+        }
+        public void Enable()
+        => enabled = true;
+        public void Disable()
+        => enabled = false;
+
+        // Publics - Component
         /// <summary> Adds component of type <typeparamref name="T"/> to current <c><see cref="GameObject"/></c>. </summary>
         /// <returns> The component that has just been added.</returns>
         public T Add<T>() where T : Component
@@ -50,19 +77,19 @@ namespace Vheos.Games.Core
         public T GetOrAdd<T>() where T : Component
         => TryGetComponent<T>(out var component) ? component : Add<T>();
 
-        // Privates
-        internal bool IsEnabled
+        // Internals
+        internal bool IsBetweenEnableAndDisable
         { get; private set; }
 
         // Play
         protected override void PlayEnable()
         {
-            IsEnabled = true;
+            IsBetweenEnableAndDisable = true;
             base.PlayEnable();
         }
         protected override void PlayDisable()
         {
-            IsEnabled = false;
+            IsBetweenEnableAndDisable = false;
             base.PlayDisable();
         }
     }
