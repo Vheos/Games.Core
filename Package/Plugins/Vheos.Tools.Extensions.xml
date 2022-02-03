@@ -23,13 +23,13 @@
             <summary> Adds elements a to this collection. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Add``1(System.Collections.Generic.ICollection{``0},``0[])">
-            <summary> Adds elements a to this collection. </summary>
+            <inheritdoc cref="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Add``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})"/>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Remove``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
             <summary> Removes elements a from this collection. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Remove``1(System.Collections.Generic.ICollection{``0},``0[])">
-            <summary> Removes elements a from this collection. </summary>
+            <inheritdoc cref="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.Remove``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})"/>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryGet``1(System.Collections.Generic.ICollection{``0},``0,``0@)">
             <summary> If this collection contains the element a, assigns it to r and returns true. Otherwise, sets r to its default value and returns false. </summary>
@@ -40,8 +40,20 @@
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryAddUnique``1(System.Collections.Generic.ICollection{``0},``0)">
             <summary> Adds element a if this collection doesn't contain it. Returns whether the collection was modified or not. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryAddUnique``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary> Adds each element from a if this collection doesn't contain it. Returns whether the collection was modified or not. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryAddUnique``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <inheritdoc cref="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryAddUnique``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryRemove``1(System.Collections.Generic.ICollection{``0},``0)">
             <summary> Removes element a if this collection contains it. Returns whether the collection was modified or not. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryRemove``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary> Adds each element from a if this collection doesn't contain it. Returns whether the collection was modified or not. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryRemove``1(System.Collections.Generic.ICollection{``0},``0[])">
+            <inheritdoc cref="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.TryRemove``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})"/>
         </member>
         <member name="M:Vheos.Tools.Extensions.Collections.Collections_ICollection.IsEmpty``1(System.Collections.Generic.ICollection{``0})">
             <summary> Tests whether this collection contains zero element. </summary>
@@ -544,17 +556,35 @@
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.XZ(UnityEngine.Vector4)">
             <summary> Returns this vector's XZ components. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.XW(UnityEngine.Vector4)">
+            <summary> Returns this vector's XW components. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.YX(UnityEngine.Vector4)">
             <summary> Returns this vector's YX components. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.YZ(UnityEngine.Vector4)">
             <summary> Returns this vector's YZ components. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.YW(UnityEngine.Vector4)">
+            <summary> Returns this vector's YW components. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ZX(UnityEngine.Vector4)">
             <summary> Returns this vector's ZX components. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ZY(UnityEngine.Vector4)">
             <summary> Returns this vector's ZY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.ZW(UnityEngine.Vector4)">
+            <summary> Returns this vector's ZW components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.WX(UnityEngine.Vector4)">
+            <summary> Returns this vector's WX components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.WY(UnityEngine.Vector4)">
+            <summary> Returns this vector's WY components. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.WZ(UnityEngine.Vector4)">
+            <summary> Returns this vector's WZ components. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.Math.Math_Vector4.XYZ(UnityEngine.Vector4)">
             <summary> Returns this vector's XYZ components. </summary>
@@ -2446,6 +2476,9 @@
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.ChooseIf``1(``0,System.Func{``0,System.Boolean},``0)">
             <summary> If test a evaluates to true, returns a. Otherwise, returns b. </summary>
+        </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.Toggle(System.Boolean@)">
+            <summary> Inverts this bool </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.Consume(System.Boolean@)">
             <summary> Returns this bool, then sets it to false. </summary>
