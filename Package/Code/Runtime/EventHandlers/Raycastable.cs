@@ -6,14 +6,17 @@ namespace Vheos.Games.Core
     using TMPro;
     using Tools.Extensions.General;
     using Tools.Extensions.UnityObjects;
+    using System.Linq;
 
     [RequireComponent(typeof(Collider))]
     [DisallowMultipleComponent]
     public class Raycastable : ABaseComponent
     {
         // Publics
-        public Collider Trigger
+        public Collider Collider
         { get; private set; }
+        public void AddRaycastTest(Func<Vector3, bool> test)
+        => _raycastTests.Add(test);
         public bool PerformRaycastTests(Vector3 position)
         {
             if (_raycastTests != null)
@@ -22,69 +25,73 @@ namespace Vheos.Games.Core
                         return false;
             return true;
         }
-        public void AddRaycastTest(Func<Vector3, bool> test)
-        => _raycastTests.Add(test);
+        public Component RaycastTarget
+        {
+            get => _raycastTarget;
+            set
+            {
+                if (value == _raycastTarget)
+                    return;
+                else if (!IsValidRaycastTarget(value))
+                {
+                    Disable();
+                    return;
+                }
+
+                switch (_raycastTarget)
+                {
+                    case SpriteRenderer: _raycastTests.Remove(SpriteRenderer_RaycastTest); break;
+                }
+
+                _raycastTarget = value;
+                TryFitBoxColliderToRenderer();
+
+                switch (_raycastTarget)
+                {
+                    case SpriteRenderer: _raycastTests.Add(SpriteRenderer_RaycastTest); break;
+                }
+            }
+        }
 
         // Privates
-        private HashSet<Func<Vector3, bool>> _raycastTests;
-        private RaycastTargetType _raycastTargetType;
-        private RaycastTargetType FindRaycastTargetType()
+        private Component _raycastTarget;
+        private readonly HashSet<Func<Vector3, bool>> _raycastTests = new();
+        private bool IsValidRaycastTarget(Component component)
+        => component switch
         {
-            foreach (var component in GetComponents<Component>())
-                switch (component)
-                {
-                    case Collider _: return RaycastTargetType.Collider;
-                    case SpriteRenderer _: return RaycastTargetType.Sprite;
-                    case TextMeshPro _: return RaycastTargetType.TextMeshPro;
-                }
-            return RaycastTargetType.Collider;
+            UnityEngine.Collider or SpriteRenderer or TextMeshPro => true,
+            _ => false,
+        };
+        private Component FindFirstValidRaycastTarget()
+        => GetComponents<Component>().FirstOrDefault(t => IsValidRaycastTarget(t));
+        private void TryFitBoxColliderToRenderer()
+        {
+            if (!Collider.TryAs(out BoxCollider boxCollider)
+            || !TryGet(out Renderer renderer))
+                return;
+
+            boxCollider.size = renderer.localBounds.size;
         }
-        private void TryFitBoxColliderToMesh()
+        private bool SpriteRenderer_RaycastTest(Vector3 position)
         {
-            if (Trigger.TryAs(out BoxCollider boxCollider)
-            && TryGet(out MeshFilter meshFilter))
-                boxCollider.size = meshFilter.mesh.bounds.size;
-        }
-        private bool SpriteRaycastTest(Vector3 position)
-        {
-            if (Get<SpriteRenderer>().sprite.TryNonNull(out var sprite)
+            if (_raycastTarget.As<SpriteRenderer>().sprite.TryNonNull(out var sprite)
             && sprite.texture.isReadable)
                 return sprite.PositionToPixelAlpha(position, transform) >= 0.5f;
             return true;
-        }
-        private void TMPTryFitBoxColliderOnTextChanged(UnityEngine.Object textMeshPro)
-        {
-            if (textMeshPro == Get<TextMeshPro>())
-                TryFitBoxColliderToMesh();
-        }
-
-        // Defines
-        private enum RaycastTargetType
-        {
-            Collider,
-            Sprite,
-            TextMeshPro,
         }
 
         // Play
         protected override void PlayAwake()
         {
-            base.PlayAwake();
-            _raycastTests = new HashSet<Func<Vector3, bool>>();
-            _raycastTargetType = FindRaycastTargetType();
-            Trigger = Get<Collider>();
-            TryFitBoxColliderToMesh();
-
-            switch (_raycastTargetType)
-            {
-                case RaycastTargetType.Sprite: AddRaycastTest(SpriteRaycastTest); break;
-                case RaycastTargetType.TextMeshPro: TMPro_EventManager.TEXT_CHANGED_EVENT.Add(TMPTryFitBoxColliderOnTextChanged); break;
-            }
+            base.PlayStart();
+            Collider = Get<Collider>();
+            RaycastTarget = FindFirstValidRaycastTarget();
         }
-        protected override void PlayDestroy()
+        protected override void PlayStart()
         {
-            base.PlayDestroy();
-            TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(TMPTryFitBoxColliderOnTextChanged);
+            base.PlayStart();
+            if (_raycastTarget is TextMeshPro)
+                TryFitBoxColliderToRenderer();
         }
     }
 }
