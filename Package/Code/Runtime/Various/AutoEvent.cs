@@ -31,7 +31,7 @@ namespace Vheos.Games.Core
             var combinedAction = Delegate.Combine(actions).As<Action>();
             subscriber.OnPlayEnable.Subscribe(() => _internalEvent += combinedAction);
             subscriber.OnPlayDisable.Subscribe(() => _internalEvent -= combinedAction);
-            if (subscriber.IsEnabled)
+            if (subscriber.IsBetweenEnableAndDisable)
                 _internalEvent += combinedAction;
         }
         public void Unsubscribe(params Action[] actions)
@@ -69,7 +69,7 @@ namespace Vheos.Games.Core
             var combinedAction = Delegate.Combine(actions).As<Action<T1>>();
             subscriber.OnPlayEnable.Subscribe(() => _internalEvent += combinedAction);
             subscriber.OnPlayDisable.Subscribe(() => _internalEvent -= combinedAction);
-            if (subscriber.IsEnabled)
+            if (subscriber.IsBetweenEnableAndDisable)
                 _internalEvent += combinedAction;
         }
         public void Unsubscribe(params Action<T1>[] actions)
@@ -107,7 +107,7 @@ namespace Vheos.Games.Core
             var combinedAction = Delegate.Combine(actions).As<Action<T1, T2>>();
             subscriber.OnPlayEnable.Subscribe(() => _internalEvent += combinedAction);
             subscriber.OnPlayDisable.Subscribe(() => _internalEvent -= combinedAction);
-            if (subscriber.IsEnabled)
+            if (subscriber.IsBetweenEnableAndDisable)
                 _internalEvent += combinedAction;
         }
         public void Unsubscribe(params Action<T1, T2>[] actions)
@@ -145,7 +145,7 @@ namespace Vheos.Games.Core
             var combinedAction = Delegate.Combine(actions).As<Action<T1, T2, T3>>();
             subscriber.OnPlayEnable.Subscribe(() => _internalEvent += combinedAction);
             subscriber.OnPlayDisable.Subscribe(() => _internalEvent -= combinedAction);
-            if (subscriber.IsEnabled)
+            if (subscriber.IsBetweenEnableAndDisable)
                 _internalEvent += combinedAction;
         }
         public void Unsubscribe(params Action<T1, T2, T3>[] actions)
