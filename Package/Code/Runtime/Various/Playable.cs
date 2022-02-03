@@ -5,7 +5,6 @@ namespace Vheos.Games.Core
     public class Playable : MonoBehaviour
     {
         // Events
-        public readonly AutoEvent OnPlayAwake = new();
         public readonly AutoEvent OnPlayEnable = new();
         public readonly AutoEvent OnPlayStart = new();
         public readonly AutoEvent OnPlayDisable = new();
@@ -33,7 +32,6 @@ namespace Vheos.Games.Core
         private void Awake()
         {
             PlayAwake();
-            OnPlayAwake.Invoke();
         }
         private void OnEnable()
         {
