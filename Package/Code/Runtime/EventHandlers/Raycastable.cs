@@ -41,14 +41,21 @@ namespace Vheos.Games.Core
                 switch (_raycastTarget)
                 {
                     case SpriteRenderer: _raycastTests.Remove(SpriteRenderer_RaycastTest); break;
+                    //case TextMeshPro: TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(TextMeshPro_OnTextChanged); break;
                 }
 
                 _raycastTarget = value;
-                TryFitBoxColliderToRenderer();
 
                 switch (_raycastTarget)
                 {
-                    case SpriteRenderer: _raycastTests.Add(SpriteRenderer_RaycastTest); break;
+                    case SpriteRenderer t:
+                        _raycastTests.Add(SpriteRenderer_RaycastTest);
+                        TryFitBoxColliderToRenderer(t);
+                        break;
+                    case TextMeshPro t:
+                        //TMPro_EventManager.TEXT_CHANGED_EVENT.Add(TextMeshPro_OnTextChanged);
+                        TryFitBoxColliderToRenderer(t.renderer);
+                        break;
                 }
             }
         }
@@ -64,10 +71,9 @@ namespace Vheos.Games.Core
         };
         private Component FindFirstValidRaycastTarget()
         => GetComponents<Component>().FirstOrDefault(t => IsValidRaycastTarget(t));
-        private void TryFitBoxColliderToRenderer()
+        private void TryFitBoxColliderToRenderer(Renderer renderer)
         {
-            if (!Collider.TryAs(out BoxCollider boxCollider)
-            || !TryGet(out Renderer renderer))
+            if (!Collider.TryAs(out BoxCollider boxCollider))
                 return;
 
             boxCollider.size = renderer.localBounds.size;
@@ -79,6 +85,13 @@ namespace Vheos.Games.Core
                 return sprite.PositionToPixelAlpha(position, transform) >= 0.5f;
             return true;
         }
+        private void TextMeshPro_OnTextChanged(UnityEngine.Object obj)
+        {
+            if (obj != _raycastTarget)
+                return;
+
+            TryFitBoxColliderToRenderer(_raycastTarget.As<TextMeshPro>().renderer);
+        }
 
         // Play
         protected override void PlayAwake()
@@ -86,12 +99,6 @@ namespace Vheos.Games.Core
             base.PlayStart();
             Collider = Get<Collider>();
             RaycastTarget = FindFirstValidRaycastTarget();
-        }
-        protected override void PlayStart()
-        {
-            base.PlayStart();
-            if (_raycastTarget is TextMeshPro)
-                TryFitBoxColliderToRenderer();
         }
     }
 }
