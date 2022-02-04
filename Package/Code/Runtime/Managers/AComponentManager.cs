@@ -73,7 +73,7 @@ namespace Vheos.Games.Core
             var onDestroyEvent = _isComponentPlayable
                 ? component.As<Playable>().OnPlayDestroy
                 : component.GetOrAddComponent<Playable>().OnPlayDestroy;
-            onDestroyEvent.SubscribeOneShot(() => _components.Remove(component));
+            onDestroyEvent.SubOnce(() => _components.Remove(component));
         }
         static private void InitializeComponentsCollection()
         {
@@ -111,7 +111,7 @@ namespace Vheos.Games.Core
                 TryCreateFirstComponent(SceneManager.PersistentScene);
             }
             else
-                SceneManager.OnFinishLoadingScene.SubscribeAuto(this, OnStartLoadingScene);
+                SceneManager.OnFinishLoadingScene.SubEnableDisable(this, OnStartLoadingScene);
         }
 
 #if UNITY_EDITOR

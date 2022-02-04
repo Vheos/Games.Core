@@ -345,7 +345,7 @@ namespace Vheos.Games.Core
         }
 
         // Defines
-        private class GenericArgs<T> where T : struct
+        private struct GenericArgs<T> where T : struct
         {
             // Publics
             public Action<T> AssignFunc;
@@ -358,7 +358,7 @@ namespace Vheos.Games.Core
                 Value = value;
             }
         }
-        private class ConditionalEvent
+        private struct ConditionalEvent
         {
             // Privates
             internal void TryInvoke()

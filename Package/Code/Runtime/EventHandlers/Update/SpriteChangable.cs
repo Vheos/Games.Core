@@ -23,7 +23,7 @@ namespace Vheos.Games.Core
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            Get<Updatable>().OnUpdate.SubscribeAuto(this, TryInvokeEvents);
+            Get<Updatable>().OnUpdate.SubEnableDisable(this, TryInvokeEvents);
         }
     }
 }

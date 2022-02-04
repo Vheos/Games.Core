@@ -60,7 +60,7 @@ namespace Vheos.Games.Core
                     SceneOperation.Unload => OnFinishUnloadingScene,
                     _ => default,
                 };
-                firstOperationFinishEvent.SubscribeAuto(_instance, scene => secondOperationInvoke());
+                firstOperationFinishEvent.SubEnableDisable(_instance, scene => secondOperationInvoke());
             }
 
             firstOperationInvoke();
@@ -132,7 +132,7 @@ namespace Vheos.Games.Core
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            OnFinishLoadingScene.SubscribeAuto(this, scene => ActiveScene = scene);
+            OnFinishLoadingScene.SubEnableDisable(this, scene => ActiveScene = scene);
 
             if (!_StartingScene.IsNullOrEmpty()
             && UnitySceneManager.sceneCount < 2)

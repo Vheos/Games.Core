@@ -92,7 +92,7 @@ namespace Vheos.Games.Core
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            Get<Updatable>().OnUpdateLate.SubscribeAuto(this, ProcessPendingTweens, ProcessPlayingTweens, ProcessFinishedTweens);
+            Get<Updatable>().OnUpdateLate.SubEnableDisable(this, ProcessPendingTweens, ProcessPlayingTweens, ProcessFinishedTweens);
         }
         [SuppressMessage("CodeQuality", "IDE0051")]
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

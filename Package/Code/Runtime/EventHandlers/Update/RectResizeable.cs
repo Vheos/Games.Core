@@ -27,7 +27,7 @@ namespace Vheos.Games.Core
         {
             base.PlayAwake();
             _rectTransform = Get<RectTransform>();
-            Get<Updatable>().OnUpdate.SubscribeAuto(this, TryInvokeEvents);
+            Get<Updatable>().OnUpdate.SubEnableDisable(this, TryInvokeEvents);
         }
         protected override void PlayEnable()
         {

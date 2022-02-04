@@ -16,11 +16,11 @@ namespace Vheos.Games.Core
         // Publics
         protected void BindEnableDisable(ABaseComponent a)
         {
-            a.OnPlayEnable.Subscribe(Enable);
-            a.OnPlayDisable.Subscribe(Disable);
+            a.OnPlayEnable.SubDestroy(this, Enable);
+            a.OnPlayDisable.SubDestroy(this, Disable);
         }
         protected void BindDestroyObject(ABaseComponent a)
-        => a.OnPlayDestroy.SubscribeOneShot(this.DestroyObject);
+        => a.OnPlayDestroy.SubDestroy(this, this.DestroyObject);
 
         // Publics - Active
         public bool IsActive

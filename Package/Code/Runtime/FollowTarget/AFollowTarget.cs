@@ -67,7 +67,7 @@ namespace Vheos.Games.Core
         {
             base.PlayAwake();
             _targetType = _Transform != null ? TargetType.Transform : TargetType.Vector;
-            Get<Updatable>().OnUpdate.SubscribeAuto(this, TryFollowTargetOnUpdate);
+            Get<Updatable>().OnUpdate.SubEnableDisable(this, TryFollowTargetOnUpdate);
         }
     }
 }

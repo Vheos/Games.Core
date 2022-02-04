@@ -84,7 +84,7 @@ namespace Vheos.Games.Core
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            Get<Updatable>().OnUpdate.SubscribeAuto(this, Updatable_OnUpdate);
+            Get<Updatable>().OnUpdate.SubEnableDisable(this, Updatable_OnUpdate);
         }
     }
 }
