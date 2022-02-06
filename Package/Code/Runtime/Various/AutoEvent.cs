@@ -1,10 +1,7 @@
 namespace Vheos.Games.Core
 {
     using System;
-    using System.Collections.Generic;
     using UnityEngine;
-    using Tools.Extensions.Collections;
-    using Vheos.Tools.Extensions.General;
 
     public class AutoEvent
     {
@@ -79,7 +76,7 @@ namespace Vheos.Games.Core
                     action?.Invoke(arg1);
             }
         }
-        public void SubDestroy(ABaseComponent subscriber, params Action[] actions)
+        public void SubDestroy(ABaseComponent subscriber, params Action<T1>[] actions)
         {
             var combinedAction = Delegate.Combine(actions) as Action<T1>;
             _internalEvent += combinedAction;
@@ -125,7 +122,7 @@ namespace Vheos.Games.Core
                     action?.Invoke(arg1, arg2);
             }
         }
-        public void SubDestroy(ABaseComponent subscriber, params Action[] actions)
+        public void SubDestroy(ABaseComponent subscriber, params Action<T1, T2>[] actions)
         {
             var combinedAction = Delegate.Combine(actions) as Action<T1, T2>;
             _internalEvent += combinedAction;
@@ -171,7 +168,7 @@ namespace Vheos.Games.Core
                     action?.Invoke(arg1, arg2, arg3);
             }
         }
-        public void SubDestroy(ABaseComponent subscriber, params Action[] actions)
+        public void SubDestroy(ABaseComponent subscriber, params Action<T1, T2, T3>[] actions)
         {
             var combinedAction = Delegate.Combine(actions) as Action<T1, T2, T3>;
             _internalEvent += combinedAction;
