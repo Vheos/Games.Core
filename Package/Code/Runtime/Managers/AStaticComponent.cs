@@ -3,7 +3,7 @@ namespace Vheos.Games.Core
     using System;
     using UnityEngine;
 
-    abstract public class AGlobalComponent<T> : ABaseComponent where T : AGlobalComponent<T>
+    abstract public class AStaticComponent<T> : ABaseComponent where T : AStaticComponent<T>
     {
         // Privates
         static protected T _instance;
