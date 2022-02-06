@@ -34,7 +34,8 @@ namespace Vheos.Games.Core
         => other != this && (Team == null || Team != other.Team);
         public void TryChangeTeam(Team newTeam)
         {
-            if (!enabled || newTeam == Team)
+            if (!isActiveAndEnabled
+            || newTeam == Team)
                 return;
 
             Team previousTeam = Team;

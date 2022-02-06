@@ -32,9 +32,9 @@ namespace Vheos.Games.Core
 
         // Internals
         internal bool CanGetTargetedBy(Targeter targeter)
-        => enabled && !IsTargetedBy(targeter);
+        => isActiveAndEnabled && !IsTargetedBy(targeter);
         internal bool CanGetUntargetedBy(Targeter targeter)
-        => enabled && IsTargetedBy(targeter);
+        => isActiveAndEnabled && IsTargetedBy(targeter);
         internal void GetTargetedBy(Targeter targeter)
         {
             _targeters.Add(targeter);

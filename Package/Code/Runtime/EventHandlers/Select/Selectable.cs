@@ -48,15 +48,15 @@ namespace Vheos.Games.Core
 
         // Internals
         internal bool CanGetSelectedBy(Selecter selecter)
-        => enabled && !IsSelectedBy(selecter);
+        => isActiveAndEnabled && !IsSelectedBy(selecter);
         internal bool CanGetUnselectedBy(Selecter selecter)
-        => enabled && IsSelectedBy(selecter);
+        => isActiveAndEnabled && IsSelectedBy(selecter);
         internal bool CanGetPressed
-        => enabled && !IsHeld;
+        => isActiveAndEnabled && !IsHeld;
         internal bool CanGetReleasedBy(Selecter selecter)
-        => enabled && IsHeldBy(selecter);
+        => isActiveAndEnabled && IsHeldBy(selecter);
         internal bool CanGetHeldBy(Selecter selecter)
-        => enabled && IsHeldBy(selecter);
+        => isActiveAndEnabled && IsHeldBy(selecter);
         internal void GetSelectedBy(Selecter selecter)
         {
             _selecters.Add(selecter);

@@ -23,9 +23,9 @@ namespace Vheos.Games.Core
 
         // Internals
         internal bool CanGetEquipped
-        => enabled && !IsEquipped;
+        => isActiveAndEnabled && !IsEquipped;
         internal bool CanGetUnequippedBy(Equiper equiper)
-        => enabled && IsEquippedBy(equiper);
+        => isActiveAndEnabled && IsEquippedBy(equiper);
         internal void GetEquippedBy(Equiper equiper)
         {
             Equiper = equiper;

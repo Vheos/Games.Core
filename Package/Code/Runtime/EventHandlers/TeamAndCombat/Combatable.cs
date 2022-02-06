@@ -24,7 +24,9 @@ namespace Vheos.Games.Core
         => this != other && Combat == other.Combat;
         public void TryStartCombatWith(Combatable target)
         {
-            if (!this.enabled || !target.enabled || target == this)
+            if (!this.isActiveAndEnabled 
+            || !target.isActiveAndEnabled
+            || target == this)
                 return;
 
             Combat combat;
