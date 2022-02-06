@@ -82,6 +82,11 @@ namespace Vheos.Games.Core
         { get; private set; }
 
         // Play
+        protected override void PlayAwake()
+        {
+            base.PlayAwake();
+            AStaticManager.TryRegisterComponent(this);
+        }
         protected override void PlayEnable()
         {
             IsBetweenEnableAndDisable = true;
