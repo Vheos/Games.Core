@@ -54,6 +54,7 @@ namespace Vheos.Games.Core
                         break;
                     case TextMeshPro t:
                         //TMPro_EventManager.TEXT_CHANGED_EVENT.Add(TextMeshPro_OnTextChanged);
+                        t.ForceMeshUpdate();
                         TryFitBoxColliderToRenderer(t.renderer);
                         break;
                 }
@@ -96,7 +97,7 @@ namespace Vheos.Games.Core
         // Play
         protected override void PlayAwake()
         {
-            base.PlayStart();
+            base.PlayAwake();
             Collider = Get<Collider>();
             RaycastTarget = FindFirstValidRaycastTarget();
         }
