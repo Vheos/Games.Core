@@ -166,7 +166,7 @@ namespace Vheos.Games.Core
         }
         /// <summary> Adds events that will be invoked when this tween finishes </summary>
         /// <param name="onFinishEvents"> Collection of <c><see cref="Action"/></c>s to be invoked </param>
-        public Tween AddOnFinishEvents(params Action[] onFinishEvents)
+        public Tween OnFinish(params Action[] onFinishEvents)
         {
             foreach (var @event in onFinishEvents)
                 _onFinish += @event;
@@ -178,7 +178,7 @@ namespace Vheos.Games.Core
         ///     Collection of <c><see cref="Action{int}"/></c>s to be invoked <br/>
         ///     The action's <c><see cref="int"/></c> parameter is <c>-1</c> if the curve value starts decreasing, and <c>+1</c> if it starts increasing
         /// </param>
-        public Tween AddOnChangeCurveValueDirectionEvents(params Action<int>[] onChangeCurveValueDirectionEvents)
+        public Tween OnChangeCurveValueDirection(params Action<int>[] onChangeCurveValueDirectionEvents)
         {
             foreach (var @event in onChangeCurveValueDirectionEvents)
                 _onChangeCurveValueDirection += @event;

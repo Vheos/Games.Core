@@ -10,7 +10,7 @@ namespace Vheos.Games.Core
     using Vheos.Tools.Extensions.General;
 
     [DisallowMultipleComponent]
-    public class SceneManager : AGlobalComponent<SceneManager>
+    public class SceneManager : AStaticComponent<SceneManager>
     {
         // Constants
         private const string PERSISTENT_SCENE_NAME = "Persistent";
