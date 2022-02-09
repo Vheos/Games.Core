@@ -1,12 +1,12 @@
 namespace Vheos.Games.Core
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using UnityEngine;
     using TMPro;
     using Tools.Extensions.General;
     using Tools.Extensions.UnityObjects;
-    using System.Linq;
 
     [RequireComponent(typeof(Collider))]
     [DisallowMultipleComponent]
@@ -41,7 +41,7 @@ namespace Vheos.Games.Core
                 switch (_raycastTarget)
                 {
                     case SpriteRenderer: _raycastTests.Remove(SpriteRenderer_RaycastTest); break;
-                    //case TextMeshPro: TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(TextMeshPro_OnTextChanged); break;
+                        //case TextMeshPro: TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(TextMeshPro_OnTextChanged); break;
                 }
 
                 _raycastTarget = value;
@@ -77,7 +77,11 @@ namespace Vheos.Games.Core
             if (!Collider.TryAs(out BoxCollider boxCollider))
                 return;
 
-            boxCollider.size = renderer.localBounds.size;
+            var targetSize = renderer.localBounds.size;
+            if (renderer is SpriteRenderer)
+                targetSize.z = 0f;
+
+            boxCollider.size = targetSize;
         }
         private bool SpriteRenderer_RaycastTest(Vector3 position)
         {
