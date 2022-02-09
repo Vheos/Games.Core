@@ -6,13 +6,13 @@ namespace Vheos.Games.Core
     abstract public class AStaticComponent<T> : ABaseComponent where T : AStaticComponent<T>
     {
         // Privates
-        static protected T _instance;
+        static public T Instance { get; private set; }
 
         // Play
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            _instance = this as T;
+            Instance = this as T;
         }
     }
 }
