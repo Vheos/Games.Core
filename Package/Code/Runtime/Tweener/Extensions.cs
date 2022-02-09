@@ -46,6 +46,8 @@ namespace Vheos.Games.Core
         }
         static public ColorComponentType FindColorComponentType(this Component t)
         => t.gameObject.FindColorComponentType();
+        static public Tween SetInterrupt(this Tween t)
+        => t.SetConflictResolution(ConflictResolution.Interrupt);
 
         // Transform   
         /// <summary> Offsets this tween's <c><see cref="GameObject"/></c>'s <c><see cref="Transform.position"/></c> to the chosen position </summary>
