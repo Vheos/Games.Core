@@ -13,13 +13,13 @@ namespace Vheos.Games.Core
         Playable
 #endif
     {
-        // Publics
-        protected void BindEnableDisable(ABaseComponent a)
+        // Publics - BindEvents
+        public void BindEnableDisable(ABaseComponent a)
         {
             a.OnPlayEnable.SubDestroy(this, Enable);
             a.OnPlayDisable.SubDestroy(this, Disable);
         }
-        protected void BindDestroyObject(ABaseComponent a)
+        public void BindDestroyObject(ABaseComponent a)
         => a.OnPlayDestroy.SubDestroy(this, this.DestroyObject);
 
         // Publics - Active
