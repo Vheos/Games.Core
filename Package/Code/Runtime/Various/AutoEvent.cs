@@ -32,17 +32,15 @@ namespace Vheos.Games.Core
         }
         public void SubDestroy(ABaseComponent subscriber, params Action[] actions)
         {
-            var combinedAction = Delegate.Combine(actions) as Action;
-            _internalEvent += combinedAction;
-            subscriber.OnPlayDestroy.Sub(() => _internalEvent -= combinedAction);
+            Sub(actions);
+            subscriber.OnPlayDestroy.Sub(() => Unsub(actions));
         }
         public void SubEnableDisable(ABaseComponent subscriber, params Action[] actions)
         {
-            var combinedAction = Delegate.Combine(actions) as Action;
-            subscriber.OnPlayEnable.Sub(() => _internalEvent += combinedAction);
-            subscriber.OnPlayDisable.Sub(() => _internalEvent -= combinedAction);
+            subscriber.OnPlayEnable.Sub(() => Sub(actions));
+            subscriber.OnPlayDisable.Sub(() => Unsub(actions));
             if (subscriber.IsBetweenEnableAndDisable)
-                _internalEvent += combinedAction;
+                Sub(actions);
         }
 
         // Privates
@@ -78,17 +76,15 @@ namespace Vheos.Games.Core
         }
         public void SubDestroy(ABaseComponent subscriber, params Action<T1>[] actions)
         {
-            var combinedAction = Delegate.Combine(actions) as Action<T1>;
-            _internalEvent += combinedAction;
-            subscriber.OnPlayDestroy.Sub(() => _internalEvent -= combinedAction);
+            Sub(actions);
+            subscriber.OnPlayDestroy.Sub(() => Unsub(actions));
         }
         public void SubEnableDisable(ABaseComponent subscriber, params Action<T1>[] actions)
         {
-            var combinedAction = Delegate.Combine(actions) as Action<T1>;
-            subscriber.OnPlayEnable.Sub(() => _internalEvent += combinedAction);
-            subscriber.OnPlayDisable.Sub(() => _internalEvent -= combinedAction);
+            subscriber.OnPlayEnable.Sub(() => Sub(actions));
+            subscriber.OnPlayDisable.Sub(() => Unsub(actions));
             if (subscriber.IsBetweenEnableAndDisable)
-                _internalEvent += combinedAction;
+                Sub(actions);
         }
 
         // Privates
@@ -124,17 +120,15 @@ namespace Vheos.Games.Core
         }
         public void SubDestroy(ABaseComponent subscriber, params Action<T1, T2>[] actions)
         {
-            var combinedAction = Delegate.Combine(actions) as Action<T1, T2>;
-            _internalEvent += combinedAction;
-            subscriber.OnPlayDestroy.Sub(() => _internalEvent -= combinedAction);
+            Sub(actions);
+            subscriber.OnPlayDestroy.Sub(() => Unsub(actions));
         }
         public void SubEnableDisable(ABaseComponent subscriber, params Action<T1, T2>[] actions)
         {
-            var combinedAction = Delegate.Combine(actions) as Action<T1, T2>;
-            subscriber.OnPlayEnable.Sub(() => _internalEvent += combinedAction);
-            subscriber.OnPlayDisable.Sub(() => _internalEvent -= combinedAction);
+            subscriber.OnPlayEnable.Sub(() => Sub(actions));
+            subscriber.OnPlayDisable.Sub(() => Unsub(actions));
             if (subscriber.IsBetweenEnableAndDisable)
-                _internalEvent += combinedAction;
+                Sub(actions);
         }
 
         // Privates
@@ -170,17 +164,15 @@ namespace Vheos.Games.Core
         }
         public void SubDestroy(ABaseComponent subscriber, params Action<T1, T2, T3>[] actions)
         {
-            var combinedAction = Delegate.Combine(actions) as Action<T1, T2, T3>;
-            _internalEvent += combinedAction;
-            subscriber.OnPlayDestroy.Sub(() => _internalEvent -= combinedAction);
+            Sub(actions);
+            subscriber.OnPlayDestroy.Sub(() => Unsub(actions));
         }
         public void SubEnableDisable(ABaseComponent subscriber, params Action<T1, T2, T3>[] actions)
         {
-            var combinedAction = Delegate.Combine(actions) as Action<T1, T2, T3>;
-            subscriber.OnPlayEnable.Sub(() => _internalEvent += combinedAction);
-            subscriber.OnPlayDisable.Sub(() => _internalEvent -= combinedAction);
+            subscriber.OnPlayEnable.Sub(() => Sub(actions));
+            subscriber.OnPlayDisable.Sub(() => Unsub(actions));
             if (subscriber.IsBetweenEnableAndDisable)
-                _internalEvent += combinedAction;
+                Sub(actions);
         }
 
         // Privates
