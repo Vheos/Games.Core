@@ -10,20 +10,20 @@ namespace Vheos.Games.Core
     abstract public class AFollowTarget : ABaseComponent
     {
         // Inspector
-        [SerializeField] protected Transform _Transform = null;
-        [SerializeField] protected Vector3 _Vector = Vector3.zero;
-        [SerializeField] protected Vector3 _Offset = Vector3.zero;
-        [SerializeField] protected Axes _LockedAxes = 0;
-        [SerializeField] [Range(0f, 1f)] protected float _HalfTime = 0.25f;
+        [field: SerializeField] public Transform Transform { get; private set; } = null;
+        [field: SerializeField] public Vector3 Vector { get; private set; } = Vector3.zero;
+        [field: SerializeField] public Vector3 Offset { get; private set; } = Vector3.zero;
+        [field: SerializeField] public Axes LockedAxes { get; private set; } = 0;
+        [field: SerializeField, Range(0f, 1f)] public float HalfTime { get; private set; } = 0.25f;
 
         // Publics
         public void SetTarget(GameObject target, bool followInstantly = false)
         {
             if (target.transform != this.transform)
             {
-                _Transform = target.transform;
+                Transform = target.transform;
                 _targetType = TargetType.Transform;
-                enabled = _Transform != null;
+                enabled = Transform != null;
             }
 
             if (followInstantly)
@@ -33,7 +33,7 @@ namespace Vheos.Games.Core
         => SetTarget(target.gameObject, followInstantly);
         public void SetTarget(Vector3 position, bool followInstantly = false)
         {
-            _Vector = position;
+            Vector = position;
             _targetType = TargetType.Vector;
             enabled = true;
 
@@ -46,10 +46,10 @@ namespace Vheos.Games.Core
         private void TryFollowTargetOnUpdate()
         {
             if (_targetType == TargetType.Transform
-            && _Transform == null)
+            && Transform == null)
                 return;
 
-            FollowOnUpdate(Utility.HalfTimeToLerpAlpha(_HalfTime));
+            FollowOnUpdate(Utility.HalfTimeToLerpAlpha(HalfTime));
         }
         abstract protected void FollowOnUpdate(float lerpAlpha);
         abstract protected Vector3 TargetVector
@@ -66,7 +66,7 @@ namespace Vheos.Games.Core
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            _targetType = _Transform != null ? TargetType.Transform : TargetType.Vector;
+            _targetType = Transform != null ? TargetType.Transform : TargetType.Vector;
             Get<Updatable>().OnUpdate.SubEnableDisable(this, TryFollowTargetOnUpdate);
         }
     }

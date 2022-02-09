@@ -16,9 +16,9 @@ namespace Vheos.Games.Core
         private const string PERSISTENT_SCENE_NAME = "Persistent";
 
         // Inspector
-        [ScenePicker] [SerializeField] protected string _StartingScene;
-        [SerializeField] protected SceneOperationOrder _SceneTransitionOrder;
-        [SerializeField] protected bool _WaitInBetween;
+        [field: SerializeField, ScenePicker] public string StartingScene { get; private set; }
+        [field: SerializeField] public SceneOperationOrder SceneTransitionOrder { get; private set; }
+        [field: SerializeField] public bool WaitInBetween { get; private set; }
 
         // Events
         static public AutoEvent<Scene> OnStartLoadingScene
@@ -36,7 +36,7 @@ namespace Vheos.Games.Core
         static public bool TransitionTo(string targetScenePath)
         {
             // Cache
-            var transitionOrder = _instance._SceneTransitionOrder;
+            var transitionOrder = Instance.SceneTransitionOrder;
             var previousActiveScene = ActiveScene;
             Action firstOperationInvoke = transitionOrder.FirstOperation switch
             {
@@ -52,7 +52,7 @@ namespace Vheos.Games.Core
             };
 
             // Execute
-            if (_instance._WaitInBetween)
+            if (Instance.WaitInBetween)
             {
                 AutoEvent<Scene> firstOperationFinishEvent = transitionOrder.FirstOperation switch
                 {
@@ -60,11 +60,11 @@ namespace Vheos.Games.Core
                     SceneOperation.Unload => OnFinishUnloadingScene,
                     _ => default,
                 };
-                firstOperationFinishEvent.SubEnableDisable(_instance, scene => secondOperationInvoke());
+                firstOperationFinishEvent.SubEnableDisable(Instance, scene => secondOperationInvoke());
             }
 
             firstOperationInvoke();
-            if (!_instance._WaitInBetween)
+            if (!Instance.WaitInBetween)
                 secondOperationInvoke();
 
             return true;
@@ -134,9 +134,9 @@ namespace Vheos.Games.Core
             base.PlayAwake();
             OnFinishLoadingScene.SubEnableDisable(this, scene => ActiveScene = scene);
 
-            if (!_StartingScene.IsNullOrEmpty()
+            if (!StartingScene.IsNullOrEmpty()
             && UnitySceneManager.sceneCount < 2)
-                TransitionTo(_StartingScene);
+                TransitionTo(StartingScene);
         }
         protected override void PlayEnable()
         {

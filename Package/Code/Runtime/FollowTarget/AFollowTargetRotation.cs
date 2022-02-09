@@ -12,17 +12,17 @@ namespace Vheos.Games.Core
             get
             {
                 Vector3 targetAngles = TargetVector;
-                if (_LockedAxes != 0)
+                if (LockedAxes != 0)
                 {
                     Vector3 currentAngles = transform.rotation.eulerAngles;
-                    if (_LockedAxes.HasFlag(Axes.X))
+                    if (LockedAxes.HasFlag(Axes.X))
                         targetAngles.x = currentAngles.x;
-                    if (_LockedAxes.HasFlag(Axes.Y))
+                    if (LockedAxes.HasFlag(Axes.Y))
                         targetAngles.y = currentAngles.y;
-                    if (_LockedAxes.HasFlag(Axes.Z))
+                    if (LockedAxes.HasFlag(Axes.Z))
                         targetAngles.z = currentAngles.z;
                 }
-                return Quaternion.Euler(targetAngles + _Offset);
+                return Quaternion.Euler(targetAngles + Offset);
             }
         }
 

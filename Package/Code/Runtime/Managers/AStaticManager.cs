@@ -27,7 +27,8 @@ namespace Vheos.Games.Core
             if (!_managersByComponentType.TryGetValue(component.GetType(), out var manager))
                 return;
 
-            manager.RegisterComponent(component);        }
+            manager.RegisterComponent(component);
+        }
 
         // Initializers
         [SuppressMessage("CodeQuality", "IDE0051")]
@@ -41,16 +42,16 @@ namespace Vheos.Games.Core
         where TComponent : ABaseComponent
     {
         // Inspector
-        [SerializeField] protected TComponent _Prefab;
-        [SerializeField] protected bool _PersistentComponents;
-        [SerializeField] protected bool _EnsureAnyComponent;
+        [field: SerializeField] public TComponent Prefab { get; private set; }
+        [field: SerializeField] public bool PersistentComponents { get; private set; }
+        [field: SerializeField] public bool EnsureAnyComponent { get; private set; }
 
         // Publics (getters)
         static public TComponent InstantiateComponent(TComponent prefab = null)
         {
             TComponent newComponent;
             if (prefab != null
-            || _instance._Prefab.TryNonNull(out prefab))
+            || _instance.Prefab.TryNonNull(out prefab))
             {
                 newComponent = GameObject.Instantiate<TComponent>(prefab);
                 newComponent.name = prefab.name;
@@ -62,7 +63,7 @@ namespace Vheos.Games.Core
             }
 
             // Set scene           
-            if (_instance._PersistentComponents)
+            if (_instance.PersistentComponents)
                 newComponent.MoveToScene(SceneManager.PersistentScene);
 
             return newComponent;
@@ -90,7 +91,7 @@ namespace Vheos.Games.Core
         }
         static private void TryCreateFirstComponent()
         {
-            if (!_instance._EnsureAnyComponent
+            if (!_instance.EnsureAnyComponent
             || GameObject.FindObjectOfType<TComponent>(true) != null)
                 return;
 

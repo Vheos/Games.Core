@@ -9,8 +9,8 @@ namespace Vheos.Games.Core
         protected override Vector3 TargetVector
         => _targetType switch
         {
-            TargetType.Transform => _Transform.rotation.eulerAngles,
-            TargetType.Vector => _Vector,
+            TargetType.Transform => Transform.rotation.eulerAngles,
+            TargetType.Vector => Vector,
             _ => default,
         };
     }

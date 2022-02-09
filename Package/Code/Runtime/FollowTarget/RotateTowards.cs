@@ -11,8 +11,8 @@ namespace Vheos.Games.Core
         protected override Vector3 TargetVector
         => Quaternion.LookRotation(_targetType switch
         {
-            TargetType.Transform => this.DirectionTowards(_Transform),
-            TargetType.Vector => this.DirectionTowards(_Vector),
+            TargetType.Transform => this.DirectionTowards(Transform),
+            TargetType.Vector => this.DirectionTowards(Vector),
             _ => default,
         })
         .eulerAngles;
