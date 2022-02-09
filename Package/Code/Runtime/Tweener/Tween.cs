@@ -166,7 +166,7 @@ namespace Vheos.Games.Core
         }
         /// <summary> Adds events that will be invoked when this tween finishes </summary>
         /// <param name="onFinishEvents"> Collection of <c><see cref="Action"/></c>s to be invoked </param>
-        public Tween OnFinish(params Action[] onFinishEvents)
+        public Tween AddEventsOnFinish(params Action[] onFinishEvents)
         {
             foreach (var @event in onFinishEvents)
                 _onFinish += @event;
@@ -174,14 +174,14 @@ namespace Vheos.Games.Core
             return this;
         }
         /// <summary> Adds events that will be invoked each time the curve value changes direction </summary>
-        /// <param name="onChangeCurveValueDirectionEvents"> 
+        /// <param name="onChangeCurveDirectionEvents"> 
         ///     Collection of <c><see cref="Action{int}"/></c>s to be invoked <br/>
         ///     The action's <c><see cref="int"/></c> parameter is <c>-1</c> if the curve value starts decreasing, and <c>+1</c> if it starts increasing
         /// </param>
-        public Tween OnChangeCurveValueDirection(params Action<int>[] onChangeCurveValueDirectionEvents)
+        public Tween AddEventsOnChangeCurveDirection(params Action<int>[] onChangeCurveDirectionEvents)
         {
-            foreach (var @event in onChangeCurveValueDirectionEvents)
-                _onChangeCurveValueDirection += @event;
+            foreach (var @event in onChangeCurveDirectionEvents)
+                _onChangeCurveDirection += @event;
 
             return this;
         }
@@ -234,8 +234,8 @@ namespace Vheos.Games.Core
                 foreach (var @event in _events)
                     @event.TryInvoke();
 
-            if (_onChangeCurveValueDirection != null)
-                TryInvokeOnChangeCurveValueDirection();
+            if (_onChangeCurveDirection != null)
+                TryInvokeOnChangeCurveDirection();
         }
 
         // Privates - Settings
@@ -252,7 +252,7 @@ namespace Vheos.Games.Core
         private Action<float> _modifierFunctionInvoke;
         private HashSet<ConditionalEvent> _events;
         private Action _onFinish;
-        private Action<int> _onChangeCurveValueDirection;
+        private Action<int> _onChangeCurveDirection;
 
         // Privates - Helpers
         private (float Current, float Previous) _elapsed, _progress, _curveValue;
@@ -318,7 +318,7 @@ namespace Vheos.Games.Core
         };
         private NotSupportedException AnimationNotSupportedException<T>(DeltaValueType assignType) where T : struct
         => new($"{assignType} {typeof(T).Name} animation is not supported!");
-        private void TryInvokeOnChangeCurveValueDirection()
+        private void TryInvokeOnChangeCurveDirection()
         {
             int previousCurveValueDirection = _curveValueDirection;
             _curveValueDirection = _curveValue.Current.CompareTo(_curveValue.Previous);
@@ -326,7 +326,7 @@ namespace Vheos.Games.Core
             if (_curveValueDirection != 0
             && previousCurveValueDirection != 0
             && _curveValueDirection != previousCurveValueDirection)
-                _onChangeCurveValueDirection.Invoke(_curveValueDirection);
+                _onChangeCurveDirection.Invoke(_curveValueDirection);
         }
 
         // Initializers

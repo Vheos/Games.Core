@@ -32,8 +32,8 @@ namespace Vheos.Games.Core
             OnStartExpanding.Invoke();
             ExpandTween.Value
                 .SetConflictLayer(this)
-                .SetConflictResolution(ConflictResolution.Interrupt)
-                .OnFinish(() => State = ExpandableState.Expanded, () => OnFinishExpanding.Invoke())
+                .SetInterrupt()
+                .AddEventsOnFinish(() => State = ExpandableState.Expanded, () => OnFinishExpanding.Invoke())
                 .FinishIf(instantly);
             return true;
         }
@@ -46,8 +46,8 @@ namespace Vheos.Games.Core
             OnStartCollapsing.Invoke();
             CollapseTween.Value
                 .SetConflictLayer(this)
-                .SetConflictResolution(ConflictResolution.Interrupt)
-                .OnFinish(() => State = ExpandableState.Collapsed, () => OnFinishCollapsing.Invoke())
+                .SetInterrupt()
+                .AddEventsOnFinish(() => State = ExpandableState.Collapsed, () => OnFinishCollapsing.Invoke())
                 .FinishIf(instantly);
             return true;
         }
