@@ -9,7 +9,7 @@ namespace Vheos.Games.Core
     abstract public class AComponentGroup<T> where T : Component
     {
         // Events
-        public readonly AutoEvent OnMembersChanged = new();
+        public readonly AutoEvent OnChangeMembers = new();
 
         // Publics
         public IReadOnlyCollection<T> Members
@@ -21,12 +21,12 @@ namespace Vheos.Games.Core
         virtual public void TryAddMember(T member)
         {
             if (_members.TryAddUnique(member))
-                OnMembersChanged?.Invoke();
+                OnChangeMembers.Invoke();
         }
         virtual public void TryRemoveMember(T member)
         {
             if (_members.Remove(member))
-                OnMembersChanged?.Invoke();
+                OnChangeMembers.Invoke();
         }
 
         // Privates
