@@ -78,7 +78,7 @@ namespace Vheos.Games.Core
             _equipablesBySlot.Add(equipable.EquipSlot, equipable);
             equipable.GetEquippedBy(this);
 
-            OnChangeEquipable?.Invoke(previousEquipable, equipable);
+            OnChangeEquipable.Invoke(previousEquipable, equipable);
             return true;
         }
 
@@ -89,7 +89,7 @@ namespace Vheos.Games.Core
             _equipablesBySlot.Remove(equipable.EquipSlot);
             equipable.GetUnequipped();
             if (callOnChangeEquipable)
-                OnChangeEquipable?.Invoke(equipable, null);
+                OnChangeEquipable.Invoke(equipable, null);
         }
     }
 }

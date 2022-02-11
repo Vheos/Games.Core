@@ -26,7 +26,7 @@ namespace Vheos.Games.Core
                 foreach (var targeter in _targeters.MakeCopy())
                 {
                     _targeters.Remove(targeter);
-                    OnLoseTargeting?.Invoke(targeter, _targeters.Count == 0);
+                    OnLoseTargeting.Invoke(targeter, _targeters.Count == 0);
                 }
         }
 
@@ -38,12 +38,12 @@ namespace Vheos.Games.Core
         internal void GetTargetedBy(Targeter targeter)
         {
             _targeters.Add(targeter);
-            OnGainTargeting?.Invoke(targeter, _targeters.Count == 1);   // is first
+            OnGainTargeting.Invoke(targeter, _targeters.Count == 1);   // is first
         }
         internal void GetUntargetedBy(Targeter targeter)
         {
             _targeters.Remove(targeter);
-            OnLoseTargeting?.Invoke(targeter, _targeters.Count == 0);   // is last
+            OnLoseTargeting.Invoke(targeter, _targeters.Count == 0);   // is last
         }
 
         // Privates

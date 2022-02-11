@@ -48,7 +48,7 @@ namespace Vheos.Games.Core
             Combat = combat;
             combat.TryAddMember(this);
             AnchorPosition = transform.position;
-            OnChangeCombat?.Invoke(combat);
+            OnChangeCombat.Invoke(combat);
         }
         public void TryLeaveCombat()
         {
@@ -57,7 +57,7 @@ namespace Vheos.Games.Core
 
             Combat.TryRemoveMember(this);
             Combat = null;
-            OnChangeCombat?.Invoke(null);
+            OnChangeCombat.Invoke(null);
         }
 
         // Publics (team-related)

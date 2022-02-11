@@ -22,11 +22,11 @@ namespace Vheos.Games.Core
             if (currentHasMoved)
             {
                 if (!_previousHasMoved)
-                    OnStartMoving?.Invoke(_previousPosition);
-                OnMove?.Invoke(_previousPosition, currentPosition);
+                    OnStartMoving.Invoke(_previousPosition);
+                OnMove.Invoke(_previousPosition, currentPosition);
             }
             else if (_previousHasMoved)
-                OnStop?.Invoke(currentPosition);
+                OnStop.Invoke(currentPosition);
 
             _previousPosition = currentPosition;
             _previousHasMoved = currentHasMoved;

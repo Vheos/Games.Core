@@ -15,7 +15,7 @@ namespace Vheos.Games.Core
         {
             Sprite currentSprite = Get<SpriteRenderer>().sprite;
             if (_previousSprite != currentSprite)
-                OnChangeSprite?.Invoke(_previousSprite, currentSprite);
+                OnChangeSprite.Invoke(_previousSprite, currentSprite);
             _previousSprite = currentSprite;
         }
 

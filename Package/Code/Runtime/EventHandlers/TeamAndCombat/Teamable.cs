@@ -49,7 +49,7 @@ namespace Vheos.Games.Core
                 newTeam.TryAddMember(this);
                 Team = newTeam;
             }
-            OnChangeTeam?.Invoke(previousTeam, Team);
+            OnChangeTeam.Invoke(previousTeam, Team);
         }
         public void TryLeaveTeam()
         => TryChangeTeam(null);
