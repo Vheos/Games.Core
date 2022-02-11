@@ -77,6 +77,18 @@ namespace Vheos.Games.Core
         public T GetOrAdd<T>() where T : Component
         => TryGetComponent<T>(out var component) ? component : Add<T>();
 
+        // Statics - Component
+        static protected T Add<T>(ABaseComponent baseComponent) where T : Component
+        => baseComponent.Add<T>();
+        static protected T Get<T>(ABaseComponent baseComponent) where T : Component
+        => baseComponent.Get<T>();
+        static protected bool Has<T>(ABaseComponent baseComponent) where T : Component
+        => baseComponent.Has<T>();
+        static protected bool TryGet<T>(ABaseComponent baseComponent, out T component) where T : Component
+        => baseComponent.TryGet(out component);
+        static protected T GetOrAdd<T>(ABaseComponent baseComponent) where T : Component
+        => baseComponent.GetOrAdd<T>();
+
         // Internals
         internal bool IsBetweenEnableAndDisable
         { get; private set; }
