@@ -16,8 +16,8 @@ namespace Vheos.Games.Core
             get => _selectable;
             set
             {
-                if (value != null && !value.CanGetSelectedBy(this)
-                || value == null && _selectable == null)
+                if (value == _selectable
+                || value != null && !value.CanGetSelectedBy(this))
                     return;
 
                 Selectable previousSelectable = _selectable;

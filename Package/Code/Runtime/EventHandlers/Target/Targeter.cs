@@ -15,8 +15,8 @@ namespace Vheos.Games.Core
             get => _targetable;
             set
             {
-                if (value != null && !value.CanGetTargetedBy(this)
-                || value == null && _targetable == null)
+                if (value == _targetable
+                || value != null && !value.CanGetTargetedBy(this))
                     return;
 
                 Targetable previousTargetable = _targetable;
@@ -28,7 +28,7 @@ namespace Vheos.Games.Core
                 if (_targetable != null)
                     _targetable.GetTargetedBy(this);
 
-                OnChangeTargetable.Invoke(previousTargetable, _targetable);        
+                OnChangeTargetable.Invoke(previousTargetable, _targetable);
             }
         }
         public bool TryGetTargetable<T>(out T component) where T : Component
