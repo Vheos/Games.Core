@@ -2477,6 +2477,9 @@
         <member name="M:Vheos.Tools.Extensions.General.General.ChooseIf``1(``0,System.Func{``0,System.Boolean},``0)">
             <summary> If test a evaluates to true, returns a. Otherwise, returns b. </summary>
         </member>
+        <member name="M:Vheos.Tools.Extensions.General.General.ChooseIfNonNull``1(``0,``0)">
+            <summary> If test a evaluates to true, returns a. Otherwise, returns b. </summary>
+        </member>
         <member name="M:Vheos.Tools.Extensions.General.General.Toggle(System.Boolean@)">
             <summary> Inverts this bool </summary>
         </member>
@@ -2490,7 +2493,7 @@
             <summary> Returns -1 for false and +1 for true. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.Map``1(System.Boolean,``0,``0)">
-            <summary> Returns a for false and b for true. </summary>
+            <summary> Returns a for true and b for false. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.MakeCopy``1(``0[])">
             <summary> Returns a shallow copy of this array. </summary>
