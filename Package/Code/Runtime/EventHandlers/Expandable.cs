@@ -13,8 +13,8 @@ namespace Vheos.Games.Core
         public readonly AutoEvent OnFinishCollapsing = new();
 
         // Getters
-        public readonly Getter<Tween> ExpandTween = new();
-        public readonly Getter<Tween> CollapseTween = new();
+        public readonly Getter<Tween> ExpandTween = new(() => Tween.New);
+        public readonly Getter<Tween> CollapseTween = new(() => Tween.New);
 
         // Publics
         public ExpandableState State
@@ -55,14 +55,6 @@ namespace Vheos.Games.Core
         {
             if (!TryExpand(instantly))
                 TryCollapse(instantly);
-        }
-
-        // Play
-        protected override void PlayAwake()
-        {
-            base.PlayAwake();
-            ExpandTween.Set(() => Tween.New);
-            CollapseTween.Set(() => Tween.New);
         }
     }
 }

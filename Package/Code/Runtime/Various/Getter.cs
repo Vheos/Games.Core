@@ -19,7 +19,13 @@ namespace Vheos.Games.Core
         => t._getFunction();
 
         // Privates   
-        private Func<TReturn> _getFunction = () => default;
+        private Func<TReturn> _getFunction;
+
+        // Initializers
+        public Getter()
+        => _getFunction = () => default;
+        public Getter(Func<TReturn> getFunction)
+        => _getFunction = getFunction;
     }
 
     /// <summary> Wraps <c><see cref="Func{T1, TResult}"/></c> </summary>
@@ -37,7 +43,13 @@ namespace Vheos.Games.Core
         => _getFunction(arg1);
 
         // Privates   
-        private Func<T1, TReturn> _getFunction = (arg1) => default;
+        private Func<T1, TReturn> _getFunction;
+
+        // Initializers
+        public Getter()
+        => _getFunction = (arg1) => default;
+        public Getter(Func<T1, TReturn> getFunction)
+        => _getFunction = getFunction;
     }
 
     /// <summary> Wraps <c><see cref="Func{T1, T2, TResult}"/></c> </summary>
@@ -55,7 +67,13 @@ namespace Vheos.Games.Core
         => _getFunction(arg1, arg2);
 
         // Privates   
-        private Func<T1, T2, TReturn> _getFunction = (arg1, arg2) => default;
+        private Func<T1, T2, TReturn> _getFunction;
+
+        // Initializers
+        public Getter()
+        => _getFunction = (arg1, arg2) => default;
+        public Getter(Func<T1, T2, TReturn> getFunction)
+        => _getFunction = getFunction;
 
     }
 }
