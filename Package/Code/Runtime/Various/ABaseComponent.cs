@@ -44,7 +44,7 @@ namespace Vheos.Games.Core
         public void Disable()
         => enabled = false;
 
-        // Publics - Component
+        // Publics - Component, Generic
         /// <summary> Adds component of type <typeparamref name="T"/> to current <c><see cref="GameObject"/></c>. </summary>
         /// <returns> The component that has just been added.</returns>
         public T Add<T>() where T : Component
@@ -76,6 +76,18 @@ namespace Vheos.Games.Core
         /// </returns>
         public T GetOrAdd<T>() where T : Component
         => TryGetComponent<T>(out var component) ? component : Add<T>();
+
+        // Publics - Component, Type
+        public Component Add(Type type)
+        => gameObject.AddComponent(type);
+        public Component Get(Type type)
+        => GetComponent(type);
+        public bool Has(Type type)
+        => GetComponent(type) != null;
+        public bool TryGet(Type type, out Component component)
+        => TryGetComponent(type, out component);
+        public Component GetOrAdd(Type type)
+        => TryGetComponent(type, out var component) ? component : Add(type);
 
         // Statics - Component
         static protected T Add<T>(ABaseComponent baseComponent) where T : Component
