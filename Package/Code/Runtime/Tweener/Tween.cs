@@ -185,6 +185,13 @@ namespace Vheos.Games.Core
 
             return this;
         }
+        /// <summary> Overrides <c>loopCount</c> </summary>
+        /// <param name="loopCount"> </param>
+        public Tween SetLoops(int loopCount)
+        {
+            _loopCounter = loopCount;
+            return this;
+        }
 
         // Publics - Defaults
         /// <summary> Default <c>duration</c> for all new tweens </summary>
@@ -221,6 +228,7 @@ namespace Vheos.Games.Core
             _curveValueFunc ??= GetCurveValueFunc(CurveShape.Normal);
             _deltaTimeFunc ??= GetDeltaTimeFunc(DeltaTimeType.Scaled);
             ConflictResolution ??= DefaultConflictResolution;
+            _loopCounter ??= 0;
         }
         internal void Process()
         {
@@ -236,6 +244,12 @@ namespace Vheos.Games.Core
 
             if (_onChangeCurveDirection != null)
                 TryInvokeOnChangeCurveDirection();
+
+            if(HasFinished && --_loopCounter > 0)
+            {
+                _elapsed = _progress = _curveValue = default;
+                _curveValueDirection = default;
+            }
         }
 
         // Privates - Settings
@@ -253,6 +267,7 @@ namespace Vheos.Games.Core
         private HashSet<ConditionalEvent> _events;
         private Action _onFinish;
         private Action<int> _onChangeCurveDirection;
+        private int? _loopCounter;
 
         // Privates - Helpers
         private (float Current, float Previous) _elapsed, _progress, _curveValue;
