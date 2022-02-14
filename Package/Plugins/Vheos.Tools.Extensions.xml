@@ -2481,10 +2481,10 @@
             <summary> If test a evaluates to true, returns a. Otherwise, returns b. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.Toggle(System.Boolean@)">
-            <summary> Inverts this bool </summary>
+            <summary> Returns this bool, then inverts it </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.Consume(System.Boolean@)">
-            <summary> Returns this bool, then sets it to false. </summary>
+            <summary> Returns this bool, then resets it </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.To01(System.Boolean)">
             <summary> Returns 0 for false and 1 for true. </summary>
@@ -2504,8 +2504,8 @@
         <member name="M:Vheos.Tools.Extensions.General.General.MakeCopy``1(System.Collections.Generic.HashSet{``0})">
             <summary> Returns a shallow copy of this list. </summary>
         </member>
-        <member name="M:Vheos.Tools.Extensions.General.General.SwapWith``1(``0,``0)">
-            <summary> Swaps the references of this object and a. </summary>
+        <member name="M:Vheos.Tools.Extensions.General.General.MakeCopy``2(System.Collections.Generic.Dictionary{``0,``1})">
+            <summary> Returns a shallow copy of this list. </summary>
         </member>
         <member name="M:Vheos.Tools.Extensions.General.General.SwapWith``1(``0@,``0@)">
             <summary> Swaps the references of this object and a. </summary>
