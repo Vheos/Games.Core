@@ -31,19 +31,19 @@ namespace Vheos.Games.Core
         => ReferenceEquals(Holder, selecter);
         public void ClearSelectionAndHolder()
         {
-            if (IsSelected)
-                foreach (var selecter in _selecters.MakeCopy())
-                {
-                    _selecters.Remove(selecter);
-                    OnLoseSelection.Invoke(selecter, _selecters.Count == 0);
-                }
-
             if (IsHeld)
             {
                 Selecter previousHolder = Holder;
                 Holder = null;
                 OnRelease.Invoke(previousHolder, false);
             }
+
+            if (IsSelected)
+                foreach (var selecter in  _selecters.MakeCopy())
+                {
+                    _selecters.Remove(selecter);
+                    OnLoseSelection.Invoke(selecter, _selecters.Count == 0);
+                }
         }
 
         // Internals
