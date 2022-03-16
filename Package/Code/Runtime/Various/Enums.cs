@@ -26,4 +26,12 @@ namespace Vheos.Games.Core
         Collapsing,
         Collapsed,
     }
+
+
+    public enum PredefinedTeam
+    {
+        None,
+        Allies,
+        Enemies,
+    }
 }
