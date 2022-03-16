@@ -16,12 +16,12 @@ namespace Vheos.Games.Core
             return false;
         }
         static public bool IsAllyOf(this ABaseComponent t, ABaseComponent a)
-        => t != a
+        => t.gameObject != a.gameObject
         && t.TryGetTeam(out var tTeam)
         && a.TryGetTeam(out var aTeam)
         && tTeam == aTeam;
         static public bool IsEnemyOf(this ABaseComponent t, ABaseComponent a)
-        => t != a
+        => t.gameObject != a.gameObject
         && (!t.TryGetTeam(out var tTeam)
             || !a.TryGetTeam(out var aTeam)
             || tTeam != aTeam);
@@ -39,7 +39,7 @@ namespace Vheos.Games.Core
             return false;
         }
         static public bool IsInCombatWith(this ABaseComponent t, ABaseComponent a)
-        => t != a
+        => t.gameObject != a.gameObject
         && t.TryGetCombat(out var tCombat)
         && a.TryGetCombat(out var aCombat)
         && tCombat == aCombat;
