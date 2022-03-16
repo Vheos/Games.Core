@@ -7,38 +7,37 @@ namespace Vheos.Games.Core
     public class Team : AComponentGroup<Teamable>
     {
         // Public
-        static public Team Players
-        { get; private set; }
-        static public Team AI
-        { get; private set; }
+        static public Team GetPredefinedTeam(PredefinedTeam predefinedTeamEnum)
+        => predefinedTeamEnum switch
+        {
+            PredefinedTeam.Allies => _allies,
+            PredefinedTeam.Enemies => _enemies,
+            _ => null,
+        };
         public string Name
         { get; private set; }
         public Color Color
         { get; private set; }
+
+        // Privates
+        static private Team _allies;
+        static private Team _enemies;
 
         // Initializers
         [SuppressMessage("CodeQuality", "IDE0051")]
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static private void StaticInitialize()
         {
-            Players = new Team
+            _allies = new Team
             {
-                Name = nameof(Players),
+                Name = nameof(_allies),
                 Color = new Color(0.5f, 0.75f, 1f, 1f),
             };
-            AI = new Team()
+            _enemies = new Team()
             {
-                Name = nameof(AI),
+                Name = nameof(_enemies),
                 Color = new Color(1f, 0.75f, 0.5f, 1f),
             };
-        }
-
-        // Defines
-        public enum Predefined
-        {
-            None,
-            Players,
-            Enemies,
         }
     }
 }
