@@ -72,7 +72,7 @@ namespace Vheos.Games.Core
         Ratio,
     }
 
-    public enum ColorComponentType
+    public enum ColorComponent
     {
         None,
         Any,

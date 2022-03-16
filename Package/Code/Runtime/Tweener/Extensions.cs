@@ -33,18 +33,18 @@ namespace Vheos.Games.Core
         /// <summary> Stops all tweens on a conflict layer defined by this component's instance </summary>
         static public void StopTweens(this Component t)
         => Tweener.StopLayer(t);
-        static public ColorComponentType FindColorComponentType(this GameObject t)
+        static public ColorComponent FindColorComponentType(this GameObject t)
         {
             foreach (var component in t.GetComponents<Component>())
                 switch (component)
                 {
-                    case SpriteRenderer _: return ColorComponentType.SpriteRenderer;
-                    case TextMeshPro _: return ColorComponentType.TextMeshPro;
-                    case Image _: return ColorComponentType.Image;
+                    case SpriteRenderer _: return ColorComponent.SpriteRenderer;
+                    case TextMeshPro _: return ColorComponent.TextMeshPro;
+                    case Image _: return ColorComponent.Image;
                 }
-            return ColorComponentType.None;
+            return ColorComponent.None;
         }
-        static public ColorComponentType FindColorComponentType(this Component t)
+        static public ColorComponent FindColorComponentType(this Component t)
         => t.gameObject.FindColorComponentType();
         static public Tween SetInterrupt(this Tween t)
         => t.SetConflictResolution(ConflictResolution.Interrupt);
@@ -87,85 +87,85 @@ namespace Vheos.Games.Core
         static private Tween AddModifier_Transform_LocalScaleRatio(this Tween t, Transform c, float ratio)
         => t.AddPropertyModifier(v => c.localScale *= v, ratio, DeltaValueType.Ratio);
 
-        // Explicit ColorComponentType
+        // Color
         /// <summary> Offsets this tween's <c><see cref="GameObject"/></c>'s color to the chosen value </summary>
-        static public Tween Color(this Tween t, ColorComponentType colorComponentType, Color to)
+        static public Tween Color(this Tween t, ColorComponent colorComponentType, Color to)
         => colorComponentType switch
         {
-            ColorComponentType.Any => t.Color(t.GameObject.FindColorComponentType(), to),
-            ColorComponentType.SpriteRenderer => t.AddModifier_Color(t.GameObject.GetComponent<SpriteRenderer>(), to),
-            ColorComponentType.TextMeshPro => t.AddModifier_Color(t.GameObject.GetComponent<TextMeshPro>(), to),
-            ColorComponentType.Image => t.AddModifier_Color(t.GameObject.GetComponent<Image>(), to),
+            ColorComponent.Any => t.Color(t.GameObject.FindColorComponentType(), to),
+            ColorComponent.SpriteRenderer => t.AddModifier_Color(t.GameObject.GetComponent<SpriteRenderer>(), to),
+            ColorComponent.TextMeshPro => t.AddModifier_Color(t.GameObject.GetComponent<TextMeshPro>(), to),
+            ColorComponent.Image => t.AddModifier_Color(t.GameObject.GetComponent<Image>(), to),
             _ => t,
         };
         /// <summary> Scales this tween's <c><see cref="GameObject"/></c>'s color by the chosen ratio </summary>
-        static public Tween ColorRatio(this Tween t, ColorComponentType colorComponentType, Vector4 ratio)
+        static public Tween ColorRatio(this Tween t, ColorComponent colorComponentType, Vector4 ratio)
         => colorComponentType switch
         {
-            ColorComponentType.Any => t.ColorRatio(t.GameObject.FindColorComponentType(), ratio),
-            ColorComponentType.SpriteRenderer => t.AddModifier_ColorRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
-            ColorComponentType.TextMeshPro => t.AddModifier_ColorRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
-            ColorComponentType.Image => t.AddModifier_ColorRatio(t.GameObject.GetComponent<Image>(), ratio),
+            ColorComponent.Any => t.ColorRatio(t.GameObject.FindColorComponentType(), ratio),
+            ColorComponent.SpriteRenderer => t.AddModifier_ColorRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
+            ColorComponent.TextMeshPro => t.AddModifier_ColorRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
+            ColorComponent.Image => t.AddModifier_ColorRatio(t.GameObject.GetComponent<Image>(), ratio),
             _ => t,
         };
-        /// <inheritdoc cref="ColorRatio(Tween, ColorComponentType, float)"/>
-        static public Tween ColorRatio(this Tween t, ColorComponentType colorComponentType, float ratio)
+        /// <inheritdoc cref="ColorRatio(Tween, ColorComponent, float)"/>
+        static public Tween ColorRatio(this Tween t, ColorComponent colorComponentType, float ratio)
         => colorComponentType switch
         {
-            ColorComponentType.Any => t.ColorRatio(t.GameObject.FindColorComponentType(), ratio),
-            ColorComponentType.SpriteRenderer => t.AddModifier_ColorRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
-            ColorComponentType.TextMeshPro => t.AddModifier_ColorRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
-            ColorComponentType.Image => t.AddModifier_ColorRatio(t.GameObject.GetComponent<Image>(), ratio),
+            ColorComponent.Any => t.ColorRatio(t.GameObject.FindColorComponentType(), ratio),
+            ColorComponent.SpriteRenderer => t.AddModifier_ColorRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
+            ColorComponent.TextMeshPro => t.AddModifier_ColorRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
+            ColorComponent.Image => t.AddModifier_ColorRatio(t.GameObject.GetComponent<Image>(), ratio),
             _ => t,
         };
         /// <summary> Offsets this tween's <c><see cref="GameObject"/></c>'s rgb to the chosen value </summary>
-        static public Tween RGB(this Tween t, ColorComponentType colorComponentType, Color to)
+        static public Tween RGB(this Tween t, ColorComponent colorComponentType, Color to)
         => colorComponentType switch
         {
-            ColorComponentType.Any => t.RGB(t.GameObject.FindColorComponentType(), to),
-            ColorComponentType.SpriteRenderer => t.AddModifier_RGB(t.GameObject.GetComponent<SpriteRenderer>(), to),
-            ColorComponentType.TextMeshPro => t.AddModifier_RGB(t.GameObject.GetComponent<TextMeshPro>(), to),
-            ColorComponentType.Image => t.AddModifier_RGB(t.GameObject.GetComponent<Image>(), to),
+            ColorComponent.Any => t.RGB(t.GameObject.FindColorComponentType(), to),
+            ColorComponent.SpriteRenderer => t.AddModifier_RGB(t.GameObject.GetComponent<SpriteRenderer>(), to),
+            ColorComponent.TextMeshPro => t.AddModifier_RGB(t.GameObject.GetComponent<TextMeshPro>(), to),
+            ColorComponent.Image => t.AddModifier_RGB(t.GameObject.GetComponent<Image>(), to),
             _ => t,
         };
         /// <summary> Scales this tween's <c><see cref="GameObject"/></c>'s rgb by the chosen ratio </summary>
-        static public Tween RGBRatio(this Tween t, ColorComponentType colorComponentType, Vector3 ratio)
+        static public Tween RGBRatio(this Tween t, ColorComponent colorComponentType, Vector3 ratio)
         => colorComponentType switch
         {
-            ColorComponentType.Any => t.RGBRatio(t.GameObject.FindColorComponentType(), ratio),
-            ColorComponentType.SpriteRenderer => t.AddModifier_RGBRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
-            ColorComponentType.TextMeshPro => t.AddModifier_RGBRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
-            ColorComponentType.Image => t.AddModifier_RGBRatio(t.GameObject.GetComponent<Image>(), ratio),
+            ColorComponent.Any => t.RGBRatio(t.GameObject.FindColorComponentType(), ratio),
+            ColorComponent.SpriteRenderer => t.AddModifier_RGBRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
+            ColorComponent.TextMeshPro => t.AddModifier_RGBRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
+            ColorComponent.Image => t.AddModifier_RGBRatio(t.GameObject.GetComponent<Image>(), ratio),
             _ => t,
         };
-        /// <inheritdoc cref="RGBRatio(Tween, ColorComponentType, Vector3)"/>
-        static public Tween RGBRatio(this Tween t, ColorComponentType colorComponentType, float ratio)
+        /// <inheritdoc cref="RGBRatio(Tween, ColorComponent, Vector3)"/>
+        static public Tween RGBRatio(this Tween t, ColorComponent colorComponentType, float ratio)
         => colorComponentType switch
         {
-            ColorComponentType.Any => t.RGBRatio(t.GameObject.FindColorComponentType(), ratio),
-            ColorComponentType.SpriteRenderer => t.AddModifier_RGBRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
-            ColorComponentType.TextMeshPro => t.AddModifier_RGBRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
-            ColorComponentType.Image => t.AddModifier_RGBRatio(t.GameObject.GetComponent<Image>(), ratio),
+            ColorComponent.Any => t.RGBRatio(t.GameObject.FindColorComponentType(), ratio),
+            ColorComponent.SpriteRenderer => t.AddModifier_RGBRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
+            ColorComponent.TextMeshPro => t.AddModifier_RGBRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
+            ColorComponent.Image => t.AddModifier_RGBRatio(t.GameObject.GetComponent<Image>(), ratio),
             _ => t,
         };
         /// <summary> Offsets this tween's <c><see cref="GameObject"/></c>'s alpha to the chosen value </summary>
-        static public Tween Alpha(this Tween t, ColorComponentType colorComponentType, float to)
+        static public Tween Alpha(this Tween t, ColorComponent colorComponentType, float to)
         => colorComponentType switch
         {
-            ColorComponentType.Any => t.Alpha(t.GameObject.FindColorComponentType(), to),
-            ColorComponentType.SpriteRenderer => t.AddModifier_Alpha(t.GameObject.GetComponent<SpriteRenderer>(), to),
-            ColorComponentType.TextMeshPro => t.AddModifier_Alpha(t.GameObject.GetComponent<TextMeshPro>(), to),
-            ColorComponentType.Image => t.AddModifier_Alpha(t.GameObject.GetComponent<Image>(), to),
+            ColorComponent.Any => t.Alpha(t.GameObject.FindColorComponentType(), to),
+            ColorComponent.SpriteRenderer => t.AddModifier_Alpha(t.GameObject.GetComponent<SpriteRenderer>(), to),
+            ColorComponent.TextMeshPro => t.AddModifier_Alpha(t.GameObject.GetComponent<TextMeshPro>(), to),
+            ColorComponent.Image => t.AddModifier_Alpha(t.GameObject.GetComponent<Image>(), to),
             _ => t,
         };
         /// <summary> Scales this tween's <c><see cref="GameObject"/></c>'s alpha by the chosen ratio </summary>
-        static public Tween AlphaRatio(this Tween t, ColorComponentType colorComponentType, float ratio)
+        static public Tween AlphaRatio(this Tween t, ColorComponent colorComponentType, float ratio)
         => colorComponentType switch
         {
-            ColorComponentType.Any => t.AlphaRatio(t.GameObject.FindColorComponentType(), ratio),
-            ColorComponentType.SpriteRenderer => t.AddModifier_AlphaRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
-            ColorComponentType.TextMeshPro => t.AddModifier_AlphaRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
-            ColorComponentType.Image => t.AddModifier_AlphaRatio(t.GameObject.GetComponent<Image>(), ratio),
+            ColorComponent.Any => t.AlphaRatio(t.GameObject.FindColorComponentType(), ratio),
+            ColorComponent.SpriteRenderer => t.AddModifier_AlphaRatio(t.GameObject.GetComponent<SpriteRenderer>(), ratio),
+            ColorComponent.TextMeshPro => t.AddModifier_AlphaRatio(t.GameObject.GetComponent<TextMeshPro>(), ratio),
+            ColorComponent.Image => t.AddModifier_AlphaRatio(t.GameObject.GetComponent<Image>(), ratio),
             _ => t,
         };
 

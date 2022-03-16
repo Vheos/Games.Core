@@ -23,7 +23,7 @@ namespace Vheos.Games.Core
             {
                 Transform = target.transform;
                 _targetType = TargetType.Transform;
-                enabled = Transform != null;
+                IsEnabled = Transform != null;
             }
 
             if (followInstantly)
@@ -35,7 +35,7 @@ namespace Vheos.Games.Core
         {
             Vector = position;
             _targetType = TargetType.Vector;
-            enabled = true;
+            IsEnabled = true;
 
             if (followInstantly)
                 FollowOnUpdate(1f);
