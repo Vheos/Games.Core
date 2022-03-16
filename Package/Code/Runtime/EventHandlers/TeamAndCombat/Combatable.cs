@@ -11,20 +11,35 @@ namespace Vheos.Games.Core
     sealed public class Combatable : ABaseComponent
     {
         // Events
-        public readonly AutoEvent<Combat> OnChangeCombat = new();
+        public readonly AutoEvent<Combat, Combat> OnChangeCombat = new();
 
         // Publics
         public Combat Combat
-        { get; private set; }
-        public Vector3 AnchorPosition
-        { get; private set; }
+        {
+            get => _combat;
+            set
+            {
+                if (value == _combat)
+                    return;
+
+                Combat previousCombat = _combat;
+                if (previousCombat != null)
+                    previousCombat.TryRemoveMember(this);
+
+                _combat = value;
+                if (_combat != null)
+                    _combat.TryAddMember(this);
+
+                OnChangeCombat.Invoke(previousCombat, _combat);
+            }
+        }
         public bool IsInCombat
         => Combat != null;
         public bool IsInCombatWith(Combatable other)
         => this != other && Combat == other.Combat;
         public void TryStartCombatWith(Combatable target)
         {
-            if (!this.isActiveAndEnabled 
+            if (!this.isActiveAndEnabled
             || !target.isActiveAndEnabled
             || target == this)
                 return;
@@ -37,27 +52,7 @@ namespace Vheos.Games.Core
             else
                 combat = target.Combat;
 
-            this.TryJoinCombat(combat);
-            target.TryJoinCombat(combat);
-        }
-        public void TryJoinCombat(Combat combat)
-        {
-            if (IsInCombat || combat == Combat)
-                return;
-
-            Combat = combat;
-            combat.TryAddMember(this);
-            AnchorPosition = transform.position;
-            OnChangeCombat.Invoke(combat);
-        }
-        public void TryLeaveCombat()
-        {
-            if (Combat == null)
-                return;
-
-            Combat.TryRemoveMember(this);
-            Combat = null;
-            OnChangeCombat.Invoke(null);
+            this.Combat = target.Combat = combat;
         }
 
         // Publics (team-related)
@@ -94,5 +89,8 @@ namespace Vheos.Games.Core
         => Allies.Any();
         public bool HasAnyEnemies
         => Enemies.Any();
+
+        // Privates
+        private Combat _combat;
     }
 }

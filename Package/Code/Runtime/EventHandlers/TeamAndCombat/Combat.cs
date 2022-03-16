@@ -24,7 +24,7 @@ namespace Vheos.Games.Core
         {
             _isEnding = true;
             foreach (var member in _members.MakeCopy())
-                member.TryLeaveCombat();
+                member.Combat = null;
             _isEnding = false;
         }
 
