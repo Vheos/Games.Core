@@ -1,6 +1,7 @@
 namespace Vheos.Games.Core
 {
     using System;
+    using System.Collections.Generic;
     using UnityEngine;
 
     [DisallowMultipleComponent]
@@ -16,12 +17,12 @@ namespace Vheos.Games.Core
             set
             {
                 if (value == _targetable
-                || value != null && !value.CanGetTargetedBy(this))
+                || value != null && (!value.isActiveAndEnabled || value.IsTargetedBy(this) || !CanTarget(value)))
                     return;
 
                 Targetable previousTargetable = _targetable;
                 if (previousTargetable != null
-                && previousTargetable.CanGetUntargetedBy(this))
+                && previousTargetable.IsTargetedBy(this))
                     previousTargetable.GetUntargetedBy(this);
 
                 _targetable = value;
@@ -46,8 +47,20 @@ namespace Vheos.Games.Core
         => _targetable == targetable;
         public bool IsTargeting<T>() where T : Component
         => _targetable != null && _targetable.Has<T>();
+        public void AddTargetingTest(Func<Targetable, bool> test)
+        => _targetingTests.Add(test);
+        public void RemoveTargetingTest(Func<Targetable, bool> test)
+        => _targetingTests.Remove(test);
 
         // Privates
         private Targetable _targetable;
+        private readonly HashSet<Func<Targetable, bool>> _targetingTests = new();
+        private bool CanTarget(Targetable targetable)
+        {
+            foreach (var test in _targetingTests)
+                if (!test(targetable))
+                    return false;
+            return true;
+        }
     }
 }
