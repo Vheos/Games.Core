@@ -41,7 +41,7 @@ namespace Vheos.Games.Core
                 switch (_raycastTarget)
                 {
                     case SpriteRenderer: _raycastTests.Remove(SpriteRenderer_RaycastTest); break;
-                        //case TextMeshPro: TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(TextMeshPro_OnTextChanged); break;
+                    case TextMeshPro: break;
                 }
 
                 _raycastTarget = value;
@@ -52,8 +52,7 @@ namespace Vheos.Games.Core
                         _raycastTests.Add(SpriteRenderer_RaycastTest);
                         TryFitBoxColliderToRenderer(t);
                         break;
-                    case TextMeshPro t:
-                        //TMPro_EventManager.TEXT_CHANGED_EVENT.Add(TextMeshPro_OnTextChanged);
+                    case TextMeshPro t:                     
                         t.ForceMeshUpdate();
                         TryFitBoxColliderToRenderer(t.renderer);
                         break;
@@ -90,13 +89,6 @@ namespace Vheos.Games.Core
                 return sprite.PositionToPixelAlpha(position, transform) >= 0.5f;
             return true;
         }
-        private void TextMeshPro_OnTextChanged(UnityEngine.Object obj)
-        {
-            if (obj != _raycastTarget)
-                return;
-
-            TryFitBoxColliderToRenderer(_raycastTarget.As<TextMeshPro>().renderer);
-        }
 
         // Play
         protected override void PlayAwake()
@@ -107,3 +99,15 @@ namespace Vheos.Games.Core
         }
     }
 }
+
+/*
+                        //case TextMeshPro: TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(TextMeshPro_OnTextChanged); break;
+                           //TMPro_EventManager.TEXT_CHANGED_EVENT.Add(TextMeshPro_OnTextChanged);
+         private void TextMeshPro_OnTextChanged(UnityEngine.Object obj)
+        {
+            if (obj != _raycastTarget)
+                return;
+
+            TryFitBoxColliderToRenderer(_raycastTarget.As<TextMeshPro>().renderer);
+        }
+ */
