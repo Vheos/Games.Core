@@ -13,7 +13,6 @@ namespace Vheos.Games.Core
         public readonly AutoEvent<Selecter, bool> OnGainSelection = new();
         public readonly AutoEvent<Selecter, bool> OnLoseSelection = new();
         public readonly AutoEvent<Selecter> OnPress = new();
-        public readonly AutoEvent<Selecter> OnHold = new();
         public readonly AutoEvent<Selecter, bool> OnRelease = new();
 
         // Publics
@@ -39,24 +38,25 @@ namespace Vheos.Games.Core
             }
 
             if (IsSelected)
-                foreach (var selecter in  _selecters.MakeCopy())
+                foreach (var selecter in _selecters.MakeCopy())
                 {
                     _selecters.Remove(selecter);
                     OnLoseSelection.Invoke(selecter, _selecters.Count == 0);
                 }
         }
+        public void AddSelectionTest(Func<Selecter, bool> test)
+        => _selectionTests.Add(test);
+        public void RemoveSelectionTest(Func<Selecter, bool> test)
+        => _selectionTests.Remove(test);
 
         // Internals
         internal bool CanGetSelectedBy(Selecter selecter)
-        => isActiveAndEnabled && !IsSelectedBy(selecter);
-        internal bool CanGetUnselectedBy(Selecter selecter)
-        => isActiveAndEnabled && IsSelectedBy(selecter);
-        internal bool CanGetPressed
-        => isActiveAndEnabled && !IsHeld;
-        internal bool CanGetReleasedBy(Selecter selecter)
-        => isActiveAndEnabled && IsHeldBy(selecter);
-        internal bool CanGetHeldBy(Selecter selecter)
-        => isActiveAndEnabled && IsHeldBy(selecter);
+        {
+            foreach (var test in _selectionTests)
+                if (!test(selecter))
+                    return false;
+            return true;
+        }
         internal void GetSelectedBy(Selecter selecter)
         {
             _selecters.Add(selecter);
@@ -77,11 +77,11 @@ namespace Vheos.Games.Core
             Holder = null;
             OnRelease.Invoke(selecter, withinTrigger);
         }
-        internal void GetHeldBy(Selecter selecter)
-        => OnHold.Invoke(selecter);
 
         // Privates
         private readonly HashSet<Selecter> _selecters = new();
+        private readonly HashSet<Func<Selecter, bool>> _selectionTests = new();
+
 
         // Play
         protected override void PlayDisable()

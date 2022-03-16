@@ -3,7 +3,6 @@ namespace Vheos.Games.Core
     using System;
     using UnityEngine;
 
-    [RequireComponent(typeof(Updatable))]
     [DisallowMultipleComponent]
     sealed public class Selecter : ABaseComponent
     {
@@ -17,12 +16,12 @@ namespace Vheos.Games.Core
             set
             {
                 if (value == _selectable
-                || value != null && !value.CanGetSelectedBy(this))
+                || value != null && (!value.isActiveAndEnabled || value.IsSelectedBy(this) || !value.CanGetSelectedBy(this)))
                     return;
 
                 Selectable previousSelectable = _selectable;
                 if (previousSelectable != null
-                && previousSelectable.CanGetUnselectedBy(this))
+                && previousSelectable.IsSelectedBy(this))
                     previousSelectable.GetUnselectedBy(this);
 
                 _selectable = value;
@@ -51,40 +50,27 @@ namespace Vheos.Games.Core
         => _selectable != null && _selectable.IsHeldBy(this);
         public void TryPress()
         {
-            if (Selectable != null
-            && Selectable.CanGetPressed)
-                Selectable.GetPressedBy(this);
+            if (_selectable != null
+            && !_selectable.IsHeld)
+                _selectable.GetPressedBy(this);
         }
         public void TryRelease(bool fullClick)
         {
-            if (Selectable != null
-            && Selectable.CanGetReleasedBy(this))
-                Selectable.GetReleasedBy(this, fullClick);
+            if (_selectable != null
+            && _selectable.IsHeldBy(this))
+                _selectable.GetReleasedBy(this, fullClick);
         }
         public void TryFullClick()
         {
-            if (Selectable != null
-            && Selectable.CanGetPressed)
+            if (_selectable != null
+            && !_selectable.IsHeld)
             {
-                Selectable.GetPressedBy(this);
-                Selectable.GetReleasedBy(this, true);
+                _selectable.GetPressedBy(this);
+                _selectable.GetReleasedBy(this, true);
             }
         }
 
         // Privates
         private Selectable _selectable;
-        private void Updatable_OnUpdate()
-        {
-            if (Selectable != null
-            && Selectable.CanGetHeldBy(this))
-                Selectable.GetHeldBy(this);
-        }
-
-        // Play
-        protected override void PlayAwake()
-        {
-            base.PlayAwake();
-            Get<Updatable>().OnUpdate.SubEnableDisable(this, Updatable_OnUpdate);
-        }
     }
 }
