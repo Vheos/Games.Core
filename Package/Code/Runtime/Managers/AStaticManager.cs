@@ -46,6 +46,10 @@ namespace Vheos.Games.Core
         [field: SerializeField] public bool PersistentComponents { get; private set; }
         [field: SerializeField] public bool EnsureAnyComponent { get; private set; }
 
+        // Events
+        static public AutoEvent<TComponent> OnRegisterComponent;
+        static public AutoEvent<TComponent> OnUnregisterComponent;
+
         // Publics (getters)
         static public TComponent InstantiateComponent(TComponent prefab = null)
         {
@@ -86,8 +90,15 @@ namespace Vheos.Games.Core
         static protected HashSet<TComponent> _components;
         override private protected void RegisterComponent(ABaseComponent component)
         {
-            _components.Add(component as TComponent);
-            component.OnPlayDestroy.SubOnce(() => _components.Remove(component as TComponent));
+            TComponent typedComponent = component as TComponent;
+            _components.Add(typedComponent);
+            OnRegisterComponent.Invoke(typedComponent);
+            component.OnPlayDestroy.SubOnce(() => UnregisterComponent(typedComponent));
+        }
+        private protected void UnregisterComponent(TComponent typedComponent)
+        {
+            _components.Remove(typedComponent);
+            OnUnregisterComponent.Invoke(typedComponent);
         }
         static private void TryCreateFirstComponent()
         {
@@ -102,6 +113,8 @@ namespace Vheos.Games.Core
         protected override void PlayAwake()
         {
             base.PlayAwake();
+            OnRegisterComponent = new();
+            OnUnregisterComponent = new();
             _instance = this as TManager;
             _components = new();
             RegisterManagerForComponentsOfType<TComponent>();
