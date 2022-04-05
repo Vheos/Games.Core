@@ -52,7 +52,7 @@ namespace Vheos.Games.Core
                         _raycastTests.Add(SpriteRenderer_RaycastTest);
                         TryFitBoxColliderToRenderer(t);
                         break;
-                    case TextMeshPro t:                     
+                    case TextMeshPro t:
                         t.ForceMeshUpdate();
                         TryFitBoxColliderToRenderer(t.renderer);
                         break;
@@ -64,11 +64,7 @@ namespace Vheos.Games.Core
         private Component _raycastTarget;
         private readonly HashSet<Func<Vector3, bool>> _raycastTests = new();
         private bool IsValidRaycastTarget(Component component)
-        => component switch
-        {
-            UnityEngine.Collider or SpriteRenderer or TextMeshPro => true,
-            _ => false,
-        };
+        => component is UnityEngine.Collider or SpriteRenderer or TextMeshPro;
         private Component FindFirstValidRaycastTarget()
         => GetComponents<Component>().FirstOrDefault(t => IsValidRaycastTarget(t));
         private void TryFitBoxColliderToRenderer(Renderer renderer)
