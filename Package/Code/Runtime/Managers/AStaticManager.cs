@@ -5,8 +5,8 @@ namespace Vheos.Games.Core
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using UnityEngine;
-    using Tools.Extensions.UnityObjects;
     using Tools.Extensions.General;
+    using Tools.Extensions.UnityObjects;
     using Tools.Extensions.Collections;
 
     [DefaultExecutionOrder(-1)]
@@ -17,7 +17,7 @@ namespace Vheos.Games.Core
         private protected void RegisterManagerForComponentsOfType<T>() where T : ABaseComponent
         {
             if (!_managersByComponentType.TryAddUnique(typeof(T), this))
-                throw new Exception($"Manager for components of type {typeof(T).Name} already exists!");
+                throw new($"Manager for components of type {typeof(T).Name} already exists!");
         }
 
         // Static
@@ -34,7 +34,7 @@ namespace Vheos.Games.Core
         [SuppressMessage("CodeQuality", "IDE0051")]
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static private void StaticInitialize()
-        => _managersByComponentType = new Dictionary<Type, AStaticManager>();
+        => _managersByComponentType = new();
     }
 
     abstract public class AStaticManager<TManager, TComponent> : AStaticManager
@@ -44,18 +44,16 @@ namespace Vheos.Games.Core
         // Inspector
         [field: SerializeField] public TComponent Prefab { get; private set; }
         [field: SerializeField] public bool PersistentComponents { get; private set; }
-        [field: SerializeField] public bool EnsureAnyComponent { get; private set; }
 
         // Events
         static public AutoEvent<TComponent> OnRegisterComponent;
         static public AutoEvent<TComponent> OnUnregisterComponent;
 
         // Publics (getters)
-        static public TComponent InstantiateComponent(TComponent prefab = null)
+        static public TComponent InstantiateComponent()
         {
             TComponent newComponent;
-            if (prefab != null
-            || _instance.Prefab.TryNonNull(out prefab))
+            if (_instance.Prefab.TryNonNull(out var prefab))
             {
                 newComponent = GameObject.Instantiate<TComponent>(prefab);
                 newComponent.name = prefab.name;
@@ -95,18 +93,10 @@ namespace Vheos.Games.Core
             OnRegisterComponent.Invoke(typedComponent);
             component.OnPlayDestroy.SubOnce(() => UnregisterComponent(typedComponent));
         }
-        private protected void UnregisterComponent(TComponent typedComponent)
+        private void UnregisterComponent(TComponent typedComponent)
         {
             _components.Remove(typedComponent);
             OnUnregisterComponent.Invoke(typedComponent);
-        }
-        static private void TryCreateFirstComponent()
-        {
-            if (!_instance.EnsureAnyComponent
-            || GameObject.FindObjectOfType<TComponent>(true) != null)
-                return;
-
-            InstantiateComponent();
         }
 
         // Play
@@ -115,22 +105,10 @@ namespace Vheos.Games.Core
             base.PlayAwake();
             OnRegisterComponent = new();
             OnUnregisterComponent = new();
-            _instance = this as TManager;
             _components = new();
-            RegisterManagerForComponentsOfType<TComponent>();
-            TryCreateFirstComponent();
-        }
 
-#if UNITY_EDITOR
-        // Debug
-        // [ContextMenu(nameof(LogComponents))] - generic class methods can't be for menu commands
-        public void LogComponents()
-        {
-            Debug.Log($"{name}.{typeof(TManager).Name}<{typeof(TComponent).Name}> has {_components.Count} components:");
-            foreach (var component in _components)
-                Debug.Log($"\t- {component.name} (scene: {component.gameObject.scene.name})");
-            Debug.Log($"");
+            _instance = this as TManager;           
+            RegisterManagerForComponentsOfType<TComponent>();
         }
-#endif
     }
 }
