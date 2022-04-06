@@ -34,7 +34,7 @@ namespace Vheos.Games.Core
                 .SetConflictLayer(this)
                 .SetInterrupt()
                 .AddEventsOnFinish(() => State = ExpandableState.Expanded, () => OnFinishExpanding.Invoke())
-                .FinishIf(instantly);
+                .If(instantly).Finish();
             return true;
         }
         public bool TryCollapse(bool instantly = false)
@@ -48,7 +48,7 @@ namespace Vheos.Games.Core
                 .SetConflictLayer(this)
                 .SetInterrupt()
                 .AddEventsOnFinish(() => State = ExpandableState.Collapsed, () => OnFinishCollapsing.Invoke())
-                .FinishIf(instantly);
+                .If(instantly).Finish();
             return true;
         }
         public void Toggle(bool instantly = false)
