@@ -2,75 +2,54 @@ namespace Vheos.Games.Core
 {
     using System;
     using UnityEngine;
+    using Tools.Extensions.General;
 
     [DisallowMultipleComponent]
-    sealed public class Selecter : ABaseComponent
+    sealed public class Selecter : ASingleEffector<Selecter, Selectable>
     {
         // Events
-        public readonly AutoEvent<Selectable, Selectable> OnChangeSelectable = new();
+        public AutoEvent<Selectable, Selectable> OnChangeSelectable
+        => OnChangeReceptor;
 
         // Publics
         public Selectable Selectable
         {
-            get => _selectable;
-            set
-            {
-                if (value == _selectable
-                || value != null && (!value.isActiveAndEnabled || value.IsSelectedBy(this) || !value.CanGetSelectedBy(this)))
-                    return;
-
-                Selectable previousSelectable = _selectable;
-                if (previousSelectable != null
-                && previousSelectable.IsSelectedBy(this))
-                    previousSelectable.GetUnselectedBy(this);
-
-                _selectable = value;
-                if (_selectable != null)
-                    _selectable.GetSelectedBy(this);
-
-                OnChangeSelectable.Invoke(previousSelectable, _selectable);
-            }
-        }
-        public bool TryGetSelectable<T>(out T component) where T : Component
-        {
-            if (_selectable != null
-            && _selectable.TryGet(out component))
-                return true;
-
-            component = default;
-            return false;
+            get => _receptor;
+            set => SetReceptor(value);
         }
         public bool IsSelectingAny
-        => _selectable != null;
+        => IsEffectingAny;
         public bool IsSelecting(Selectable selectable)
-        => _selectable == selectable;
+        => IsEffecting(selectable);
         public bool IsSelecting<T>() where T : Component
-        => _selectable != null && _selectable.Has<T>();
+        => IsSelecting<T>();
+        public bool TryGetSelectable(out Selectable component)
+        => TryGetSelectable(out component);
+        public bool TryGetSelectable<T>(out T component) where T : Component
+        => TryGetSelectable(out component);
+
         public bool IsHolding
-        => _selectable != null && _selectable.IsHeldBy(this);
+        => Selectable != null && Selectable.IsHeldBy(this);
         public void TryPress()
         {
-            if (_selectable != null
-            && !_selectable.IsHeld)
-                _selectable.GetPressedBy(this);
+            if (Selectable != null
+            && !Selectable.IsHeld)
+                Selectable.GetPressedBy(this);
         }
         public void TryRelease(bool fullClick)
         {
-            if (_selectable != null
-            && _selectable.IsHeldBy(this))
-                _selectable.GetReleasedBy(this, fullClick);
+            if (Selectable != null
+            && Selectable.IsHeldBy(this))
+                Selectable.GetReleasedBy(this, fullClick);
         }
         public void TryFullClick()
         {
-            if (_selectable != null
-            && !_selectable.IsHeld)
+            if (Selectable != null
+            && !Selectable.IsHeld)
             {
-                _selectable.GetPressedBy(this);
-                _selectable.GetReleasedBy(this, true);
+                Selectable.GetPressedBy(this);
+                Selectable.GetReleasedBy(this, true);
             }
         }
-
-        // Privates
-        private Selectable _selectable;
     }
 }
