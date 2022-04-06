@@ -4,6 +4,7 @@ namespace Vheos.Games.Core
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using UnityEngine;
+    using Tools.Extensions.General;
     using Tools.Extensions.Math;
     using Tools.Extensions.UnityObjects;
 
@@ -25,14 +26,25 @@ namespace Vheos.Games.Core
         /// </remarks>
         static public Tween New
         => Tweener.NewTween;
+        /// <summary> Instantly stops all tweens on chosen layer </summary>
+        static public void StopLayer(object conflictLayer)
+        => Tweener.StopLayer(conflictLayer);
         /// <summary> Instantly stops this tween </summary>
         /// <remarks> Does NOT apply the remaining delta value or call any events </remarks>
         public void Stop()
-        => Tweener.StopTween(this);
+        {
+            if (_skipNextMethod.Consume())
+                return;
+
+            Tweener.StopTween(this);
+        }
         /// <summary> Instantly fast-forwards this tween to its end </summary>
         /// <remarks> Applies the remaining delta value and calls conditional and <c>OnFinish</c> events</remarks>
         public void Finish()
         {
+            if (_skipNextMethod.Consume())
+                return;
+
             TrySetDefaults();
 
             _elapsed.Current = _duration.Value;
@@ -48,21 +60,22 @@ namespace Vheos.Games.Core
             InvokeOnFinish();
             Stop();
         }
-        /// <summary> Finishes this tween if the chosen condition is met </summary>
-        public void FinishIf(bool condition)
-        {
-            if (condition)
-                Finish();
-        }
-        /// <summary> Instantly stops all tweens on chosen layer </summary>
-        static public void StopLayer(object conflictLayer)
-        => Tweener.StopLayer(conflictLayer);
 
         // Publics - Settings
+        /// <summary> Decides whether the next chained method will be called </summary>
+        /// <param name="condition"> </param>
+        public Tween If(bool condition)
+        {
+            _skipNextMethod = !condition;
+            return this;
+        }
         /// <summary> Overrides <c>duration</c> </summary>
         /// <param name="duration"> </param>
         public Tween SetDuration(float duration)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             _duration = duration;
             return this;
         }
@@ -70,6 +83,9 @@ namespace Vheos.Games.Core
         /// <param name="curve"> </param>
         public Tween SetCurve(AnimationCurve curve)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             _curve = curve;
             return this;
         }
@@ -77,6 +93,9 @@ namespace Vheos.Games.Core
         /// <param name="curveShape"> </param>
         public Tween SetCurveShape(CurveShape curveShape)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             _curveValueFunc = GetCurveValueFunc(curveShape);
             return this;
         }
@@ -84,6 +103,9 @@ namespace Vheos.Games.Core
         /// <param name="timeDeltaType"> </param>
         public Tween SetDeltaTime(DeltaTimeType timeDeltaType)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             _deltaTimeFunc = GetDeltaTimeFunc(timeDeltaType);
             return this;
         }
@@ -95,6 +117,9 @@ namespace Vheos.Games.Core
         /// <param name="conflictResolution"> </param>
         public Tween SetConflictResolution(ConflictResolution conflictResolution)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             ConflictResolution = conflictResolution;
             return this;
         }
@@ -112,6 +137,9 @@ namespace Vheos.Games.Core
         ///     </param>
         public Tween SetConflictLayer(object conflictLayer)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             ConflictLayer = conflictLayer;
             return this;
         }
@@ -119,6 +147,9 @@ namespace Vheos.Games.Core
         /// <param name="gameObject"> </param>
         public Tween SetGameObject(GameObject gameObject)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             GameObject = gameObject;
             return this;
         }
@@ -142,6 +173,9 @@ namespace Vheos.Games.Core
         /// </param>
         public Tween AddPropertyModifier<T>(Action<T> modifierFunction, T totalDelta, DeltaValueType deltaType = DeltaValueType.Offset) where T : struct
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             _modifierFunctionInvoke += GetModifierFunctionInvoke(modifierFunction, totalDelta, deltaType);
             return this;
         }
@@ -149,6 +183,9 @@ namespace Vheos.Games.Core
         /// <param name="eventInfos"> Collection of <c><see cref="EventInfo"/></c>s that will be converted to internal conditional events </param>
         public Tween AddEvents(params EventInfo[] eventInfos)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             Func<(float, float)> GetEventValuePairFunc(EventThresholdVariable thresholdType)
             => thresholdType switch
             {
@@ -168,6 +205,9 @@ namespace Vheos.Games.Core
         /// <param name="onFinishEvents"> Collection of <c><see cref="Action"/></c>s to be invoked </param>
         public Tween AddEventsOnFinish(params Action[] onFinishEvents)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             foreach (var @event in onFinishEvents)
                 _onFinish += @event;
 
@@ -180,6 +220,9 @@ namespace Vheos.Games.Core
         /// </param>
         public Tween AddEventsOnChangeCurveDirection(params Action<int>[] onChangeCurveDirectionEvents)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             foreach (var @event in onChangeCurveDirectionEvents)
                 _onChangeCurveDirection += @event;
 
@@ -189,6 +232,9 @@ namespace Vheos.Games.Core
         /// <param name="loopCount"> </param>
         public Tween SetLoops(int loopCount)
         {
+            if (_skipNextMethod.Consume())
+                return this;
+
             _loopCounter = loopCount;
             return this;
         }
@@ -245,7 +291,7 @@ namespace Vheos.Games.Core
             if (_onChangeCurveDirection != null)
                 TryInvokeOnChangeCurveDirection();
 
-            if(HasFinished && --_loopCounter > 0)
+            if (HasFinished && --_loopCounter > 0)
             {
                 _elapsed = _progress = _curveValue = default;
                 _curveValueDirection = default;
@@ -272,6 +318,7 @@ namespace Vheos.Games.Core
         // Privates - Helpers
         private (float Current, float Previous) _elapsed, _progress, _curveValue;
         private int _curveValueDirection;
+        private bool _skipNextMethod;
         private void UpdateElapsed(float deltaTime)
         {
             _elapsed.Previous = _elapsed.Current;
@@ -288,31 +335,30 @@ namespace Vheos.Games.Core
             _curveValue.Current = _curveValueFunc(progress);
         }
         private Action<float> GetModifierFunctionInvoke<T>(Action<T> modifierFunction, T value, DeltaValueType deltaType) where T : struct
+        => deltaType switch
         {
-            return deltaType switch
+            DeltaValueType.Offset => new GenericArgs<T>(modifierFunction, value) switch
             {
-                DeltaValueType.Offset => new GenericArgs<T>(modifierFunction, value) switch
-                {
-                    GenericArgs<float> t => dV => t.AssignFunc(t.Value * dV),
-                    GenericArgs<Vector2> t => dV => t.AssignFunc(t.Value * dV),
-                    GenericArgs<Vector3> t => dV => t.AssignFunc(t.Value * dV),
-                    GenericArgs<Vector4> t => dV => t.AssignFunc(t.Value * dV),
-                    GenericArgs<Color> t => dV => t.AssignFunc(t.Value * dV),
-                    GenericArgs<Quaternion> t => dV => t.AssignFunc(Quaternion.identity.SLerp(t.Value, dV)),
-                    _ => throw AnimationNotSupportedException<T>(deltaType),
-                },
-                DeltaValueType.Ratio => new GenericArgs<T>(modifierFunction, value) switch
-                {
-                    GenericArgs<float> t => dV => t.AssignFunc(t.Value.Pow(dV)),
-                    GenericArgs<Vector2> t => dV => t.AssignFunc(t.Value.Pow(dV)),
-                    GenericArgs<Vector3> t => dV => t.AssignFunc(t.Value.Pow(dV)),
-                    GenericArgs<Vector4> t => dV => t.AssignFunc(t.Value.Pow(dV)),
-                    GenericArgs<Color> t => dV => t.AssignFunc(t.Value.Pow(dV)),
-                    _ => throw AnimationNotSupportedException<T>(deltaType),
-                },
+                GenericArgs<float> t => dV => t.AssignFunc(t.Value * dV),
+                GenericArgs<Vector2> t => dV => t.AssignFunc(t.Value * dV),
+                GenericArgs<Vector3> t => dV => t.AssignFunc(t.Value * dV),
+                GenericArgs<Vector4> t => dV => t.AssignFunc(t.Value * dV),
+                GenericArgs<Color> t => dV => t.AssignFunc(t.Value * dV),
+                GenericArgs<Quaternion> t => dV => t.AssignFunc(Quaternion.identity.SLerp(t.Value, dV)),
                 _ => throw AnimationNotSupportedException<T>(deltaType),
-            };
-        }
+            },
+            DeltaValueType.Ratio => new GenericArgs<T>(modifierFunction, value) switch
+            {
+                GenericArgs<float> t => dV => t.AssignFunc(t.Value.Pow(dV)),
+                GenericArgs<Vector2> t => dV => t.AssignFunc(t.Value.Pow(dV)),
+                GenericArgs<Vector3> t => dV => t.AssignFunc(t.Value.Pow(dV)),
+                GenericArgs<Vector4> t => dV => t.AssignFunc(t.Value.Pow(dV)),
+                GenericArgs<Color> t => dV => t.AssignFunc(t.Value.Pow(dV)),
+                _ => throw AnimationNotSupportedException<T>(deltaType),
+            },
+            _ => throw AnimationNotSupportedException<T>(deltaType),
+        };
+
         private Func<float, float> GetCurveValueFunc(CurveShape curveShape)
         => curveShape switch
         {
@@ -352,7 +398,7 @@ namespace Vheos.Games.Core
         static private void StaticInitialize()
         {
             DefaultDuration = 0.5f;
-            DefaultCurve = new AnimationCurve();
+            DefaultCurve = new();
             DefaultCurve.AddLinearKeys((0, 0), (1, 1));
             DefaultCurveShape = CurveShape.Normal;
             DefaultDeltaTimeType = DeltaTimeType.Scaled;
