@@ -35,19 +35,22 @@ namespace Vheos.Games.Core
         // Publics
         static public bool TransitionTo(string targetScenePath)
         {
+            if (targetScenePath == PersistentScene.path)
+                return false;
+
             // Cache
             var transitionOrder = Instance.SceneTransitionOrder;
             var previousActiveScene = ActiveScene;
             Action firstOperationInvoke = transitionOrder.FirstOperation switch
             {
                 SceneOperation.Load => () => Load(targetScenePath, transitionOrder.FirstOperationTiming),
-                SceneOperation.Unload => () => TryUnload(previousActiveScene, transitionOrder.FirstOperationTiming),
+                SceneOperation.Unload => () => Unload(previousActiveScene, transitionOrder.FirstOperationTiming),
                 _ => default,
             };
             Action secondOperationInvoke = transitionOrder.SecondOperation switch
             {
                 SceneOperation.Load => () => Load(targetScenePath, transitionOrder.SecondOperationTiming),
-                SceneOperation.Unload => () => TryUnload(previousActiveScene, transitionOrder.SecondOperationTiming),
+                SceneOperation.Unload => () => Unload(previousActiveScene, transitionOrder.SecondOperationTiming),
                 _ => default,
             };
 
@@ -92,7 +95,7 @@ namespace Vheos.Games.Core
         => OnFinishUnloadingScene.Invoke(scene);
         static private void InvokeOnChangeActiveScene(Scene from, Scene to)
         => OnChangeActiveScene.Invoke(from, to);
-        static private void TryUnload(Scene scene, SceneOperationTiming timing)
+        static private void Unload(Scene scene, SceneOperationTiming timing)
         {
             if (scene == PersistentScene)
                 return;
@@ -108,6 +111,9 @@ namespace Vheos.Games.Core
         }
         static private void Load(string scenePath, SceneOperationTiming timing)
         {
+            if (scenePath == PersistentScene.path)
+                return;
+
             switch (timing)
             {
                 case SceneOperationTiming.Synchronously: UnitySceneManager.LoadScene(scenePath, LoadSceneMode.Additive); break;
@@ -117,15 +123,14 @@ namespace Vheos.Games.Core
         }
 
         // Initializers
-        [SuppressMessage("CodeQuality", "IDE0051")]
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static private void StaticInitialize()
         {
-            OnStartLoadingScene = new AutoEvent<Scene>();
-            OnFinishLoadingScene = new AutoEvent<Scene>();
-            OnStartUnloadingScene = new AutoEvent<Scene>();
-            OnFinishUnloadingScene = new AutoEvent<Scene>();
-            OnChangeActiveScene = new AutoEvent<Scene, Scene>();
+            OnStartLoadingScene = new();
+            OnFinishLoadingScene = new();
+            OnStartUnloadingScene = new();
+            OnFinishUnloadingScene = new();
+            OnChangeActiveScene = new();
         }
 
         // Play
