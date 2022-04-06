@@ -53,7 +53,7 @@ namespace Vheos.Games.Core
         public void Initialize(Renderer renderer)
         {
             _renderer = renderer;
-            _mprops = new MaterialPropertyBlock();
+            _mprops = new();
             UpdateDirtyMProps();
             Get<Updatable>().OnUpdateLate.SubEnableDisable(this, UpdateDirtyMProps);
         }

@@ -34,6 +34,6 @@ namespace Vheos.Games.Core
 
         // Initializers
         protected AComponentGroup()
-        => _members = new HashSet<T>();
+        => _members = new();
     }
 }

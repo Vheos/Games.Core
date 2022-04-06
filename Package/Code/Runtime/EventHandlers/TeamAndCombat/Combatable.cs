@@ -46,7 +46,7 @@ namespace Vheos.Games.Core
 
             Combat combat;
             if (!this.IsInCombat && !target.IsInCombat)
-                combat = new Combat();
+                combat = new();
             else if (this.IsInCombat)
                 combat = this.Combat;
             else

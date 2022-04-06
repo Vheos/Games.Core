@@ -31,12 +31,12 @@ namespace Vheos.Games.Core
             _allies = new Team
             {
                 Name = nameof(_allies),
-                Color = new Color(0.5f, 0.75f, 1f, 1f),
+                Color = new(0.5f, 0.75f, 1f, 1f),
             };
             _enemies = new Team()
             {
                 Name = nameof(_enemies),
-                Color = new Color(1f, 0.75f, 0.5f, 1f),
+                Color = new(1f, 0.75f, 0.5f, 1f),
             };
         }
     }

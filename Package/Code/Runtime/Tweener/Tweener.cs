@@ -67,7 +67,6 @@ namespace Vheos.Games.Core
 
             if (_finishedTweens.IsNotEmpty())
                 _finishedTweens.Clear();
-
         }
         static private void ResolveConflict(Tween tween)
         {
@@ -94,13 +93,12 @@ namespace Vheos.Games.Core
             base.PlayAwake();
             Get<Updatable>().OnUpdateLate.SubEnableDisable(this, ProcessPendingTweens, ProcessPlayingTweens, ProcessFinishedTweens);
         }
-        [SuppressMessage("CodeQuality", "IDE0051")]
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static private void StaticInitialize()
         {
-            _playingTweens = new HashSet<Tween>();
-            _pendingTweens = new HashSet<Tween>();
-            _finishedTweens = new HashSet<Tween>();
+            _playingTweens = new();
+            _pendingTweens = new();
+            _finishedTweens = new();
         }
 
 #if UNITY_EDITOR
