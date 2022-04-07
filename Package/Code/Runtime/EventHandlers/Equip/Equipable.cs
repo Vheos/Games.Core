@@ -4,38 +4,27 @@ namespace Vheos.Games.Core
     using UnityEngine;
 
     [DisallowMultipleComponent]
-    sealed public class Equipable : ABaseComponent
+    sealed public class Equipable : AUsableByOne<Equipable, Equiper>
     {
         // Events
-        public readonly AutoEvent<Equiper> OnGetEquiped = new();
-        public readonly AutoEvent<Equiper> OnGetUnequiped = new();
+        public AutoEvent<Equiper> OnGetEquiped => OnStartBeingUsed;
+        public AutoEvent<Equiper> OnGetUnequiped => OnStopBeingUsed;
 
         // Getters
         public readonly Getter<int> EquipSlot = new();
 
         // Publics
-        public Equiper Equiper
-        { get; private set; }
+        public Equiper EquiperNEW
+        => _user;
         public bool IsEquipped
-        => Equiper != null;
+        => IsBeingUsed;
         public bool IsEquippedBy(Equiper equiper)
-        => Equiper != null && Equiper == equiper;
+        => IsBeingUsedBy(equiper);
 
         // Internals
-        internal bool CanGetEquipped
-        => isActiveAndEnabled && !IsEquipped;
-        internal bool CanGetUnequippedBy(Equiper equiper)
-        => isActiveAndEnabled && IsEquippedBy(equiper);
         internal void GetEquippedBy(Equiper equiper)
-        {
-            Equiper = equiper;
-            OnGetEquiped.Invoke(Equiper);
-        }
+        => StartBeingUsedBy(equiper);
         internal void GetUnequipped()
-        {
-            var previousEquiper = Equiper;
-            Equiper = null;
-            OnGetUnequiped.Invoke(previousEquiper);
-        }
+        => StopBeingUsed();
     }
 }
