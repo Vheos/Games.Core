@@ -7,20 +7,34 @@ namespace Vheos.Games.Core
     using Tools.Extensions.General;
 
     [DisallowMultipleComponent]
-    public class Targetable : AMultiReceptor<Targetable, Targeter>
+    public class Targetable : AUsableByMany<Targetable, Targeter>
     {
         // Events
-        public AutoEvent<Targeter, bool> OnGainTargeting
-        => OnGainEffect;
-        public AutoEvent<Targeter, bool> OnLoseTargeting
-        => OnLoseEffect;
+        /// <summary>
+        /// <c><see cref="Targeter"/></c> - the component that started targeting this targetable<br/>
+        /// <c><see cref="bool"/></c> - whether the above component is the only one targeting this targetable
+        /// </summary>
+        public readonly AutoEvent<Targeter, bool> OnGainTargeting = new();
+        /// <summary>
+        /// <c><see cref="Targeter"/></c> - the component that stopped targeting this targetable<br/>
+        /// <c><see cref="bool"/></c> - whether the above component was the only one targeting this targetable
+        /// </summary>
+        public readonly AutoEvent<Targeter, bool> OnLoseTargeting = new();
 
         // Publics
         public IReadOnlyCollection<Targeter> Targeters
-        => _effectors;
+        => _users;
         public bool IsTargeted
-        => IsEffected;
+        => IsBeingUsed;
         public bool IsTargetedBy(Targeter selecter)
-        => IsEffectedBy(selecter);
+        => IsBeingUsedBy(selecter);
+
+        // Play
+        protected override void PlayAwake()
+        {
+            base.PlayAwake();
+            OnStartBeingUsed.SubEnableDisable(this, user => OnGainTargeting.Invoke(user, _users.Count == 1));
+            OnStopBeingUsed.SubEnableDisable(this, user => OnLoseTargeting.Invoke(user, _users.Count == 0));
+        }
     }
 }

@@ -5,27 +5,27 @@ namespace Vheos.Games.Core
     using Tools.Extensions.General;
 
     [DisallowMultipleComponent]
-    sealed public class Targeter : ASingleEffector<Targeter, Targetable>
+    sealed public class Targeter : AUserOfOne<Targeter, Targetable>
     {
         // Events
         public AutoEvent<Targetable, Targetable> OnChangeTargetable
-        => OnChangeReceptor;
+        => OnChangeUser;
 
         // Publics
         public Targetable Targetable
         {
-            get => _receptor;
-            set => SetReceptor(value);
+            get => _usable;
+            set => TrySetUsable(value);
         }
         public bool IsTargetingAny
-        => IsEffectingAny;
+        => IsUsingAny;
         public bool IsTargeting(Targetable targetable)
-        => IsEffecting(targetable);
+        => IsUsing(targetable);
         public bool IsTargeting<T>() where T : Component
-        => IsEffecting<T>();
+        => IsUsing<T>();
         public bool TryGetTargetable(out Targetable component)
-        => TryGetReceptor(out component);
+        => TryGetUsable(out component);
         public bool TryGetTargetable<T>(out T component) where T : Component
-        => TryGetReceptor(out component);
+        => TryGetUsable(out component);
     }
 }

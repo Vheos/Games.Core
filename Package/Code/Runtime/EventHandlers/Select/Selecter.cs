@@ -5,22 +5,35 @@ namespace Vheos.Games.Core
     using Tools.Extensions.General;
 
     [DisallowMultipleComponent]
-    sealed public class Selecter : ASingleEffector<Selecter, Selectable>
+    sealed public class Selecter : AUserOfOne<Selecter, Selectable>
     {
         // Events
         public AutoEvent<Selectable, Selectable> OnChangeSelectable
-        => OnChangeReceptor;
+        => OnChangeUser;
+        public readonly AutoEvent OnPress = new();
+        public readonly AutoEvent OnRelease = new();
 
         // Publics
         public Selectable Selectable
         {
-            get => _receptor;
-            set => SetReceptor(value);
+            get => _usable;
+            set
+            {
+                if (value == _usable
+                || value != null && !PerformAllTests(this, value))
+                    return;
+
+                if (IsPressing && Selectable.PressedDeselectBehavior == PressedDeselectBehavior.ReleaseAndDeselect)
+                    Selectable.GetReleasedBy(this, false);
+
+                if (!IsPressing || Selectable.PressedDeselectBehavior != PressedDeselectBehavior.KeepPressedAndSelected)
+                    SetUsable(value);
+            }
         }
         public bool IsSelectingAny
-        => IsEffectingAny;
+        => IsUsingAny;
         public bool IsSelecting(Selectable selectable)
-        => IsEffecting(selectable);
+        => IsUsing(selectable);
         public bool IsSelecting<T>() where T : Component
         => IsSelecting<T>();
         public bool TryGetSelectable(out Selectable component)
@@ -28,28 +41,29 @@ namespace Vheos.Games.Core
         public bool TryGetSelectable<T>(out T component) where T : Component
         => TryGetSelectable(out component);
 
-        public bool IsHolding
-        => Selectable != null && Selectable.IsHeldBy(this);
-        public void TryPress()
+        public bool IsPressing
+        => Selectable != null && Selectable.IsPressedBy(this);
+        public void Press()
         {
-            if (Selectable != null
-            && !Selectable.IsHeld)
-                Selectable.GetPressedBy(this);
+            OnPress.Invoke();
+            if (Selectable == null
+            || Selectable.IsPressedBy(this))
+                return;
+
+            Selectable.GetPressedBy(this);
         }
-        public void TryRelease(bool fullClick)
+        public void Release(bool click)
         {
-            if (Selectable != null
-            && Selectable.IsHeldBy(this))
-                Selectable.GetReleasedBy(this, fullClick);
+            OnRelease.Invoke();
+            if (!IsPressing)
+                return;
+
+            Selectable.GetReleasedBy(this, click);
         }
-        public void TryFullClick()
+        public void Click()
         {
-            if (Selectable != null
-            && !Selectable.IsHeld)
-            {
-                Selectable.GetPressedBy(this);
-                Selectable.GetReleasedBy(this, true);
-            }
+            Press();
+            Release(true);
         }
     }
 }
