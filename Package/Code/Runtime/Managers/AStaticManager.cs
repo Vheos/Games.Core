@@ -50,10 +50,11 @@ namespace Vheos.Games.Core
         static public AutoEvent<TComponent> OnUnregisterComponent;
 
         // Publics (getters)
-        static public TComponent InstantiateComponent()
+        static public TComponent InstantiateComponent(TComponent prefab = null)
         {
             TComponent newComponent;
-            if (_instance.Prefab.TryNonNull(out var prefab))
+            if (prefab != null
+            || _instance.Prefab.TryNonNull(out prefab))
             {
                 newComponent = GameObject.Instantiate<TComponent>(prefab);
                 newComponent.name = prefab.name;
@@ -107,7 +108,7 @@ namespace Vheos.Games.Core
             OnUnregisterComponent = new();
             _components = new();
 
-            _instance = this as TManager;           
+            _instance = this as TManager;
             RegisterManagerForComponentsOfType<TComponent>();
         }
     }
