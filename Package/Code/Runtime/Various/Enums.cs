@@ -4,6 +4,14 @@ namespace Vheos.Games.Core
     using UnityEngine;
     using Vheos.Tools.Extensions.General;
 
+    public enum PressedDeselectBehavior
+    {
+
+        ReleaseAndDeselect,
+        KeepPressedButDeselect,
+        KeepPressedAndSelected,
+    }
+
     public enum BuiltInLayer
     {
         Default = 0,
