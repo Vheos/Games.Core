@@ -13,76 +13,92 @@ namespace Vheos.Games.Core
     public class Raycastable : ABaseComponent
     {
         // Publics
-        public Collider Collider
+        public Collider RaycastCollider
         { get; private set; }
-        public void AddRaycastTest(Func<Vector3, bool> test)
-        => _raycastTests.Add(test);
-        public bool PerformRaycastTests(Vector3 position)
+        public Component RaycastComponent
         {
-            if (_raycastTests != null)
-                foreach (Func<Vector3, bool> test in _raycastTests)
-                    if (!test(position))
-                        return false;
-            return true;
-        }
-        public Component RaycastTarget
-        {
-            get => _raycastTarget;
+            get => _raycastComponent;
             set
             {
-                if (value == _raycastTarget)
+                if (value == _raycastComponent)
                     return;
-                else if (!IsValidRaycastTarget(value))
+
+                if (!IsValidRaycastTarget(value))
                 {
                     Disable();
                     return;
                 }
 
-                switch (_raycastTarget)
+                // Clean up after previous component
+                switch (_raycastComponent)
                 {
-                    case SpriteRenderer: _raycastTests.Remove(SpriteRenderer_RaycastTest); break;
-                    case TextMeshPro: break;
+                    case SpriteRenderer:
+                        _tests.Remove(SpriteRenderer_RaycastTest);
+                        break;
+                    case TextMeshPro:
+                        break;
                 }
 
-                _raycastTarget = value;
-
-                switch (_raycastTarget)
+                // Assign new component
+                _raycastComponent = value;
+                switch (_raycastComponent)
                 {
                     case SpriteRenderer t:
-                        _raycastTests.Add(SpriteRenderer_RaycastTest);
-                        TryFitBoxColliderToRenderer(t);
+                        RaycastRenderer = t;
+                        _tests.Add(SpriteRenderer_RaycastTest);
+                        TryFitBoxColliderToRenderer();
                         break;
                     case TextMeshPro t:
+                        RaycastRenderer = t.renderer;
                         t.ForceMeshUpdate();
-                        TryFitBoxColliderToRenderer(t.renderer);
+                        TryFitBoxColliderToRenderer();
+                        break;
+                    default:
+                        RaycastRenderer = Get<Renderer>();
                         break;
                 }
             }
         }
+        public Renderer RaycastRenderer
+        { get; private set; }
+        public void AddTest(Func<Vector3, bool> test)
+        => _tests.Add(test);
+        public void RemoveTest(Func<Vector3, bool> test)
+        => _tests.Remove(test);
+        public bool Raycast(Ray ray, out RaycastHit hit)
+        => RaycastCollider.Raycast(ray, out hit, float.PositiveInfinity)
+        && CanHit(hit.point);
 
         // Privates
-        private Component _raycastTarget;
-        private readonly HashSet<Func<Vector3, bool>> _raycastTests = new();
+        private Component _raycastComponent;
+        private readonly HashSet<Func<Vector3, bool>> _tests = new();
         private bool IsValidRaycastTarget(Component component)
         => component is UnityEngine.Collider or SpriteRenderer or TextMeshPro;
         private Component FindFirstValidRaycastTarget()
         => GetComponents<Component>().FirstOrDefault(t => IsValidRaycastTarget(t));
-        private void TryFitBoxColliderToRenderer(Renderer renderer)
+        private void TryFitBoxColliderToRenderer()
         {
-            if (!Collider.TryAs(out BoxCollider boxCollider))
+            if (!RaycastCollider.TryAs(out BoxCollider boxCollider))
                 return;
 
-            var targetSize = renderer.localBounds.size;
-            if (renderer is SpriteRenderer)
+            var targetSize = RaycastRenderer.localBounds.size;
+            if (RaycastRenderer is SpriteRenderer)
                 targetSize.z = 0f;
 
             boxCollider.size = targetSize;
         }
         private bool SpriteRenderer_RaycastTest(Vector3 position)
         {
-            if (_raycastTarget.As<SpriteRenderer>().sprite.TryNonNull(out var sprite)
+            if (_raycastComponent.As<SpriteRenderer>().sprite.TryNonNull(out var sprite)
             && sprite.texture.isReadable)
                 return sprite.PositionToPixelAlpha(position, transform) >= 0.5f;
+            return true;
+        }
+        private bool CanHit(Vector3 position)
+        {
+            foreach (Func<Vector3, bool> test in _tests)
+                if (!test(position))
+                    return false;
             return true;
         }
 
@@ -90,8 +106,8 @@ namespace Vheos.Games.Core
         protected override void PlayAwake()
         {
             base.PlayAwake();
-            Collider = Get<Collider>();
-            RaycastTarget = FindFirstValidRaycastTarget();
+            RaycastCollider = Get<Collider>();
+            RaycastComponent = FindFirstValidRaycastTarget();
         }
     }
 }
