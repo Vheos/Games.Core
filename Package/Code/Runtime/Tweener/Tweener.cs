@@ -29,6 +29,16 @@ namespace Vheos.Games.Core
             _pendingTweens.RemoveWhere(t => t.IsOnConflictLayer(conflictLayer));
             _playingTweens.RemoveWhere(t => t.IsOnConflictLayer(conflictLayer));
         }
+        static internal void StopGameObject(GameObject gameObject)
+        {
+            _pendingTweens.RemoveWhere(t => t.GameObject == gameObject);
+            _playingTweens.RemoveWhere(t => t.GameObject == gameObject);
+        }
+        static internal void StopAll()
+        {
+            _pendingTweens.Clear();
+            _playingTweens.Clear();
+        }
 
         // Privates
         static private HashSet<Tween> _pendingTweens;

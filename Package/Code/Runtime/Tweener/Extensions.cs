@@ -31,8 +31,11 @@ namespace Vheos.Games.Core
         static public Tween NewTween(this Component t, ConflictResolution conflictResolution)
         => Tweener.NewTween.SetGameObject(t.gameObject).SetConflictLayer(t).SetConflictResolution(conflictResolution);
         /// <summary> Stops all tweens on a conflict layer defined by this component's instance </summary>
-        static public void StopTweens(this Component t)
+        static public void StopLayerTweens(this Component t)
         => Tweener.StopLayer(t);
+        /// <summary> Stops all tweens which are modifying this component's gameObject </summary>
+        static public void StopGameObjectTweens(this Component t)
+        => Tweener.StopGameObject(t.gameObject);
         static public ColorComponent FindColorComponent(this GameObject t)
         {
             foreach (var component in t.GetComponents<Component>())
