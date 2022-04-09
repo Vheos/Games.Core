@@ -11,7 +11,7 @@ namespace Vheos.Games.Core
     sealed public class Combatable : ABaseComponent
     {
         // Events
-        public readonly AutoEvent<Combat, Combat> OnChangeCombat = new();
+        public readonly AutoEvent<Combatable> OnChangeCombat = new();
 
         // Publics
         public Combat Combat
@@ -30,7 +30,7 @@ namespace Vheos.Games.Core
                 if (_combat != null)
                     _combat.TryAddMember(this);
 
-                OnChangeCombat.Invoke(previousCombat, _combat);
+                OnChangeCombat.Invoke(this);
             }
         }
         public bool IsInCombat
@@ -92,5 +92,12 @@ namespace Vheos.Games.Core
 
         // Privates
         private Combat _combat;
+
+        // Play
+        protected override void PlayDisable()
+        {
+            base.PlayDisable();
+            Combat = null;
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Vheos.Games.Core
     sealed public class Equiper : AUserOfMany<Equiper, Equipable>
     {
         // Events
-        public readonly AutoEvent<Equipable, Equipable> OnChangeEquipable = new();
+        public readonly AutoEvent<Equiper, Equipable, Equipable> OnChangeEquipable = new();
 
         // Publics
         public IReadOnlyCollection<Equipable> Equipables
@@ -47,7 +47,7 @@ namespace Vheos.Games.Core
                 TryRemoveUsable(previousEquipable);
 
             TryAddUsable(equipable);
-            OnChangeEquipable.Invoke(previousEquipable, equipable);
+            OnChangeEquipable.Invoke(this, previousEquipable, equipable);
 
             return true;
         }
@@ -62,7 +62,7 @@ namespace Vheos.Games.Core
             if (!TryRemoveUsable(equipable))
                 return false;
 
-            OnChangeEquipable.Invoke(equipable, null);
+            OnChangeEquipable.Invoke(this, equipable, null);
             return true;
         }
     }

@@ -6,12 +6,14 @@ namespace Vheos.Games.Core
     [DisallowMultipleComponent]
     sealed public class Equipable : AUsableByOne<Equipable, Equiper>
     {
-        // Events
-        public AutoEvent<Equiper> OnGetEquiped => OnStartBeingUsed;
-        public AutoEvent<Equiper> OnGetUnequiped => OnStopBeingUsed;
+        // Inspector
+        [field: SerializeField] public int EquipSlot { get; set; }
 
-        // Getters
-        public readonly Getter<int> EquipSlot = new();
+        // Events
+        public AutoEvent<Equipable, Equiper> OnGetEquiped
+        => OnStartBeingUsed;
+        public AutoEvent<Equipable, Equiper> OnGetUnequiped
+        => OnStopBeingUsed;
 
         // Publics
         public Equiper EquiperNEW

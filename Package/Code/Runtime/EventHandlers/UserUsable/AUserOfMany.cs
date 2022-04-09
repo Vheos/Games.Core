@@ -30,20 +30,22 @@ namespace Vheos.Games.Core
         => _usables.Any(t => t.Has<T>());
 
         // Privates
-        protected readonly AutoEvent<TUsable> OnAddUsable = new();
-        protected readonly AutoEvent<TUsable> OnRemoveUsable = new();
+        protected readonly AutoEvent<TUser, TUsable> OnAddUsable = new();
+        protected readonly AutoEvent<TUser, TUsable> OnRemoveUsable = new();
         protected HashSet<TUsable> _usables = new();
         protected void AddUsable(TUsable usable)
         {
+            var asTUser = this as TUser;
             _usables.Add(usable);
-            OnAddUsable.Invoke(usable);
-            usable.StartBeingUsedBy(this as TUser);
+            OnAddUsable.Invoke(asTUser, usable);
+            usable.StartBeingUsedBy(asTUser);
         }
         protected void RemoveUsable(TUsable usable)
         {
+            var asTUser = this as TUser;
             _usables.Remove(usable);
-            OnRemoveUsable.Invoke(usable);
-            usable.StopBeingUsedBy(this as TUser);
+            OnRemoveUsable.Invoke(asTUser, usable);
+            usable.StopBeingUsedBy(asTUser);
         }
         protected bool TryAddUsable(TUsable usable)
         {

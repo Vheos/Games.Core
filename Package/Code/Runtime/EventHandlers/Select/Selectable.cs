@@ -10,26 +10,32 @@ namespace Vheos.Games.Core
     public class Selectable : AUsableByMany<Selectable, Selecter>
     {
         // Inspector
-        [field: SerializeField] public PressedDeselectBehavior PressedDeselectBehavior { get; private set; }
+        [field: SerializeField] public PressedDeselectBehavior PressedDeselectBehavior { get; set; }
 
         // Events
         /// <summary>
+        /// <c><see cref="Selectable"/></c> - the component that raised this event<br/>
         /// <c><see cref="Selecter"/></c> - the component that selected this selectable<br/>
-        /// <c><see cref="bool"/></c> - whether the above component is the only one selecting this selectable
         /// </summary>
-        public readonly AutoEvent<Selecter, bool> OnGetSelected = new();
+        public AutoEvent<Selectable, Selecter> OnGetSelected
+        => OnStartBeingUsed;
         /// <summary>
+        /// <c><see cref="Selectable"/></c> - the component that raised this event<br/>
         /// <c><see cref="Selecter"/></c> - the component that deselected this selectable<br/>
-        /// <c><see cref="bool"/></c> - whether the above component was the only one selecting this selectable
         /// </summary>
-        public readonly AutoEvent<Selecter, bool> OnGetDeselected = new();
-        /// <summary> <c><see cref="Selecter"/></c> - the component that pressed this selectable<br/> </summary>
-        public readonly AutoEvent<Selecter> OnGetPressed = new();
+        public AutoEvent<Selectable, Selecter> OnGetDeselected
+        => OnStopBeingUsed;
         /// <summary>
+        /// <c><see cref="Selectable"/></c> - the component that raised this event<br/>
+        /// <c><see cref="Selecter"/></c> - the component that pressed this selectable
+        /// </summary>
+        public readonly AutoEvent<Selectable, Selecter> OnGetPressed = new();
+        /// <summary>
+        /// <c><see cref="Selectable"/></c> - the component that raised this event<br/>
         /// <c><see cref="Selecter"/></c> - the component that released this selectable<br/>
         /// <c><see cref="bool"/></c> - whether the release also counts as a full click
         /// </summary>
-        public readonly AutoEvent<Selecter, bool> OnGetReleased = new();
+        public readonly AutoEvent<Selectable, Selecter, bool> OnGetReleased = new();
 
         // Publics
         public IReadOnlyCollection<Selecter> Selecters
@@ -38,6 +44,8 @@ namespace Vheos.Games.Core
         => IsBeingUsed;
         public bool IsSelectedBy(Selecter selecter)
         => IsBeingUsedBy(selecter);
+        public bool IsSelectedByMany
+        => IsBeingUsedByMany;
 
         public Selecter Presser
         { get; private set; }
@@ -50,20 +58,12 @@ namespace Vheos.Games.Core
         internal void GetPressedBy(Selecter selecter)
         {
             Presser = selecter;
-            OnGetPressed.Invoke(selecter);
+            OnGetPressed.Invoke(this, selecter);
         }
         internal void GetReleasedBy(Selecter selecter, bool click)
         {
             Presser = null;
-            OnGetReleased.Invoke(selecter, click);
-        }
-
-        // Play
-        protected override void PlayAwake()
-        {
-            base.PlayAwake();
-            OnStartBeingUsed.SubEnableDisable(this, user => OnGetSelected.Invoke(user, _users.Count == 1));
-            OnStopBeingUsed.SubEnableDisable(this, user => OnGetDeselected.Invoke(user, _users.Count == 0));
+            OnGetReleased.Invoke(this, selecter, click);
         }
     }
 }

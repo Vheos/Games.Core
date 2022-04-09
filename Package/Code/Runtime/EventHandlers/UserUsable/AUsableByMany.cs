@@ -20,22 +20,24 @@ namespace Vheos.Games.Core
                 if (test == null || test(user))
                     user.ClearUsables();
         }
-        override internal bool IsBeingUsed
+        override protected internal bool IsBeingUsed
         => _users.Count > 0;
-        override internal bool IsBeingUsedBy(TUser user)
+        override protected internal bool IsBeingUsedBy(TUser user)
         => _users.Contains(user);
-        override internal void StartBeingUsedBy(TUser user)
+        override protected internal void StartBeingUsedBy(TUser user)
         {
             _users.Add(user);
-            OnStartBeingUsed.Invoke(user);
+            OnStartBeingUsed.Invoke(this as TUsable, user);
         }
-        override internal void StopBeingUsedBy(TUser user)
+        override protected internal void StopBeingUsedBy(TUser user)
         {
             _users.Remove(user);
-            OnStopBeingUsed.Invoke(user);
+            OnStopBeingUsed.Invoke(this as TUsable, user);
         }
 
         // Privates
+        protected bool IsBeingUsedByMany
+        => _users.Count == 0;
         protected readonly HashSet<TUser> _users = new();
     }
 }

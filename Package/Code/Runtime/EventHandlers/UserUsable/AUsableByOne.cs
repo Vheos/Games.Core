@@ -19,20 +19,20 @@ namespace Vheos.Games.Core
             if (test == null || test(_user))
                 _user.ClearUsables();
         }
-        override internal bool IsBeingUsed
+        override protected internal bool IsBeingUsed
         => _user != null;
-        override internal bool IsBeingUsedBy(TUser user)
+        override protected internal bool IsBeingUsedBy(TUser user)
         => _user == user;
-        override internal void StartBeingUsedBy(TUser user)
+        override protected internal void StartBeingUsedBy(TUser user)
         {
             _user = user;
-            OnStartBeingUsed.Invoke(user);
+            OnStartBeingUsed.Invoke(this as TUsable, user);
         }
-        override internal void StopBeingUsedBy(TUser user)
+        override protected internal void StopBeingUsedBy(TUser user)
         {
             var previouUser = _user;
             _user = null;
-            OnStopBeingUsed.Invoke(previouUser);
+            OnStopBeingUsed.Invoke(this as TUsable, previouUser);
         }
 
         // Privates

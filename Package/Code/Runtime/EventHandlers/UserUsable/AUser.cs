@@ -27,7 +27,7 @@ namespace Vheos.Games.Core
         }
         public void RemoveTest(Func<TUsable, bool> test)
         => _usableTests.Remove(test);
-        private bool CanUse(TUsable usable)
+        protected bool CanUse(TUsable usable)
         {
             foreach (var test in _usableTests)
                 if (!test(usable))

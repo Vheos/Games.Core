@@ -56,9 +56,9 @@ namespace Vheos.Games.Core
         private State _pausedState;
         private State _currentState;
         private bool _isPaused;
-        private void Selectable_OnGetSelected(Selecter selecter, bool isFirst)
+        private void Selectable_OnGetSelected(Selectable selectable, Selecter selecter)
         {
-            if (!isFirst)
+            if (selectable.IsSelectedByMany)
                 return;
 
             _currentState |= State.Selected;
@@ -67,9 +67,9 @@ namespace Vheos.Games.Core
 
             AnimateSelected();
         }
-        private void Selectable_OnGetDeselected(Selecter selecter, bool wasLast)
+        private void Selectable_OnGetDeselected(Selectable selectable, Selecter selecter)
         {
-            if (!wasLast)
+            if (selectable.IsSelected)
                 return;
 
             _currentState &= ~State.Selected;
@@ -78,7 +78,7 @@ namespace Vheos.Games.Core
 
             AnimateDeselected();
         }
-        private void Selectable_OnGetPressed(Selecter selecter)
+        private void Selectable_OnGetPressed(Selectable selectable, Selecter selecter)
         {
             _currentState |= State.Pressed;
             if (_isPaused)
@@ -86,7 +86,7 @@ namespace Vheos.Games.Core
 
             AnimatePressed();
         }
-        private void Selectable_OnGetReleased(Selecter selecter, bool isClick)
+        private void Selectable_OnGetReleased(Selectable selectable, Selecter selecter, bool isClick)
         {
             _currentState &= ~State.Pressed;
             if (_isPaused)

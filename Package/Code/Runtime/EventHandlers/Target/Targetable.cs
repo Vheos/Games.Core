@@ -11,15 +11,17 @@ namespace Vheos.Games.Core
     {
         // Events
         /// <summary>
-        /// <c><see cref="Targeter"/></c> - the component that started targeting this targetable<br/>
-        /// <c><see cref="bool"/></c> - whether the above component is the only one targeting this targetable
+        /// <c><see cref="Targeter"/></c> - the component that raised this event<br/>
+        /// <c><see cref="Targeter"/></c> - the component that started targeting this targetable
         /// </summary>
-        public readonly AutoEvent<Targeter, bool> OnGainTargeting = new();
+        public AutoEvent<Targetable, Targeter> OnGainTargeting
+        => OnStartBeingUsed;
         /// <summary>
-        /// <c><see cref="Targeter"/></c> - the component that stopped targeting this targetable<br/>
-        /// <c><see cref="bool"/></c> - whether the above component was the only one targeting this targetable
+        /// <c><see cref="Targeter"/></c> - the component that raised this event<br/>
+        /// <c><see cref="Targeter"/></c> - the component that stopped targeting this targetable
         /// </summary>
-        public readonly AutoEvent<Targeter, bool> OnLoseTargeting = new();
+        public AutoEvent<Targetable, Targeter> OnLoseTargeting
+        => OnStopBeingUsed;
 
         // Publics
         public IReadOnlyCollection<Targeter> Targeters
@@ -28,13 +30,7 @@ namespace Vheos.Games.Core
         => IsBeingUsed;
         public bool IsTargetedBy(Targeter selecter)
         => IsBeingUsedBy(selecter);
-
-        // Play
-        protected override void PlayAwake()
-        {
-            base.PlayAwake();
-            OnStartBeingUsed.SubEnableDisable(this, user => OnGainTargeting.Invoke(user, _users.Count == 1));
-            OnStopBeingUsed.SubEnableDisable(this, user => OnLoseTargeting.Invoke(user, _users.Count == 0));
-        }
+        public bool IsTargetedByMany
+        => IsBeingUsedByMany;
     }
 }

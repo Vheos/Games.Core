@@ -29,18 +29,19 @@ namespace Vheos.Games.Core
         => _usable != null && _usable.Has<T>();
 
         // Privates
-        protected readonly AutoEvent<TUsable, TUsable> OnChangeUser = new();
+        protected readonly AutoEvent<TUser> OnChangeUsable = new();
         protected TUsable _usable;
         protected void SetUsable(TUsable newUsable)
         {
+            TUser asTUser = this as TUser;
             TUsable previousUsable = _usable;
             _usable = newUsable;
-            OnChangeUser.Invoke(previousUsable, _usable);
+            OnChangeUsable.Invoke(asTUser);
 
             if (previousUsable != null)
-                previousUsable.StopBeingUsedBy(this as TUser);
+                previousUsable.StopBeingUsedBy(asTUser);
             if (_usable != null)
-                _usable.StartBeingUsedBy(this as TUser);
+                _usable.StartBeingUsedBy(asTUser);
         }
         protected bool TrySetUsable(TUsable newUsable)
         {

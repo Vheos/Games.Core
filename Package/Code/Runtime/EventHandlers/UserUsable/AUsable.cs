@@ -12,11 +12,11 @@ namespace Vheos.Games.Core
     {
         // Abstract
         abstract public void ClearUsers(Func<TUser, bool> test = null);
-        abstract internal bool IsBeingUsed
+        abstract protected internal bool IsBeingUsed
         { get; }
-        abstract internal bool IsBeingUsedBy(TUser user);
-        abstract internal void StartBeingUsedBy(TUser user);
-        abstract internal void StopBeingUsedBy(TUser user);
+        abstract protected internal bool IsBeingUsedBy(TUser user);
+        abstract protected internal void StartBeingUsedBy(TUser user);
+        abstract protected internal void StopBeingUsedBy(TUser user);
 
         // Common
         public void AddTest(Func<TUser, bool> test)
@@ -34,8 +34,8 @@ namespace Vheos.Games.Core
             return true;
         }
         protected readonly HashSet<Func<TUser, bool>> _userTests = new();
-        protected readonly AutoEvent<TUser> OnStartBeingUsed = new();
-        protected readonly AutoEvent<TUser> OnStopBeingUsed = new();
+        protected readonly AutoEvent<TUsable, TUser> OnStartBeingUsed = new();
+        protected readonly AutoEvent<TUsable, TUser> OnStopBeingUsed = new();
 
         // Play
         protected override void PlayDisable()

@@ -9,7 +9,7 @@ namespace Vheos.Games.Core
     sealed public class Teamable : ABaseComponent
     {
         // Events
-        public readonly AutoEvent<Team, Team> OnChangeTeam = new();
+        public readonly AutoEvent<Teamable> OnChangeTeam = new();
 
         // Publics
         public Team Team
@@ -28,7 +28,7 @@ namespace Vheos.Games.Core
                 if (_team != null)
                     _team.TryAddMember(this);
 
-                OnChangeTeam.Invoke(previousTeam, _team);
+                OnChangeTeam.Invoke(this);
             }
         }
         public IEnumerable<Teamable> Allies
@@ -52,5 +52,12 @@ namespace Vheos.Games.Core
 
         // Privates
         private Team _team;
+
+        // Play
+        protected override void PlayDisable()
+        {
+            base.PlayDisable();
+            Team = null;
+        }
     }
 }

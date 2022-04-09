@@ -8,8 +8,8 @@ namespace Vheos.Games.Core
     sealed public class Targeter : AUserOfOne<Targeter, Targetable>
     {
         // Events
-        public AutoEvent<Targetable, Targetable> OnChangeTargetable
-        => OnChangeUser;
+        public AutoEvent<Targeter> OnChangeTargetable
+        => OnChangeUsable;
 
         // Publics
         public Targetable Targetable
